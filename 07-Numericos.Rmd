@@ -50,7 +50,7 @@ $$
 
 Donde $\mathbf{c}$ son constantes.
 
-```{r}
+```{r , cache=TRUE}
 
 euler <- function(fooName, valInic, tiempoParar, deltaT,guardarCada,...){
   arg <- list(...)
@@ -105,7 +105,7 @@ euler <- function(fooName, valInic, tiempoParar, deltaT,guardarCada,...){
 Por ejemplo
 
 
-```{r , results='hold',tidy=TRUE,}
+```{r , results='hold',tidy=TRUE,cache=TRUE}
 
 diffG1 <- function(rm,N)N*rm
 N0 <- 10

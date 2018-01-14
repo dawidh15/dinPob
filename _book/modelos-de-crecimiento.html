@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Ecología de poblaciones silvestres</title>
+  <meta name="description" content="Este es el manual del curso ‘Ecología de Poblaciones Silvestres’, de las Escuela de Ciencias Biológicas de la Universidad Nacional">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Ecología de poblaciones silvestres" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este es el manual del curso ‘Ecología de Poblaciones Silvestres’, de las Escuela de Ciencias Biológicas de la Universidad Nacional" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Ecología de poblaciones silvestres" />
+  
+  <meta name="twitter:description" content="Este es el manual del curso ‘Ecología de Poblaciones Silvestres’, de las Escuela de Ciencias Biológicas de la Universidad Nacional" />
+  
+
+<meta name="author" content="David Martínez Cascante">
+
+
+<meta name="date" content="2018-01-13">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="soluciones-a-los-ejercicios.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html"><i class="fa fa-check"></i><b>2</b> Modelos de crecimiento</a><ul>
+<li class="chapter" data-level="2.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-denso-independiente"><i class="fa fa-check"></i><b>2.1</b> Crecimiento denso-independiente</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-geometrico"><i class="fa fa-check"></i><b>2.1.1</b> Crecimiento geométrico</a></li>
+<li class="chapter" data-level="2.1.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-exponencial"><i class="fa fa-check"></i><b>2.1.2</b> Crecimiento exponencial</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-denso-dependiente"><i class="fa fa-check"></i><b>2.2</b> Crecimiento denso-dependiente</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#matrices"><i class="fa fa-check"></i><b>2.2.1</b> Matrices</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="soluciones-a-los-ejercicios.html"><a href="soluciones-a-los-ejercicios.html"><i class="fa fa-check"></i><b>3</b> Soluciones a los ejercicios</a></li>
+<li class="appendix"><span><b>Apéndices</b></span></li>
+<li class="chapter" data-level="A" data-path="metodos-numericos-para-ecologia-de-poblaciones.html"><a href="metodos-numericos-para-ecologia-de-poblaciones.html"><i class="fa fa-check"></i><b>A</b> Métodos numéricos para ecología de poblaciones</a><ul>
+<li class="chapter" data-level="A.1" data-path="metodos-numericos-para-ecologia-de-poblaciones.html"><a href="metodos-numericos-para-ecologia-de-poblaciones.html#simulacion-de-ecuaciones-diferenciales"><i class="fa fa-check"></i><b>A.1</b> Simulación de ecuaciones diferenciales</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ecología de poblaciones silvestres</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modelos-de-crecimiento" class="section level1">
+<h1><span class="header-section-number">Capítulo 2</span> Modelos de crecimiento</h1>
+<p>HACER: conceptos de producción en exceso, de Darwin, y lucha por la existencia.</p>
+<p>La evolución por selección natural implica que en una población que enfrente presiones para subsistir, existirán individuos mejor adaptados que otros. Algunos vivirán lo suficiente para reproducirse y otros no; además, dentro de aquellos que se reproduzcan, los más exitosos lo harán más frecuentemente, o con mayor descendencia. Este concepto implica que en una población debe haber suficiente variabilidad genética, que se refleje en un desempeño diferente en la reproducción, y que no todos los organismos vivirán lo suficiente para dejar descendencia o reemplazarse a sí mismos. Esto quiere decir, que las poblaciones deben de reproducirse y dejar un <em>exceso de decendencia</em>, para poder absorber a aquellos organismos que no logren reproducirse con éxito.</p>
+<p>De esta manera, la sobre-producción de organismos es un requisito para que una población subsista en un intervalo prolongado de tiempo. Y la sobre-producción implica que las poblaciones tienen el potencial de <em>crecer</em>. La disciplina de la ecología de poblaciones, entonces, ha enfocado esfuerzos en modelar el crecimiento poblacional usando funciones matemáticas, las cuales estudiaremos en esta sección.</p>
+<p>El crecimiento en dinámica de poblaciones, está enfocado en la población, y no en el individuo. Algunos aspectos fisiológicos, e individuales, pueden ser importantes a la hora de modelar el crecimiento poblacional, y estos pueden ser incluidos como parámetros del modelo; pero, en general, el interés se centra en la estimación de la cantidad de individuos, o la biomasa, que conforma una población, y cómo cambia con respecto al tiempo u otras variables.</p>
+<p>En general, el objetivo de los modelos de crecimiento, es obtener una función del tamaño de la población con respecto al tiempo. Existen dos aproximaciones principales para obtener esta función: la exponencial y la geométrica. El crecimiento exponencial se mide en cualquier momento en el tiempo, mientras que el crecimiento geométrico se mide a intervalos discretos. Es decir, ambos miden el crecimiento poblacional, pero una aproximación lo hace en intervalos continuos y la otra en intervalos discretos.</p>
+<p>Las otra gran categoría de modelos de crecimiento tienen que ver con la dependencia de la densidad de población. Por ejemplo, una población con suficiente espacio y recursos, puede considerarse <em>denso-independiente</em>, mientras que una población que está en permanente competencia intraespecífica por la adquisición de espacio y recursos, tiene un crecimiento denso-dependiente.</p>
+<div id="crecimiento-denso-independiente" class="section level2">
+<h2><span class="header-section-number">2.1</span> Crecimiento denso-independiente</h2>
+
+<div id="crecimiento-geometrico" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Crecimiento geométrico</h3>
+
+<p>Nuestra variable de interés es el tamaño poblacional, <span class="math inline">\(N\)</span>. Queremos conocer el crecimiento poblacional de <span class="math inline">\(N\)</span> del año 0 (<span class="math inline">\(t=0\)</span>) al año 1 (<span class="math inline">\(t=1\)</span>). Entonces, podemos simplemente restar <span class="math inline">\(N_1 - N_0\)</span> para encontrar dicho crecimiento, al que llamaremos <span class="math inline">\(\Delta N\)</span>. De manera similar, podemos encontrar el crecimiento de la población en cualquier sub-intervalo de tiempo. Por ejemplo, si queremos conocer el crecimiento en el periodo <span class="math inline">\(t=1\)</span> y <span class="math inline">\(t=0.5\)</span>, entonces nombramos este intervalo como <span class="math inline">\(\Delta t\)</span>, y obtenemos el dato al dividir <span class="math inline">\(\Delta N / \Delta t\)</span>. Esta razón corresponde a la <em>tasa de crecimiento</em>.</p>
+<p>Una primer idea de cómo modelar la tasa de crecimiento, es pensar en que ésta equivale a la diferencia entre las <em>entradas</em> a la población (natalidad e inmigración) menos las <em>salidas</em> de la población (mortalidad y emigración):</p>
+<p><span class="math display">\[
+\frac{\Delta N}{\Delta t} = E-S
+\]</span></p>
+<p>Si dividimos la ecuación anterior por <span class="math inline">\(N\)</span> obtenemos la tasa de crecimiento <em>per cápita</em>.</p>
+<p><span class="math display">\[
+\frac{\frac{\Delta N}{\Delta t}}{N} = \frac{E-S}{N}
+\]</span></p>
+<p>La tasa de crecimiento per cápita es mayor a cero, entonces la población crece. Si es igual a cero, la población se mantiene estable. Si es menor a cero, la población decrece. Si llamamos a la tasa de crecimiento per cápita <span class="math inline">\(R_m\)</span>, entonces podemos arreglar la ecuación anterior de una forma más conocida:</p>
+<span class="math display" id="eq:geom1">\[\begin{equation}
+\frac{\Delta N}{\Delta t}=R_m N
+ \tag{2.1}
+\end{equation}\]</span>
+<p>Sin embargo, la ecuación <a href="modelos-de-crecimiento.html#eq:geom1">(2.1)</a> aún no está en función del tiempo, que es el objetivo que se busca. Primero empecemos por predecir <span class="math inline">\(N_1\)</span> en función de <span class="math inline">\(N_0\)</span>. Sabemos que <span class="math inline">\(N_1\)</span> será igual a <span class="math inline">\(N_0\)</span> <em>más</em> el crecimiento poblacional durante ese intervalo de tiempo. Es decir:</p>
+<p><span class="math display">\[
+N_1 = N_0 + \frac{\Delta N}{\Delta t}
+\]</span></p>
+<p>Y por la ecuación <a href="modelos-de-crecimiento.html#eq:geom1">(2.1)</a>, substituyendo <span class="math inline">\(N = N_0\)</span>, se tiene la relación:</p>
+<span class="math display">\[\begin{equation}
+\begin{split}
+N_1 &amp;= N_0 + R_m N_0\\
+    &amp;= N_0 \left( 1 + R_m \right)\\
+    &amp;= N_0 \lambda\\
+\end{split}
+\end{equation}\]</span>
+<p>Es decir, el tamaño de población en el año 1, es igual al tamaño de población en el año 0, más el producto de la tasa de crecimiento per cápita por el tamaño de población en el año 0. Los arreglos posteriores, muestran que <span class="math inline">\(N_1\)</span> depende de <span class="math inline">\(N_0\)</span> y una constante <span class="math inline">\(\lambda = 1+R_m\)</span>, la cual representa la <em>tasa de multiplicación</em>. Entonces, la población crece cuando <span class="math inline">\(\lambda &gt; 1\)</span>, se mantiene estable si <span class="math inline">\(\lambda = 1\)</span>, y decrece si <span class="math inline">\(\lambda &lt; 1\)</span>.</p>
+<p>Ahora, podemos obtener <span class="math inline">\(N_2 = N_1 \lambda\)</span> utilizando la relación anterior. Como <span class="math inline">\(N_1 = N_0 \lambda\)</span>, sustituimos en la primer expresión para acabar con <span class="math inline">\(N_2 = N_0 \lambda \lambda = N_0 \lambda^2\)</span>. Si proseguimos de esta manera, concluimos que:</p>
+<span class="math display" id="eq:geom2">\[\begin{equation}
+N_t = N_0 \lambda^t
+ \tag{2.2}
+\end{equation}\]</span>
+<p>Con lo que finalmente se logra el objetivo de tener una función del tamaño poblacional en relación al tiempo.</p>
+<div id="ejemplos" class="section level4">
+<h4><span class="header-section-number">2.1.1.1</span> Ejemplos</h4>
+
+<div class="example">
+<span id="exm:plotGeom" class="example"><strong>Example 2.1  </strong></span>Graficar la ecuación <a href="modelos-de-crecimiento.html#eq:geom2">(2.2)</a>
+</div>
+
+<p>Ahora que tenemos una relación del tamaño poblacional con el tiempo, podemos crear una función sencilla para observar su comportamiento.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plotGeomGrowth &lt;-<span class="st"> </span><span class="cf">function</span>(N0, lambda, t){
+    vectorTiempo &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span>t
+    vectorPoblacion &lt;-<span class="st"> </span>N0<span class="op">*</span>lambda<span class="op">^</span>vectorTiempo
+    <span class="kw">plot</span>(vectorTiempo, vectorPoblacion,
+         <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Tiempo&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tamaño de población&quot;,</span>
+<span class="st">         las = 1, pch = 21, bg = 1)</span>
+<span class="st">    lines(vectorTiempo, vectorPoblacion)</span>
+<span class="st">}</span>
+
+<span class="st">plotGeomGrowth(50, 1.1, 10)</span></code></pre></div>
+<p><img src="dinPob_files/figure-html/exmPlotGeom-1.png" width="672" height="6cm" style="display: block; margin: auto;" /></p>
+
+<div class="example">
+<p><span id="exm:GeomExm2" class="example"><strong>Example 2.2  </strong></span> ¿Cuál es el <span class="math inline">\(\lambda\)</span> de una población que cuenta con 33 individuos en el año 0 (<span class="math inline">\(t=0\)</span>), y que tras 10 años cuenta con 25 individuos? Grafique la curva de crecimiento.</p>
+</div>
+
+<p>Al despejar la ecuación <a href="modelos-de-crecimiento.html#eq:geom2">(2.2)</a> para <span class="math inline">\(\lambda\)</span> se tiene</p>
+<p><span class="math display">\[
+\lambda = \left( \frac{N_t}{N_0} \right)^\frac{1}{t}
+\]</span></p>
+<p>Substituyendo los valores correspondientes se tiene que <span class="math inline">\(\lambda =\)</span> . Luego, usando la función creada en el ejemplo <a href="modelos-de-crecimiento.html#exm:plotGeom">2.1</a>, y el recién calculado lambda, se grafica la curva de crecimiento.</p>
+<p><img src="dinPob_files/figure-html/unnamed-chunk-1-1.png" width="672" height="6cm" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ejercicios" class="section level4">
+<h4><span class="header-section-number">2.1.1.2</span> Ejercicios</h4>
+
+<div class="exercise">
+<span id="exr:plotGeomGrowth" class="exercise"><strong>Exercise 2.1  </strong></span>Grafique la ecuación <a href="modelos-de-crecimiento.html#eq:geom1">(2.1)</a>. En el eje <strong>y</strong> la tasa de crecimiento y en el eje <strong>x</strong> el tamaño poblacional. Utilice tres valores de <span class="math inline">\(R_m\)</span>, uno positivo, uno igual a cero y otro negativo. El tamaño inicial de la población es de 50 individuos. <span class="math inline">\(R_m \in \left[ -1, 1 \right]\)</span>, y <span class="math inline">\(N \in \left[ 0, 50 \right]\)</span>. Cuál es la representación gráfica de <span class="math inline">\(R_m\)</span> en el gráfico.
+</div>
+
+
+<div class="exercise">
+<span id="exr:plotgeomGrowth2" class="exercise"><strong>Exercise 2.2  </strong></span>Grafique la ecuación <a href="modelos-de-crecimiento.html#eq:geom2">(2.2)</a>. Utilice tres valores de <span class="math inline">\(\lambda\)</span>, uno mayor a uno, otro igual a uno, y el último menor a 1, pero mayor a cero. El tamaño inicial de la población es de 50 individuos.
+</div>
+
+
+<div class="exercise">
+<span id="exr:GeomGrowthMathInduction" class="exercise"><strong>Exercise 2.3  </strong></span><strong>PICANTE</strong> Todo libro de lógica matemática debe contener los métodos de demostración más comunes. Utilice el metodo de <strong>inducción matemática</strong> para demostrar que la ecuación <a href="modelos-de-crecimiento.html#eq:geom2">(2.2)</a> es válida para todo <span class="math inline">\(n \in \mathbb{N}\)</span> (números naturales). <strong>5% sobre la nota, dividido entre el número de estudiantes que respondan el ejericio</strong>.
+</div>
+
+
+<div class="exercise">
+<span id="exr:GeomGrowthBacteria1" class="exercise"><strong>Exercise 2.4  </strong></span>Si inoculo una población de bacterias en un medio de cultivo con suficiente espacio y nutrientes, con un estimado de , y tras tres horas, se estima una población de , ¿Qué valor tiene lambda? NOTA. En este caso, <span class="math inline">\(t\)</span> representa una hora.
+</div>
+
+
+<div class="exercise">
+<span id="exr:GeomGrowthBacteria2" class="exercise"><strong>Exercise 2.5  </strong></span>Un cultivo de células dobla su tamaño poblacional en 15 minutos (<span class="math inline">\(\lambda = 2\)</span>). Si se empieza con 1000 células, ¿cuántas de ellas existen tras 3 horas?
+</div>
+
+</div>
+</div>
+<div id="crecimiento-exponencial" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Crecimiento exponencial</h3>
+<p>En la sección anterior, se trabajó con intervalos de tiempo discretos. Pero si queremos conocer el tamaño poblacional en cualquier momento del tiempo, debemos trabajar con intervalos infinitamente pequeños. Esto quiere decir que la ecuación <a href="modelos-de-crecimiento.html#eq:geom2">(2.2)</a> se escribe en su forma continua:</p>
+<span class="math display" id="eq:diffG">\[\begin{equation}
+\frac{dN}{dt}=r_m N
+ \tag{2.3}
+ \end{equation}\]</span>
+<p>La ecuación <a href="modelos-de-crecimiento.html#eq:diffG">(2.3)</a> es una <em>ecuación diferencial de primer orden</em>. Este tipo particular de ecuaciones diferenciales tienen una solución analítica. Para este caso, se puede utilizar el método de separación de variables, para obtener la siguiente expresión del tamaño poblacional con respecto al tiempo (ver ejemplo <a href="modelos-de-crecimiento.html#exm:exp1">2.3</a>):</p>
+<span class="math display" id="eq:expG">\[\begin{equation}
+N_t=N_0 e^{r_mt}
+\tag{2.4}
+\end{equation}\]</span>
+<p>En la expresión anterior, <span class="math inline">\(r_m\)</span> es la <em>tasa instantánea de crecimiento</em>, también conocida como la <em>tasa intrínseca de crecimiento natural</em>, o el parámetro de Malthus por Thomas Malthus. Este parámetro equivale a la diferencia entre la tasa intrínseca de nacimiento y la tasa intrínseca de mortalidad (<span class="math inline">\(b - d\)</span>). La tasa intrínseca está relacionada con la tasa de multiplicación de la siguiente forma:</p>
+<span class="math display">\[\begin{equation*}
+\begin{split}
+\lambda &amp;= e^{r_m}\\
+r_m &amp;= \ln\lambda\\
+\end{split}
+\end{equation*}\]</span>
+<p>El parámetro <span class="math inline">\(r_m\)</span> tiene aplicaciones interesantes. Una de ellas es su facilidad para utilizarse en diferentes escalas de tiempo. Por ejemplo, si <span class="math inline">\(r_m = 0.1\)</span> por día, y queremos escalarlo a escala semanal, procedemos a multiplicar <span class="math inline">\(r_m = 0.1 \times 7 = 0.7\)</span>. Al hacer esta transformación, se debe tener en cuenta la escala de tiempo con la que se interpretan y presentan los resultados.</p>
+<div id="ejemplos-1" class="section level4">
+<h4><span class="header-section-number">2.1.2.1</span> Ejemplos</h4>
+
+<div class="example">
+<p><span id="exm:exp1" class="example"><strong>Example 2.3  </strong></span> Como obtener la ecuación de crecimiento exponencial <a href="modelos-de-crecimiento.html#eq:expG">(2.4)</a> de la ecuación diferencial <a href="modelos-de-crecimiento.html#eq:diffG">(2.3)</a>.</p>
+</div>
+
+<p>El método de separación de variables consiste en dejar todos los términos de la incógnita de un lado, y los términos de la variable independiente (<span class="math inline">\(t\)</span>) del otro lado de la igualdad. Entonces:</p>
+<p><span class="math display">\[
+\frac{1}{N} \times \frac{dN}{dt}=r_m
+\]</span></p>
+<p>Luego se integra ambos lados con respecto de la variable independiente:</p>
+<p><span class="math display">\[
+\int \left( \frac{1}{N} \times \frac{dN}{dt}\right)\,dt=\int r_m\,dt
+\]</span></p>
+Observe que del lado izquierdo los diferenciales se cancelan:
+<span class="math display">\[\begin{equation*}
+\begin{split}
+\int \frac{dN}{N}&amp;=r_m t + c\\
+\ln N &amp; = r_m t + c\\
+\end{split}
+\end{equation*}\]</span>
+<p>Se despeja <span class="math inline">\(N\)</span>, y se obtiene <span class="math inline">\(N=Ce^{r_m t}\)</span>. Luego, cuando <span class="math inline">\(N=N_0\)</span> entonces <span class="math inline">\(t=0\)</span>; por lo que la expresión se simplifica a <span class="math inline">\(N_0 = C e^0 = C\)</span>. Dando como resultado la expresión</p>
+<p><span class="math display">\[
+N = N_0 e^{r_m t}
+\]</span></p>
+
+<div class="example">
+<p><span id="exm:exp2" class="example"><strong>Example 2.4  </strong></span>De acuerdo con <span class="citation">Illman, Scragg, and Shales (<a href="#ref-ILLMAN2000631">2000</a>)</span> un gramo de <em>Chlorella emersonii</em> puede contener  (energía por gramo). Si la tasa intrínseca es de , ¿cuántos gramos de <em>Chlorella</em> necesito para producir ? ¿Cuál es el tiempo de producción? Asuma un crecimiento exponencial, y un inóculo inicial con <span class="math inline">\(N_0 = 1\mu \si{\gram}\)</span> de <em>Chlorella</em>.</p>
+</div>
+
+<p>En este caso, pensamos en el tamaño poblacional como biomasa, en lugar del número de individuos. El primer paso es calcular <span class="math inline">\(N\)</span> para producir la cantidad deseada de energía, lo cual resolvemos con una simple conversión para obtener:</p>
+<p><span class="math display">\[
+N=\frac{1\si{\gram}}{29\cancel{\si{\kilo\joule}}}\times 5000 \cancel{\si{\kilo\joule}}=172.4138\si{\gram}
+\]</span></p>
+<p>Luego, despejamos <span class="math inline">\(t\)</span> de la ecuación <a href="modelos-de-crecimiento.html#eq:expG">(2.4)</a>:</p>
+<p><span class="math display">\[
+t = \ln \left(\frac{N}{N_0}\right)r_m^{-1}
+\]</span></p>
+<p>Se hacen las sustituciones correspondientes: <span class="math inline">\(r_m = 0.99\)</span>, <span class="math inline">\(N_0 = \SI{1e-6}{\gram}\)</span>, <span class="math inline">\(N = \SI{172.414}{\gram}\)</span>, y se obtiene que el tiempo necesario para obtener una biomasa equivalente a una energía de 5000 kilojoule es <span class="math inline">\(t =\)</span> .</p>
+</div>
+<div id="ejercicios-1" class="section level4">
+<h4><span class="header-section-number">2.1.2.2</span> Ejercicios</h4>
+
+<div class="exercise">
+<span id="exr:expGrowth1" class="exercise"><strong>Exercise 2.6  </strong></span>Si <span class="math inline">\(\lambda = 1.027\)</span> por semana. Escale <span class="math inline">\(\lambda\)</span> de semanas a meses (1 mes = 4 semanas). Utilice la relación de <span class="math inline">\(\lambda = e^{r_m}\)</span>.
+</div>
+
+
+<div class="exercise">
+<p><span id="exr:expGrowth2" class="exercise"><strong>Exercise 2.7  </strong></span>Para los siguentes escenarios de la ecuación <a href="modelos-de-crecimiento.html#eq:expG">(2.4)</a>:</p>
+<ul>
+<li><p><span class="math inline">\(r_m\)</span> negativo.</p></li>
+<li><p><span class="math inline">\(r_m\)</span> igual a cero.</p></li>
+<li><p><span class="math inline">\(r_m\)</span> positivo.</p></li>
+</ul>
+<p>Obtenga el límite:</p>
+<p><span class="math display">\[
+  \lim_{t \to \infty } N(t)
+\]</span></p>
+<p>Dé una interpretación de los resultados, en términos de la población.</p>
+</div>
+
+
+<div class="exercise">
+<span id="exr:expGrowth3" class="exercise"><strong>Exercise 2.8  </strong></span>Demuestre, utilizando un razonamiento deductivo, que si <span class="math inline">\(r_m &lt; 0\)</span>, la población decrece. Puede usar los resultados del ejercicio <a href="modelos-de-crecimiento.html#exr:expGrowth2">2.7</a>.
+</div>
+
+
+<div class="exercise">
+<span id="exr:expGrowth4" class="exercise"><strong>Exercise 2.9  </strong></span>Analice biológicamente el significado del resultado del ejercicio <a href="modelos-de-crecimiento.html#exr:expGrowth2">2.7</a>, cuando <span class="math inline">\(r_m\)</span> es positivo.
+</div>
+
+</div>
+</div>
+</div>
+<div id="crecimiento-denso-dependiente" class="section level2">
+<h2><span class="header-section-number">2.2</span> Crecimiento denso-dependiente</h2>
+<div id="matrices" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Matrices</h3>
+<p><a href="http://onlinelibrary.wiley.com/doi/10.1111/1365-2656.12482/full">COMADRE</a> <a href="http://www.compadre-db.org/Data/Comadre">COMADRE DATA</a> Ojo a la guia de usuario</p>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-ILLMAN2000631">
+<p>Illman, A M, A H Scragg, and S W Shales. 2000. “Increase in Chlorella strains calorific values when grown in low nitrogen medium.” <em>Enzyme and Microbial Technology</em> 27 (8): 631–35. doi:<a href="https://doi.org/https://doi.org/10.1016/S0141-0229(00)00266-0">https://doi.org/10.1016/S0141-0229(00)00266-0</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="soluciones-a-los-ejercicios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
