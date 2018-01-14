@@ -1,0 +1,3 @@
+# Teoría de metapoblaciones
+
+Explicación de la teoría de metapoblaciones. Incluir conceptos de crecimiento para distinguir entre fuentes, sumideros, etc.

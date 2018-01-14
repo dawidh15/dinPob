@@ -1,0 +1,71 @@
+# Soluciones a los ejercicios
+
+
+**Ejercicio \@ref(exr:plotGeomGrowth)**
+
+
+```{r , cache=TRUE,out.height='6cm',fig.align='center'}
+plot(0,0,xlim = c(0,50),
+     ylim = c(0,100) ,
+     type = 'n',xlab = 'Tamaño poblacional',
+     ylab = "Tasa de crecimiento")
+
+val=numeric()
+
+for(Rm in c(-1,0,1)){
+  abline(50,Rm,lty=Rm+2)
+  val=append(val,Rm)
+}
+legend("topleft",lty= 1:3,legend = paste('Rm = ',val))
+```
+
+$R_m$ representa la pendiente de la recta.
+
+**Ejercicio \@ref(exr:GeomGrowthBacteria2)**
+
+En 3 horas existen 12 periodos de 15 minutos ($t=12$). Entonces aplicamos la ecuación \@ref(eq:geom2):
+
+$$
+100\times 2^{12} = \num{409600}\text{ células}
+$$
+
+
+**Ejercicio \@ref(exr:expGrowth1)**
+
+Obtener $r_m = \ln \lambda$; luego multiplicar $r_{mes}=r_m \times 4$ para obtener la escala a meses. Finalmente, transformar $\lambda_{mes}=e^{r_{mes}}$.
+
+**Ejercicio \@ref(exr:expGrowth3)**
+
+Asumimos que $r_m$ es cualquier constante positiva ($r_m \in \mathbb{R}^+$). Entonces $-1\times r_m \in \mathbb{R}^-$.
+
+Luego, tomamos el límite:
+
+$$
+\lim_{t \to \infty}N_0 e^{-r_m t}
+$$
+
+Que equivale a:
+
+$$
+\lim_{t \to \infty}\frac{N_0}{e^{r_m t}}
+$$
+
+Vemos que el denominador de la expresión anterior es un número que crecerá infinitamente. Si reemplazamos $e^{r_m t}$ por $x$, cuando $t \to \infty \Rightarrow x \to \infty$. Y quedamos con la expresión:
+
+$$
+\lim_{x \to \infty}\frac{N_0}{x} = 0
+$$
+
+Porque cuando $x \to \infty \Rightarrow x \gg N_0$. Es decir, cuando $x$ se vuelve infinito, es mucho más grande que $N_0$, por tanto, el cociente tiende a cero, cuando $x$ tiende a infinito.
+
+Poblacionalmente, esto significa, que si una población mantiene una tasa intrínseca negativa, por un periodo de tiempo suficientemente largo, sufrirá un evento de extinción.
+
+
+
+
+
+\begingroup
+\small
+\printindex
+\vfill
+\endgroup

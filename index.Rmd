@@ -1,0 +1,45 @@
+--- 
+title: "Ecología de poblaciones silvestres"
+author: "David Martínez Cascante"
+date: "`r Sys.Date()`"
+description: Este es el manual del curso 'Ecología de Poblaciones Silvestres', de las Escuela de Ciencias Biológicas de la Universidad Nacional
+documentclass: book
+fancyHeader: yes
+fontsize: 12pt
+geometry: top=2.5cm, bottom=2.5cm, left=3cm, right=3cm
+language: spanish
+link-citations: yes
+mainfont: Cambria
+mathfont: Cambria
+bibliography:
+- book.bib
+- packages.bib
+papersize: letter
+sansfont: Arial
+secnumdepth: 1
+site: bookdown::bookdown_site
+biblio-style: apalike
+---
+# Introducción {#intro}
+
+
+- Qué es ecologia de poblaciones
+
+La ecología de poblaciones\index{E!ecología de poblaciones} se centra en el estudio de la dinámica de las poblaciones\index{D!dinámica de poblaciones} (su crecimiento e interacción con otras poblaciones), y en las interacciones de éstas con el ambiente. La ecología de poblaciones (también llamada **dinámica de poblaciones**) es un campo con un componente matemático y estadístico fuerte, y de gran importancia para la gestión de vida silvestre.
+
+- Aplicaciones de la ecología de poblaciones
+
+Algunas de las aplicaciones más importantes de esta disciplina, están relacionadas al cálculo de la viabilidad de poblaciones, al cálculo de tasas de extracción, e incluso a la creación de áreas protegidas dedicadas a proteger el ciclo de vida, o parte de éste, en determinadas especies.
+
+El *Análisis de Viabilidad de Poblaciones*, es un ejemplo de una de las aplicaciones de la ecología de poblaciones para la gestión de vida silvestre. Este modelo predice el riesgo de que una población se extinga en una determinada cantidad de años. De esta manera, los gestores pueden modelar diferentes escenarios, cada cual con un conjunto específico de acciones de manejo, y decidir cuál de éstos es más efectivo en la conservación o manejo de la especie.
+
+La creación de santuarios de pesca, por ejemplo, se fundamenta en el concepto de *Biogeografía de Islas* (REF) que también es parte de la ecología de poblaciones. Los santuarios de pesca funcionan como *fuentes*, es decir, zonas donde el crecimiento poblacional es positivo y existe migración de individuos. Éstos individuos, que se producen en exceso, migrarán hacia zonas de pesca, o extracción, para sostener actividades económicas. De esta manera, se garantiza la extracción sostenible en las zonas aledañas.
+
+Algunos modelos importantes, como el modelo **bioeconómico**, que buscan la mayor rentabilidad económica por la extracción de una especie [@Grafton2006], están basados en modelos de crecimiento derivados de la dinámica de poblaciones. Este modelo estima la cantidad de esfuerzo extractivo que debe aplicarse a una especie, para mantener una rentabilidad positiva, y mantener un tamaño poblacional que garantice la continuidad de las poblaciones aprovechadas.
+
+- Herramientas necesarias
+
+La dinámica de poblaciones es una de las ramas de la biología con un componente matemático y estadístico más fuertes. El desarrollo teórico de los modelos implica conocimiento de planteamiento y resolución de *ecuaciones diferenciales*. En la práctica, muchos problemas se plantean como ecuaciones diferenciales, pero no tienen solución analítica, por lo cual se requiere de conocimiento sobre *métodos numéricos*, *programación* o uso de lenguajes de programación.
+
+Si el investigador conoce las herramientas de análisis, y quiere ponerlas en práctica, entonces requiere de conocimientos en *diseño experimental y muestreal*; así como, *técnicas de muestreo* para conseguir los datos. Pero la limitación más fuerte, es el financiamiento requerido; ya que, la mayoría de los análisis tienen fuertes requerimientos de datos, y series de tiempo bastante amplias.
+

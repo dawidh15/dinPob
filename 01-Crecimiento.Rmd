@@ -1,0 +1,270 @@
+# Modelos de crecimiento
+
+HACER: conceptos de producción en exceso, de Darwin, y lucha por la existencia.
+
+La evolución por selección natural implica que en una población que enfrente presiones para subsistir, existirán individuos mejor adaptados que otros. Algunos vivirán lo suficiente para reproducirse y otros no; además, dentro de aquellos que se reproduzcan, los más exitosos lo harán más frecuentemente, o con mayor descendencia. Este concepto implica que en una población debe haber suficiente variabilidad genética, que se refleje en un desempeño diferente en la reproducción, y que no todos los organismos vivirán lo suficiente para dejar descendencia o reemplazarse a sí mismos. Esto quiere decir, que las poblaciones deben de reproducirse y dejar un *exceso de decendencia*, para poder absorber a aquellos organismos que no logren reproducirse con éxito.
+
+De esta manera, la sobre-producción de organismos es un requisito para que una población subsista en un intervalo prolongado de tiempo. Y la sobre-producción implica que las poblaciones tienen el potencial de *crecer*. La disciplina de la ecología de poblaciones, entonces, ha enfocado esfuerzos en modelar el crecimiento poblacional usando funciones matemáticas, las cuales estudiaremos en esta sección.
+
+El crecimiento\index{C!crecimiento} en dinámica de poblaciones, está enfocado en la población, y no en el individuo. Algunos aspectos fisiológicos, e individuales, pueden ser importantes a la hora de modelar el crecimiento poblacional, y estos pueden ser incluidos como parámetros del modelo; pero, en general, el interés se centra en la estimación de la cantidad de individuos, o la biomasa, que conforma una población, y cómo cambia con respecto al tiempo u otras variables.
+
+En general, el objetivo de los modelos de crecimiento, es obtener una función del tamaño de la población con respecto al tiempo. Existen dos aproximaciones principales para obtener esta función: la exponencial y la geométrica. El crecimiento exponencial se mide en cualquier momento en el tiempo, mientras que el crecimiento geométrico se mide a intervalos discretos. Es decir, ambos miden el crecimiento poblacional, pero una aproximación lo hace en intervalos continuos y la otra en intervalos discretos.
+
+Las otra gran categoría de modelos de crecimiento tienen que ver con la dependencia de la densidad de población. Por ejemplo, una población con suficiente espacio y recursos, puede considerarse *denso-independiente*, mientras que una población que está en permanente competencia intraespecífica por la adquisición de espacio y recursos, tiene un crecimiento denso-dependiente.
+
+
+## Crecimiento denso-independiente
+
+\index{C!crecimiento denso-independiente}
+
+
+### Crecimiento geométrico
+
+\index{C!crecimiento geométrico}
+
+Nuestra variable de interés es el tamaño poblacional, $N$. Queremos conocer el crecimiento poblacional de $N$ del año 0 ($t=0$) al año 1 ($t=1$). Entonces, podemos simplemente restar $N_1 - N_0$ para encontrar dicho crecimiento, al que llamaremos $\Delta N$. De manera similar, podemos encontrar el crecimiento de la población en cualquier sub-intervalo de tiempo. Por ejemplo, si queremos conocer el crecimiento en el periodo $t=1$ y $t=0.5$, entonces nombramos este intervalo como $\Delta t$, y obtenemos el dato al dividir $\Delta N / \Delta t$. Esta razón corresponde a la *tasa de crecimiento*\index{T!tasa de crecimiento}.
+
+Una primer idea de cómo modelar la tasa de crecimiento, es pensar en que ésta equivale a la diferencia entre las *entradas* a la población (natalidad e inmigración) menos las *salidas* de la población (mortalidad y emigración):
+
+$$
+\frac{\Delta N}{\Delta t} = E-S
+$$
+
+Si dividimos la ecuación anterior por $N$ obtenemos la tasa de crecimiento *per cápita*.
+
+$$
+\frac{\frac{\Delta N}{\Delta t}}{N} = \frac{E-S}{N}
+$$
+
+La tasa de crecimiento per cápita es mayor a cero, entonces la población crece. Si es igual a cero, la población se mantiene estable. Si es menor a cero, la población decrece. Si llamamos a la tasa de crecimiento per cápita $R_m$, entonces podemos arreglar la ecuación anterior de una forma más conocida:
+
+\begin{equation}
+\frac{\Delta N}{\Delta t}=R_m N
+ (\#eq:geom1)
+\end{equation}
+
+
+
+Sin embargo, la ecuación \@ref(eq:geom1) aún no está en función del tiempo, que es el objetivo que se busca. Primero empecemos por predecir $N_1$ en función de $N_0$. Sabemos que $N_1$ será igual a $N_0$ *más* el crecimiento poblacional durante ese intervalo de tiempo. Es decir:
+
+$$
+N_1 = N_0 + \frac{\Delta N}{\Delta t}
+$$
+
+Y por la ecuación \@ref(eq:geom1), substituyendo $N = N_0$, se tiene la relación:
+
+\begin{equation}
+\begin{split}
+N_1 &= N_0 + R_m N_0\\
+    &= N_0 \left( 1 + R_m \right)\\
+    &= N_0 \lambda\\
+\end{split}
+\end{equation}
+
+Es decir, el tamaño de población en el año 1, es igual al tamaño de población en el año 0, más el producto de la tasa de crecimiento per cápita por el tamaño de población en el año 0. Los arreglos posteriores, muestran que $N_1$ depende de $N_0$ y una constante $\lambda = 1+R_m$, la cual representa la *tasa de multiplicación*\index{T!tasa de multiplicación}. Entonces, la población crece cuando $\lambda > 1$, se mantiene estable si $\lambda = 1$, y decrece si $\lambda < 1$.
+
+Ahora, podemos obtener $N_2 = N_1 \lambda$ utilizando la relación anterior. Como $N_1 = N_0 \lambda$, sustituimos en la primer expresión para acabar con $N_2 =  N_0 \lambda \lambda =  N_0 \lambda^2$. Si proseguimos de esta manera, concluimos que:
+
+\begin{equation}
+N_t = N_0 \lambda^t
+ (\#eq:geom2)
+\end{equation}
+
+Con lo que finalmente se logra el objetivo de tener una función del tamaño poblacional en relación al tiempo.
+
+#### Ejemplos
+
+```{example, label='plotGeom'}
+Graficar la ecuación \@ref(eq:geom2)
+```
+
+Ahora que tenemos una relación del tamaño poblacional con el tiempo, podemos crear una función sencilla para observar su comportamiento.
+
+```{r exmPlotGeom, cache=TRUE,out.height='6cm',fig.align='center'}
+plotGeomGrowth <- function(N0, lambda, t){
+    vectorTiempo <- 0:t
+    vectorPoblacion <- N0*lambda^vectorTiempo
+    plot(vectorTiempo, vectorPoblacion,
+         type = "p", xlab = "Tiempo", ylab = "Tamaño de población",
+         las = 1, pch = 21, bg = 1)
+    lines(vectorTiempo, vectorPoblacion)
+}
+
+plotGeomGrowth(50, 1.1, 10)
+```
+
+
+```{example, label='GeomExm2'}
+
+¿Cuál es el $\lambda$ de una población que cuenta con 33 individuos en el año 0 ($t=0$), y que tras 10 años cuenta con 25 individuos? Grafique la curva de crecimiento.
+
+```
+
+Al despejar la ecuación \@ref(eq:geom2) para $\lambda$ se tiene
+
+$$
+\lambda = \left( \frac{N_t}{N_0} \right)^\frac{1}{t}
+$$
+
+Substituyendo los valores correspondientes se tiene que $\lambda =$ `r paste('\\num{',signif((25/33)^(1/10),digits=3),'}')`. Luego, usando la función creada en el ejemplo \@ref(exm:plotGeom), y el recién calculado lambda, se grafica la curva de crecimiento.
+
+```{r , echo=FALSE,cache=TRUE,out.height='6cm',fig.align='center'}
+
+plotGeomGrowth(N0 = 33, lambda = (25/33)^(1/10), t = 10)
+
+```
+
+
+
+
+#### Ejercicios
+
+```{exercise, label='plotGeomGrowth'}
+Grafique la ecuación \@ref(eq:geom1). En el eje **y** la tasa de crecimiento y en el eje **x** el tamaño poblacional. Utilice tres valores de $R_m$, uno positivo, uno igual a cero y otro negativo. El tamaño inicial de la población es de 50 individuos. $R_m \in \left[ -1, 1 \right]$, y $N \in \left[ 0, 50 \right]$. Cuál es la representación gráfica de $R_m$ en el gráfico.
+```
+
+
+```{exercise, label='plotgeomGrowth2'}
+Grafique la ecuación \@ref(eq:geom2). Utilice tres valores de $\lambda$, uno mayor a uno, otro igual a uno, y el último menor a 1, pero mayor a cero. El tamaño inicial de la población es de 50 individuos.
+```
+
+```{exercise, label='GeomGrowthMathInduction'}
+**PICANTE** Todo libro de lógica matemática debe contener los métodos de demostración más comunes. Utilice el metodo de **inducción matemática** para demostrar que la ecuación \@ref(eq:geom2) es válida para todo $n \in \mathbb{N}$ (números naturales). **5% sobre la nota, dividido entre el número de estudiantes que respondan el ejericio**.
+```
+
+```{exercise, label='GeomGrowthBacteria1'}
+Si inoculo una población de bacterias en un medio de cultivo con suficiente espacio y nutrientes, con un estimado de \SI{1e6}{\text{individuos}}, y tras tres horas, se estima una población de \SI{3.5e6}{\text{individuos}}, ¿Qué valor tiene lambda? NOTA. En este caso, $t$ representa una hora.
+```
+
+```{exercise, label='GeomGrowthBacteria2'}
+Un cultivo de células dobla su tamaño poblacional en 15 minutos ($\lambda = 2$). Si se empieza con 1000 células, ¿cuántas de ellas existen tras 3 horas?
+```
+
+
+
+### Crecimiento exponencial
+
+En la sección anterior, se trabajó con intervalos de tiempo discretos. Pero si queremos conocer el tamaño poblacional en cualquier momento del tiempo, debemos trabajar con intervalos infinitamente pequeños. Esto quiere decir que la ecuación \@ref(eq:geom2) se escribe en su forma continua:
+
+\begin{equation}
+\frac{dN}{dt}=r_m N
+ (\#eq:diffG)
+ \end{equation}
+
+La ecuación \@ref(eq:diffG) es una *ecuación diferencial de primer orden*\footnote{una ecuación diferencial existe cuando en la ecuación, la incógnita depende de su derivada. En este caso, si queremos despejar $N$, observamos que su derivada se encuentra en la expresión resultante}. Este tipo particular de ecuaciones diferenciales tienen una solución analítica. Para este caso, se puede utilizar el método de separación de variables, para obtener la siguiente expresión del tamaño poblacional con respecto al tiempo (ver ejemplo \@ref(exm:exp1)):
+
+\begin{equation}
+N_t=N_0 e^{r_mt}
+(\#eq:expG)
+\end{equation}
+
+En la expresión anterior, $r_m$ es la *tasa instantánea de crecimiento*\index{T!tasa instantánea de crecimiento}, también conocida como la *tasa intrínseca de crecimiento natural*, o el parámetro de Malthus por Thomas Malthus. Este parámetro equivale a la diferencia entre la tasa intrínseca de nacimiento y la tasa intrínseca de mortalidad ($b - d$). La tasa intrínseca está relacionada con la tasa de multiplicación de la siguiente forma:
+
+\begin{equation*}
+\begin{split}
+\lambda &= e^{r_m}\\
+r_m &= \ln\lambda\\
+\end{split}
+\end{equation*}
+
+El parámetro $r_m$ tiene aplicaciones interesantes. Una de ellas es su facilidad para utilizarse en diferentes escalas de tiempo. Por ejemplo, si $r_m = 0.1$ por día, y queremos escalarlo a escala semanal, procedemos a multiplicar $r_m = 0.1 \times 7 = 0.7$. Al hacer esta transformación, se debe tener en cuenta la escala de tiempo con la que se interpretan y presentan los resultados.
+
+#### Ejemplos 
+
+```{example, label='exp1'}
+
+Como obtener la ecuación de crecimiento exponencial \@ref(eq:expG) de la ecuación diferencial \@ref(eq:diffG).
+
+```
+
+El método de separación de variables consiste en dejar todos los términos de la incógnita de un lado, y los términos de la variable independiente ($t$) del otro lado de la igualdad. Entonces:
+
+$$
+\frac{1}{N} \times \frac{dN}{dt}=r_m
+$$
+
+Luego se integra ambos lados con respecto de la variable independiente:
+
+$$
+\int \left( \frac{1}{N} \times \frac{dN}{dt}\right)\,dt=\int r_m\,dt
+$$
+
+Observe que del lado izquierdo los diferenciales se cancelan:
+\begin{equation*}
+\begin{split}
+\int \frac{dN}{N}&=r_m t + c\\
+\ln N & = r_m t + c\\
+\end{split}
+\end{equation*}
+
+Se despeja $N$, y se obtiene $N=Ce^{r_m t}$. Luego, cuando $N=N_0$ entonces $t=0$; por lo que la expresión se simplifica a $N_0 = C e^0 = C$. Dando como resultado la expresión
+
+$$
+N = N_0 e^{r_m t}
+$$
+
+
+```{example, label='exp2'}
+De acuerdo con @ILLMAN2000631 un gramo de *Chlorella emersonii* puede contener \SI{29}{\kilo\joule\per\gram} (energía por gramo). Si la tasa intrínseca es de \SI{0.99}{\gram\per\day}, ¿cuántos gramos de *Chlorella* necesito para producir \SI{5000}{\kilo\joule}? ¿Cuál es el tiempo de producción? Asuma un crecimiento exponencial, y un inóculo inicial con $N_0 = 1\mu \si{\gram}$ de *Chlorella*.
+
+```
+
+En este caso, pensamos en el tamaño poblacional como biomasa, en lugar del número de individuos. El primer paso es calcular $N$ para producir la cantidad deseada de energía, lo cual resolvemos con una simple conversión para obtener:
+
+$$
+N=\frac{1\si{\gram}}{29\cancel{\si{\kilo\joule}}}\times 5000 \cancel{\si{\kilo\joule}}=172.4138\si{\gram}
+$$
+
+Luego, despejamos $t$ de la ecuación \@ref(eq:expG):
+
+$$
+t = \ln \left(\frac{N}{N_0}\right)r_m^{-1}
+$$
+
+Se hacen las sustituciones correspondientes: $r_m = 0.99$, $N_0 = \SI{1e-6}{\gram}$, $N = \SI{172.414}{\gram}$, y se obtiene que el tiempo necesario para obtener una biomasa equivalente a una energía de 5000 kilojoule es $t =$ `r paste("\\SI{",signif( (log(173.414)-log(1e-6))*(1/0.99) ,digits=3),'}{\\day}')`.
+
+#### Ejercicios
+
+
+```{exercise, label='expGrowth1'}
+Si $\lambda = 1.027$ por semana. Escale $\lambda$ de semanas a meses (1 mes = 4 semanas). Utilice la relación de $\lambda = e^{r_m}$.
+```
+
+
+```{exercise, label='expGrowth2'}
+Para los siguentes escenarios de la ecuación \@ref(eq:expG):
+  
+- $r_m$ negativo.
+
+- $r_m$ igual a cero.
+
+- $r_m$ positivo.
+
+Obtenga el límite:
+  
+$$
+  \lim_{t \to \infty } N(t)
+$$
+
+Dé una interpretación de los resultados, en términos de la población.
+
+```
+
+
+```{exercise, label='expGrowth3'}
+Demuestre, utilizando un razonamiento deductivo, que si $r_m < 0$, la población decrece. Puede usar los resultados del ejercicio \@ref(exr:expGrowth2).
+```
+
+
+```{exercise, label='expGrowth4'}
+Analice biológicamente el significado del resultado del ejercicio \@ref(exr:expGrowth2), cuando $r_m$ es positivo.
+```
+
+
+
+## Crecimiento denso-dependiente
+
+### Matrices
+
+[COMADRE](http://onlinelibrary.wiley.com/doi/10.1111/1365-2656.12482/full)
+[COMADRE DATA](http://www.compadre-db.org/Data/Comadre) Ojo a la guia de usuario

@@ -1,0 +1,131 @@
+# Métodos numéricos para ecología de poblaciones
+
+## Simulación de ecuaciones diferenciales
+
+Tomaremos el ejemplo de la  ecuación \@ref(eq:diffG), para mostrar un método para encontrar el tamaño de población, sin tener que utilizar cálculo. Este es el *método de Euler*, que se explicará mediante un ejemplo.
+
+Una derivada implica un cambio infinitesimal de una variable en relación a otra. Por ejemplo, el cambio en el número de individuos de una población en un momento pequeñísimo de tiempo, puede representarse como la diferencia de la población, entre la duración de ese pequeño intervalo de tiempo:
+
+$$
+\frac{dN}{dt} \approx \frac{\Delta N}{\Delta t} = \frac{N_t - N_{t-\Delta t}}{\Delta t}
+$$
+
+Si sustituimos en la ecuación \@ref(eq:expG), tenemos:
+
+$$
+\frac{N_t - N_{t-\Delta t}}{\Delta t} = r_m N
+$$
+
+Arreglando la expresión anterior, podemos despejar en terminos de $N_t$:
+
+$$
+N_t= N_{t-\Delta t} + r_m N_{t-\Delta t} \Delta t
+$$
+
+Hay que resaltar que esta **no** es una solución exacta; sino, una aproximación. Entre más pequeño se haga $\Delta t$, más se aproximará el resultado, al valor exacto dado por \@ref(eq:expG). En casos donde no existe una solución analítica, o simplemente, no es sencillo resolver la ecuación, siempre se puede recurrir a los métodos numéricos, para tener una idea de la solución real.
+
+Para programar este sencillo ejemplo, necesitamos varios pasos:
+
+- Definir un valor inicial de la población, y el valor de $t$ en el cuál queremos conocer el tamaño de población.
+
+- Definir el Valor de $r_m$.
+
+- Establecer un criterio para guardar el valor de $N_t$, cada cierto lapso de tiempo. (Para no crear un objeto virtual innecesariamente grande)
+
+- Crear un objeto para guardar el tamaño de la población, y los puntos de tiempo a los que está asociada.
+
+- Definir el tamaño de $\Delta t$, y calcular el número de iteraciones necesarias hasta llegar al final del periodo de tiempo de interés.
+
+- Crear un bucle, y ejecutar iteractivamente la integración de Euler.
+
+- Definir un criterio para detener el algoritmo.
+
+
+
+El siguiente algoritmo generaliza todas las funciones dependientes de $N_{t-\Delta t}$.
+
+$$
+N_t= N_{t-\Delta t} + f \left( N_{t-\Delta t},\mathbf{c} \right) \Delta t
+$$
+
+Donde $\mathbf{c}$ son constantes.
+
+```{r}
+
+euler <- function(fooName, valInic, tiempoParar, deltaT,guardarCada,...){
+  arg <- list(...)
+  fn <- get(fooName)
+  
+  #Encuentra los argumentos provistos
+  argName <- match.arg(names(arg),#arg provistos
+                       formalArgs(fn),#arg existentes
+                       several.ok = TRUE)
+  #Nombra la lista con los nombres de los argumentos provistos
+  names(arg) <- argName
+  
+  val <- numeric()
+  val[1] <- valInic
+  
+  valTmp <- numeric()
+  valTmp <- val[1]
+  
+  #Completa la lista de argumentos con N[t-1]
+  arg[[ (length(arg)+1) ]] <- valInic
+  totalArg <- length(arg)
+  #Escribe todos los nomres de los argumentos, para do.call
+  names(arg) <- formalArgs(fn)#Encuetra los nombres de los argumentos
+  
+  tiempo <- numeric()
+  
+  tNow <- 0
+  tiempo[1] <- 0
+  
+  while( tNow < tiempoParar ){
+    valTmp <- valTmp + do.call(fn,args = arg)*deltaT
+    tNow <- tNow + deltaT 
+      
+    if( tNow%%guardarCada <=deltaT ){
+      val <- append(x = val,values = valTmp)
+      tiempo <- append(x = tiempo, values = tNow)
+      arg[[totalArg]] <- valTmp
+    }
+  }
+  
+  return( list(
+    poblacion = val,
+    tiempo = tiempo,
+    tNow = tNow,
+    arg = arg
+  ) )
+  
+}
+```
+
+
+Por ejemplo
+
+
+```{r , results='hold',tidy=TRUE,}
+
+diffG1 <- function(rm,N)N*rm
+N0 <- 10
+
+Resultados1 <- euler(fooName = "diffG1",valInic = N0,tiempoParar = 10,deltaT = 1/100,guardarCada = 1,rm=.22)
+
+diffG2 <- function(rm,Kmax,N)rm*(1-N/Kmax)
+
+N0 <- 10
+
+Resultados2 <- euler(fooName = "diffG2",valInic = N0,tiempoParar = 50,deltaT = 1/100,guardarCada = 1,rm=1.92,Kmax=60)
+
+plot(Resultados1$tiempo,Resultados1$poblacion,
+         type = "p", xlab = "Tiempo", ylab = "Tamaño de población",
+         las = 1, pch = 21, bg = 1)
+    lines(Resultados1$tiempo,Resultados1$poblacion)
+    
+    plot(Resultados2$tiempo,Resultados2$poblacion,
+         type = "p", xlab = "Tiempo", ylab = "Tamaño de población",
+         las = 1, pch = 21, bg = 1)
+    lines(Resultados2$tiempo,Resultados2$poblacion)
+```
+
