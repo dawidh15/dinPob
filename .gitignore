@@ -1,5 +1,4 @@
 _book/dinPob_files/
-
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -179,3 +178,4 @@ TSWLatexianTemp*
 .Ruserdata
 _bookdown_files
 dinPob.Rmd
+docs
