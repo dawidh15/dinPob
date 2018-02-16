@@ -23,11 +23,7 @@ biblio-style: apalike
 # Introducción {#intro}
 
 
-- Qué es ecologia de poblaciones
-
 La ecología de poblaciones\index{E!ecología de poblaciones} se centra en el estudio de la dinámica de las poblaciones\index{D!dinámica de poblaciones} (su crecimiento e interacción con otras poblaciones), y en las interacciones de éstas con el ambiente. La ecología de poblaciones (también llamada **dinámica de poblaciones**) es un campo con un componente matemático y estadístico fuerte, y de gran importancia para la gestión de vida silvestre.
-
-- Aplicaciones de la ecología de poblaciones
 
 Algunas de las aplicaciones más importantes de esta disciplina, están relacionadas al cálculo de la viabilidad de poblaciones, al cálculo de tasas de extracción, e incluso a la creación de áreas protegidas dedicadas a proteger el ciclo de vida, o parte de éste, en determinadas especies.
 
@@ -37,9 +33,7 @@ La creación de santuarios de pesca, por ejemplo, se fundamenta en el concepto d
 
 Algunos modelos importantes, como el modelo **bioeconómico**, que buscan la mayor rentabilidad económica por la extracción de una especie [@Grafton2006], están basados en modelos de crecimiento derivados de la dinámica de poblaciones. Este modelo estima la cantidad de esfuerzo extractivo que debe aplicarse a una especie, para mantener una rentabilidad positiva, y mantener un tamaño poblacional que garantice la continuidad de las poblaciones aprovechadas.
 
-- Herramientas necesarias
-
-La dinámica de poblaciones es una de las ramas de la biología con un componente matemático y estadístico más fuertes. El desarrollo teórico de los modelos implica conocimiento de planteamiento y resolución de *ecuaciones diferenciales*. En la práctica, muchos problemas se plantean como ecuaciones diferenciales, pero no tienen solución analítica, por lo cual se requiere de conocimiento sobre *métodos numéricos*, *programación* o uso de lenguajes de programación.
+La dinámica de poblaciones es una de las ramas de la biología con un componente matemático y estadístico más fuertes. El desarrollo teórico de los modelos implica conocimiento de planteamiento y resolución de *ecuaciones diferenciales*. En la práctica, muchos problemas se plantean como ecuaciones diferenciales, pero no tienen solución analítica, por lo cual se requiere de conocimiento sobre *métodos numéricos*, *programación* o uso de lenguajes de programación. La mayoría de profesionales, no son desarrolladores teóricos, pero deben saber, al menos, sobre el uso de herramientas de análisis para esta disciplina.
 
 Si el investigador conoce las herramientas de análisis, y quiere ponerlas en práctica, entonces requiere de conocimientos en *diseño experimental y muestreal*; así como, *técnicas de muestreo* para conseguir los datos. Pero la limitación más fuerte, es el financiamiento requerido; ya que, la mayoría de los análisis tienen fuertes requerimientos de datos, y series de tiempo bastante amplias.
 

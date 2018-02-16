@@ -2,13 +2,13 @@
 
 HACER: conceptos de producción en exceso, de Darwin, y lucha por la existencia.
 
-La evolución por selección natural implica que en una población que enfrente presiones para subsistir, existirán individuos mejor adaptados que otros. Algunos vivirán lo suficiente para reproducirse y otros no; además, dentro de aquellos que se reproduzcan, los más exitosos lo harán más frecuentemente, o con mayor descendencia. Este concepto implica que en una población debe haber suficiente variabilidad genética, que se refleje en un desempeño diferente en la reproducción, y que no todos los organismos vivirán lo suficiente para dejar descendencia o reemplazarse a sí mismos. Esto quiere decir, que las poblaciones deben de reproducirse y dejar un *exceso de decendencia*, para poder absorber a aquellos organismos que no logren reproducirse con éxito.
+La evolución por selección natural implica que en una población que enfrente presiones para subsistir, existirán individuos mejor adaptados que otros. Algunos vivirán lo suficiente para reproducirse y otros no; además, dentro de aquellos que se reproduzcan, los más exitosos lo harán más frecuentemente, o con mayor descendencia. Este concepto implica que en una población debe haber suficiente variabilidad genética, que se refleje en un desempeño diferente en la reproducción, y que no todos los organismos vivirán lo suficiente para dejar descendencia o reemplazarse a sí mismos. Esto quiere decir, que las poblaciones deben de reproducirse y dejar un *exceso de decendencia*, para poder amortiguar el efecto sobre la reproducción de aquellos organismos que no logren reproducirse con éxito.
 
-De esta manera, la sobre-producción de organismos es un requisito para que una población subsista en un intervalo prolongado de tiempo. Y la sobre-producción implica que las poblaciones tienen el potencial de *crecer*. La disciplina de la ecología de poblaciones, entonces, ha enfocado esfuerzos en modelar el crecimiento poblacional usando funciones matemáticas, las cuales estudiaremos en esta sección.
+De esta manera, la sobre-producción de organismos es un requisito para que una población subsista en un intervalo prolongado de tiempo. Y la sobre-producción implica que las poblaciones tienen el potencial de *crecer*. La disciplina de la ecología de poblaciones, entonces, ha enfocado esfuerzos en modelar el crecimiento poblacional usando funciones matemáticas. Veremos las más básicas de ellas, con el objetivo de entender el origen y desarrollo de estos modelos.
 
-El crecimiento\index{C!crecimiento} en dinámica de poblaciones, está enfocado en la población, y no en el individuo. Algunos aspectos fisiológicos, e individuales, pueden ser importantes a la hora de modelar el crecimiento poblacional, y estos pueden ser incluidos como parámetros del modelo; pero, en general, el interés se centra en la estimación de la cantidad de individuos, o la biomasa, que conforma una población, y cómo cambia con respecto al tiempo u otras variables.
+El crecimiento\index{C!crecimiento} en dinámica de poblaciones, está enfocado en la población, y no en el individuo. Algunos aspectos fisiológicos, e individuales, pueden ser importantes a la hora de modelar el crecimiento poblacional, y estos pueden ser incluidos como parámetros del modelo; pero, en general, el interés se centra en la estimación de la cantidad de individuos (o la biomasa) que conforma una población, y cómo cambia esta cantidad con respecto al tiempo.
 
-En general, el objetivo de los modelos de crecimiento, es obtener una función del tamaño de la población con respecto al tiempo. Existen dos aproximaciones principales para obtener esta función: la exponencial y la geométrica. El crecimiento exponencial se mide en cualquier momento en el tiempo, mientras que el crecimiento geométrico se mide a intervalos discretos. Es decir, ambos miden el crecimiento poblacional, pero una aproximación lo hace en intervalos continuos y la otra en intervalos discretos.
+El objetivo de los modelos de crecimiento, es obtener una función del tamaño de la población con respecto al tiempo. Existen dos aproximaciones principales para obtener esta función: la exponencial y la geométrica. El crecimiento exponencial se mide en cualquier momento en el tiempo, mientras que el crecimiento geométrico se mide a intervalos discretos. Es decir, ambos miden el crecimiento poblacional, pero una aproximación lo hace en intervalos continuos y la otra en intervalos discretos.
 
 Las otra gran categoría de modelos de crecimiento tienen que ver con la dependencia de la densidad de población. Por ejemplo, una población con suficiente espacio y recursos, puede considerarse *denso-independiente*, mientras que una población que está en permanente competencia intraespecífica por la adquisición de espacio y recursos, tiene un crecimiento denso-dependiente.
 
@@ -36,7 +36,7 @@ $$
 \frac{\frac{\Delta N}{\Delta t}}{N} = \frac{E-S}{N}
 $$
 
-La tasa de crecimiento per cápita es mayor a cero, entonces la población crece. Si es igual a cero, la población se mantiene estable. Si es menor a cero, la población decrece. Si llamamos a la tasa de crecimiento per cápita $R_m$, entonces podemos arreglar la ecuación anterior de una forma más conocida:
+La tasa de crecimiento per cápita es mayor a cero, entonces la población crece. Si es igual a cero, la población se mantiene estable. Si es menor a cero, la población decrece. Si hacemos la tasa de crecimiento per cápita $\frac{E-S}{N}=R_m$, entonces podemos arreglar la ecuación anterior de una forma más conocida:
 
 \begin{equation}
 \frac{\Delta N}{\Delta t}=R_m N
@@ -63,7 +63,7 @@ N_1 &= N_0 + R_m N_0\\
 
 Es decir, el tamaño de población en el año 1, es igual al tamaño de población en el año 0, más el producto de la tasa de crecimiento per cápita por el tamaño de población en el año 0. Los arreglos posteriores, muestran que $N_1$ depende de $N_0$ y una constante $\lambda = 1+R_m$, la cual representa la *tasa de multiplicación*\index{T!tasa de multiplicación}. Entonces, la población crece cuando $\lambda > 1$, se mantiene estable si $\lambda = 1$, y decrece si $\lambda < 1$.
 
-Ahora, podemos obtener $N_2 = N_1 \lambda$ utilizando la relación anterior. Como $N_1 = N_0 \lambda$, sustituimos en la primer expresión para acabar con $N_2 =  N_0 \lambda \lambda =  N_0 \lambda^2$. Si proseguimos de esta manera, concluimos que:
+Ahora, podemos obtener $N_2$ al saber que $N_2 = N_1 \lambda$. Observamos que $N_1 = N_0 \lambda$; por tanto, podemos sustituir el valor de $N_1$ para acabar con $N_2 =  N_0 \lambda \lambda =  N_0 \lambda^2$. Si proseguimos de esta manera, concluimos que:
 
 \begin{equation}
 N_t = N_0 \lambda^t

@@ -25,7 +25,7 @@
 <meta name="author" content="David Martínez Cascante">
 
 
-<meta name="date" content="2018-01-13">
+<meta name="date" content="2018-02-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -114,6 +114,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="A" data-path="metodos-numericos-para-ecologia-de-poblaciones.html"><a href="metodos-numericos-para-ecologia-de-poblaciones.html"><i class="fa fa-check"></i><b>A</b> Métodos numéricos para ecología de poblaciones</a><ul>
 <li class="chapter" data-level="A.1" data-path="metodos-numericos-para-ecologia-de-poblaciones.html"><a href="metodos-numericos-para-ecologia-de-poblaciones.html#simulacion-de-ecuaciones-diferenciales"><i class="fa fa-check"></i><b>A.1</b> Simulación de ecuaciones diferenciales</a></li>
 </ul></li>
+<li class="chapter" data-level="B" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html"><i class="fa fa-check"></i><b>B</b> Tutorial de R con RStudio</a><ul>
+<li class="chapter" data-level="B.1" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#crear-un-proyecto-en-rstudio"><i class="fa fa-check"></i><b>B.1</b> Crear un proyecto en <em>RStudio</em></a></li>
+<li class="chapter" data-level="B.2" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#funciones-basicas-en-r"><i class="fa fa-check"></i><b>B.2</b> Funciones básicas en R</a></li>
+<li class="chapter" data-level="B.3" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#estructuras-de-datos"><i class="fa fa-check"></i><b>B.3</b> Estructuras de datos</a></li>
+<li class="chapter" data-level="B.4" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#funciones"><i class="fa fa-check"></i><b>B.4</b> Funciones</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -134,10 +140,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="modelos-de-crecimiento" class="section level1">
 <h1><span class="header-section-number">Capítulo 2</span> Modelos de crecimiento</h1>
 <p>HACER: conceptos de producción en exceso, de Darwin, y lucha por la existencia.</p>
-<p>La evolución por selección natural implica que en una población que enfrente presiones para subsistir, existirán individuos mejor adaptados que otros. Algunos vivirán lo suficiente para reproducirse y otros no; además, dentro de aquellos que se reproduzcan, los más exitosos lo harán más frecuentemente, o con mayor descendencia. Este concepto implica que en una población debe haber suficiente variabilidad genética, que se refleje en un desempeño diferente en la reproducción, y que no todos los organismos vivirán lo suficiente para dejar descendencia o reemplazarse a sí mismos. Esto quiere decir, que las poblaciones deben de reproducirse y dejar un <em>exceso de decendencia</em>, para poder absorber a aquellos organismos que no logren reproducirse con éxito.</p>
-<p>De esta manera, la sobre-producción de organismos es un requisito para que una población subsista en un intervalo prolongado de tiempo. Y la sobre-producción implica que las poblaciones tienen el potencial de <em>crecer</em>. La disciplina de la ecología de poblaciones, entonces, ha enfocado esfuerzos en modelar el crecimiento poblacional usando funciones matemáticas, las cuales estudiaremos en esta sección.</p>
-<p>El crecimiento en dinámica de poblaciones, está enfocado en la población, y no en el individuo. Algunos aspectos fisiológicos, e individuales, pueden ser importantes a la hora de modelar el crecimiento poblacional, y estos pueden ser incluidos como parámetros del modelo; pero, en general, el interés se centra en la estimación de la cantidad de individuos, o la biomasa, que conforma una población, y cómo cambia con respecto al tiempo u otras variables.</p>
-<p>En general, el objetivo de los modelos de crecimiento, es obtener una función del tamaño de la población con respecto al tiempo. Existen dos aproximaciones principales para obtener esta función: la exponencial y la geométrica. El crecimiento exponencial se mide en cualquier momento en el tiempo, mientras que el crecimiento geométrico se mide a intervalos discretos. Es decir, ambos miden el crecimiento poblacional, pero una aproximación lo hace en intervalos continuos y la otra en intervalos discretos.</p>
+<p>La evolución por selección natural implica que en una población que enfrente presiones para subsistir, existirán individuos mejor adaptados que otros. Algunos vivirán lo suficiente para reproducirse y otros no; además, dentro de aquellos que se reproduzcan, los más exitosos lo harán más frecuentemente, o con mayor descendencia. Este concepto implica que en una población debe haber suficiente variabilidad genética, que se refleje en un desempeño diferente en la reproducción, y que no todos los organismos vivirán lo suficiente para dejar descendencia o reemplazarse a sí mismos. Esto quiere decir, que las poblaciones deben de reproducirse y dejar un <em>exceso de decendencia</em>, para poder amortiguar el efecto sobre la reproducción de aquellos organismos que no logren reproducirse con éxito.</p>
+<p>De esta manera, la sobre-producción de organismos es un requisito para que una población subsista en un intervalo prolongado de tiempo. Y la sobre-producción implica que las poblaciones tienen el potencial de <em>crecer</em>. La disciplina de la ecología de poblaciones, entonces, ha enfocado esfuerzos en modelar el crecimiento poblacional usando funciones matemáticas. Veremos las más básicas de ellas, con el objetivo de entender el origen y desarrollo de estos modelos.</p>
+<p>El crecimiento en dinámica de poblaciones, está enfocado en la población, y no en el individuo. Algunos aspectos fisiológicos, e individuales, pueden ser importantes a la hora de modelar el crecimiento poblacional, y estos pueden ser incluidos como parámetros del modelo; pero, en general, el interés se centra en la estimación de la cantidad de individuos (o la biomasa) que conforma una población, y cómo cambia esta cantidad con respecto al tiempo.</p>
+<p>El objetivo de los modelos de crecimiento, es obtener una función del tamaño de la población con respecto al tiempo. Existen dos aproximaciones principales para obtener esta función: la exponencial y la geométrica. El crecimiento exponencial se mide en cualquier momento en el tiempo, mientras que el crecimiento geométrico se mide a intervalos discretos. Es decir, ambos miden el crecimiento poblacional, pero una aproximación lo hace en intervalos continuos y la otra en intervalos discretos.</p>
 <p>Las otra gran categoría de modelos de crecimiento tienen que ver con la dependencia de la densidad de población. Por ejemplo, una población con suficiente espacio y recursos, puede considerarse <em>denso-independiente</em>, mientras que una población que está en permanente competencia intraespecífica por la adquisición de espacio y recursos, tiene un crecimiento denso-dependiente.</p>
 <div id="crecimiento-denso-independiente" class="section level2">
 <h2><span class="header-section-number">2.1</span> Crecimiento denso-independiente</h2>
@@ -154,7 +160,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><span class="math display">\[
 \frac{\frac{\Delta N}{\Delta t}}{N} = \frac{E-S}{N}
 \]</span></p>
-<p>La tasa de crecimiento per cápita es mayor a cero, entonces la población crece. Si es igual a cero, la población se mantiene estable. Si es menor a cero, la población decrece. Si llamamos a la tasa de crecimiento per cápita <span class="math inline">\(R_m\)</span>, entonces podemos arreglar la ecuación anterior de una forma más conocida:</p>
+<p>La tasa de crecimiento per cápita es mayor a cero, entonces la población crece. Si es igual a cero, la población se mantiene estable. Si es menor a cero, la población decrece. Si hacemos la tasa de crecimiento per cápita <span class="math inline">\(\frac{E-S}{N}=R_m\)</span>, entonces podemos arreglar la ecuación anterior de una forma más conocida:</p>
 <span class="math display" id="eq:geom1">\[\begin{equation}
 \frac{\Delta N}{\Delta t}=R_m N
  \tag{2.1}
@@ -172,7 +178,7 @@ N_1 &amp;= N_0 + R_m N_0\\
 \end{split}
 \end{equation}\]</span>
 <p>Es decir, el tamaño de población en el año 1, es igual al tamaño de población en el año 0, más el producto de la tasa de crecimiento per cápita por el tamaño de población en el año 0. Los arreglos posteriores, muestran que <span class="math inline">\(N_1\)</span> depende de <span class="math inline">\(N_0\)</span> y una constante <span class="math inline">\(\lambda = 1+R_m\)</span>, la cual representa la <em>tasa de multiplicación</em>. Entonces, la población crece cuando <span class="math inline">\(\lambda &gt; 1\)</span>, se mantiene estable si <span class="math inline">\(\lambda = 1\)</span>, y decrece si <span class="math inline">\(\lambda &lt; 1\)</span>.</p>
-<p>Ahora, podemos obtener <span class="math inline">\(N_2 = N_1 \lambda\)</span> utilizando la relación anterior. Como <span class="math inline">\(N_1 = N_0 \lambda\)</span>, sustituimos en la primer expresión para acabar con <span class="math inline">\(N_2 = N_0 \lambda \lambda = N_0 \lambda^2\)</span>. Si proseguimos de esta manera, concluimos que:</p>
+<p>Ahora, podemos obtener <span class="math inline">\(N_2\)</span> al saber que <span class="math inline">\(N_2 = N_1 \lambda\)</span>. Observamos que <span class="math inline">\(N_1 = N_0 \lambda\)</span>; por tanto, podemos sustituir el valor de <span class="math inline">\(N_1\)</span> para acabar con <span class="math inline">\(N_2 = N_0 \lambda \lambda = N_0 \lambda^2\)</span>. Si proseguimos de esta manera, concluimos que:</p>
 <span class="math display" id="eq:geom2">\[\begin{equation}
 N_t = N_0 \lambda^t
  \tag{2.2}
@@ -387,7 +393,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["dinPob.pdf"],
 "toc": {
 "collapse": "subsection"
 }

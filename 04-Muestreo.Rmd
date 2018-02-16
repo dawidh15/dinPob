@@ -1,3 +1,0 @@
-# Técnicas de muestreo
-
-Un resumen de las principales técnicas de muestreo y ejemplos en R.

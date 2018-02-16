@@ -25,7 +25,7 @@
 <meta name="author" content="David Martínez Cascante">
 
 
-<meta name="date" content="2018-01-13">
+<meta name="date" content="2018-02-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -114,6 +114,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="A" data-path="metodos-numericos-para-ecologia-de-poblaciones.html"><a href="metodos-numericos-para-ecologia-de-poblaciones.html"><i class="fa fa-check"></i><b>A</b> Métodos numéricos para ecología de poblaciones</a><ul>
 <li class="chapter" data-level="A.1" data-path="metodos-numericos-para-ecologia-de-poblaciones.html"><a href="metodos-numericos-para-ecologia-de-poblaciones.html#simulacion-de-ecuaciones-diferenciales"><i class="fa fa-check"></i><b>A.1</b> Simulación de ecuaciones diferenciales</a></li>
 </ul></li>
+<li class="chapter" data-level="B" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html"><i class="fa fa-check"></i><b>B</b> Tutorial de R con RStudio</a><ul>
+<li class="chapter" data-level="B.1" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#crear-un-proyecto-en-rstudio"><i class="fa fa-check"></i><b>B.1</b> Crear un proyecto en <em>RStudio</em></a></li>
+<li class="chapter" data-level="B.2" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#funciones-basicas-en-r"><i class="fa fa-check"></i><b>B.2</b> Funciones básicas en R</a></li>
+<li class="chapter" data-level="B.3" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#estructuras-de-datos"><i class="fa fa-check"></i><b>B.3</b> Estructuras de datos</a></li>
+<li class="chapter" data-level="B.4" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#funciones"><i class="fa fa-check"></i><b>B.4</b> Funciones</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -134,25 +140,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Ecología de poblaciones silvestres</h1>
 <h4 class="author"><em>David Martínez Cascante</em></h4>
-<h4 class="date"><em>2018-01-13</em></h4>
+<h4 class="date"><em>2018-02-14</em></h4>
 </div>
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">Capítulo 1</span> Introducción</h1>
-<ul>
-<li>Qué es ecologia de poblaciones</li>
-</ul>
 <p>La ecología de poblaciones se centra en el estudio de la dinámica de las poblaciones (su crecimiento e interacción con otras poblaciones), y en las interacciones de éstas con el ambiente. La ecología de poblaciones (también llamada <strong>dinámica de poblaciones</strong>) es un campo con un componente matemático y estadístico fuerte, y de gran importancia para la gestión de vida silvestre.</p>
-<ul>
-<li>Aplicaciones de la ecología de poblaciones</li>
-</ul>
 <p>Algunas de las aplicaciones más importantes de esta disciplina, están relacionadas al cálculo de la viabilidad de poblaciones, al cálculo de tasas de extracción, e incluso a la creación de áreas protegidas dedicadas a proteger el ciclo de vida, o parte de éste, en determinadas especies.</p>
 <p>El <em>Análisis de Viabilidad de Poblaciones</em>, es un ejemplo de una de las aplicaciones de la ecología de poblaciones para la gestión de vida silvestre. Este modelo predice el riesgo de que una población se extinga en una determinada cantidad de años. De esta manera, los gestores pueden modelar diferentes escenarios, cada cual con un conjunto específico de acciones de manejo, y decidir cuál de éstos es más efectivo en la conservación o manejo de la especie.</p>
 <p>La creación de santuarios de pesca, por ejemplo, se fundamenta en el concepto de <em>Biogeografía de Islas</em> (REF) que también es parte de la ecología de poblaciones. Los santuarios de pesca funcionan como <em>fuentes</em>, es decir, zonas donde el crecimiento poblacional es positivo y existe migración de individuos. Éstos individuos, que se producen en exceso, migrarán hacia zonas de pesca, o extracción, para sostener actividades económicas. De esta manera, se garantiza la extracción sostenible en las zonas aledañas.</p>
 <p>Algunos modelos importantes, como el modelo <strong>bioeconómico</strong>, que buscan la mayor rentabilidad económica por la extracción de una especie <span class="citation">(Grafton et al. <a href="#ref-Grafton2006">2006</a>)</span>, están basados en modelos de crecimiento derivados de la dinámica de poblaciones. Este modelo estima la cantidad de esfuerzo extractivo que debe aplicarse a una especie, para mantener una rentabilidad positiva, y mantener un tamaño poblacional que garantice la continuidad de las poblaciones aprovechadas.</p>
-<ul>
-<li>Herramientas necesarias</li>
-</ul>
-<p>La dinámica de poblaciones es una de las ramas de la biología con un componente matemático y estadístico más fuertes. El desarrollo teórico de los modelos implica conocimiento de planteamiento y resolución de <em>ecuaciones diferenciales</em>. En la práctica, muchos problemas se plantean como ecuaciones diferenciales, pero no tienen solución analítica, por lo cual se requiere de conocimiento sobre <em>métodos numéricos</em>, <em>programación</em> o uso de lenguajes de programación.</p>
+<p>La dinámica de poblaciones es una de las ramas de la biología con un componente matemático y estadístico más fuertes. El desarrollo teórico de los modelos implica conocimiento de planteamiento y resolución de <em>ecuaciones diferenciales</em>. En la práctica, muchos problemas se plantean como ecuaciones diferenciales, pero no tienen solución analítica, por lo cual se requiere de conocimiento sobre <em>métodos numéricos</em>, <em>programación</em> o uso de lenguajes de programación. La mayoría de profesionales, no son desarrolladores teóricos, pero deben saber, al menos, sobre el uso de herramientas de análisis para esta disciplina.</p>
 <p>Si el investigador conoce las herramientas de análisis, y quiere ponerlas en práctica, entonces requiere de conocimientos en <em>diseño experimental y muestreal</em>; así como, <em>técnicas de muestreo</em> para conseguir los datos. Pero la limitación más fuerte, es el financiamiento requerido; ya que, la mayoría de los análisis tienen fuertes requerimientos de datos, y series de tiempo bastante amplias.</p>
 
 </div>
@@ -200,7 +197,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["dinPob.pdf"],
 "toc": {
 "collapse": "subsection"
 }
