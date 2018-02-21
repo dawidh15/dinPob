@@ -2,7 +2,7 @@
 
 ## Simulación de ecuaciones diferenciales
 
-Tomaremos el ejemplo de la  ecuación \@ref(eq:diffG), para mostrar un método para encontrar el tamaño de población, sin tener que utilizar cálculo. Este es el *método de Euler*, que se explicará mediante un ejemplo.
+Tomaremos el ejemplo de la  ecuación \@ref(eq:diffG), para mostrar un método para encontrar el tamaño de población, sin tener que utilizar cálculo [@Barrantes2015]. Este es el *método de Euler*, que se explicará mediante un ejemplo.
 
 Una derivada implica un cambio infinitesimal de una variable en relación a otra. Por ejemplo, el cambio en el número de individuos de una población en un momento pequeñísimo de tiempo, puede representarse como la diferencia de la población, entre la duración de ese pequeño intervalo de tiempo:
 

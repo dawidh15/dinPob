@@ -33,7 +33,7 @@
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage{natbib}
-\bibliographystyle{apalike}
+\bibliographystyle{DAVID}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -127,9 +127,9 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-02-14}
+  \date{2018-02-21}
 
-\usepackage[spanish]{babel}
+\usepackage[spanish,es-nodecimaldot]{babel}
 \usepackage{booktabs}
 \usepackage{makeidx}
 \makeindex
@@ -289,9 +289,9 @@ denso-independiente}\label{crecimiento-denso-independiente}
 \index{C!crecimiento geométrico}
 
 Nuestra variable de interés es el tamaño poblacional, \(N\). Queremos
-conocer el crecimiento poblacional de \(N\) del año 0 (\(t=0\)) al año 1
-(\(t=1\)). Entonces, podemos simplemente restar \(N_1 - N_0\) para
-encontrar dicho crecimiento, al que llamaremos \(\Delta N\). De manera
+conocer el crecimiento poblacional desde año 0 (\(t=0\)) hasta el año 1
+(\(t=1\)). Entonces, podemos restar \(N_1 - N_0\) para encontrar dicho
+crecimiento, al que llamaremos \(\Delta N\) (``Delta N''). De manera
 similar, podemos encontrar el crecimiento de la población en cualquier
 sub-intervalo de tiempo. Por ejemplo, si queremos conocer el crecimiento
 en el periodo \(t=1\) y \(t=0.5\), entonces nombramos este intervalo
@@ -301,36 +301,38 @@ crecimiento}\index{T!tasa de crecimiento}.
 
 Una primer idea de cómo modelar la tasa de crecimiento, es pensar en que
 ésta equivale a la diferencia entre las \emph{entradas} a la población
-(natalidad e inmigración) menos las \emph{salidas} de la población
-(mortalidad y emigración):
+(\(B\), natalidad e inmigración) menos las \emph{salidas} de la
+población (\(D\), mortalidad y emigración):
 
 \[
-\frac{\Delta N}{\Delta t} = E-S
+\frac{\Delta N}{\Delta t} = B-D
 \]
 
-Si dividimos la ecuación anterior por \(N\) obtenemos la tasa de
-crecimiento \emph{per cápita}.
+Para conocer la tasa de crecimiento \emph{per cápita}, dividimos la
+ecuación anterior por \(N\):
 
 \[
-\frac{\frac{\Delta N}{\Delta t}}{N} = \frac{E-S}{N}
+\frac{\frac{\Delta N}{\Delta t}}{N} = \frac{D-B}{N}
 \]
 
-La tasa de crecimiento per cápita es mayor a cero, entonces la población
-crece. Si es igual a cero, la población se mantiene estable. Si es menor
-a cero, la población decrece. Si hacemos la tasa de crecimiento per
-cápita \(\frac{E-S}{N}=R_m\), entonces podemos arreglar la ecuación
-anterior de una forma más conocida:
+Si la tasa de crecimiento per cápita es mayor a cero, entonces la
+población crece. Si es igual a cero, la población se mantiene estable.
+Si es menor a cero, la población decrece. Si asumimos que la diferencia
+entra las entradas de la población y sus salidas son \emph{constantes},
+podemos arreglar la expresión anterior como
+\(\frac{E-S}{N}=\mathrm{R_m}\); con lo que obtenemos la forma familiar
+de la tasa de crecimiento:
 
 \begin{equation}
-\frac{\Delta N}{\Delta t}=R_m N
+\frac{\Delta N}{\Delta t}=\mathrm{R_m} N
  \label{eq:geom1}
 \end{equation}
 
 Sin embargo, la ecuación \eqref{eq:geom1} aún no está en función del
 tiempo, que es el objetivo que se busca. Primero empecemos por predecir
-\(N_1\) en función de \(N_0\). Sabemos que \(N_1\) será igual a \(N_0\)
-\emph{más} el crecimiento poblacional durante ese intervalo de tiempo.
-Es decir:
+La población en el año uno (\(N_1\)) en función del tamaño de población
+inicial (\(N_0\)). Sabemos que \(N_1\) será igual a \(N_0\) \emph{más}
+el crecimiento poblacional durante ese intervalo de tiempo. Es decir:
 
 \[
 N_1 = N_0 + \frac{\Delta N}{\Delta t}
@@ -341,26 +343,25 @@ relación:
 
 \begin{equation}
 \begin{split}
-N_1 &= N_0 + R_m N_0\\
-    &= N_0 \left( 1 + R_m \right)\\
+N_1 &= N_0 + \mathrm{R_m} N_0\\
+    &= N_0 \left( 1 + \mathrm{R_m} \right)\\
     &= N_0 \lambda\\
 \end{split}
 \end{equation}
 
-Es decir, el tamaño de población en el año 1, es igual al tamaño de
-población en el año 0, más el producto de la tasa de crecimiento per
-cápita por el tamaño de población en el año 0. Los arreglos posteriores,
-muestran que \(N_1\) depende de \(N_0\) y una constante
-\(\lambda = 1+R_m\), la cual representa la \emph{tasa de
+Por tanto, el tamaño de población en el año uno, es igual al tamaño de
+población en el año cero, más el producto de la tasa de crecimiento per
+cápita por el tamaño de población en el año cero. Los arreglos
+posteriores, muestran que \(N_1\) depende de \(N_0\) y una constante
+\(\lambda = 1+\mathrm{R_m}\), la cual representa la \emph{tasa de
 multiplicación}\index{T!tasa de multiplicación}. Entonces, la población
 crece cuando \(\lambda > 1\), se mantiene estable si \(\lambda = 1\), y
 decrece si \(\lambda < 1\).
 
 Ahora, podemos obtener \(N_2\) al saber que \(N_2 = N_1 \lambda\).
-Observamos que \(N_1 = N_0 \lambda\); por tanto, podemos sustituir el
-valor de \(N_1\) para acabar con
-\(N_2 = N_0 \lambda \lambda = N_0 \lambda^2\). Si proseguimos de esta
-manera, concluimos que:
+Observamos que \(N_1 = N_0 \lambda\); por tanto, sustituimos el valor de
+\(N_1\) para acabar con \(N_2 = N_0 \lambda \lambda = N_0 \lambda^2\).
+Si proseguimos de esta manera, concluimos que:
 
 \begin{equation}
 N_t = N_0 \lambda^t
@@ -423,10 +424,11 @@ crecimiento.
 \protect\hypertarget{exr:plotGeomGrowth}{}{\label{exr:plotGeomGrowth}
 }Grafique la ecuación \eqref{eq:geom1}. En el eje \textbf{y} la tasa de
 crecimiento y en el eje \textbf{x} el tamaño poblacional. Utilice tres
-valores de \(R_m\), uno positivo, uno igual a cero y otro negativo. El
-tamaño inicial de la población es de 50 individuos.
-\(R_m \in \left[ -1, 1 \right]\), y \(N \in \left[ 0, 50 \right]\). Cuál
-es la representación gráfica de \(R_m\) en el gráfico.
+valores de \(\mathrm{R_m}\), uno positivo, uno igual a cero y otro
+negativo. El tamaño inicial de la población es de 50 individuos.
+\(\mathrm{R_m} \in \left[ -1, 1 \right]\), y
+\(N \in \left[ 0, 50 \right]\). Cuál es la representación gráfica de
+\(\mathrm{R_m}\) en el gráfico.
 \EndKnitrBlock{exercise}
 
 \BeginKnitrBlock{exercise}
@@ -472,7 +474,7 @@ quiere decir que la ecuación \eqref{eq:geom2} se escribe en su forma
 continua:
 
 \begin{equation}
-\frac{dN}{dt}=r_m N
+\frac{dN}{dt}=\mathrm{r_m} N
  \label{eq:diffG}
  \end{equation}
 
@@ -484,31 +486,32 @@ variables, para obtener la siguiente expresión del tamaño poblacional
 con respecto al tiempo (ver ejemplo \ref{exm:exp1}):
 
 \begin{equation}
-N_t=N_0 e^{r_mt}
+N_t=N_0 e^{\mathrm{r_m}t}
 \label{eq:expG}
 \end{equation}
 
-En la expresión anterior, \(r_m\) es la \emph{tasa instantánea de
-crecimiento}\index{T!tasa instantánea de crecimiento}, también conocida
-como la \emph{tasa intrínseca de crecimiento natural}, o el parámetro de
-Malthus por Thomas Malthus. Este parámetro equivale a la diferencia
-entre la tasa intrínseca de nacimiento y la tasa intrínseca de
-mortalidad (\(b - d\)). La tasa intrínseca está relacionada con la tasa
-de multiplicación de la siguiente forma:
+En la expresión anterior, \(\mathrm{r_m}\) es la \emph{tasa instantánea
+de crecimiento}\index{T!tasa instantánea de crecimiento}, también
+conocida como la \emph{tasa intrínseca de crecimiento natural}, o el
+parámetro de Malthus por Thomas Malthus. Este parámetro equivale a la
+diferencia entre la tasa intrínseca de nacimiento y la tasa intrínseca
+de mortalidad (\(b - d\)). La tasa intrínseca está relacionada con la
+tasa de multiplicación de la siguiente forma:
 
 \begin{equation*}
 \begin{split}
-\lambda &= e^{r_m}\\
-r_m &= \ln\lambda\\
+\lambda &= e^{\mathrm{r_m}}\\
+\mathrm{r_m} &= \ln\lambda\\
 \end{split}
 \end{equation*}
 
-El parámetro \(r_m\) tiene aplicaciones interesantes. Una de ellas es su
-facilidad para utilizarse en diferentes escalas de tiempo. Por ejemplo,
-si \(r_m = 0.1\) por día, y queremos escalarlo a escala semanal,
-procedemos a multiplicar \(r_m = 0.1 \times 7 = 0.7\). Al hacer esta
-transformación, se debe tener en cuenta la escala de tiempo con la que
-se interpretan y presentan los resultados.
+El parámetro \(\mathrm{r_m}\) tiene aplicaciones interesantes. Una de
+ellas es su facilidad para utilizarse en diferentes escalas de tiempo.
+Por ejemplo, si \(\mathrm{r_m} = 0.1\) por día, y queremos escalarlo a
+escala semanal, procedemos a multiplicar
+\(\mathrm{r_m} = 0.1 \times 7 = 0.7\). Al hacer esta transformación, se
+debe tener en cuenta la escala de tiempo con la que se interpretan y
+presentan los resultados.
 
 \subsubsection{Ejemplos}\label{ejemplos-1}
 
@@ -520,33 +523,34 @@ de crecimiento exponencial \eqref{eq:expG} de la ecuación diferencial
 
 El método de separación de variables consiste en dejar todos los
 términos de la incógnita de un lado, y los términos de la variable
-independiente (\(t\)) del otro lado de la igualdad. Entonces:
+independiente (\(t\)) del otro lado de la igualdad
+\citep{Barrantes2015}. Entonces:
 
 \[
-\frac{1}{N} \times \frac{dN}{dt}=r_m
+\frac{1}{N} \times \frac{dN}{dt}=\mathrm{r_m}
 \]
 
 Luego se integra ambos lados con respecto de la variable independiente:
 
 \[
-\int \left( \frac{1}{N} \times \frac{dN}{dt}\right)\,dt=\int r_m\,dt
+\int \left( \frac{1}{N} \times \frac{dN}{dt}\right)\,dt=\int \mathrm{r_m}\,dt
 \]
 
 Observe que del lado izquierdo los diferenciales se cancelan:
 
 \begin{equation*}
 \begin{split}
-\int \frac{dN}{N}&=r_m t + c\\
-\ln N & = r_m t + c\\
+\int \frac{dN}{N}&=\mathrm{r_m} t + c\\
+\ln N & = \mathrm{r_m} t + c\\
 \end{split}
 \end{equation*}
 
-Se despeja \(N\), y se obtiene \(N=Ce^{r_m t}\). Luego, cuando \(N=N_0\)
-entonces \(t=0\); por lo que la expresión se simplifica a
+Se despeja \(N\), y se obtiene \(N=Ce^{\mathrm{r_m} t}\). Luego, cuando
+\(N=N_0\) entonces \(t=0\); por lo que la expresión se simplifica a
 \(N_0 = C e^0 = C\). Dando como resultado la expresión
 
 \[
-N = N_0 e^{r_m t}
+N = N_0 e^{\mathrm{r_m} t}
 \]
 
 \BeginKnitrBlock{example}
@@ -571,10 +575,10 @@ N=\frac{1\si{\gram}}{29\cancel{\si{\kilo\joule}}}\times 5000 \cancel{\si{\kilo\j
 Luego, despejamos \(t\) de la ecuación \eqref{eq:expG}:
 
 \[
-t = \ln \left(\frac{N}{N_0}\right)r_m^{-1}
+t = \ln \left(\frac{N}{N_0}\right)\mathrm{r_m}^{-1}
 \]
 
-Se hacen las sustituciones correspondientes: \(r_m = 0.99\),
+Se hacen las sustituciones correspondientes: \(\mathrm{r_m} = 0.99\),
 \(N_0 = \SI{1e-6}{\gram}\), \(N = \SI{172.414}{\gram}\), y se obtiene
 que el tiempo necesario para obtener una biomasa equivalente a una
 energía de 5000 kilojoule es \(t =\) \SI{ 19.2 }{\day}.
@@ -584,7 +588,7 @@ energía de 5000 kilojoule es \(t =\) \SI{ 19.2 }{\day}.
 \BeginKnitrBlock{exercise}
 \protect\hypertarget{exr:expGrowth1}{}{\label{exr:expGrowth1} }Si
 \(\lambda = 1.027\) por semana. Escale \(\lambda\) de semanas a meses (1
-mes = 4 semanas). Utilice la relación de \(\lambda = e^{r_m}\).
+mes = 4 semanas). Utilice la relación de \(\lambda = e^{\mathrm{r_m}}\).
 \EndKnitrBlock{exercise}
 
 \BeginKnitrBlock{exercise}
@@ -593,11 +597,11 @@ siguentes escenarios de la ecuación \eqref{eq:expG}:
 
 \begin{itemize}
 \item
-  \(r_m\) negativo.
+  \(\mathrm{r_m}\) negativo.
 \item
-  \(r_m\) igual a cero.
+  \(\mathrm{r_m}\) igual a cero.
 \item
-  \(r_m\) positivo.
+  \(\mathrm{r_m}\) positivo.
 \end{itemize}
 
 Obtenga el límite:
@@ -611,14 +615,15 @@ Dé una interpretación de los resultados, en términos de la población.
 
 \BeginKnitrBlock{exercise}
 \protect\hypertarget{exr:expGrowth3}{}{\label{exr:expGrowth3} }Demuestre,
-utilizando un razonamiento deductivo, que si \(r_m < 0\), la población
-decrece. Puede usar los resultados del ejercicio \ref{exr:expGrowth2}.
+utilizando un razonamiento deductivo, que si \(\mathrm{R_m} < 0\), la
+población decrece. Puede usar los resultados del ejercicio
+\ref{exr:expGrowth2}.
 \EndKnitrBlock{exercise}
 
 \BeginKnitrBlock{exercise}
 \protect\hypertarget{exr:expGrowth4}{}{\label{exr:expGrowth4} }Analice
 biológicamente el significado del resultado del ejercicio
-\ref{exr:expGrowth2}, cuando \(r_m\) es positivo.
+\ref{exr:expGrowth2}, cuando \(\mathrm{r_m}\) es positivo.
 \EndKnitrBlock{exercise}
 
 \section{Crecimiento
@@ -629,6 +634,15 @@ denso-dependiente}\label{crecimiento-denso-dependiente}
 \href{http://onlinelibrary.wiley.com/doi/10.1111/1365-2656.12482/full}{COMADRE}
 \href{http://www.compadre-db.org/Data/Comadre}{COMADRE DATA} Ojo a la
 guia de usuario
+
+\section{Otras fuentes
+bibliográficas}\label{otras-fuentes-bibliograficas}
+
+Esta sección está basada en los capítulos 4 y 5 de \citet{NealPopBio}.
+En la sección 2.3 de \citet{PopSystem}, se desarrollan los mismos
+modelos básicos vistos aquí; en este mismo libro se presenta una buena
+introducción sobre la ecología de poblaciones como \emph{sistemas}, en
+el capítulo 1.
 
 \chapter{Soluciones a los ejercicios}\label{soluciones-a-los-ejercicios}
 
@@ -720,8 +734,8 @@ diferenciales}\label{simulacion-de-ecuaciones-diferenciales}
 
 Tomaremos el ejemplo de la ecuación \eqref{eq:diffG}, para mostrar un
 método para encontrar el tamaño de población, sin tener que utilizar
-cálculo. Este es el \emph{método de Euler}, que se explicará mediante un
-ejemplo.
+cálculo \citep{Barrantes2015}. Este es el \emph{método de Euler}, que se
+explicará mediante un ejemplo.
 
 Una derivada implica un cambio infinitesimal de una variable en relación
 a otra. Por ejemplo, el cambio en el número de individuos de una
@@ -914,8 +928,8 @@ hace que el código sea más legible.
 \section{Funciones básicas en R}\label{funciones-basicas-en-r}
 
 Ahora que hemos creado un proyecto, y tenemos un lienzo en blanco,
-empezamos por ver las funciones más básicas. \textbf{R} puede ser
-utilizado de manera tan básica, como una calculadora. Contiene, por
+empezamos por ver las funciones más elementales \textbf{R} puede ser
+utilizado de manera tan simple, como una calculadora. Contiene, por
 supuesto, todas las operaciones básicas como: adición, substracción,
 multipliación, división, potencias, y logaritmos.
 
@@ -935,7 +949,8 @@ multipliación, división, potencias, y logaritmos.
 
 \KeywordTok{log10}\NormalTok{(}\DecValTok{2}\NormalTok{) }\CommentTok{#logaritmo base 10}
 
-\KeywordTok{log}\NormalTok{(}\DataTypeTok{x =} \DecValTok{2}\NormalTok{, }\DataTypeTok{base =} \OperatorTok{<}\NormalTok{n}\OperatorTok{>}\NormalTok{) }\CommentTok{#logaritmo base <n>, donde <n> se reemplaza por cualquier número.}
+\KeywordTok{log}\NormalTok{(}\DataTypeTok{x =} \DecValTok{2}\NormalTok{, }\DataTypeTok{base =} \OperatorTok{<}\NormalTok{n}\OperatorTok{>}\NormalTok{) }\CommentTok{#logaritmo base <n>, donde <n> se}
+                       \CommentTok{#   reemplaza por cualquier número.}
 \end{Highlighting}
 \end{Shaded}
 
@@ -986,9 +1001,11 @@ matriz de \(n\) filas, y solo una columna.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{vect1 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{0}\NormalTok{) }\CommentTok{#es una concatenación de números, que se crea con la función 'c(...)'}
+\NormalTok{vect1 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{0}\NormalTok{) }\CommentTok{#es una concatenación de}
+\CommentTok{# números, que se crea con la función 'c(...)'}
 
-\NormalTok{vect2 <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{) }\CommentTok{# son diez números al azar obtenidas de una distribución normal estándar}
+\NormalTok{vect2 <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{) }\CommentTok{# son diez números al azar obtenidas}
+\CommentTok{# de una distribución normal estándar}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1003,9 +1020,11 @@ el subíndice del vector es otro vector.
 
 \NormalTok{vect1[}\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{)]}
 
-\NormalTok{vect1[}\DecValTok{3}\OperatorTok{:}\DecValTok{5}\NormalTok{] }\CommentTok{# 3:5 crea una secuencia de enteros, que incrementa en 1 a la vez.}
+\NormalTok{vect1[}\DecValTok{3}\OperatorTok{:}\DecValTok{5}\NormalTok{] }
+\CommentTok{# 3:5 crea una secuencia de enteros, que incrementa en 1 a la vez.}
 
-\NormalTok{vect1[}\KeywordTok{rep}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DataTypeTok{times=}\DecValTok{10}\NormalTok{)] }\CommentTok{# rep, es una función que repite un número un determinado número de veces.}
+\NormalTok{vect1[}\KeywordTok{rep}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DataTypeTok{times=}\DecValTok{10}\NormalTok{)] }\CommentTok{# rep, es una función que repite un}
+\CommentTok{#número un determinado número de veces.}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1054,12 +1073,12 @@ experimental, por ejemplo:
 
 \begin{verbatim}
 ##   Var1 Var2          z
-## 1   T1    a  0.4650932
-## 2   T2    a -1.7843122
-## 3   T1    b  0.3944352
-## 4   T2    b -0.4556797
-## 5   T1    c  1.1755273
-## 6   T2    c -0.3997512
+## 1   T1    a  0.1821413
+## 2   T2    a  0.7871087
+## 3   T1    b -0.9855575
+## 4   T2    b  0.6257901
+## 5   T1    c -0.3155624
+## 6   T2    c  0.6700461
 \end{verbatim}
 
 \textbf{Arreglos} o \emph{arrays}
@@ -1121,7 +1140,7 @@ es sencillo:
   Nombramos los argumentos de la función. Podemos asignar valores por
   defecto. Los argumentos deben ir entre paréntesis redondos.
 \item
-  Escribímos el cuerpo de la función entre paréntesis tipo llave
+  Escribimos el cuerpo de la función entre paréntesis tipo llave
   \texttt{\{\}}. El cuerpo de la función debe terminar con \emph{un
   solo} objeto que será retornado como salida del proceso.
 \end{enumerate}
@@ -1153,7 +1172,7 @@ salida, un valor único con el promedio.
   
 \NormalTok{\}}
 
-\NormalTok{#### Ahora probamos la función, tomando el promedio de un }
+\CommentTok{# Ahora probamos la función, tomando el promedio de un }
 \CommentTok{#       vector de números normales con media igual a cero}
 \CommentTok{#       Esperamos, que nuestro promedio sea un valor cercano}
 \CommentTok{#         a cero.}
@@ -1165,7 +1184,7 @@ salida, un valor único con el promedio.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0435626
+## [1] 0.09851414
 \end{verbatim}
 
 \bibliography{book.bib,packages.bib}

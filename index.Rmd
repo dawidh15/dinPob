@@ -18,7 +18,7 @@ papersize: letter
 sansfont: Arial
 secnumdepth: 1
 site: bookdown::bookdown_site
-biblio-style: apalike
+biblio-style: DAVID
 ---
 # Introducción {#intro}
 

@@ -22,30 +22,28 @@ Las otra gran categoría de modelos de crecimiento tienen que ver con la depende
 
 \index{C!crecimiento geométrico}
 
-Nuestra variable de interés es el tamaño poblacional, $N$. Queremos conocer el crecimiento poblacional de $N$ del año 0 ($t=0$) al año 1 ($t=1$). Entonces, podemos simplemente restar $N_1 - N_0$ para encontrar dicho crecimiento, al que llamaremos $\Delta N$. De manera similar, podemos encontrar el crecimiento de la población en cualquier sub-intervalo de tiempo. Por ejemplo, si queremos conocer el crecimiento en el periodo $t=1$ y $t=0.5$, entonces nombramos este intervalo como $\Delta t$, y obtenemos el dato al dividir $\Delta N / \Delta t$. Esta razón corresponde a la *tasa de crecimiento*\index{T!tasa de crecimiento}.
+Nuestra variable de interés es el tamaño poblacional, $N$. Queremos conocer el crecimiento poblacional desde año 0 ($t=0$) hasta el año 1 ($t=1$). Entonces, podemos restar $N_1 - N_0$ para encontrar dicho crecimiento, al que llamaremos $\Delta N$ ("Delta N"). De manera similar, podemos encontrar el crecimiento de la población en cualquier sub-intervalo de tiempo. Por ejemplo, si queremos conocer el crecimiento en el periodo $t=1$ y $t=0.5$, entonces nombramos este intervalo como $\Delta t$, y obtenemos el dato al dividir $\Delta N / \Delta t$. Esta razón corresponde a la *tasa de crecimiento*\index{T!tasa de crecimiento}.
 
-Una primer idea de cómo modelar la tasa de crecimiento, es pensar en que ésta equivale a la diferencia entre las *entradas* a la población (natalidad e inmigración) menos las *salidas* de la población (mortalidad y emigración):
-
-$$
-\frac{\Delta N}{\Delta t} = E-S
-$$
-
-Si dividimos la ecuación anterior por $N$ obtenemos la tasa de crecimiento *per cápita*.
+Una primer idea de cómo modelar la tasa de crecimiento, es pensar en que ésta equivale a la diferencia entre las *entradas* a la población ($B$, natalidad e inmigración) menos las *salidas* de la población ($D$, mortalidad y emigración):
 
 $$
-\frac{\frac{\Delta N}{\Delta t}}{N} = \frac{E-S}{N}
+\frac{\Delta N}{\Delta t} = B-D
 $$
 
-La tasa de crecimiento per cápita es mayor a cero, entonces la población crece. Si es igual a cero, la población se mantiene estable. Si es menor a cero, la población decrece. Si hacemos la tasa de crecimiento per cápita $\frac{E-S}{N}=R_m$, entonces podemos arreglar la ecuación anterior de una forma más conocida:
+Para conocer la tasa de crecimiento *per cápita*, dividimos la ecuación anterior por $N$:
+
+$$
+\frac{\frac{\Delta N}{\Delta t}}{N} = \frac{D-B}{N}
+$$
+
+Si la tasa de crecimiento per cápita es mayor a cero, entonces la población crece. Si es igual a cero, la población se mantiene estable. Si es menor a cero, la población decrece. Si asumimos que la diferencia entra las entradas de la población y sus salidas son *constantes*, podemos arreglar la expresión anterior como $\frac{E-S}{N}=\mathrm{R_m}$; con lo que obtenemos la forma familiar de la tasa de crecimiento:
 
 \begin{equation}
-\frac{\Delta N}{\Delta t}=R_m N
+\frac{\Delta N}{\Delta t}=\mathrm{R_m} N
  (\#eq:geom1)
 \end{equation}
 
-
-
-Sin embargo, la ecuación \@ref(eq:geom1) aún no está en función del tiempo, que es el objetivo que se busca. Primero empecemos por predecir $N_1$ en función de $N_0$. Sabemos que $N_1$ será igual a $N_0$ *más* el crecimiento poblacional durante ese intervalo de tiempo. Es decir:
+Sin embargo, la ecuación \@ref(eq:geom1) aún no está en función del tiempo, que es el objetivo que se busca. Primero empecemos por predecir La población en el año uno ($N_1$) en función del tamaño de población inicial ($N_0$). Sabemos que $N_1$ será igual a $N_0$ *más* el crecimiento poblacional durante ese intervalo de tiempo. Es decir:
 
 $$
 N_1 = N_0 + \frac{\Delta N}{\Delta t}
@@ -55,15 +53,15 @@ Y por la ecuación \@ref(eq:geom1), substituyendo $N = N_0$, se tiene la relaci�
 
 \begin{equation}
 \begin{split}
-N_1 &= N_0 + R_m N_0\\
-    &= N_0 \left( 1 + R_m \right)\\
+N_1 &= N_0 + \mathrm{R_m} N_0\\
+    &= N_0 \left( 1 + \mathrm{R_m} \right)\\
     &= N_0 \lambda\\
 \end{split}
 \end{equation}
 
-Es decir, el tamaño de población en el año 1, es igual al tamaño de población en el año 0, más el producto de la tasa de crecimiento per cápita por el tamaño de población en el año 0. Los arreglos posteriores, muestran que $N_1$ depende de $N_0$ y una constante $\lambda = 1+R_m$, la cual representa la *tasa de multiplicación*\index{T!tasa de multiplicación}. Entonces, la población crece cuando $\lambda > 1$, se mantiene estable si $\lambda = 1$, y decrece si $\lambda < 1$.
+Por tanto, el tamaño de población en el año uno, es igual al tamaño de población en el año cero, más el producto de la tasa de crecimiento per cápita por el tamaño de población en el año cero. Los arreglos posteriores, muestran que $N_1$ depende de $N_0$ y una constante $\lambda = 1+\mathrm{R_m}$, la cual representa la *tasa de multiplicación*\index{T!tasa de multiplicación}. Entonces, la población crece cuando $\lambda > 1$, se mantiene estable si $\lambda = 1$, y decrece si $\lambda < 1$.
 
-Ahora, podemos obtener $N_2$ al saber que $N_2 = N_1 \lambda$. Observamos que $N_1 = N_0 \lambda$; por tanto, podemos sustituir el valor de $N_1$ para acabar con $N_2 =  N_0 \lambda \lambda =  N_0 \lambda^2$. Si proseguimos de esta manera, concluimos que:
+Ahora, podemos obtener $N_2$ al saber que $N_2 = N_1 \lambda$. Observamos que $N_1 = N_0 \lambda$; por tanto, sustituimos el valor de $N_1$ para acabar con $N_2 =  N_0 \lambda \lambda =  N_0 \lambda^2$. Si proseguimos de esta manera, concluimos que:
 
 \begin{equation}
 N_t = N_0 \lambda^t
@@ -120,7 +118,7 @@ plotGeomGrowth(N0 = 33, lambda = (25/33)^(1/10), t = 10)
 #### Ejercicios
 
 ```{exercise, label='plotGeomGrowth'}
-Grafique la ecuación \@ref(eq:geom1). En el eje **y** la tasa de crecimiento y en el eje **x** el tamaño poblacional. Utilice tres valores de $R_m$, uno positivo, uno igual a cero y otro negativo. El tamaño inicial de la población es de 50 individuos. $R_m \in \left[ -1, 1 \right]$, y $N \in \left[ 0, 50 \right]$. Cuál es la representación gráfica de $R_m$ en el gráfico.
+Grafique la ecuación \@ref(eq:geom1). En el eje **y** la tasa de crecimiento y en el eje **x** el tamaño poblacional. Utilice tres valores de $\mathrm{R_m}$, uno positivo, uno igual a cero y otro negativo. El tamaño inicial de la población es de 50 individuos. $\mathrm{R_m} \in \left[ -1, 1 \right]$, y $N \in \left[ 0, 50 \right]$. Cuál es la representación gráfica de $\mathrm{R_m}$ en el gráfico.
 ```
 
 
@@ -147,27 +145,27 @@ Un cultivo de células dobla su tamaño poblacional en 15 minutos ($\lambda = 2$
 En la sección anterior, se trabajó con intervalos de tiempo discretos. Pero si queremos conocer el tamaño poblacional en cualquier momento del tiempo, debemos trabajar con intervalos infinitamente pequeños. Esto quiere decir que la ecuación \@ref(eq:geom2) se escribe en su forma continua:
 
 \begin{equation}
-\frac{dN}{dt}=r_m N
+\frac{dN}{dt}=\mathrm{r_m} N
  (\#eq:diffG)
  \end{equation}
 
 La ecuación \@ref(eq:diffG) es una *ecuación diferencial de primer orden*\footnote{una ecuación diferencial existe cuando en la ecuación, la incógnita depende de su derivada. En este caso, si queremos despejar $N$, observamos que su derivada se encuentra en la expresión resultante}. Este tipo particular de ecuaciones diferenciales tienen una solución analítica. Para este caso, se puede utilizar el método de separación de variables, para obtener la siguiente expresión del tamaño poblacional con respecto al tiempo (ver ejemplo \@ref(exm:exp1)):
 
 \begin{equation}
-N_t=N_0 e^{r_mt}
+N_t=N_0 e^{\mathrm{r_m}t}
 (\#eq:expG)
 \end{equation}
 
-En la expresión anterior, $r_m$ es la *tasa instantánea de crecimiento*\index{T!tasa instantánea de crecimiento}, también conocida como la *tasa intrínseca de crecimiento natural*, o el parámetro de Malthus por Thomas Malthus. Este parámetro equivale a la diferencia entre la tasa intrínseca de nacimiento y la tasa intrínseca de mortalidad ($b - d$). La tasa intrínseca está relacionada con la tasa de multiplicación de la siguiente forma:
+En la expresión anterior, $\mathrm{r_m}$ es la *tasa instantánea de crecimiento*\index{T!tasa instantánea de crecimiento}, también conocida como la *tasa intrínseca de crecimiento natural*, o el parámetro de Malthus por Thomas Malthus. Este parámetro equivale a la diferencia entre la tasa intrínseca de nacimiento y la tasa intrínseca de mortalidad ($b - d$). La tasa intrínseca está relacionada con la tasa de multiplicación de la siguiente forma:
 
 \begin{equation*}
 \begin{split}
-\lambda &= e^{r_m}\\
-r_m &= \ln\lambda\\
+\lambda &= e^{\mathrm{r_m}}\\
+\mathrm{r_m} &= \ln\lambda\\
 \end{split}
 \end{equation*}
 
-El parámetro $r_m$ tiene aplicaciones interesantes. Una de ellas es su facilidad para utilizarse en diferentes escalas de tiempo. Por ejemplo, si $r_m = 0.1$ por día, y queremos escalarlo a escala semanal, procedemos a multiplicar $r_m = 0.1 \times 7 = 0.7$. Al hacer esta transformación, se debe tener en cuenta la escala de tiempo con la que se interpretan y presentan los resultados.
+El parámetro $\mathrm{r_m}$ tiene aplicaciones interesantes. Una de ellas es su facilidad para utilizarse en diferentes escalas de tiempo. Por ejemplo, si $\mathrm{r_m} = 0.1$ por día, y queremos escalarlo a escala semanal, procedemos a multiplicar $\mathrm{r_m} = 0.1 \times 7 = 0.7$. Al hacer esta transformación, se debe tener en cuenta la escala de tiempo con la que se interpretan y presentan los resultados.
 
 #### Ejemplos 
 
@@ -177,30 +175,30 @@ Como obtener la ecuación de crecimiento exponencial \@ref(eq:expG) de la ecuaci
 
 ```
 
-El método de separación de variables consiste en dejar todos los términos de la incógnita de un lado, y los términos de la variable independiente ($t$) del otro lado de la igualdad. Entonces:
+El método de separación de variables consiste en dejar todos los términos de la incógnita de un lado, y los términos de la variable independiente ($t$) del otro lado de la igualdad [@Barrantes2015]. Entonces:
 
 $$
-\frac{1}{N} \times \frac{dN}{dt}=r_m
+\frac{1}{N} \times \frac{dN}{dt}=\mathrm{r_m}
 $$
 
 Luego se integra ambos lados con respecto de la variable independiente:
 
 $$
-\int \left( \frac{1}{N} \times \frac{dN}{dt}\right)\,dt=\int r_m\,dt
+\int \left( \frac{1}{N} \times \frac{dN}{dt}\right)\,dt=\int \mathrm{r_m}\,dt
 $$
 
 Observe que del lado izquierdo los diferenciales se cancelan:
 \begin{equation*}
 \begin{split}
-\int \frac{dN}{N}&=r_m t + c\\
-\ln N & = r_m t + c\\
+\int \frac{dN}{N}&=\mathrm{r_m} t + c\\
+\ln N & = \mathrm{r_m} t + c\\
 \end{split}
 \end{equation*}
 
-Se despeja $N$, y se obtiene $N=Ce^{r_m t}$. Luego, cuando $N=N_0$ entonces $t=0$; por lo que la expresión se simplifica a $N_0 = C e^0 = C$. Dando como resultado la expresión
+Se despeja $N$, y se obtiene $N=Ce^{\mathrm{r_m} t}$. Luego, cuando $N=N_0$ entonces $t=0$; por lo que la expresión se simplifica a $N_0 = C e^0 = C$. Dando como resultado la expresión
 
 $$
-N = N_0 e^{r_m t}
+N = N_0 e^{\mathrm{r_m} t}
 $$
 
 
@@ -218,27 +216,27 @@ $$
 Luego, despejamos $t$ de la ecuación \@ref(eq:expG):
 
 $$
-t = \ln \left(\frac{N}{N_0}\right)r_m^{-1}
+t = \ln \left(\frac{N}{N_0}\right)\mathrm{r_m}^{-1}
 $$
 
-Se hacen las sustituciones correspondientes: $r_m = 0.99$, $N_0 = \SI{1e-6}{\gram}$, $N = \SI{172.414}{\gram}$, y se obtiene que el tiempo necesario para obtener una biomasa equivalente a una energía de 5000 kilojoule es $t =$ `r paste("\\SI{",signif( (log(173.414)-log(1e-6))*(1/0.99) ,digits=3),'}{\\day}')`.
+Se hacen las sustituciones correspondientes: $\mathrm{r_m} = 0.99$, $N_0 = \SI{1e-6}{\gram}$, $N = \SI{172.414}{\gram}$, y se obtiene que el tiempo necesario para obtener una biomasa equivalente a una energía de 5000 kilojoule es $t =$ `r paste("\\SI{",signif( (log(173.414)-log(1e-6))*(1/0.99) ,digits=3),'}{\\day}')`.
 
 #### Ejercicios
 
 
 ```{exercise, label='expGrowth1'}
-Si $\lambda = 1.027$ por semana. Escale $\lambda$ de semanas a meses (1 mes = 4 semanas). Utilice la relación de $\lambda = e^{r_m}$.
+Si $\lambda = 1.027$ por semana. Escale $\lambda$ de semanas a meses (1 mes = 4 semanas). Utilice la relación de $\lambda = e^{\mathrm{r_m}}$.
 ```
 
 
 ```{exercise, label='expGrowth2'}
 Para los siguentes escenarios de la ecuación \@ref(eq:expG):
   
-- $r_m$ negativo.
+- $\mathrm{r_m}$ negativo.
 
-- $r_m$ igual a cero.
+- $\mathrm{r_m}$ igual a cero.
 
-- $r_m$ positivo.
+- $\mathrm{r_m}$ positivo.
 
 Obtenga el límite:
   
@@ -252,12 +250,12 @@ Dé una interpretación de los resultados, en términos de la población.
 
 
 ```{exercise, label='expGrowth3'}
-Demuestre, utilizando un razonamiento deductivo, que si $r_m < 0$, la población decrece. Puede usar los resultados del ejercicio \@ref(exr:expGrowth2).
+Demuestre, utilizando un razonamiento deductivo, que si $\mathrm{R_m} < 0$, la población decrece. Puede usar los resultados del ejercicio \@ref(exr:expGrowth2).
 ```
 
 
 ```{exercise, label='expGrowth4'}
-Analice biológicamente el significado del resultado del ejercicio \@ref(exr:expGrowth2), cuando $r_m$ es positivo.
+Analice biológicamente el significado del resultado del ejercicio \@ref(exr:expGrowth2), cuando $\mathrm{r_m}$ es positivo.
 ```
 
 
@@ -268,3 +266,7 @@ Analice biológicamente el significado del resultado del ejercicio \@ref(exr:exp
 
 [COMADRE](http://onlinelibrary.wiley.com/doi/10.1111/1365-2656.12482/full)
 [COMADRE DATA](http://www.compadre-db.org/Data/Comadre) Ojo a la guia de usuario
+
+## Otras fuentes bibliográficas
+
+Esta sección está basada en los capítulos 4 y 5 de @NealPopBio. En la sección 2.3 de @PopSystem, se desarrollan los mismos modelos básicos vistos aquí; en este mismo libro se presenta una buena introducción sobre la ecología de poblaciones como *sistemas*, en el capítulo 1.
