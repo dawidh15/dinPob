@@ -1,5 +1,5 @@
 book_filename: "dinPob"
-rmd_files: ["index.Rmd", "01-Crecimiento.Rmd", "05-Soluciones.Rmd","06-Appendix.Rmd","07-Numericos.Rmd","08-Tutorial-R.Rmd"]
+rmd_files: ["index.Rmd", "01-Crecimiento.Rmd", "05-Soluciones.Rmd","06-Appendix.Rmd","07-Numericos.Rmd","08-Tutorial-R.Rmd","999-Asignaciones.Rmd"]
 language:
   ui:
     chapter_name: "Capítulo "

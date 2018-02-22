@@ -1,6 +1,6 @@
 # Tutorial de R con RStudio
 
-## Crear un proyecto en *RStudio*
+## Crear un proyecto en *RStudio* {#RStudioProject}
 
 Crear un proyecto en **RStudio** para cualquier proyecto con **R**, es importante. Los proyectos organizan los documentos en una sola carpeta, y son fundamentales para el control de versión con un software como **Git**. Primero crearemos un proyecto sencillo para conocer la mecánica básica, y luego haremos un proyecto con un repositorio en línea, en **GitHub**. 
 
