@@ -25,7 +25,7 @@
 <meta name="author" content="David Martínez Cascante">
 
 
-<meta name="date" content="2018-02-14">
+<meta name="date" content="2018-03-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -106,8 +106,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-exponencial"><i class="fa fa-check"></i><b>2.1.2</b> Crecimiento exponencial</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-denso-dependiente"><i class="fa fa-check"></i><b>2.2</b> Crecimiento denso-dependiente</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#matrices"><i class="fa fa-check"></i><b>2.2.1</b> Matrices</a></li>
+<li class="chapter" data-level="2.2.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-logistico"><i class="fa fa-check"></i><b>2.2.1</b> Crecimiento logístico</a></li>
+<li class="chapter" data-level="2.2.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#usos-del-modelo-logistico"><i class="fa fa-check"></i><b>2.2.2</b> Usos del modelo logístico</a></li>
+<li class="chapter" data-level="2.2.3" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#matrices"><i class="fa fa-check"></i><b>2.2.3</b> Matrices</a></li>
 </ul></li>
+<li class="chapter" data-level="2.3" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#otras-fuentes-bibliograficas"><i class="fa fa-check"></i><b>2.3</b> Otras fuentes bibliográficas</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="soluciones-a-los-ejercicios.html"><a href="soluciones-a-los-ejercicios.html"><i class="fa fa-check"></i><b>3</b> Soluciones a los ejercicios</a></li>
 <li class="appendix"><span><b>Apéndices</b></span></li>
@@ -115,10 +118,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="A.1" data-path="metodos-numericos-para-ecologia-de-poblaciones.html"><a href="metodos-numericos-para-ecologia-de-poblaciones.html#simulacion-de-ecuaciones-diferenciales"><i class="fa fa-check"></i><b>A.1</b> Simulación de ecuaciones diferenciales</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html"><i class="fa fa-check"></i><b>B</b> Tutorial de R con RStudio</a><ul>
-<li class="chapter" data-level="B.1" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#crear-un-proyecto-en-rstudio"><i class="fa fa-check"></i><b>B.1</b> Crear un proyecto en <em>RStudio</em></a></li>
+<li class="chapter" data-level="B.1" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#RStudioProject"><i class="fa fa-check"></i><b>B.1</b> Crear un proyecto en <em>RStudio</em></a></li>
 <li class="chapter" data-level="B.2" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#funciones-basicas-en-r"><i class="fa fa-check"></i><b>B.2</b> Funciones básicas en R</a></li>
 <li class="chapter" data-level="B.3" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#estructuras-de-datos"><i class="fa fa-check"></i><b>B.3</b> Estructuras de datos</a></li>
 <li class="chapter" data-level="B.4" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#funciones"><i class="fa fa-check"></i><b>B.4</b> Funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="asignaciones.html"><a href="asignaciones.html"><i class="fa fa-check"></i><b>C</b> Asignaciones</a><ul>
+<li class="chapter" data-level="C.1" data-path="asignaciones.html"><a href="asignaciones.html#tarea-01-hola-mundo-con-rmarkdown"><i class="fa fa-check"></i><b>C.1</b> Tarea 01: ¡Hola mundo con <em>Rmarkdown</em>!</a></li>
+<li class="chapter" data-level="C.2" data-path="asignaciones.html"><a href="asignaciones.html#tarea-02-ejercicios-de-crecimiento"><i class="fa fa-check"></i><b>C.2</b> Tarea 02: Ejercicios de crecimiento</a></li>
 </ul></li>
 </ul>
 
@@ -151,34 +158,34 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="crecimiento-geometrico" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> Crecimiento geométrico</h3>
 
-<p>Nuestra variable de interés es el tamaño poblacional, <span class="math inline">\(N\)</span>. Queremos conocer el crecimiento poblacional de <span class="math inline">\(N\)</span> del año 0 (<span class="math inline">\(t=0\)</span>) al año 1 (<span class="math inline">\(t=1\)</span>). Entonces, podemos simplemente restar <span class="math inline">\(N_1 - N_0\)</span> para encontrar dicho crecimiento, al que llamaremos <span class="math inline">\(\Delta N\)</span>. De manera similar, podemos encontrar el crecimiento de la población en cualquier sub-intervalo de tiempo. Por ejemplo, si queremos conocer el crecimiento en el periodo <span class="math inline">\(t=1\)</span> y <span class="math inline">\(t=0.5\)</span>, entonces nombramos este intervalo como <span class="math inline">\(\Delta t\)</span>, y obtenemos el dato al dividir <span class="math inline">\(\Delta N / \Delta t\)</span>. Esta razón corresponde a la <em>tasa de crecimiento</em>.</p>
-<p>Una primer idea de cómo modelar la tasa de crecimiento, es pensar en que ésta equivale a la diferencia entre las <em>entradas</em> a la población (natalidad e inmigración) menos las <em>salidas</em> de la población (mortalidad y emigración):</p>
+<p>Nuestra variable de interés es el tamaño poblacional, <span class="math inline">\(N\)</span>. Queremos conocer el crecimiento poblacional desde año 0 (<span class="math inline">\(t=0\)</span>) hasta el año 1 (<span class="math inline">\(t=1\)</span>). Entonces, podemos restar <span class="math inline">\(N_1 - N_0\)</span> para encontrar dicho crecimiento, al que llamaremos <span class="math inline">\(\Delta N\)</span> (“Delta N”). De manera similar, podemos encontrar el crecimiento de la población en cualquier sub-intervalo de tiempo. Por ejemplo, si queremos conocer el crecimiento en el periodo <span class="math inline">\(t=1\)</span> y <span class="math inline">\(t=0.5\)</span>, entonces nombramos este intervalo como <span class="math inline">\(\Delta t\)</span>, y obtenemos el dato al dividir <span class="math inline">\(\Delta N / \Delta t\)</span>. Esta razón corresponde a la <em>tasa de crecimiento</em>.</p>
+<p>Una primer idea de cómo modelar la tasa de crecimiento, es pensar en que ésta equivale a la diferencia entre las <em>entradas</em> a la población (<span class="math inline">\(B\)</span>, natalidad e inmigración) menos las <em>salidas</em> de la población (<span class="math inline">\(D\)</span>, mortalidad y emigración):</p>
 <p><span class="math display">\[
-\frac{\Delta N}{\Delta t} = E-S
+\frac{\Delta N}{\Delta t} = B-D
 \]</span></p>
-<p>Si dividimos la ecuación anterior por <span class="math inline">\(N\)</span> obtenemos la tasa de crecimiento <em>per cápita</em>.</p>
+<p>Para conocer la tasa de crecimiento <em>per cápita</em>, dividimos la ecuación anterior por <span class="math inline">\(N\)</span>:</p>
 <p><span class="math display">\[
-\frac{\frac{\Delta N}{\Delta t}}{N} = \frac{E-S}{N}
+\frac{\frac{\Delta N}{\Delta t}}{N} = \frac{D-B}{N}
 \]</span></p>
-<p>La tasa de crecimiento per cápita es mayor a cero, entonces la población crece. Si es igual a cero, la población se mantiene estable. Si es menor a cero, la población decrece. Si hacemos la tasa de crecimiento per cápita <span class="math inline">\(\frac{E-S}{N}=R_m\)</span>, entonces podemos arreglar la ecuación anterior de una forma más conocida:</p>
+<p>Si la tasa de crecimiento per cápita es mayor a cero, entonces la población crece. Si es igual a cero, la población se mantiene estable. Si es menor a cero, la población decrece. Si asumimos que la diferencia entra las entradas de la población y sus salidas son <em>constantes</em>, podemos arreglar la expresión anterior como <span class="math inline">\(\frac{E-S}{N}=\mathrm{R_m}\)</span>; con lo que obtenemos la forma familiar de la tasa de crecimiento:</p>
 <span class="math display" id="eq:geom1">\[\begin{equation}
-\frac{\Delta N}{\Delta t}=R_m N
+\frac{\Delta N}{\Delta t}=\mathrm{R_m} N
  \tag{2.1}
 \end{equation}\]</span>
-<p>Sin embargo, la ecuación <a href="modelos-de-crecimiento.html#eq:geom1">(2.1)</a> aún no está en función del tiempo, que es el objetivo que se busca. Primero empecemos por predecir <span class="math inline">\(N_1\)</span> en función de <span class="math inline">\(N_0\)</span>. Sabemos que <span class="math inline">\(N_1\)</span> será igual a <span class="math inline">\(N_0\)</span> <em>más</em> el crecimiento poblacional durante ese intervalo de tiempo. Es decir:</p>
+<p>Sin embargo, la ecuación <a href="modelos-de-crecimiento.html#eq:geom1">(2.1)</a> aún no está en función del tiempo, que es el objetivo que se busca. Primero empecemos por predecir La población en el año uno (<span class="math inline">\(N_1\)</span>) en función del tamaño de población inicial (<span class="math inline">\(N_0\)</span>). Sabemos que <span class="math inline">\(N_1\)</span> será igual a <span class="math inline">\(N_0\)</span> <em>más</em> el crecimiento poblacional durante ese intervalo de tiempo. Es decir:</p>
 <p><span class="math display">\[
 N_1 = N_0 + \frac{\Delta N}{\Delta t}
 \]</span></p>
 <p>Y por la ecuación <a href="modelos-de-crecimiento.html#eq:geom1">(2.1)</a>, substituyendo <span class="math inline">\(N = N_0\)</span>, se tiene la relación:</p>
 <span class="math display">\[\begin{equation}
 \begin{split}
-N_1 &amp;= N_0 + R_m N_0\\
-    &amp;= N_0 \left( 1 + R_m \right)\\
+N_1 &amp;= N_0 + \mathrm{R_m} N_0\\
+    &amp;= N_0 \left( 1 + \mathrm{R_m} \right)\\
     &amp;= N_0 \lambda\\
 \end{split}
 \end{equation}\]</span>
-<p>Es decir, el tamaño de población en el año 1, es igual al tamaño de población en el año 0, más el producto de la tasa de crecimiento per cápita por el tamaño de población en el año 0. Los arreglos posteriores, muestran que <span class="math inline">\(N_1\)</span> depende de <span class="math inline">\(N_0\)</span> y una constante <span class="math inline">\(\lambda = 1+R_m\)</span>, la cual representa la <em>tasa de multiplicación</em>. Entonces, la población crece cuando <span class="math inline">\(\lambda &gt; 1\)</span>, se mantiene estable si <span class="math inline">\(\lambda = 1\)</span>, y decrece si <span class="math inline">\(\lambda &lt; 1\)</span>.</p>
-<p>Ahora, podemos obtener <span class="math inline">\(N_2\)</span> al saber que <span class="math inline">\(N_2 = N_1 \lambda\)</span>. Observamos que <span class="math inline">\(N_1 = N_0 \lambda\)</span>; por tanto, podemos sustituir el valor de <span class="math inline">\(N_1\)</span> para acabar con <span class="math inline">\(N_2 = N_0 \lambda \lambda = N_0 \lambda^2\)</span>. Si proseguimos de esta manera, concluimos que:</p>
+<p>Por tanto, el tamaño de población en el año uno, es igual al tamaño de población en el año cero, más el producto de la tasa de crecimiento per cápita por el tamaño de población en el año cero. Los arreglos posteriores, muestran que <span class="math inline">\(N_1\)</span> depende de <span class="math inline">\(N_0\)</span> y una constante <span class="math inline">\(\lambda = 1+\mathrm{R_m}\)</span>, la cual representa la <em>tasa de multiplicación</em>. Entonces, la población crece cuando <span class="math inline">\(\lambda &gt; 1\)</span>, se mantiene estable si <span class="math inline">\(\lambda = 1\)</span>, y decrece si <span class="math inline">\(\lambda &lt; 1\)</span>.</p>
+<p>Ahora, podemos obtener <span class="math inline">\(N_2\)</span> al saber que <span class="math inline">\(N_2 = N_1 \lambda\)</span>. Observamos que <span class="math inline">\(N_1 = N_0 \lambda\)</span>; por tanto, sustituimos el valor de <span class="math inline">\(N_1\)</span> para acabar con <span class="math inline">\(N_2 = N_0 \lambda \lambda = N_0 \lambda^2\)</span>. Si proseguimos de esta manera, concluimos que:</p>
 <span class="math display" id="eq:geom2">\[\begin{equation}
 N_t = N_0 \lambda^t
  \tag{2.2}
@@ -219,7 +226,7 @@ N_t = N_0 \lambda^t
 <h4><span class="header-section-number">2.1.1.2</span> Ejercicios</h4>
 
 <div class="exercise">
-<span id="exr:plotGeomGrowth" class="exercise"><strong>Exercise 2.1  </strong></span>Grafique la ecuación <a href="modelos-de-crecimiento.html#eq:geom1">(2.1)</a>. En el eje <strong>y</strong> la tasa de crecimiento y en el eje <strong>x</strong> el tamaño poblacional. Utilice tres valores de <span class="math inline">\(R_m\)</span>, uno positivo, uno igual a cero y otro negativo. El tamaño inicial de la población es de 50 individuos. <span class="math inline">\(R_m \in \left[ -1, 1 \right]\)</span>, y <span class="math inline">\(N \in \left[ 0, 50 \right]\)</span>. Cuál es la representación gráfica de <span class="math inline">\(R_m\)</span> en el gráfico.
+<span id="exr:plotGeomGrowth" class="exercise"><strong>Exercise 2.1  </strong></span>Grafique la ecuación <a href="modelos-de-crecimiento.html#eq:geom1">(2.1)</a>. En el eje <strong>y</strong> la tasa de crecimiento y en el eje <strong>x</strong> el tamaño poblacional. Utilice tres valores de <span class="math inline">\(\mathrm{R_m}\)</span>, uno positivo, uno igual a cero y otro negativo. El tamaño inicial de la población es de 50 individuos. <span class="math inline">\(\mathrm{R_m} \in \left[ -1, 1 \right]\)</span>, y <span class="math inline">\(N \in \left[ 0, 50 \right]\)</span>. Cuál es la representación gráfica de <span class="math inline">\(\mathrm{R_m}\)</span> en el gráfico.
 </div>
 
 
@@ -248,22 +255,22 @@ N_t = N_0 \lambda^t
 <h3><span class="header-section-number">2.1.2</span> Crecimiento exponencial</h3>
 <p>En la sección anterior, se trabajó con intervalos de tiempo discretos. Pero si queremos conocer el tamaño poblacional en cualquier momento del tiempo, debemos trabajar con intervalos infinitamente pequeños. Esto quiere decir que la ecuación <a href="modelos-de-crecimiento.html#eq:geom2">(2.2)</a> se escribe en su forma continua:</p>
 <span class="math display" id="eq:diffG">\[\begin{equation}
-\frac{dN}{dt}=r_m N
+\frac{dN}{dt}=\mathrm{r_m} N
  \tag{2.3}
  \end{equation}\]</span>
 <p>La ecuación <a href="modelos-de-crecimiento.html#eq:diffG">(2.3)</a> es una <em>ecuación diferencial de primer orden</em>. Este tipo particular de ecuaciones diferenciales tienen una solución analítica. Para este caso, se puede utilizar el método de separación de variables, para obtener la siguiente expresión del tamaño poblacional con respecto al tiempo (ver ejemplo <a href="modelos-de-crecimiento.html#exm:exp1">2.3</a>):</p>
 <span class="math display" id="eq:expG">\[\begin{equation}
-N_t=N_0 e^{r_mt}
+N_t=N_0 e^{\mathrm{r_m}t}
 \tag{2.4}
 \end{equation}\]</span>
-<p>En la expresión anterior, <span class="math inline">\(r_m\)</span> es la <em>tasa instantánea de crecimiento</em>, también conocida como la <em>tasa intrínseca de crecimiento natural</em>, o el parámetro de Malthus por Thomas Malthus. Este parámetro equivale a la diferencia entre la tasa intrínseca de nacimiento y la tasa intrínseca de mortalidad (<span class="math inline">\(b - d\)</span>). La tasa intrínseca está relacionada con la tasa de multiplicación de la siguiente forma:</p>
+<p>En la expresión anterior, <span class="math inline">\(\mathrm{r_m}\)</span> es la <em>tasa instantánea de crecimiento</em>, también conocida como la <em>tasa intrínseca de crecimiento natural</em>, o el parámetro de Malthus por Thomas Malthus. Este parámetro equivale a la diferencia entre la tasa intrínseca de nacimiento y la tasa intrínseca de mortalidad (<span class="math inline">\(b - d\)</span>). La tasa intrínseca está relacionada con la tasa de multiplicación de la siguiente forma:</p>
 <span class="math display">\[\begin{equation*}
 \begin{split}
-\lambda &amp;= e^{r_m}\\
-r_m &amp;= \ln\lambda\\
+\lambda &amp;= e^{\mathrm{r_m}}\\
+\mathrm{r_m} &amp;= \ln\lambda\\
 \end{split}
 \end{equation*}\]</span>
-<p>El parámetro <span class="math inline">\(r_m\)</span> tiene aplicaciones interesantes. Una de ellas es su facilidad para utilizarse en diferentes escalas de tiempo. Por ejemplo, si <span class="math inline">\(r_m = 0.1\)</span> por día, y queremos escalarlo a escala semanal, procedemos a multiplicar <span class="math inline">\(r_m = 0.1 \times 7 = 0.7\)</span>. Al hacer esta transformación, se debe tener en cuenta la escala de tiempo con la que se interpretan y presentan los resultados.</p>
+<p>El parámetro <span class="math inline">\(\mathrm{r_m}\)</span> tiene aplicaciones interesantes. Una de ellas es su facilidad para utilizarse en diferentes escalas de tiempo. Por ejemplo, si <span class="math inline">\(\mathrm{r_m} = 0.1\)</span> por día, y queremos escalarlo a escala semanal, procedemos a multiplicar <span class="math inline">\(\mathrm{r_m} = 0.1 \times 7 = 0.7\)</span>. Al hacer esta transformación, se debe tener en cuenta la escala de tiempo con la que se interpretan y presentan los resultados.</p>
 <div id="ejemplos-1" class="section level4">
 <h4><span class="header-section-number">2.1.2.1</span> Ejemplos</h4>
 
@@ -271,24 +278,24 @@ r_m &amp;= \ln\lambda\\
 <p><span id="exm:exp1" class="example"><strong>Example 2.3  </strong></span> Como obtener la ecuación de crecimiento exponencial <a href="modelos-de-crecimiento.html#eq:expG">(2.4)</a> de la ecuación diferencial <a href="modelos-de-crecimiento.html#eq:diffG">(2.3)</a>.</p>
 </div>
 
-<p>El método de separación de variables consiste en dejar todos los términos de la incógnita de un lado, y los términos de la variable independiente (<span class="math inline">\(t\)</span>) del otro lado de la igualdad. Entonces:</p>
+<p>El método de separación de variables consiste en dejar todos los términos de la incógnita de un lado, y los términos de la variable independiente (<span class="math inline">\(t\)</span>) del otro lado de la igualdad <span class="citation">(Barrantes Campos <a href="#ref-Barrantes2015">2015</a>)</span>. Entonces:</p>
 <p><span class="math display">\[
-\frac{1}{N} \times \frac{dN}{dt}=r_m
+\frac{1}{N} \times \frac{dN}{dt}=\mathrm{r_m}
 \]</span></p>
 <p>Luego se integra ambos lados con respecto de la variable independiente:</p>
 <p><span class="math display">\[
-\int \left( \frac{1}{N} \times \frac{dN}{dt}\right)\,dt=\int r_m\,dt
+\int \left( \frac{1}{N} \times \frac{dN}{dt}\right)\,dt=\int \mathrm{r_m}\,dt
 \]</span></p>
 Observe que del lado izquierdo los diferenciales se cancelan:
 <span class="math display">\[\begin{equation*}
 \begin{split}
-\int \frac{dN}{N}&amp;=r_m t + c\\
-\ln N &amp; = r_m t + c\\
+\int \frac{dN}{N}&amp;=\mathrm{r_m} t + c\\
+\ln N &amp; = \mathrm{r_m} t + c\\
 \end{split}
 \end{equation*}\]</span>
-<p>Se despeja <span class="math inline">\(N\)</span>, y se obtiene <span class="math inline">\(N=Ce^{r_m t}\)</span>. Luego, cuando <span class="math inline">\(N=N_0\)</span> entonces <span class="math inline">\(t=0\)</span>; por lo que la expresión se simplifica a <span class="math inline">\(N_0 = C e^0 = C\)</span>. Dando como resultado la expresión</p>
+<p>Se despeja <span class="math inline">\(N\)</span>, y se obtiene <span class="math inline">\(N=Ce^{\mathrm{r_m} t}\)</span>. Luego, cuando <span class="math inline">\(N=N_0\)</span> entonces <span class="math inline">\(t=0\)</span>; por lo que la expresión se simplifica a <span class="math inline">\(N_0 = C e^0 = C\)</span>. Dando como resultado la expresión</p>
 <p><span class="math display">\[
-N = N_0 e^{r_m t}
+N = N_0 e^{\mathrm{r_m} t}
 \]</span></p>
 
 <div class="example">
@@ -301,24 +308,24 @@ N=\frac{1\si{\gram}}{29\cancel{\si{\kilo\joule}}}\times 5000 \cancel{\si{\kilo\j
 \]</span></p>
 <p>Luego, despejamos <span class="math inline">\(t\)</span> de la ecuación <a href="modelos-de-crecimiento.html#eq:expG">(2.4)</a>:</p>
 <p><span class="math display">\[
-t = \ln \left(\frac{N}{N_0}\right)r_m^{-1}
+t = \ln \left(\frac{N}{N_0}\right)\mathrm{r_m}^{-1}
 \]</span></p>
-<p>Se hacen las sustituciones correspondientes: <span class="math inline">\(r_m = 0.99\)</span>, <span class="math inline">\(N_0 = \SI{1e-6}{\gram}\)</span>, <span class="math inline">\(N = \SI{172.414}{\gram}\)</span>, y se obtiene que el tiempo necesario para obtener una biomasa equivalente a una energía de 5000 kilojoule es <span class="math inline">\(t =\)</span> .</p>
+<p>Se hacen las sustituciones correspondientes: <span class="math inline">\(\mathrm{r_m} = 0.99\)</span>, <span class="math inline">\(N_0 = \SI{1e-6}{\gram}\)</span>, <span class="math inline">\(N = \SI{172.414}{\gram}\)</span>, y se obtiene que el tiempo necesario para obtener una biomasa equivalente a una energía de 5000 kilojoule es <span class="math inline">\(t =\)</span> .</p>
 </div>
 <div id="ejercicios-1" class="section level4">
 <h4><span class="header-section-number">2.1.2.2</span> Ejercicios</h4>
 
 <div class="exercise">
-<span id="exr:expGrowth1" class="exercise"><strong>Exercise 2.6  </strong></span>Si <span class="math inline">\(\lambda = 1.027\)</span> por semana. Escale <span class="math inline">\(\lambda\)</span> de semanas a meses (1 mes = 4 semanas). Utilice la relación de <span class="math inline">\(\lambda = e^{r_m}\)</span>.
+<span id="exr:expGrowth1" class="exercise"><strong>Exercise 2.6  </strong></span>Si <span class="math inline">\(\lambda = 1.027\)</span> por semana. Escale <span class="math inline">\(\lambda\)</span> de semanas a meses (1 mes = 4 semanas). Utilice la relación de <span class="math inline">\(\lambda = e^{\mathrm{r_m}}\)</span>.
 </div>
 
 
 <div class="exercise">
 <p><span id="exr:expGrowth2" class="exercise"><strong>Exercise 2.7  </strong></span>Para los siguentes escenarios de la ecuación <a href="modelos-de-crecimiento.html#eq:expG">(2.4)</a>:</p>
 <ul>
-<li><p><span class="math inline">\(r_m\)</span> negativo.</p></li>
-<li><p><span class="math inline">\(r_m\)</span> igual a cero.</p></li>
-<li><p><span class="math inline">\(r_m\)</span> positivo.</p></li>
+<li><p><span class="math inline">\(\mathrm{r_m}\)</span> negativo.</p></li>
+<li><p><span class="math inline">\(\mathrm{r_m}\)</span> igual a cero.</p></li>
+<li><p><span class="math inline">\(\mathrm{r_m}\)</span> positivo.</p></li>
 </ul>
 <p>Obtenga el límite:</p>
 <p><span class="math display">\[
@@ -329,12 +336,12 @@ t = \ln \left(\frac{N}{N_0}\right)r_m^{-1}
 
 
 <div class="exercise">
-<span id="exr:expGrowth3" class="exercise"><strong>Exercise 2.8  </strong></span>Demuestre, utilizando un razonamiento deductivo, que si <span class="math inline">\(r_m &lt; 0\)</span>, la población decrece. Puede usar los resultados del ejercicio <a href="modelos-de-crecimiento.html#exr:expGrowth2">2.7</a>.
+<span id="exr:expGrowth3" class="exercise"><strong>Exercise 2.8  </strong></span>Demuestre, utilizando un razonamiento deductivo, que si <span class="math inline">\(\mathrm{R_m} &lt; 0\)</span>, la población decrece. Puede usar los resultados del ejercicio <a href="modelos-de-crecimiento.html#exr:expGrowth2">2.7</a>.
 </div>
 
 
 <div class="exercise">
-<span id="exr:expGrowth4" class="exercise"><strong>Exercise 2.9  </strong></span>Analice biológicamente el significado del resultado del ejercicio <a href="modelos-de-crecimiento.html#exr:expGrowth2">2.7</a>, cuando <span class="math inline">\(r_m\)</span> es positivo.
+<span id="exr:expGrowth4" class="exercise"><strong>Exercise 2.9  </strong></span>Analice biológicamente el significado del resultado del ejercicio <a href="modelos-de-crecimiento.html#exr:expGrowth2">2.7</a>, cuando <span class="math inline">\(\mathrm{r_m}\)</span> es positivo.
 </div>
 
 </div>
@@ -342,17 +349,133 @@ t = \ln \left(\frac{N}{N_0}\right)r_m^{-1}
 </div>
 <div id="crecimiento-denso-dependiente" class="section level2">
 <h2><span class="header-section-number">2.2</span> Crecimiento denso-dependiente</h2>
-<div id="matrices" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Matrices</h3>
-<p><a href="http://onlinelibrary.wiley.com/doi/10.1111/1365-2656.12482/full">COMADRE</a> <a href="http://www.compadre-db.org/Data/Comadre">COMADRE DATA</a> Ojo a la guia de usuario</p>
+<div id="crecimiento-logistico" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Crecimiento logístico</h3>
+<p>Nuestros dos modelos básicos funcionan en condiciones controladas, cuando el espacio y los recursos no son limitantes para el crecimiento. Sin embargo, esto no es lo que se observa en poblaciones silvestres, donde tras el periodo de crecimiento exponencial, sigue una disminución en la velocidad del crecimiento, hasta que llega a ser cero, o incluso negativo (decrecimiento).</p>
+<p>Pueden existir varios mecanismos de regulación del crecimiento. Entre ellos existe la <em>competencia intraespecífica</em>, la <em>competencia interespecífica</em>, la <em>depredación</em>, entre otros. Algunas razones para la desaceleración del crecimiento pueden estar relacionadas a la tasa de consumo de alimento, frente a la tasa de producción. En este caso, cuando la tasa de consumo iguala a la tasa de producción, la población pierde el potencial de crecer. Los individuos empiezan a competir, puede haber emigración, mortalidad, etc.</p>
+
+<p>Independientemente de las razones que causen la disminución del crecimiento, podemos entender que la tasa intrínseca de crecimiento (<span class="math inline">\(r_m\)</span>), en realidad no es una constante como en el modelo de crecimiento exponencial (Figura <a href="#fig:diffGrowthModelsA"><strong>??</strong></a>); más bien, es una función del tamaño de población, <span class="math inline">\(N\)</span> (Figura <a href="#fig:diffGrowthModelsB"><strong>??</strong></a>).</p>
+<p><span class="math display">\[
+r_m = f \left( N_t \right)
+\]</span></p>
+<p>Esta función debe tener algunas características particulares. Por ejemplo, debe ser máxima cuando el tamaño de población es pequeño, asumiendo que en ese momento hay muchos recursos y espacio para todos los individuos. Por otro lado, cuando la población alcanza un tamaño grande, la tasa de crecimiento debe disminuir hasta llegar a cero.</p>
+<p>Debemos introducir un nuevo término a nuestro modelo de crecimiento, para cumplir con las características descritas arriba. Este término es la <em>capacidad de carga</em>, <span class="math inline">\(K\)</span>, que es el punto donde la tasa de crecimiento se vuelve cero.</p>
+<p>Una expresión que cumple con estos requerimientos es:</p>
+<p><span class="math display">\[
+ r_m = \mathrm{r_m}\left(1-\frac{N_t}{K}\right)
+\]</span></p>
+<p>Podemos observar el comportamiento de <span class="math inline">\(r_m\)</span> con un gráfico.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rm &lt;-<span class="st"> </span><span class="dv">1</span>
+K &lt;-<span class="st"> </span><span class="dv">100</span>
+N &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">100</span>
+
+val &lt;-<span class="st"> </span>rm <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>(N <span class="op">/</span><span class="st"> </span>K))
+
+<span class="kw">plot</span>(N,
+  val,
+  <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="dv">2</span>,
+  <span class="dt">xlab =</span> <span class="st">&quot;Tamaño de población&quot;,</span>
+<span class="st">  ylab = expression(r[m])</span>
+<span class="st">  )</span></code></pre></div>
+<p><img src="dinPob_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Si ahora sustituimos la versión denso-dependiente de <span class="math inline">\(r_m\)</span> en la ecuación <a href="modelos-de-crecimiento.html#eq:expG">(2.4)</a>, obtenemos</p>
+<span class="math display" id="eq:logi1">\[\begin{equation}
+\frac{dN}{dt}=\mathrm{r_m}\left(1-\frac{N_t}{K}\right)N_t
+ \tag{2.5}
+\end{equation}\]</span>
+<p>Esta ecuación diferencial también puede resolverse por el método de separación de variables (ver Ejemplo <a href="modelos-de-crecimiento.html#exm:exp1">2.3</a>). Una vez resuelta, la expresión en función del tiempo es:</p>
+<span class="math display" id="eq:logi2">\[\begin{equation}
+N_t=\frac{K\,N_0 e^{rt} }{N_0 e^{rt} - N_0+K} = \frac{K}{1 + \left( \frac{K}{N_0}  - 1 \right) e^{-rt}}
+ \tag{2.6}
+\end{equation}\]</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r &lt;-<span class="st"> </span><span class="fl">0.4</span>
+K &lt;-<span class="st"> </span><span class="dv">100</span>
+N0 &lt;-<span class="st"> </span><span class="dv">10</span>
+<span class="kw">curve</span>(
+  (K<span class="op">*</span>N0<span class="op">*</span><span class="kw">exp</span>(r<span class="op">*</span>x))<span class="op">/</span>(N0<span class="op">*</span><span class="kw">exp</span>(r<span class="op">*</span>x)<span class="op">-</span>N0<span class="op">+</span>K),
+  <span class="dt">from =</span> <span class="dv">0</span>,<span class="dt">to =</span> <span class="dv">20</span>,
+  <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="dv">2</span>, 
+  <span class="dt">xlab =</span> <span class="st">&quot;Tiempo&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tamaño de Población&quot;)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<img src="dinPob_files/figure-html/unnamed-chunk-3-1.png" alt="Crecimiento logístico, con capacidad de carga igual a cien individuos" width="70%" />
+<p class="caption">
+Figure 2.1: Crecimiento logístico, con capacidad de carga igual a cien individuos
+</p>
+</div>
+<p>Observamos que la población ya no crece de manera indefinida. Ahora tiene un tope superior igual a la capacidad de carga, <span class="math inline">\(K\)</span>. Técnicamente, decimos que existe un límite asintótico al crecimiento; ya que, el tamaño de población <em>tiende</em> a <span class="math inline">\(K\)</span>, pero nunca llega a alcanzarlo (pero ver ejercicio <a href="modelos-de-crecimiento.html#exr:logGrowth2">2.11</a>).</p>
+<p>Por otro lado, observamos que la población crece rápidamente al inicio; pero, al final de la curva el crecimiento se detiene. Esto implica que en algún punto, el crecimiento alcanza un máximo. Este punto se conoce como el <em>punto de inflexión</em>.</p>
+<p>De cálculo diferencial, sabemos que los puntos de inflexión se obtienen al igualar la segunda derivada de la función a cero:</p>
+<p><span class="math display">\[
+\frac{d^2N}{dt^2}=\frac{d(dN)}{d(dt)}=0
+\]</span></p>
+<p>Sabemos que la primer derivada de <span class="math inline">\(N_t\)</span> corresponde a la ecuación <a href="modelos-de-crecimiento.html#eq:logi1">(2.5)</a>. Entonces, para encontrar el punto de inflexión, primero debemos encontrar:</p>
+<p><span class="math display">\[
+\frac{d^2N}{dt^2}=\frac{d(dN)}{d(dt)}=D\left[ \mathrm{r_m}N_t\left(1-\frac{N_t}{K}\right)\right]=0
+\]</span></p>
+<p>Se utiliza la regla del producto, y se tiene:</p>
+<p><span class="math display">\[
+D\left[ \mathrm{r_m}N_t \right]\left(1-\frac{N_t}{K}\right) + \mathrm{r_m}N_t\; D\left[\left(1-\frac{N_t}{K}\right)\right]=0
+\]</span></p>
+<p>Al resolver las derivadas se obtiene:</p>
+<p><span class="math display">\[
+N = \frac{K}{2}
+\]</span></p>
+<p>Quiere decir, que el mayor crecimiento se obtiene cuando el tamaño de población es igual a la mitad de la capacidad de carga. Si sustituimos <span class="math inline">\(N = K/2\)</span> en la ecuación <a href="modelos-de-crecimiento.html#eq:logi1">(2.5)</a>, tenemos que el crecimiento máximo de una población es:</p>
+<p><span class="math display">\[
+\left. \frac{dN}{dt}\right|_{N = K/2} = \frac{\mathrm{r_m}K}{4}
+\]</span></p>
+<p>Esto tiene grandes implicaciones en el manejo de recursos naturales. Es la base de los modelos de producción excedentaria. En pesquerías, a este número se le conoce como <em>Máximo Rendimiento Sostenible</em>; sin embargo, ha sido fuertemente criticado <span class="citation">(Larkin <a href="#ref-Larkin1977">1977</a>)</span>, y en la actualidad se utilizan algunas variantes de esta cantidad, o otros modelos más apropiados, basados en estructura de edades o tallas.</p>
+</div>
+<div id="usos-del-modelo-logistico" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Usos del modelo logístico</h3>
+<p>En la sección anterior calculamos el <em>Máximo Rendimiento Sostenible</em> (MRS). Ahora lo definiremos como:</p>
+<blockquote>
+<p>El crecimiento máxmimo que una población puede producir, bajo una capacidad de carga determinada.</p>
+</blockquote>
+<p>El principio detrás de utilizar el MRS como un parámetro de manejo, es que: *esta es la cantidad máxima de individuos, o biomasa, que se puede extraer de una población, sin provocar un crecimiento negativo.</p>
+<p>Recordando que:</p>
+<blockquote>
+<p>Tamaño de población = Tamaño anterior + Crecimiento</p>
+</blockquote>
+<p>La idea de <em>cosechar</em> una población se fundamente en que si se extrae una cantidad igual al crecimiento de la población, la biomasa restante logrará regenerarse y crecer. La idea del MRS, es que el tamaño de una población cosechada, debe llevarse a <span class="math inline">\(N/2\)</span>, para poder aprovechar el crecimiento máximo que puede generar dicha población.</p>
+
+<div class="exercise">
+<span id="exr:logGrowth1" class="exercise"><strong>Exercise 2.10  </strong></span><strong>PICANTE</strong> Use el método de <em>separación de variables</em> para resolver la ecuación <a href="modelos-de-crecimiento.html#eq:logi1">(2.5)</a>. <strong>5% sobre la nota, dividido entre el número de estudiantes que respondan el ejercicio</strong>
+</div>
+
+
+<div class="exercise">
+<span id="exr:logGrowth2" class="exercise"><strong>Exercise 2.11  </strong></span>Demuestre que la población no crecerá más cuando llega a la capacidad de carga. Es decir, tome el límite de la ecuación <a href="modelos-de-crecimiento.html#eq:logi1">(2.5)</a>, cuando <span class="math inline">\(t \to \infty\)</span>.
+</div>
 
 </div>
+<div id="matrices" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Matrices</h3>
+<p><a href="http://onlinelibrary.wiley.com/doi/10.1111/1365-2656.12482/full">COMADRE</a> <a href="http://www.compadre-db.org/Data/Comadre">COMADRE DATA</a> Ojo a la guia de usuario</p>
+</div>
+</div>
+<div id="otras-fuentes-bibliograficas" class="section level2">
+<h2><span class="header-section-number">2.3</span> Otras fuentes bibliográficas</h2>
+<p>Esta sección está basada en los capítulos 4 y 5 de <span class="citation">Neal (<a href="#ref-NealPopBio">2004</a>)</span>. En la sección 2.3 de <span class="citation">Berryman and Kindlmann (<a href="#ref-PopSystem">2008</a>)</span>, se desarrollan los mismos modelos básicos vistos aquí; en este mismo libro se presenta una buena introducción sobre la ecología de poblaciones como <em>sistemas</em>, en el capítulo 1.</p>
+
 </div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
+<div id="ref-Barrantes2015">
+<p>Barrantes Campos, Hugo. 2015. <em>Introducción a las ecuaciones diferenciales</em>. 2nd ed. San José, Costa Rica: EUNED.</p>
+</div>
 <div id="ref-ILLMAN2000631">
 <p>Illman, A M, A H Scragg, and S W Shales. 2000. “Increase in Chlorella strains calorific values when grown in low nitrogen medium.” <em>Enzyme and Microbial Technology</em> 27 (8): 631–35. doi:<a href="https://doi.org/https://doi.org/10.1016/S0141-0229(00)00266-0">https://doi.org/10.1016/S0141-0229(00)00266-0</a>.</p>
+</div>
+<div id="ref-Larkin1977">
+<p>Larkin, P.A. 1977. “An epitaph for the concept of Maximum Sustained Yield.” <em>Transactions of the American Fisheries Society</em> 106 (1): 1–11.</p>
+</div>
+<div id="ref-NealPopBio">
+<p>Neal, Dick. 2004. <em>Introduction to population biology</em>. Cambridge, UK: Cambridge.</p>
+</div>
+<div id="ref-PopSystem">
+<p>Berryman, Alan A., and Pavel Kindlmann. 2008. <em>Population systems: a general introduction</em>. 2nd ed. Springer.</p>
 </div>
 </div>
             </section>

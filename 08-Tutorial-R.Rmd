@@ -2,9 +2,9 @@
 
 ## Crear un proyecto en *RStudio* {#RStudioProject}
 
-Crear un proyecto en **RStudio** para cualquier proyecto con **R**, es importante. Los proyectos organizan los documentos en una sola carpeta, y son fundamentales para el control de versión con un software como **Git**. Primero crearemos un proyecto sencillo para conocer la mecánica básica, y luego haremos un proyecto con un repositorio en línea, en **GitHub**. 
+Crear un proyecto en **RStudio** para cualquier proyecto con **R**, es importante. Los proyectos organizan los documentos en una sola carpeta, y son fundamentales para el control de versión con un software como **Git**.  
 
-El primer paso es ir a `file --> New Project`. También existen botones específicos para crear proyectos. Creamos una carpeta en una ubicación que nos permita tener derechos de administrador, e idealmente, fuera de cualquier carpeta de sincronización en línea. En caso de que quieran tener un respaldo en la nube, se recomienda pausar la sincronización mientras se trabaja en el proyecto.
+Abrimos **RStudio**, y ubicamos la barra de herramientas en la parte superior. El primer paso es ir a `file --> New Project`. Creamos una carpeta en una ubicación que nos permita tener derechos de administrador, e idealmente, fuera de cualquier carpeta de sincronización en línea\footnote{En caso de que quieran tener un respaldo en la nube, se recomienda pausar la sincronización mientras se trabaja en el proyecto}.
 
 RStudio nos guiará por los siguientes pasos:
 
@@ -12,15 +12,29 @@ RStudio nos guiará por los siguientes pasos:
 
 - `Tipo de Proyecto`: Escogemos *nuevo proyecto*.
 
-- `Crear`: Escogemos la carpeta, y el nombre del proyecto. NO marcamos *crear repositorio con Git*.
+- `Crear`: Escogemos la carpeta, y el nombre del proyecto. **NO** marcamos *crear repositorio con Git*.
 
-Ahora, en **RStudio** vamos a `File --> New file --> R script`. Este archivo solo soporta código en **R**, con la gran ventaja de que colorea las funciones, variables y estructuras más comunes; lo cual, hace que el código sea más legible.
+
+
+```{r RStudioNewProject, echo=FALSE, fig.cap='Cómo hacer un nuevo proyecto, en \\textbf{RStudio}.', fig.align='center', fig.pos='thb!', cache=TRUE, dpi=200,warning=FALSE,out.width='95%',warning=FALSE}
+
+knitr::include_graphics("figuras/RStudioNewProject.png")
+
+```
+
+Volvemos a la barra de herramientas, en **RStudio**, y vamos a `File --> New file --> R script`. Este archivo solo soporta código en **R**, con la gran ventaja de que colorea las funciones, variables y estructuras más comunes; lo cual, hace que el código sea más legible.
+
+
+**IMPORTANTE**: En el siguiente tutorial, el código en **R** se encuentra dentro de ambientes especiales, rodeados por una caja gris. Escribe las líneas que se muestran en esa caja, y para ver el resultado en la consola de **R**, apreta `Ctrl + ENTER`.
+
 
 ## Funciones básicas en R
 
-Ahora que hemos creado un proyecto, y tenemos un lienzo en blanco, empezamos por ver las funciones más elementales **R** puede ser utilizado de manera tan simple, como una calculadora. Contiene, por supuesto, todas las operaciones básicas como: adición, substracción, multipliación, división, potencias, y logaritmos.
+Ahora que hemos creado un proyecto, y tenemos un lienzo en blanco, empezamos por ver las funciones más elementales. **R** contiene todas las operaciones básicas como: adición, substracción, multipliación, división, potencias, y logaritmos.
 
 ```{r c1, eval=FALSE}
+
+# Tras cada línea presiona Ctrl + ENTER
 
 1 + 1 # adición
 
@@ -42,13 +56,13 @@ log(x = 2, base = <n>) #logaritmo base <n>, donde <n> se
 ```
 
 
-Notar que en el código, cualquier línea de texto precedida de `#` es un comentario, que no será evaluado por el computador. 
+Notar que en el código, cualquier línea de texto precedida de `#` es un comentario, que no será evaluado por el computador. Agregar comentarios es muy útil, si uno va a re-utilizar parte del código en otro momento. Ayuda a mantener la claridad en lo que se está haciendo.
 
-También podemos mezclar operaciones de la forma que convenga. Siempre considerando las reglas de prioridad por paréntesis.
+Continuando con las operaciones básicas, también podemos mezclar operaciones de la forma que convenga. Siempre considerando las reglas de prioridad por paréntesis. Por ejemplo, si queremos calcular el logaritmo del resultado de una función, para una base 16.
 
 ```{r c2, eval=FALSE}
 
-log( x= 1 / (1 + (5/2) ) , base = 2^(-1/2) )
+log( x= 1 / (1 + (5/2) ) , base = 16 )
 
 ```
 
@@ -56,9 +70,9 @@ Luego, como la mayoría de lenguajes de programación, podemos asignar valores a
 
 ```{r c3, eval=FALSE}
 
-a <- log10(4/3)
+a <- log10(4/3)  # 'a' tiene el valor de la operación
 
-b <- a^2
+b <- a^2 # Equivale a log10(4/3)^2
 
 c <- b^2 - a
 
@@ -67,13 +81,19 @@ c
 
 Esto quiere decir que podemos crear un objeto con el operador ` <- `, que pueden ser datos, o resultados de otras operaciones, para incluirlo en una nueva función. Por lo que la salida de una función puede ser la entrada de la próxima.
 
+```{r RFunctionFlow, echo=FALSE, fig.cap='Flujo de entradas y salidas en una función de \\textbf{R}', fig.align='center', fig.pos='thb!', cache=TRUE, dpi=200,warning=FALSE,out.width='40%',warning=FALSE}
+
+knitr::include_graphics("figuras/RFunctionsFlow.png")
+```
+
+
 ## Estructuras de datos
 
 **R** puede manejar objetos muy complejos; sin embargo, estos objetos generalmente se componen de partes muy sencillas. Revisaremos éstas partes sencillas, y luego crearemos un objeto más complejo.
 
 **Vectores**
 
-Un vector en programación, es una colección de $n$ datos. A diferencia de los vectores en física, que señalan una magnitud asociada a una dirección. Podemos pensar que un vector en **R** equivale a una matriz de $n$ filas, y solo una columna.
+Un vector en programación, es una colección de uno o más valores. Podemos pensar que un vector en **R** equivale a una matriz de $n$ filas, y solo una columna.
 
 ```{r c4, eval=FALSE}
 
@@ -85,11 +105,18 @@ vect2 <- rnorm(10) # son diez números al azar obtenidas
 
 ```
 
-Los elementos de un vector pueden ser llamados utilizando un sub-índice. Éste inicia en 1, hasta $n$. Donde $n$ es la cantidad de elementos en un vector. También es posible, llamar varios elementos a la vez, si el subíndice del vector es otro vector.
+Los elementos de un vector pueden ser llamados utilizando un sub-índice. Éste inicia en 1, hasta $n$. Donde $n$ es la cantidad de elementos en un vector.
 
 ```{r c5, eval=FALSE}
 
 vect1[3]
+
+
+```
+
+ También es posible llamar varios elementos a la vez, si el subíndice del vector es otro vector.
+ 
+```{r c5b, eval=FALSE}
 
 vect1[c(3,4,5)]
 
@@ -98,9 +125,7 @@ vect1[3:5]
 
 vect1[rep(5,times=10)] # rep, es una función que repite un
 #número un determinado número de veces.
-
 ```
-
 
 Los vectores pueden ser datos en un archivo externo, o resultado de funciones u operaciones. A diferencia de otros lenguajes **R**, maneja vectores de una forma más intuitiva. 
 
@@ -149,6 +174,10 @@ rm(list = ls())
 **Arreglos** o *arrays*
 
 Estos son matrices de 3 o más dimensiones. Por ejemplo, si tenemos una serie de fotografías con la misma resolución, en el mismo lugar, podemos representar los pixeles como una matriz $f\times c$, y el tiempo como una dimensión adicional. Si ponemos en rápida sucesión las matrices, tendremos un video o película.
+
+```{r ar1, eval=FALSE}
+array(1:(6*2),dim=(c(2,3,2)))
+```
 
 **Listas**
 

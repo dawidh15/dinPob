@@ -25,7 +25,7 @@
 <meta name="author" content="David Martínez Cascante">
 
 
-<meta name="date" content="2018-02-14">
+<meta name="date" content="2018-03-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -106,8 +106,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-exponencial"><i class="fa fa-check"></i><b>2.1.2</b> Crecimiento exponencial</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-denso-dependiente"><i class="fa fa-check"></i><b>2.2</b> Crecimiento denso-dependiente</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#matrices"><i class="fa fa-check"></i><b>2.2.1</b> Matrices</a></li>
+<li class="chapter" data-level="2.2.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-logistico"><i class="fa fa-check"></i><b>2.2.1</b> Crecimiento logístico</a></li>
+<li class="chapter" data-level="2.2.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#usos-del-modelo-logistico"><i class="fa fa-check"></i><b>2.2.2</b> Usos del modelo logístico</a></li>
+<li class="chapter" data-level="2.2.3" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#matrices"><i class="fa fa-check"></i><b>2.2.3</b> Matrices</a></li>
 </ul></li>
+<li class="chapter" data-level="2.3" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#otras-fuentes-bibliograficas"><i class="fa fa-check"></i><b>2.3</b> Otras fuentes bibliográficas</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="soluciones-a-los-ejercicios.html"><a href="soluciones-a-los-ejercicios.html"><i class="fa fa-check"></i><b>3</b> Soluciones a los ejercicios</a></li>
 <li class="appendix"><span><b>Apéndices</b></span></li>
@@ -115,10 +118,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="A.1" data-path="metodos-numericos-para-ecologia-de-poblaciones.html"><a href="metodos-numericos-para-ecologia-de-poblaciones.html#simulacion-de-ecuaciones-diferenciales"><i class="fa fa-check"></i><b>A.1</b> Simulación de ecuaciones diferenciales</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html"><i class="fa fa-check"></i><b>B</b> Tutorial de R con RStudio</a><ul>
-<li class="chapter" data-level="B.1" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#crear-un-proyecto-en-rstudio"><i class="fa fa-check"></i><b>B.1</b> Crear un proyecto en <em>RStudio</em></a></li>
+<li class="chapter" data-level="B.1" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#RStudioProject"><i class="fa fa-check"></i><b>B.1</b> Crear un proyecto en <em>RStudio</em></a></li>
 <li class="chapter" data-level="B.2" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#funciones-basicas-en-r"><i class="fa fa-check"></i><b>B.2</b> Funciones básicas en R</a></li>
 <li class="chapter" data-level="B.3" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#estructuras-de-datos"><i class="fa fa-check"></i><b>B.3</b> Estructuras de datos</a></li>
 <li class="chapter" data-level="B.4" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#funciones"><i class="fa fa-check"></i><b>B.4</b> Funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="asignaciones.html"><a href="asignaciones.html"><i class="fa fa-check"></i><b>C</b> Asignaciones</a><ul>
+<li class="chapter" data-level="C.1" data-path="asignaciones.html"><a href="asignaciones.html#tarea-01-hola-mundo-con-rmarkdown"><i class="fa fa-check"></i><b>C.1</b> Tarea 01: ¡Hola mundo con <em>Rmarkdown</em>!</a></li>
+<li class="chapter" data-level="C.2" data-path="asignaciones.html"><a href="asignaciones.html#tarea-02-ejercicios-de-crecimiento"><i class="fa fa-check"></i><b>C.2</b> Tarea 02: Ejercicios de crecimiento</a></li>
 </ul></li>
 </ul>
 
@@ -141,7 +148,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">A</span> Métodos numéricos para ecología de poblaciones</h1>
 <div id="simulacion-de-ecuaciones-diferenciales" class="section level2">
 <h2><span class="header-section-number">A.1</span> Simulación de ecuaciones diferenciales</h2>
-<p>Tomaremos el ejemplo de la ecuación <a href="modelos-de-crecimiento.html#eq:diffG">(2.3)</a>, para mostrar un método para encontrar el tamaño de población, sin tener que utilizar cálculo. Este es el <em>método de Euler</em>, que se explicará mediante un ejemplo.</p>
+<p>Tomaremos el ejemplo de la ecuación <a href="modelos-de-crecimiento.html#eq:diffG">(2.3)</a>, para mostrar un método para encontrar el tamaño de población, sin tener que utilizar cálculo <span class="citation">(Barrantes Campos <a href="#ref-Barrantes2015">2015</a>)</span>. Este es el <em>método de Euler</em>, que se explicará mediante un ejemplo.</p>
 <p>Una derivada implica un cambio infinitesimal de una variable en relación a otra. Por ejemplo, el cambio en el número de individuos de una población en un momento pequeñísimo de tiempo, puede representarse como la diferencia de la población, entre la duración de ese pequeño intervalo de tiempo:</p>
 <p><span class="math display">\[
 \frac{dN}{dt} \approx \frac{\Delta N}{\Delta t} = \frac{N_t - N_{t-\Delta t}}{\Delta t}
@@ -234,12 +241,18 @@ Resultados2 &lt;-<span class="st"> </span><span class="kw">euler</span>(<span cl
 <span class="kw">plot</span>(Resultados1<span class="op">$</span>tiempo, Resultados1<span class="op">$</span>poblacion, <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Tiempo&quot;</span>, 
     <span class="dt">ylab =</span> <span class="st">&quot;Tamaño de población&quot;, las = 1, pch = 21, bg = 1)</span>
 <span class="st">lines(Resultados1$tiempo, Resultados1$poblacion)</span></code></pre></div>
-<p><img src="dinPob_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="dinPob_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(Resultados2<span class="op">$</span>tiempo, Resultados2<span class="op">$</span>poblacion, <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Tiempo&quot;</span>, 
     <span class="dt">ylab =</span> <span class="st">&quot;Tamaño de población&quot;, las = 1, pch = 21, bg = 1)</span>
 <span class="st">lines(Resultados2$tiempo, Resultados2$poblacion)</span></code></pre></div>
-<p><img src="dinPob_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p><img src="dinPob_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Barrantes2015">
+<p>Barrantes Campos, Hugo. 2015. <em>Introducción a las ecuaciones diferenciales</em>. 2nd ed. San José, Costa Rica: EUNED.</p>
 </div>
 </div>
             </section>

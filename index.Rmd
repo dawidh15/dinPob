@@ -17,6 +17,9 @@ bibliography:
 papersize: letter
 sansfont: Arial
 secnumdepth: 1
+urlcolor: blue
+citecolor: blue
+linkcolor: blue
 site: bookdown::bookdown_site
 biblio-style: DAVID
 ---

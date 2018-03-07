@@ -26,10 +26,14 @@
 }{}
 \usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry}
 \usepackage{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
 \hypersetup{unicode=true,
             pdftitle={Ecología de poblaciones silvestres},
             pdfauthor={David Martínez Cascante},
-            pdfborder={0 0 0},
+            colorlinks=true,
+            linkcolor=blue,
+            citecolor=blue,
+            urlcolor=blue,
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage{natbib}
@@ -127,7 +131,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-02-22}
+  \date{2018-03-07}
 
 \usepackage[spanish,es-nodecimaldot]{babel}
 \usepackage{booktabs}
@@ -135,6 +139,7 @@
 \makeindex
 \usepackage{ragged2e}
 \usepackage{cancel}
+\usepackage{subfig}
 \usepackage{placeins}
 \usepackage{siunitx}
 \sisetup{detect-all = true, detect-family=true} 
@@ -167,6 +172,7 @@
 \maketitle
 
 {
+\hypersetup{linkcolor=black}
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
@@ -630,6 +636,230 @@ biológicamente el significado del resultado del ejercicio
 \section{Crecimiento
 denso-dependiente}\label{crecimiento-denso-dependiente}
 
+\subsection{Crecimiento logístico}\label{crecimiento-logistico}
+
+Nuestros dos modelos básicos funcionan en condiciones controladas,
+cuando el espacio y los recursos no son limitantes para el crecimiento.
+Sin embargo, esto no es lo que se observa en poblaciones silvestres,
+donde tras el periodo de crecimiento exponencial, sigue una disminución
+en la velocidad del crecimiento, hasta que llega a ser cero, o incluso
+negativo (decrecimiento).
+
+Pueden existir varios mecanismos de regulación del crecimiento. Entre
+ellos existe la \emph{competencia intraespecífica}, la \emph{competencia
+interespecífica}, la \emph{depredación}, entre otros. Algunas razones
+para la desaceleración del crecimiento pueden estar relacionadas a la
+tasa de consumo de alimento, frente a la tasa de producción. En este
+caso, cuando la tasa de consumo iguala a la tasa de producción, la
+población pierde el potencial de crecer. Los individuos empiezan a
+competir, puede haber emigración, mortalidad, etc.
+
+\begin{figure}[htb!]
+        \centering
+        \subfloat[Crecimiento exponencial]{%
+            \includegraphics[width=.45\textwidth]{figuras/blockDiagrExpGrowth.png}\label{fig:diffGrowthModelsA}}
+        \subfloat[Crecimiento logístico]{%
+            \includegraphics[width=.45\textwidth]{figuras/blockDiagrLogGrowth.png}\label{fig:diffGrowthModelsB}}
+         \caption{Diferencias en los modelos de crecimiento}
+        \label{fig:diffGrowthModels}
+    \end{figure}
+
+Independientemente de las razones que causen la disminución del
+crecimiento, podemos entender que la tasa intrínseca de crecimiento
+(\(r_m\)), en realidad no es una constante como en el modelo de
+crecimiento exponencial (Figura \ref{fig:diffGrowthModelsA}); más bien,
+es una función del tamaño de población, \(N\) (Figura
+\ref{fig:diffGrowthModelsB}).
+
+\[
+r_m = f \left( N_t \right)
+\]
+
+Esta función debe tener algunas características particulares. Por
+ejemplo, debe ser máxima cuando el tamaño de población es pequeño,
+asumiendo que en ese momento hay muchos recursos y espacio para todos
+los
+individuos\footnote{Ignoramos el hecho de que en tamaños muy pequeños de población, existe problemas genéticos, o para encontrar pareja (Efecto Allee), que provocarían un crecimiento negativo.}.
+Por otro lado, cuando la población alcanza un tamaño grande, la tasa de
+crecimiento debe disminuir hasta llegar a cero.
+
+Debemos introducir un nuevo término a nuestro modelo de crecimiento,
+para cumplir con las características descritas arriba. Este término es
+la \emph{capacidad de carga}, \(K\), que es el punto donde la tasa de
+crecimiento se vuelve cero.
+
+Una expresión que cumple con estos requerimientos es:
+
+\[
+ r_m = \mathrm{r_m}\left(1-\frac{N_t}{K}\right)
+\]
+
+Podemos observar el comportamiento de \(r_m\) con un gráfico.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rm <-}\StringTok{ }\DecValTok{1}
+\NormalTok{K <-}\StringTok{ }\DecValTok{100}
+\NormalTok{N <-}\StringTok{ }\DecValTok{0}\OperatorTok{:}\DecValTok{100}
+
+\NormalTok{val <-}\StringTok{ }\NormalTok{rm }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{(N }\OperatorTok{/}\StringTok{ }\NormalTok{K))}
+
+\KeywordTok{plot}\NormalTok{(N,}
+\NormalTok{  val,}
+  \DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{las =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"Tamaño de población",}
+\StringTok{  ylab = expression(r[m])}
+\StringTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{dinPob_files/figure-latex/unnamed-chunk-2-1} \end{center}
+
+Si ahora sustituimos la versión denso-dependiente de \(r_m\) en la
+ecuación \eqref{eq:expG}, obtenemos
+
+\begin{equation}
+\frac{dN}{dt}=\mathrm{r_m}\left(1-\frac{N_t}{K}\right)N_t
+ \label{eq:logi1}
+\end{equation}
+
+Esta ecuación diferencial también puede resolverse por el método de
+separación de variables (ver Ejemplo \ref{exm:exp1}). Una vez resuelta,
+la expresión en función del tiempo es:
+
+\begin{equation}
+N_t= \frac{K}{1+\left(\frac{K}{N_0}-1\right)e^{-rt}}
+ \label{eq:logi2}
+\end{equation}
+
+Podemos graficar el comportamiento de la curva para una población
+hipotética con: \(\mathrm{r_m} = 0.4\), \(K = 100\), y \(N_0 = 10\).
+Para ello, usamos el siguiente código:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r <-}\StringTok{ }\FloatTok{0.4}
+\NormalTok{K <-}\StringTok{ }\DecValTok{100}
+\NormalTok{N0 <-}\StringTok{ }\DecValTok{10}
+\KeywordTok{curve}\NormalTok{(}
+\NormalTok{  K}\OperatorTok{/}\NormalTok{(}\DecValTok{1}\OperatorTok{+}\NormalTok{((K}\OperatorTok{/}\NormalTok{N0}\OperatorTok{-}\DecValTok{1}\NormalTok{)}\OperatorTok{*}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{r}\OperatorTok{*}\NormalTok{x))),}
+  \DataTypeTok{from =} \DecValTok{0}\NormalTok{,}\DataTypeTok{to =} \DecValTok{20}\NormalTok{,}
+  \DataTypeTok{las =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{, }
+  \DataTypeTok{xlab =} \StringTok{"Tiempo"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Tamaño de Población")}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.7\linewidth]{dinPob_files/figure-latex/unnamed-chunk-3-1} 
+
+}
+
+\caption{Crecimiento logístico, con capacidad de carga igual a cien individuos}\label{fig:unnamed-chunk-3}
+\end{figure}
+
+Observamos que la población ya no crece de manera indefinida. Ahora
+tiene un tope superior igual a la capacidad de carga, \(K\).
+Técnicamente, decimos que existe un límite asintótico al crecimiento; ya
+que, el tamaño de población \emph{tiende} a \(K\), pero nunca llega a
+alcanzarlo (pero ver ejercicio \ref{exr:logGrowth2}).
+
+Por otro lado, observamos que la población crece rápidamente al inicio;
+pero, al final de la curva el crecimiento se detiene. Esto implica que
+en algún punto, el crecimiento alcanza un máximo. Este punto se conoce
+como el \emph{punto de inflexión}.
+
+De cálculo diferencial, sabemos que los puntos de inflexión se obtienen
+al igualar la segunda derivada de la función a cero:
+
+\[
+\frac{d^2N}{dt^2}=\frac{d(dN)}{d(dt)}=0
+\]
+
+Sabemos que la primer derivada de \(N_t\) corresponde a la ecuación
+\eqref{eq:logi1}. Entonces, para encontrar el punto de inflexión, primero
+debemos encontrar:
+
+\[
+\frac{d^2N}{dt^2}=\frac{d(dN)}{d(dt)}=D\left[ \mathrm{r_m}N_t\left(1-\frac{N_t}{K}\right)\right]=0
+\]
+
+Se utiliza la regla del producto, y se tiene:
+
+\[
+D\left[ \mathrm{r_m}N_t \right]\left(1-\frac{N_t}{K}\right) + \mathrm{r_m}N_t\; D\left[\left(1-\frac{N_t}{K}\right)\right]=0
+\]
+
+Al resolver las derivadas se obtiene:
+
+\[
+N = \frac{K}{2}
+\]
+
+Quiere decir, que el mayor crecimiento se obtiene cuando el tamaño de
+población es igual a la mitad de la capacidad de carga. Si sustituimos
+\(N = K/2\) en la ecuación \eqref{eq:logi1}, tenemos que el crecimiento
+máximo de una población es:
+
+\[
+\left. \frac{dN}{dt}\right|_{N = K/2} = \frac{\mathrm{r_m}K}{4}
+\]
+
+Esto tiene grandes implicaciones en el manejo de recursos naturales. Es
+la base de los modelos de producción excedentaria. En pesquerías, a este
+número se le conoce como \emph{Máximo Rendimiento Sostenible}; sin
+embargo, ha sido fuertemente criticado \citep{Larkin1977}, y en la
+actualidad se utilizan algunas variantes de esta cantidad, o otros
+modelos más apropiados, basados en estructura de edades o tallas.
+
+\subsection{Usos del modelo logístico}\label{usos-del-modelo-logistico}
+
+En la sección anterior calculamos el \emph{Máximo Rendimiento
+Sostenible} (MRS). Ahora lo definiremos como:
+
+\begin{quote}
+El crecimiento máxmimo que una población puede producir, bajo una
+capacidad de carga determinada. Ésta es la cantidad máxima de
+individuos, o biomasa, que se puede extraer de una población, sin
+provocar un crecimiento negativo.
+\end{quote}
+
+Recordando que:
+
+\begin{quote}
+Tamaño de población = Tamaño anterior + Crecimiento
+\end{quote}
+
+La idea de \emph{cosechar} una población se fundamenta en que si se
+extrae una cantidad igual al crecimiento de la población, la biomasa
+restante logrará regenerarse y crecer. La idea del MRS, es que el tamaño
+de una población cosechada, debe llevarse a \(N/2\), para poder
+aprovechar el crecimiento máximo que puede generar dicha población.
+
+\BeginKnitrBlock{exercise}
+\protect\hypertarget{exr:logGrowth2}{}{\label{exr:logGrowth2} }Demuestre que
+la población no crecerá más cuando llega a la capacidad de carga. Es
+decir, tome el límite de la ecuación \eqref{eq:logi1}, cuando
+\(t \to \infty\).
+\EndKnitrBlock{exercise}
+
+\BeginKnitrBlock{exercise}
+\protect\hypertarget{exr:logGrowth3}{}{\label{exr:logGrowth3} }Suponga que
+existe un tanque sobre una balanza. Este tanque contiene aguas
+residuales, que son limpiadas por una pequeña planta del genero
+\emph{Lemna}. El flujo del tanque es tal, que la masa del agua siempre
+se mantiene constante; de modo que la balanza solo mide el crecimiento
+de \emph{Lemna}. Nos interesa mantener una población de Lemna con un
+rápido crecimiento; ya que éste es proporcional a la tasa de extracción
+de toxinas del tanque. Si el tanque inicia con \SI{1}{\kilogram} de
+\emph{Lemna}, con una tasa de crecimiento es de
+\SI{0.05}{\gram\per\second}. Además, se ha determinado que el tanque
+solo soporta \SI{100}{\kilogram} de \emph{Lemna}. ¿Cuál es el tamaño de
+población de \emph{Lemna} que debería haber en el tanque siempre? ¿A qué
+biomasa total debería cosechar la \emph{Lemna}? ¿Cuánta biomasa debe
+extraer para mantener un máximo de crecimiento?
+\EndKnitrBlock{exercise}
+
 \subsection{Matrices}\label{matrices}
 
 \href{http://onlinelibrary.wiley.com/doi/10.1111/1365-2656.12482/full}{COMADRE}
@@ -666,7 +896,7 @@ el capítulo 1.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[height=6cm]{dinPob_files/figure-latex/unnamed-chunk-2-1} \end{center}
+\begin{center}\includegraphics[height=6cm]{dinPob_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
 \(R_m\) representa la pendiente de la recta.
 
@@ -876,7 +1106,7 @@ Por ejemplo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{dinPob_files/figure-latex/unnamed-chunk-4-1.pdf}
+\includegraphics{dinPob_files/figure-latex/unnamed-chunk-6-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -886,7 +1116,7 @@ Por ejemplo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{dinPob_files/figure-latex/unnamed-chunk-4-2.pdf}
+\includegraphics{dinPob_files/figure-latex/unnamed-chunk-6-2.pdf}
 
 \chapter{Tutorial de R con RStudio}\label{tutorial-de-r-con-rstudio}
 
@@ -896,17 +1126,14 @@ Por ejemplo
 Crear un proyecto en \textbf{RStudio} para cualquier proyecto con
 \textbf{R}, es importante. Los proyectos organizan los documentos en una
 sola carpeta, y son fundamentales para el control de versión con un
-software como \textbf{Git}. Primero crearemos un proyecto sencillo para
-conocer la mecánica básica, y luego haremos un proyecto con un
-repositorio en línea, en \textbf{GitHub}.
+software como \textbf{Git}.
 
-El primer paso es ir a \texttt{file\ -\/-\textgreater{}\ New\ Project}.
-También existen botones específicos para crear proyectos. Creamos una
-carpeta en una ubicación que nos permita tener derechos de
-administrador, e idealmente, fuera de cualquier carpeta de
-sincronización en línea. En caso de que quieran tener un respaldo en la
-nube, se recomienda pausar la sincronización mientras se trabaja en el
-proyecto.
+Abrimos \textbf{RStudio}, y ubicamos la barra de herramientas en la
+parte superior. El primer paso es ir a
+\texttt{file\ -\/-\textgreater{}\ New\ Project}. Creamos una carpeta en
+una ubicación que nos permita tener derechos de administrador, e
+idealmente, fuera de cualquier carpeta de sincronización en
+línea\footnote{En caso de que quieran tener un respaldo en la nube, se recomienda pausar la sincronización mientras se trabaja en el proyecto}.
 
 RStudio nos guiará por los siguientes pasos:
 
@@ -916,26 +1143,41 @@ RStudio nos guiará por los siguientes pasos:
 \item
   \texttt{Tipo\ de\ Proyecto}: Escogemos \emph{nuevo proyecto}.
 \item
-  \texttt{Crear}: Escogemos la carpeta, y el nombre del proyecto. NO
-  marcamos \emph{crear repositorio con Git}.
+  \texttt{Crear}: Escogemos la carpeta, y el nombre del proyecto.
+  \textbf{NO} marcamos \emph{crear repositorio con Git}.
 \end{itemize}
 
-Ahora, en \textbf{RStudio} vamos a
+\begin{figure}[thb!]
+
+{\centering \includegraphics[width=0.95\linewidth]{figuras/RStudioNewProject} 
+
+}
+
+\caption{Cómo hacer un nuevo proyecto, en \textbf{RStudio}.}\label{fig:RStudioNewProject}
+\end{figure}
+
+Volvemos a la barra de herramientas, en \textbf{RStudio}, y vamos a
 \texttt{File\ -\/-\textgreater{}\ New\ file\ -\/-\textgreater{}\ R\ script}.
 Este archivo solo soporta código en \textbf{R}, con la gran ventaja de
 que colorea las funciones, variables y estructuras más comunes; lo cual,
 hace que el código sea más legible.
 
+\textbf{IMPORTANTE}: En el siguiente tutorial, el código en \textbf{R}
+se encuentra dentro de ambientes especiales, rodeados por una caja gris.
+Escribe las líneas que se muestran en esa caja, y para ver el resultado
+en la consola de \textbf{R}, apreta \texttt{Ctrl\ +\ ENTER}.
+
 \section{Funciones básicas en R}\label{funciones-basicas-en-r}
 
 Ahora que hemos creado un proyecto, y tenemos un lienzo en blanco,
-empezamos por ver las funciones más elementales \textbf{R} puede ser
-utilizado de manera tan simple, como una calculadora. Contiene, por
-supuesto, todas las operaciones básicas como: adición, substracción,
+empezamos por ver las funciones más elementales. \textbf{R} contiene
+todas las operaciones básicas como: adición, substracción,
 multipliación, división, potencias, y logaritmos.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# Tras cada línea presiona Ctrl + ENTER}
+
 \DecValTok{1} \OperatorTok{+}\StringTok{ }\DecValTok{1} \CommentTok{# adición}
 
 \DecValTok{1}\OperatorTok{-}\DecValTok{1} \CommentTok{# substracción}
@@ -957,13 +1199,18 @@ multipliación, división, potencias, y logaritmos.
 
 Notar que en el código, cualquier línea de texto precedida de
 \texttt{\#} es un comentario, que no será evaluado por el computador.
+Agregar comentarios es muy útil, si uno va a re-utilizar parte del
+código en otro momento. Ayuda a mantener la claridad en lo que se está
+haciendo.
 
-También podemos mezclar operaciones de la forma que convenga. Siempre
-considerando las reglas de prioridad por paréntesis.
+Continuando con las operaciones básicas, también podemos mezclar
+operaciones de la forma que convenga. Siempre considerando las reglas de
+prioridad por paréntesis. Por ejemplo, si queremos calcular el logaritmo
+del resultado de una función, para una base 16.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{log}\NormalTok{( }\DataTypeTok{x=} \DecValTok{1} \OperatorTok{/}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{5}\OperatorTok{/}\DecValTok{2}\NormalTok{) ) , }\DataTypeTok{base =} \DecValTok{2}\OperatorTok{^}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{) )}
+\KeywordTok{log}\NormalTok{( }\DataTypeTok{x=} \DecValTok{1} \OperatorTok{/}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{5}\OperatorTok{/}\DecValTok{2}\NormalTok{) ) , }\DataTypeTok{base =} \DecValTok{16}\NormalTok{ )}
 \end{Highlighting}
 \end{Shaded}
 
@@ -972,9 +1219,9 @@ valores a un objeto y utilizarlo después en otra operación:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{a <-}\StringTok{ }\KeywordTok{log10}\NormalTok{(}\DecValTok{4}\OperatorTok{/}\DecValTok{3}\NormalTok{)}
+\NormalTok{a <-}\StringTok{ }\KeywordTok{log10}\NormalTok{(}\DecValTok{4}\OperatorTok{/}\DecValTok{3}\NormalTok{)  }\CommentTok{# 'a' tiene el valor de la operación}
 
-\NormalTok{b <-}\StringTok{ }\NormalTok{a}\OperatorTok{^}\DecValTok{2}
+\NormalTok{b <-}\StringTok{ }\NormalTok{a}\OperatorTok{^}\DecValTok{2} \CommentTok{# Equivale a log10(4/3)^2}
 
 \NormalTok{c <-}\StringTok{ }\NormalTok{b}\OperatorTok{^}\DecValTok{2} \OperatorTok{-}\StringTok{ }\NormalTok{a}
 
@@ -987,6 +1234,15 @@ Esto quiere decir que podemos crear un objeto con el operador
 operaciones, para incluirlo en una nueva función. Por lo que la salida
 de una función puede ser la entrada de la próxima.
 
+\begin{figure}[thb!]
+
+{\centering \includegraphics[width=0.4\linewidth]{figuras/RFunctionsFlow} 
+
+}
+
+\caption{Flujo de entradas y salidas en una función de \textbf{R}}\label{fig:RFunctionFlow}
+\end{figure}
+
 \section{Estructuras de datos}\label{estructuras-de-datos}
 
 \textbf{R} puede manejar objetos muy complejos; sin embargo, estos
@@ -995,10 +1251,9 @@ objetos generalmente se componen de partes muy sencillas. Revisaremos
 
 \textbf{Vectores}
 
-Un vector en programación, es una colección de \(n\) datos. A diferencia
-de los vectores en física, que señalan una magnitud asociada a una
-dirección. Podemos pensar que un vector en \textbf{R} equivale a una
-matriz de \(n\) filas, y solo una columna.
+Un vector en programación, es una colección de uno o más valores.
+Podemos pensar que un vector en \textbf{R} equivale a una matriz de
+\(n\) filas, y solo una columna.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1012,13 +1267,19 @@ matriz de \(n\) filas, y solo una columna.
 
 Los elementos de un vector pueden ser llamados utilizando un sub-índice.
 Éste inicia en 1, hasta \(n\). Donde \(n\) es la cantidad de elementos
-en un vector. También es posible, llamar varios elementos a la vez, si
-el subíndice del vector es otro vector.
+en un vector.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{vect1[}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
 
+También es posible llamar varios elementos a la vez, si el subíndice del
+vector es otro vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{vect1[}\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{)]}
 
 \NormalTok{vect1[}\DecValTok{3}\OperatorTok{:}\DecValTok{5}\NormalTok{] }
@@ -1074,12 +1335,12 @@ experimental, por ejemplo:
 
 \begin{verbatim}
 ##   Var1 Var2          z
-## 1   T1    a  0.7564083
-## 2   T2    a  0.5267798
-## 3   T1    b -0.3691496
-## 4   T2    b  0.1611349
-## 5   T1    c  0.1978272
-## 6   T2    c  1.7962886
+## 1   T1    a  0.4273458
+## 2   T2    a -0.9793194
+## 3   T1    b  0.2858836
+## 4   T2    b  0.3112632
+## 5   T1    c  0.1658846
+## 6   T2    c  0.1796460
 \end{verbatim}
 
 \textbf{Arreglos} o \emph{arrays}
@@ -1089,6 +1350,12 @@ serie de fotografías con la misma resolución, en el mismo lugar, podemos
 representar los pixeles como una matriz \(f\times c\), y el tiempo como
 una dimensión adicional. Si ponemos en rápida sucesión las matrices,
 tendremos un video o película.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{array}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\NormalTok{(}\DecValTok{6}\OperatorTok{*}\DecValTok{2}\NormalTok{),}\DataTypeTok{dim=}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
 
 \textbf{Listas}
 
@@ -1185,7 +1452,7 @@ salida, un valor único con el promedio.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.1361579
+## [1] -0.04609665
 \end{verbatim}
 
 \chapter{Asignaciones}\label{asignaciones}

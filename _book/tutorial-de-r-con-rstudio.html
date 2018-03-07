@@ -25,7 +25,7 @@
 <meta name="author" content="David Martínez Cascante">
 
 
-<meta name="date" content="2018-02-14">
+<meta name="date" content="2018-03-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="metodos-numericos-para-ecologia-de-poblaciones.html">
-
+<link rel="next" href="asignaciones.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -106,8 +106,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-exponencial"><i class="fa fa-check"></i><b>2.1.2</b> Crecimiento exponencial</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-denso-dependiente"><i class="fa fa-check"></i><b>2.2</b> Crecimiento denso-dependiente</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#matrices"><i class="fa fa-check"></i><b>2.2.1</b> Matrices</a></li>
+<li class="chapter" data-level="2.2.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-logistico"><i class="fa fa-check"></i><b>2.2.1</b> Crecimiento logístico</a></li>
+<li class="chapter" data-level="2.2.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#usos-del-modelo-logistico"><i class="fa fa-check"></i><b>2.2.2</b> Usos del modelo logístico</a></li>
+<li class="chapter" data-level="2.2.3" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#matrices"><i class="fa fa-check"></i><b>2.2.3</b> Matrices</a></li>
 </ul></li>
+<li class="chapter" data-level="2.3" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#otras-fuentes-bibliograficas"><i class="fa fa-check"></i><b>2.3</b> Otras fuentes bibliográficas</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="soluciones-a-los-ejercicios.html"><a href="soluciones-a-los-ejercicios.html"><i class="fa fa-check"></i><b>3</b> Soluciones a los ejercicios</a></li>
 <li class="appendix"><span><b>Apéndices</b></span></li>
@@ -115,10 +118,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="A.1" data-path="metodos-numericos-para-ecologia-de-poblaciones.html"><a href="metodos-numericos-para-ecologia-de-poblaciones.html#simulacion-de-ecuaciones-diferenciales"><i class="fa fa-check"></i><b>A.1</b> Simulación de ecuaciones diferenciales</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html"><i class="fa fa-check"></i><b>B</b> Tutorial de R con RStudio</a><ul>
-<li class="chapter" data-level="B.1" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#crear-un-proyecto-en-rstudio"><i class="fa fa-check"></i><b>B.1</b> Crear un proyecto en <em>RStudio</em></a></li>
+<li class="chapter" data-level="B.1" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#RStudioProject"><i class="fa fa-check"></i><b>B.1</b> Crear un proyecto en <em>RStudio</em></a></li>
 <li class="chapter" data-level="B.2" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#funciones-basicas-en-r"><i class="fa fa-check"></i><b>B.2</b> Funciones básicas en R</a></li>
 <li class="chapter" data-level="B.3" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#estructuras-de-datos"><i class="fa fa-check"></i><b>B.3</b> Estructuras de datos</a></li>
 <li class="chapter" data-level="B.4" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#funciones"><i class="fa fa-check"></i><b>B.4</b> Funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="asignaciones.html"><a href="asignaciones.html"><i class="fa fa-check"></i><b>C</b> Asignaciones</a><ul>
+<li class="chapter" data-level="C.1" data-path="asignaciones.html"><a href="asignaciones.html#tarea-01-hola-mundo-con-rmarkdown"><i class="fa fa-check"></i><b>C.1</b> Tarea 01: ¡Hola mundo con <em>Rmarkdown</em>!</a></li>
+<li class="chapter" data-level="C.2" data-path="asignaciones.html"><a href="asignaciones.html#tarea-02-ejercicios-de-crecimiento"><i class="fa fa-check"></i><b>C.2</b> Tarea 02: Ejercicios de crecimiento</a></li>
 </ul></li>
 </ul>
 
@@ -139,22 +146,31 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="tutorial-de-r-con-rstudio" class="section level1">
 <h1><span class="header-section-number">B</span> Tutorial de R con RStudio</h1>
-<div id="crear-un-proyecto-en-rstudio" class="section level2">
+<div id="RStudioProject" class="section level2">
 <h2><span class="header-section-number">B.1</span> Crear un proyecto en <em>RStudio</em></h2>
-<p>Crear un proyecto en <strong>RStudio</strong> para cualquier proyecto con <strong>R</strong>, es importante. Los proyectos organizan los documentos en una sola carpeta, y son fundamentales para el control de versión con un software como <strong>Git</strong>. Primero crearemos un proyecto sencillo para conocer la mecánica básica, y luego haremos un proyecto con un repositorio en línea, en <strong>GitHub</strong>.</p>
-<p>El primer paso es ir a <code>file --&gt; New Project</code>. También existen botones específicos para crear proyectos. Creamos una carpeta en una ubicación que nos permita tener derechos de administrador, e idealmente, fuera de cualquier carpeta de sincronización en línea. En caso de que quieran tener un respaldo en la nube, se recomienda pausar la sincronización mientras se trabaja en el proyecto.</p>
+<p>Crear un proyecto en <strong>RStudio</strong> para cualquier proyecto con <strong>R</strong>, es importante. Los proyectos organizan los documentos en una sola carpeta, y son fundamentales para el control de versión con un software como <strong>Git</strong>.</p>
+<p>Abrimos <strong>RStudio</strong>, y ubicamos la barra de herramientas en la parte superior. El primer paso es ir a <code>file --&gt; New Project</code>. Creamos una carpeta en una ubicación que nos permita tener derechos de administrador, e idealmente, fuera de cualquier carpeta de sincronización en línea.</p>
 <p>RStudio nos guiará por los siguientes pasos:</p>
 <ul>
 <li><p><code>Crear un Proyecto</code>: Escogemos que sea un nuevo directorio.</p></li>
 <li><p><code>Tipo de Proyecto</code>: Escogemos <em>nuevo proyecto</em>.</p></li>
-<li><p><code>Crear</code>: Escogemos la carpeta, y el nombre del proyecto. NO marcamos <em>crear repositorio con Git</em>.</p></li>
+<li><p><code>Crear</code>: Escogemos la carpeta, y el nombre del proyecto. <strong>NO</strong> marcamos <em>crear repositorio con Git</em>.</p></li>
 </ul>
-<p>Ahora, en <strong>RStudio</strong> vamos a <code>File --&gt; New file --&gt; R script</code>. Este archivo solo soporta código en <strong>R</strong>, con la gran ventaja de que colorea las funciones, variables y estructuras más comunes; lo cual, hace que el código sea más legible.</p>
+<div class="figure" style="text-align: center"><span id="fig:RStudioNewProject"></span>
+<img src="figuras/RStudioNewProject.png" alt="Cómo hacer un nuevo proyecto, en \textbf{RStudio}." width="95%" />
+<p class="caption">
+Figure B.1: Cómo hacer un nuevo proyecto, en .
+</p>
+</div>
+<p>Volvemos a la barra de herramientas, en <strong>RStudio</strong>, y vamos a <code>File --&gt; New file --&gt; R script</code>. Este archivo solo soporta código en <strong>R</strong>, con la gran ventaja de que colorea las funciones, variables y estructuras más comunes; lo cual, hace que el código sea más legible.</p>
+<p><strong>IMPORTANTE</strong>: En el siguiente tutorial, el código en <strong>R</strong> se encuentra dentro de ambientes especiales, rodeados por una caja gris. Escribe las líneas que se muestran en esa caja, y para ver el resultado en la consola de <strong>R</strong>, apreta <code>Ctrl + ENTER</code>.</p>
 </div>
 <div id="funciones-basicas-en-r" class="section level2">
 <h2><span class="header-section-number">B.2</span> Funciones básicas en R</h2>
-<p>Ahora que hemos creado un proyecto, y tenemos un lienzo en blanco, empezamos por ver las funciones más básicas. <strong>R</strong> puede ser utilizado de manera tan básica, como una calculadora. Contiene, por supuesto, todas las operaciones básicas como: adición, substracción, multipliación, división, potencias, y logaritmos.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="co"># adición</span>
+<p>Ahora que hemos creado un proyecto, y tenemos un lienzo en blanco, empezamos por ver las funciones más elementales. <strong>R</strong> contiene todas las operaciones básicas como: adición, substracción, multipliación, división, potencias, y logaritmos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Tras cada línea presiona Ctrl + ENTER</span>
+
+<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="co"># adición</span>
 
 <span class="dv">1</span><span class="op">-</span><span class="dv">1</span> <span class="co"># substracción</span>
 
@@ -168,36 +184,47 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <span class="kw">log10</span>(<span class="dv">2</span>) <span class="co">#logaritmo base 10</span>
 
-<span class="kw">log</span>(<span class="dt">x =</span> <span class="dv">2</span>, <span class="dt">base =</span> <span class="op">&lt;</span>n<span class="op">&gt;</span>) <span class="co">#logaritmo base &lt;n&gt;, donde &lt;n&gt; se reemplaza por cualquier número.</span></code></pre></div>
-<p>Notar que en el código, cualquier línea de texto precedida de <code>#</code> es un comentario, que no será evaluado por el computador.</p>
-<p>También podemos mezclar operaciones de la forma que convenga. Siempre considerando las reglas de prioridad por paréntesis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>( <span class="dt">x=</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">5</span><span class="op">/</span><span class="dv">2</span>) ) , <span class="dt">base =</span> <span class="dv">2</span><span class="op">^</span>(<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) )</code></pre></div>
+<span class="kw">log</span>(<span class="dt">x =</span> <span class="dv">2</span>, <span class="dt">base =</span> <span class="op">&lt;</span>n<span class="op">&gt;</span>) <span class="co">#logaritmo base &lt;n&gt;, donde &lt;n&gt; se</span>
+                       <span class="co">#   reemplaza por cualquier número.</span></code></pre></div>
+<p>Notar que en el código, cualquier línea de texto precedida de <code>#</code> es un comentario, que no será evaluado por el computador. Agregar comentarios es muy útil, si uno va a re-utilizar parte del código en otro momento. Ayuda a mantener la claridad en lo que se está haciendo.</p>
+<p>Continuando con las operaciones básicas, también podemos mezclar operaciones de la forma que convenga. Siempre considerando las reglas de prioridad por paréntesis. Por ejemplo, si queremos calcular el logaritmo del resultado de una función, para una base 16.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>( <span class="dt">x=</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">5</span><span class="op">/</span><span class="dv">2</span>) ) , <span class="dt">base =</span> <span class="dv">16</span> )</code></pre></div>
 <p>Luego, como la mayoría de lenguajes de programación, podemos asignar valores a un objeto y utilizarlo después en otra operación:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">log10</span>(<span class="dv">4</span><span class="op">/</span><span class="dv">3</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">log10</span>(<span class="dv">4</span><span class="op">/</span><span class="dv">3</span>)  <span class="co"># &#39;a&#39; tiene el valor de la operación</span>
 
-b &lt;-<span class="st"> </span>a<span class="op">^</span><span class="dv">2</span>
+b &lt;-<span class="st"> </span>a<span class="op">^</span><span class="dv">2</span> <span class="co"># Equivale a log10(4/3)^2</span>
 
 c &lt;-<span class="st"> </span>b<span class="op">^</span><span class="dv">2</span> <span class="op">-</span><span class="st"> </span>a
 
 c</code></pre></div>
 <p>Esto quiere decir que podemos crear un objeto con el operador <code>&lt;-</code>, que pueden ser datos, o resultados de otras operaciones, para incluirlo en una nueva función. Por lo que la salida de una función puede ser la entrada de la próxima.</p>
+<div class="figure" style="text-align: center"><span id="fig:RFunctionFlow"></span>
+<img src="figuras/RFunctionsFlow.png" alt="Flujo de entradas y salidas en una función de \textbf{R}" width="40%" />
+<p class="caption">
+Figure B.2: Flujo de entradas y salidas en una función de 
+</p>
+</div>
 </div>
 <div id="estructuras-de-datos" class="section level2">
 <h2><span class="header-section-number">B.3</span> Estructuras de datos</h2>
 <p><strong>R</strong> puede manejar objetos muy complejos; sin embargo, estos objetos generalmente se componen de partes muy sencillas. Revisaremos éstas partes sencillas, y luego crearemos un objeto más complejo.</p>
 <p><strong>Vectores</strong></p>
-<p>Un vector en programación, es una colección de <span class="math inline">\(n\)</span> datos. A diferencia de los vectores en física, que señalan una magnitud asociada a una dirección. Podemos pensar que un vector en <strong>R</strong> equivale a una matriz de <span class="math inline">\(n\)</span> filas, y solo una columna.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">0</span>) <span class="co">#es una concatenación de números, que se crea con la función &#39;c(...)&#39;</span>
+<p>Un vector en programación, es una colección de uno o más valores. Podemos pensar que un vector en <strong>R</strong> equivale a una matriz de <span class="math inline">\(n\)</span> filas, y solo una columna.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">0</span>) <span class="co">#es una concatenación de</span>
+<span class="co"># números, que se crea con la función &#39;c(...)&#39;</span>
 
-vect2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>) <span class="co"># son diez números al azar obtenidas de una distribución normal estándar</span></code></pre></div>
-<p>Los elementos de un vector pueden ser llamados utilizando un sub-índice. Éste inicia en 1, hasta <span class="math inline">\(n\)</span>. Donde <span class="math inline">\(n\)</span> es la cantidad de elementos en un vector. También es posible, llamar varios elementos a la vez, si el subíndice del vector es otro vector.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1[<span class="dv">3</span>]
+vect2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>) <span class="co"># son diez números al azar obtenidas</span>
+<span class="co"># de una distribución normal estándar</span></code></pre></div>
+<p>Los elementos de un vector pueden ser llamados utilizando un sub-índice. Éste inicia en 1, hasta <span class="math inline">\(n\)</span>. Donde <span class="math inline">\(n\)</span> es la cantidad de elementos en un vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1[<span class="dv">3</span>]</code></pre></div>
+<p>También es posible llamar varios elementos a la vez, si el subíndice del vector es otro vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)]
 
-vect1[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)]
+vect1[<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>] 
+<span class="co"># 3:5 crea una secuencia de enteros, que incrementa en 1 a la vez.</span>
 
-vect1[<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>] <span class="co"># 3:5 crea una secuencia de enteros, que incrementa en 1 a la vez.</span>
-
-vect1[<span class="kw">rep</span>(<span class="dv">5</span>,<span class="dt">times=</span><span class="dv">10</span>)] <span class="co"># rep, es una función que repite un número un determinado número de veces.</span></code></pre></div>
+vect1[<span class="kw">rep</span>(<span class="dv">5</span>,<span class="dt">times=</span><span class="dv">10</span>)] <span class="co"># rep, es una función que repite un</span>
+<span class="co">#número un determinado número de veces.</span></code></pre></div>
 <p>Los vectores pueden ser datos en un archivo externo, o resultado de funciones u operaciones. A diferencia de otros lenguajes <strong>R</strong>, maneja vectores de una forma más intuitiva.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vec3 &lt;-<span class="st"> </span>vec1 <span class="op">+</span><span class="st"> </span>vec2 <span class="co"># es un nuevo vector basado en la adición de los dos primeros.</span></code></pre></div>
 <p><strong>Matrices</strong></p>
@@ -219,6 +246,7 @@ vect1[<span class="kw">rep</span>(<span class="dv">5</span>,<span class="dt">tim
 ## 6   T2    c  1.3707045</code></pre>
 <p><strong>Arreglos</strong> o <em>arrays</em></p>
 <p>Estos son matrices de 3 o más dimensiones. Por ejemplo, si tenemos una serie de fotografías con la misma resolución, en el mismo lugar, podemos representar los pixeles como una matriz <span class="math inline">\(f\times c\)</span>, y el tiempo como una dimensión adicional. Si ponemos en rápida sucesión las matrices, tendremos un video o película.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">array</span>(<span class="dv">1</span><span class="op">:</span>(<span class="dv">6</span><span class="op">*</span><span class="dv">2</span>),<span class="dt">dim=</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>)))</code></pre></div>
 <p><strong>Listas</strong></p>
 <p>Las listas son colecciones de cualquiera de los objetos anteriores (y otros que no hemos visto).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l1 &lt;-<span class="st"> </span><span class="kw">list</span>(
@@ -237,7 +265,7 @@ vect1[<span class="kw">rep</span>(<span class="dv">5</span>,<span class="dt">tim
 <ol style="list-style-type: decimal">
 <li><p>Llamamos a la función con un nombre, y declaramos que se trata de una función</p></li>
 <li><p>Nombramos los argumentos de la función. Podemos asignar valores por defecto. Los argumentos deben ir entre paréntesis redondos.</p></li>
-<li><p>Escribímos el cuerpo de la función entre paréntesis tipo llave <code>{}</code>. El cuerpo de la función debe terminar con <em>un solo</em> objeto que será retornado como salida del proceso.</p></li>
+<li><p>Escribimos el cuerpo de la función entre paréntesis tipo llave <code>{}</code>. El cuerpo de la función debe terminar con <em>un solo</em> objeto que será retornado como salida del proceso.</p></li>
 </ol>
 <p>Por ejemplo, si queremos hacer nuestra propia función para calcular un promedio. Primero debemos entender la fórmula subyacente:</p>
 <p><span class="math display">\[
@@ -256,7 +284,7 @@ vect1[<span class="kw">rep</span>(<span class="dv">5</span>,<span class="dt">tim
   
 }
 
-#### Ahora probamos la función, tomando el promedio de un 
+<span class="co"># Ahora probamos la función, tomando el promedio de un </span>
 <span class="co">#       vector de números normales con media igual a cero</span>
 <span class="co">#       Esperamos, que nuestro promedio sea un valor cercano</span>
 <span class="co">#         a cero.</span>
@@ -265,16 +293,7 @@ valores &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class=
 
 (<span class="kw">promedio</span>(valores))</code></pre></div>
 <pre><code>## [1] 0.1281167</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</code></pre></div>
 
-<div id="refs" class="references">
-<div>
-<p>Grafton, R Quentin, James Kirkley, Tom Kompas, and Dale Squires. 2006. “The Economics of Fishing and Fisheries Economics.” In <em>Economics for Fisheries Management</em>, 1–23. Ashgate.</p>
-</div>
-<div>
-<p>Illman, A M, A H Scragg, and S W Shales. 2000. “Increase in Chlorella strains calorific values when grown in low nitrogen medium.” <em>Enzyme and Microbial Technology</em> 27 (8): 631–35. doi:<a href="https://doi.org/https://doi.org/10.1016/S0141-0229(00)00266-0">https://doi.org/10.1016/S0141-0229(00)00266-0</a>.</p>
-</div>
-</div>
 </div>
 </div>
             </section>
@@ -282,8 +301,8 @@ valores &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class=
           </div>
         </div>
       </div>
-<a href="metodos-numericos-para-ecologia-de-poblaciones.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="metodos-numericos-para-ecologia-de-poblaciones.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="asignaciones.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

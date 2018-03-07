@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
+<link rel="prev" href="tutorial-de-r-con-rstudio.html">
 
-<link rel="next" href="modelos-de-crecimiento.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -144,26 +144,95 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Ecología de poblaciones silvestres</h1>
-<h4 class="author"><em>David Martínez Cascante</em></h4>
-<h4 class="date"><em>2018-03-07</em></h4>
-</div>
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">Capítulo 1</span> Introducción</h1>
-<p>La ecología de poblaciones se centra en el estudio de la dinámica de las poblaciones (su crecimiento e interacción con otras poblaciones), y en las interacciones de éstas con el ambiente. La ecología de poblaciones (también llamada <strong>dinámica de poblaciones</strong>) es un campo con un componente matemático y estadístico fuerte, y de gran importancia para la gestión de vida silvestre.</p>
-<p>Algunas de las aplicaciones más importantes de esta disciplina, están relacionadas al cálculo de la viabilidad de poblaciones, al cálculo de tasas de extracción, e incluso a la creación de áreas protegidas dedicadas a proteger el ciclo de vida, o parte de éste, en determinadas especies.</p>
-<p>El <em>Análisis de Viabilidad de Poblaciones</em>, es un ejemplo de una de las aplicaciones de la ecología de poblaciones para la gestión de vida silvestre. Este modelo predice el riesgo de que una población se extinga en una determinada cantidad de años. De esta manera, los gestores pueden modelar diferentes escenarios, cada cual con un conjunto específico de acciones de manejo, y decidir cuál de éstos es más efectivo en la conservación o manejo de la especie.</p>
-<p>La creación de santuarios de pesca, por ejemplo, se fundamenta en el concepto de <em>Biogeografía de Islas</em> (REF) que también es parte de la ecología de poblaciones. Los santuarios de pesca funcionan como <em>fuentes</em>, es decir, zonas donde el crecimiento poblacional es positivo y existe migración de individuos. Éstos individuos, que se producen en exceso, migrarán hacia zonas de pesca, o extracción, para sostener actividades económicas. De esta manera, se garantiza la extracción sostenible en las zonas aledañas.</p>
-<p>Algunos modelos importantes, como el modelo <strong>bioeconómico</strong>, que buscan la mayor rentabilidad económica por la extracción de una especie <span class="citation">(Grafton et al. <a href="#ref-Grafton2006">2006</a>)</span>, están basados en modelos de crecimiento derivados de la dinámica de poblaciones. Este modelo estima la cantidad de esfuerzo extractivo que debe aplicarse a una especie, para mantener una rentabilidad positiva, y mantener un tamaño poblacional que garantice la continuidad de las poblaciones aprovechadas.</p>
-<p>La dinámica de poblaciones es una de las ramas de la biología con un componente matemático y estadístico más fuertes. El desarrollo teórico de los modelos implica conocimiento de planteamiento y resolución de <em>ecuaciones diferenciales</em>. En la práctica, muchos problemas se plantean como ecuaciones diferenciales, pero no tienen solución analítica, por lo cual se requiere de conocimiento sobre <em>métodos numéricos</em>, <em>programación</em> o uso de lenguajes de programación. La mayoría de profesionales, no son desarrolladores teóricos, pero deben saber, al menos, sobre el uso de herramientas de análisis para esta disciplina.</p>
-<p>Si el investigador conoce las herramientas de análisis, y quiere ponerlas en práctica, entonces requiere de conocimientos en <em>diseño experimental y muestreal</em>; así como, <em>técnicas de muestreo</em> para conseguir los datos. Pero la limitación más fuerte, es el financiamiento requerido; ya que, la mayoría de los análisis tienen fuertes requerimientos de datos, y series de tiempo bastante amplias.</p>
+<div id="asignaciones" class="section level1">
+<h1><span class="header-section-number">C</span> Asignaciones</h1>
+<div id="tarea-01-hola-mundo-con-rmarkdown" class="section level2">
+<h2><span class="header-section-number">C.1</span> Tarea 01: ¡Hola mundo con <em>Rmarkdown</em>!</h2>
+<p><strong>Objetivo</strong>: Verificar que el estudiante ha instalado, y maneja el ambiente de trabajo que se utilizará durante el curso.</p>
+<p>Primero revisa los enlaces provistos en el <a href="https://github.com/dawidh15/dinPob/wiki/02-Instalaci%C3%B3n-del-software-necesario#prueba-con-rmarkdown">wiki</a>.</p>
+<p><strong>Actividades</strong></p>
+<ul>
+<li><p>Haz un nuevo proyecto en <strong>RStudio</strong>, que se llame <em>Tarea01</em>. Ver pasos en sección <a href="tutorial-de-r-con-rstudio.html#RStudioProject">B.1</a>.</p></li>
+<li><p>En la consola de <strong>R</strong>, escribe <code>install.packages(rmarkdown)</code>, con todas las dependencias. O instala el paquete desde <strong>RStudio</strong> como se mostró en el <a href="https://github.com/dawidh15/dinPob/wiki/02-Instalaci%C3%B3n-del-software-necesario">wiki</a>.</p></li>
+<li><p>En <strong>RStudio</strong> <code>File--&gt; New File --&gt; R Markdown</code>.</p></li>
+<li><p>Crea una sección principal que se llame <em>Información profesional</em>.</p></li>
+<li><p>Luego, crea una sección secundaria que se llame <em>Intereses</em>. Usa bullets para nombrar algunos intereses profesionales.</p></li>
+<li><p>Luego, crea una sección secundaria llamada <em>Experiencia Laboral</em>, si aplica. Nombra algunos trabajos relacionados con el curso de Ecología de Poblaciones.</p></li>
+<li><p>Crea una sección principal que se llame <em>Integración con R</em></p></li>
+<li><p>Consigue algunos datos interesantes en internet. Deben ser datos para graficar, por tanto deben tener dos columnas, y varias filas. Puedes ir a <a href="https://www.wolframalpha.com/">Wolfram Alpha</a>. Guarda los datos como un texto delimitado por comas (<code>.csv</code>).</p></li>
+<li><p>En <strong>R</strong> o <strong>RStudio</strong> corre el comando <code>?read.table</code>. Para correr un comando en <strong>RStudio</strong> apreta <code>Cntrl + R</code>.</p></li>
+<li><p>Crea un “<em>chunk</em>” de código. Esto se hace en <strong>RStudio</strong>, busca un botón en la barra especial de <em>rmarkdown</em> que diga <code>insert</code>, luego escoge <code>R</code>.</p></li>
+<li><p>Lee la tabla y asignala a un objeto:</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datos &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="op">&lt;</span>ruta_de_archivo_en_comillas<span class="op">&gt;</span>,
+                    <span class="dt">header =</span> <span class="ot">TRUE</span>,
+                    <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</code></pre></div>
+<ul>
+<li><p>Grafica los datos en un nuevo “<em>chunk</em>”. Usa el método que prefieras. Hay mucho material de cómo hacer gráficos en R. Por ahora, un gráfico básico es suficiente.</p></li>
+<li><p>Ahora, haz otra sección llamada <em>Bibliografía</em>. En un párrafo escribe una mini-revisión de algún tema que domines y del que dispongas referencias bibliográficas. Usa los mecanismos de citas de <em>rmarkdown</em></p>
+<ul>
+<li><p>Cita en texto con <code>@citationKey</code></p></li>
+<li><p>Cita en paréntesis con <code>[@citationKey]</code></p></li>
+</ul></li>
+</ul>
+<hr />
+<p><strong>Importante</strong>: Para que las citas funcionen, debes agregar unas opciones en la <em>cabecera</em> del documento (<em>YAML header</em>):</p>
+<pre><code>bibliography: &lt;tu_archivo_bib&gt;.bib
+csl: apa.csl</code></pre>
+<p>El archivo <code>apa.csl</code> se puede encontrar en google. Es un archivo de estilo APA, para dar formato a la bibliografía. Revisa <a href="https://www.zotero.org/styles">el repositorio de CSL de Zotero</a>, en busca de las revistas disponibles.</p>
+<hr />
+<ul>
+<li>Por último, corre el documento con el botón <code>knit</code>. Envía el documento <code>.Rmd</code> y el <code>.pdf</code> al profesor (<code>dawidh15@gmail.com</code>).</li>
+</ul>
 
 </div>
-<h3>References</h3>
+<div id="tarea-02-ejercicios-de-crecimiento" class="section level2">
+<h2><span class="header-section-number">C.2</span> Tarea 02: Ejercicios de crecimiento</h2>
+<p>Se recomienda hacer primero todo en papel, y luego pasarlo en limpio usando <em>Rmarkdown</em>. LINKS para LatexMath</p>
+
+
+<div class="exercise">
+<span id="exr:T02E01" class="exercise"><strong>Exercise C.1  </strong></span>Resuelva el siguiente ejercicio de crecimiento exponencial
+</div>
+
+<p>En un laboratorio se cultiva una especie presa para un programa de reintroducción de una especie de pez. En el laboratorio, se inició un proyecto de mejora en la producción de la presa, y se ha diseñado un experimento para aumentar el valor nutricional de las presas.</p>
+<p>Se cuenta con un presupuesto de  para la producción de animales presa en el proyecto. Además, el diseño experimental requiere de 40 recipientes acondicionados con diferentes tratamientos. Las presas crecen con una tasa de crecimiento intrínseco de . Además, el inóculo inicial es de  individuos por recipiente. Si se sabe que el costo de mantenimiento por organismo-día es de :</p>
+<p><em>¿Cuántos organismos por recipiente se pueden cultivar sin sobrepasar el dinero disponible? ¿Cuánto tiempo, en días, se necesitan para alcanzar esa cantidad?</em></p>
+<p><em>Tips</em>:</p>
+<ul>
+<li><p>Este es un problema de mínimos. Primero hay que buscar la función a minimizar. Luego, uno encuentra el valor apropiado del parámetro de interés cuando la función se minimiza.</p></li>
+<li><p>Para minimizar una diferencia, use el valor absoluto de la diferencia: <span class="math inline">\(\left| x - y\right|\)</span>.</p></li>
+<li><p>Use la función <code>optim</code> o <code>optimize</code>. Una vez que tenga la función que desea minimizar escrita en <em>R</em> use este código:</p></li>
+</ul>
+<pre><code>out &lt;- optim(par = 0,fn = &lt;nombre_de_funcion_para_minimizar&gt;,
+      control = list(reltol=0.01),
+      method = &quot;Brent&quot;, 
+      lower = &lt;numero&gt;, 
+      upper = &lt;numero&gt;)</code></pre>
+<ul>
+<li>Antes se recomienda buscar la ayuda de la función en la consola de <strong>R</strong>, al escribir <code>?optim</code>. Revise los ejemplos, y lea detalladamente la ayuda.</li>
+</ul>
+
 <div id="refs" class="references">
-<div id="ref-Grafton2006">
+<div>
+<p>Barrantes Campos, Hugo. 2015. <em>Introducción a las ecuaciones diferenciales</em>. 2nd ed. San José, Costa Rica: EUNED.</p>
+</div>
+<div>
+<p>Berryman, Alan A., and Pavel Kindlmann. 2008. <em>Population systems: a general introduction</em>. 2nd ed. Springer.</p>
+</div>
+<div>
 <p>Grafton, R Quentin, James Kirkley, Tom Kompas, and Dale Squires. 2006. “The Economics of Fishing and Fisheries Economics.” In <em>Economics for Fisheries Management</em>, 1–23. Ashgate.</p>
+</div>
+<div>
+<p>Illman, A M, A H Scragg, and S W Shales. 2000. “Increase in Chlorella strains calorific values when grown in low nitrogen medium.” <em>Enzyme and Microbial Technology</em> 27 (8): 631–35. doi:<a href="https://doi.org/https://doi.org/10.1016/S0141-0229(00)00266-0">https://doi.org/10.1016/S0141-0229(00)00266-0</a>.</p>
+</div>
+<div>
+<p>Larkin, P.A. 1977. “An epitaph for the concept of Maximum Sustained Yield.” <em>Transactions of the American Fisheries Society</em> 106 (1): 1–11.</p>
+</div>
+<div>
+<p>Neal, Dick. 2004. <em>Introduction to population biology</em>. Cambridge, UK: Cambridge.</p>
+</div>
+</div>
 </div>
 </div>
             </section>
@@ -171,8 +240,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
+<a href="tutorial-de-r-con-rstudio.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="modelos-de-crecimiento.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
