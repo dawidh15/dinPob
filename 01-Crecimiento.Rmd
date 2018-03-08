@@ -297,7 +297,7 @@ $$
  r_m = \mathrm{r_m}\left(1-\frac{N_t}{K}\right)
 $$
 
-Podemos observar el comportamiento de $r_m$ con un gráfico.
+Podemos observar el comportamiento de $r_m$ con un gráfico:
 
 ```{r ,fig.pos='h', fig.align='center', out.width='70%'}
 rm <- 1
@@ -318,7 +318,7 @@ Si ahora sustituimos la versión denso-dependiente de $r_m$ en la ecuación \@re
 
 
 \begin{equation}
-\frac{dN}{dt}=\mathrm{r_m}\left(1-\frac{N_t}{K}\right)N_t
+\frac{dN}{dt}=\mathrm{r_m} N_t \left(1-\frac{N_t}{K}\right)
  (\#eq:logi1)
 \end{equation}
 
@@ -368,7 +368,7 @@ Se utiliza la regla del producto, y se tiene:
 
 
 $$
-D\left[ \mathrm{r_m}N_t \right]\left(1-\frac{N_t}{K}\right) + \mathrm{r_m}N_t\; D\left[\left(1-\frac{N_t}{K}\right)\right]=0
+D_{N_t}\left[ \mathrm{r_m}N_t \right]\left(1-\frac{N_t}{K}\right) + \mathrm{r_m}N_t\; D_{N_t}\left[\left(1-\frac{N_t}{K}\right)\right]=0
 $$
 
 Al resolver las derivadas se obtiene:
@@ -377,7 +377,7 @@ $$
 N = \frac{K}{2}
 $$
 
-Quiere decir, que el mayor crecimiento se obtiene cuando el tamaño de población es igual a la mitad de la capacidad de carga. Si sustituimos $N = K/2$ en la ecuación \@ref(eq:logi1), tenemos que el crecimiento máximo de una población es:
+Quiere decir, que el mayor crecimiento se obtiene cuando el tamaño de población es igual a la mitad de la capacidad de carga. Si sustituimos $N = K/2$ en la ecuación \@ref(eq:logi1), tenemos que el crecimiento máximo de una población es\footnote{La línea vertical a mano izquierda en la ecuación indica que la derivada debe evaluarse en $N_t=K/2$.}:
 
 $$
 \left. \frac{dN}{dt}\right|_{N = K/2} = \frac{\mathrm{r_m}K}{4}
@@ -405,8 +405,18 @@ Demuestre que la población no crecerá más cuando llega a la capacidad de carg
 
 
 ```{exercise, label='logGrowth3'}
-Suponga que existe un tanque sobre una balanza. Este tanque contiene aguas residuales, que son limpiadas por una pequeña planta del genero *Lemna*. El flujo del tanque es tal, que la masa del agua siempre se mantiene constante; de modo que la balanza solo mide el crecimiento de *Lemna*. Nos interesa mantener una población de Lemna con un rápido crecimiento; ya que éste es proporcional a la tasa de extracción de toxinas del tanque. Si el tanque inicia con \SI{1}{\kilogram} de *Lemna*, con una tasa de crecimiento es de \SI{0.05}{\gram\per\second}. Además, se ha determinado que el tanque solo soporta \SI{100}{\kilogram} de *Lemna*. ¿Cuál es el tamaño de población de *Lemna* que debería haber en el tanque siempre? ¿A qué biomasa total debería cosechar la *Lemna*? ¿Cuánta biomasa debe extraer para mantener un máximo de crecimiento?
+Suponga que existe un tanque sobre una balanza. Este tanque contiene aguas residuales, que son limpiadas por una pequeña planta del genero *Lemna*. El flujo del tanque es tal, que la masa del agua siempre se mantiene constante; de modo que la balanza solo mide el crecimiento de *Lemna*. Nos interesa mantener una población de Lemna con un rápido crecimiento; ya que éste es proporcional a la tasa de extracción de toxinas del tanque. El tanque inicia con \SI{1}{\kilogram} de *Lemna*, con una tasa de crecimiento es de \SI{5}{\milli\gram\per\second}. Además, se ha determinado que el tanque solo soporta \SI{100}{\kilogram} de *Lemna*. ¿Cuál es el tamaño de población de *Lemna* que debería haber en el tanque para maximizar el crecimiento? ¿Cuánta biomasa debe extraer **en un día** para mantener un máximo de crecimiento? ¿A qué biomasa total debería cosechar la *Lemna*?
 ```
+
+```{exercise, label='logGrowth4'}
+De acuerdo con la definición del MRS, se asume que el crecimiento es igual a la cosecha. ¿Qué tan atinada es esta suposición? 
+```
+
+
+```{exercise, label='logGrowth5'}
+Grafique la tasa de crecimiento poblacional usando $N_t$ como variable independiente. Asuma $K=100$, $N_0=1$, $r_m=1$. 
+```
+
 
 ### Matrices
 

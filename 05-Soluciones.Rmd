@@ -61,7 +61,49 @@ Porque cuando $x \to \infty \Rightarrow x \gg N_0$. Es decir, cuando $x$ se vuel
 Poblacionalmente, esto significa, que si una población mantiene una tasa intrínseca negativa, por un periodo de tiempo suficientemente largo, sufrirá un evento de extinción.
 
 
+**Ejercicio \@ref(exr:logGrowth3)**
 
+```{r include=FALSE}
+K <- 100; N0 <- 1; rm = 0.432
+
+Nmrs <- K/2
+
+MRS <- (rm*K)/4
+
+bioTot <- Nmrs + MRS
+```
+
+*El tamaño de población que maximiza el crecimiento*
+
+Reconocemos que la capacidad de carga son $K=\SI{100}{\kilogram}$. Por tanto, la cantidad de biomasa que maximiza el crecimiento, según el *máximo rendimiento sostenible* es $K/2=\SI{`r Nmrs`}{\kilogram}$.
+
+*¿Cuánta biomasa se debe extraer en un día para mantener la tasa de crecimiento al máximo?*
+
+Debemos utilizar unidades congruentes durante los cálculos. Así que el primer paso es pasar todo a kilogramos-día.
+
+$$
+\frac{\num{5}\cancel{\si{\milli\gram}}}
+{\cancel{ \si{\second} } }
+\frac{\SI{1}{\kilogram}}
+{\num{1000000}\cancel{\si{\milli\gram}}}
+\frac{\num{86400}\cancel{\si{\second}} }{\si{\day}}= 
+\frac{\SI{0.432}{\kilogram}}
+{\si{\day}}
+$$
+
+Ahora podemos calcular el *Máximo Rendimiento Sostenible*, reemplazando los valores apropiados en:
+
+$$
+MRS=\frac{r_m K}{4} = \SI{`r MRS`}{\kilogram}
+$$
+
+*¿A qué biomasa total se debe cosechar el tanque?*
+
+Esta es la suma del tamaño de población al *máximo rendimiento sostenible*, más el *máximo rendimiento sostenible*:
+
+$$
+\frac{K}{2} + \frac{r_m K}{4} = \SI{`r bioTot`}{\kilogram}
+$$
 
 
 \begingroup

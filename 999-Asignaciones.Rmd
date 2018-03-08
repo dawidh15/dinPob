@@ -65,7 +65,7 @@ El archivo `apa.csl` se puede encontrar en google. Es un archivo de estilo APA, 
 
 ## Tarea 02: Ejercicios de crecimiento
 
- Se recomienda hacer primero todo en papel, y luego pasarlo en limpio usando *Rmarkdown*. LINKS para LatexMath
+ Se recomienda hacer primero todo en papel, y luego pasarlo en limpio usando *Rmarkdown*. Uno de los aspectos más sobresalientes de LaTeX es el aspecto de las ecuaciones. Los cálculos realizados en este ejercicio son una buena excusa para investigar un poco sobre el tema. Se recomienda este [link](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
 
 \setcounter{exercise}{0}
 
@@ -75,7 +75,7 @@ Resuelva el siguiente ejercicio de crecimiento exponencial
 
 En un laboratorio se cultiva una especie presa para un programa de reintroducción de una especie de pez. En el laboratorio, se inició un proyecto de mejora en la producción de la presa, y se ha diseñado un experimento para aumentar el valor nutricional de las presas.
 
-Se cuenta con un presupuesto de \SI{2e6}{\text{CRC}} para la producción de animales presa en el proyecto. Además, el diseño experimental requiere de 40 recipientes acondicionados con diferentes tratamientos. Las presas crecen con una tasa de crecimiento intrínseco  de \num{0.098}. Además, el inóculo inicial es de \num{1000} individuos por recipiente. Si se sabe que el costo de mantenimiento por organismo-día es de \SI{0.5}{\text{CRC}\per(\text{ind}.\day)}:
+Se cuenta con un presupuesto de \SI{2e6}{\text{CRC}} para la producción de animales presa en el proyecto. Además, el diseño experimental requiere de 40 recipientes acondicionados con diferentes tratamientos. Las presas crecen con una tasa de crecimiento intrínseco  de $r_m = \SI{0.098}{\text{ind}\per\day}$. Además, el inóculo inicial es de \num{1000} individuos por recipiente. Si se sabe que el costo de mantenimiento por organismo-día es de \SI{0.5}{\text{CRC}\per(\text{ind}.\day)}:
 
 *¿Cuántos organismos por recipiente se pueden cultivar sin sobrepasar el dinero disponible?  ¿Cuánto tiempo, en días, se necesitan para alcanzar esa cantidad?*
 
@@ -87,11 +87,12 @@ Se cuenta con un presupuesto de \SI{2e6}{\text{CRC}} para la producción de anim
 
 - Use la función `optim` o `optimize`. Una vez que tenga la función que desea minimizar escrita en *R* use este código:
 
-```
+```{r, eval=FALSE}
 out <- optim(par = 0,fn = <nombre_de_funcion_para_minimizar>,
       control = list(reltol=0.01),
       method = "Brent", 
       lower = <numero>, 
       upper = <numero>)
 ```
+
 - Antes se recomienda buscar la ayuda de la función en la consola de **R**, al escribir `?optim`.  Revise los ejemplos, y lea detalladamente la ayuda.
