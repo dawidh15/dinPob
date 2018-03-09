@@ -853,13 +853,12 @@ se mantiene constante; de modo que la balanza solo mide el crecimiento
 de \emph{Lemna}. Nos interesa mantener una población de Lemna con un
 rápido crecimiento; ya que éste es proporcional a la tasa de extracción
 de toxinas del tanque. El tanque inicia con \SI{1}{\kilogram} de
-\emph{Lemna}, con una tasa de crecimiento es de
-\SI{5}{\milli\gram\per\second}. Además, se ha determinado que el tanque
-solo soporta \SI{100}{\kilogram} de \emph{Lemna}. ¿Cuál es el tamaño de
-población de \emph{Lemna} que debería haber en el tanque para maximizar
-el crecimiento? ¿Cuánta biomasa debe extraer \textbf{en un día} para
-mantener un máximo de crecimiento? ¿A qué biomasa total debería cosechar
-la \emph{Lemna}?
+\emph{Lemna}, con una tasa de crecimiento es de \SI{5e-6}{\per\second}.
+Además, se ha determinado que el tanque solo soporta \SI{100}{\kilogram}
+de \emph{Lemna}. ¿Cuál es el tamaño de población de \emph{Lemna} que
+debería haber en el tanque para maximizar el crecimiento? ¿Cuánta
+biomasa debe extraer \textbf{en un día} para mantener un máximo de
+crecimiento? ¿A qué biomasa total debería cosechar la \emph{Lemna}?
 \EndKnitrBlock{exercise}
 
 \BeginKnitrBlock{exercise}
@@ -974,15 +973,13 @@ tanto, la cantidad de biomasa que maximiza el crecimiento, según el
 crecimiento al máximo?}
 
 Debemos utilizar unidades congruentes durante los cálculos. Así que el
-primer paso es pasar todo a kilogramos-día.
+primer paso convertir \(r_m\) de \si{\per\second} a \si{\per\day}.
 
 \[
-\frac{\num{5}\cancel{\si{\milli\gram}}}
+\frac{\num{5e-6} }
 {\cancel{ \si{\second} } }
-\frac{\SI{1}{\kilogram}}
-{\num{1000000}\cancel{\si{\milli\gram}}}
 \frac{\num{86400}\cancel{\si{\second}} }{\si{\day}}= 
-\frac{\SI{0.432}{\kilogram}}
+\frac{\num{0.432}}
 {\si{\day}}
 \]
 
@@ -1388,13 +1385,13 @@ numéricos. Estas son las estructuras con las que representamos un diseño
 experimental, por ejemplo:
 
 \begin{verbatim}
-##   Var1 Var2           z
-## 1   T1    a -0.07713760
-## 2   T2    a -1.14312909
-## 3   T1    b -0.01290233
-## 4   T2    b  1.44193829
-## 5   T1    c  0.03967462
-## 6   T2    c -1.84050316
+##   Var1 Var2          z
+## 1   T1    a -0.2812197
+## 2   T2    a  0.6062620
+## 3   T1    b  0.9152684
+## 4   T2    b  0.4222688
+## 5   T1    c  0.4424541
+## 6   T2    c -2.9359156
 \end{verbatim}
 
 \textbf{Arreglos} o \emph{arrays}
@@ -1506,7 +1503,7 @@ salida, un valor único con el promedio.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.02722474
+## [1] 0.07909427
 \end{verbatim}
 
 \chapter{Asignaciones}\label{asignaciones}

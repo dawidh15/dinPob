@@ -79,15 +79,13 @@ Reconocemos que la capacidad de carga son $K=\SI{100}{\kilogram}$. Por tanto, la
 
 *¿Cuánta biomasa se debe extraer en un día para mantener la tasa de crecimiento al máximo?*
 
-Debemos utilizar unidades congruentes durante los cálculos. Así que el primer paso es pasar todo a kilogramos-día.
+Debemos utilizar unidades congruentes durante los cálculos. Así que el primer paso convertir $r_m$ de \si{\per\second} a \si{\per\day}.
 
 $$
-\frac{\num{5}\cancel{\si{\milli\gram}}}
+\frac{\num{5e-6} }
 {\cancel{ \si{\second} } }
-\frac{\SI{1}{\kilogram}}
-{\num{1000000}\cancel{\si{\milli\gram}}}
 \frac{\num{86400}\cancel{\si{\second}} }{\si{\day}}= 
-\frac{\SI{0.432}{\kilogram}}
+\frac{\num{0.432}}
 {\si{\day}}
 $$
 
