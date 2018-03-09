@@ -75,7 +75,7 @@ Resuelva el siguiente ejercicio de crecimiento exponencial
 
 En un laboratorio se cultiva una especie presa para un programa de reintroducción de una especie de pez. En el laboratorio, se inició un proyecto de mejora en la producción de la presa, y se ha diseñado un experimento para aumentar el valor nutricional de las presas.
 
-Se cuenta con un presupuesto de \SI{2e6}{\text{CRC}} para la producción de animales presa en el proyecto. Además, el diseño experimental requiere de 40 recipientes acondicionados con diferentes tratamientos. Las presas crecen con una tasa de crecimiento intrínseco  de $r_m = \SI{0.098}{\text{ind}\per\day}$. Además, el inóculo inicial es de \num{1000} individuos por recipiente. Si se sabe que el costo de mantenimiento por organismo-día es de \SI{0.5}{\text{CRC}\per(\text{ind}.\day)}:
+Se cuenta con un presupuesto de \SI{2e6}{\text{CRC}} para la producción de animales presa en el proyecto. Además, el diseño experimental requiere de 40 recipientes acondicionados con diferentes tratamientos. Las presas crecen con una tasa de crecimiento intrínseco  de $r_m = \SI{0.098}{\per\day}$. Además, el inóculo inicial es de \num{1000} individuos por recipiente. Si se sabe que el costo de mantenimiento por organismo-día es de \SI{0.5}{\text{CRC}\per(\text{ind}.\day)}:
 
 *¿Cuántos organismos por recipiente se pueden cultivar sin sobrepasar el dinero disponible?  ¿Cuánto tiempo, en días, se necesitan para alcanzar esa cantidad?*
 
