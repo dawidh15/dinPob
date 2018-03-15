@@ -22,13 +22,13 @@ Primero revisa los enlaces provistos en el  [wiki](https://github.com/dawidh15/d
 
 -  Crea una sección principal que se llame *Integración con R*
 
-- Consigue algunos datos interesantes en internet. Deben ser datos para graficar, por tanto deben tener dos columnas, y varias filas. Puedes ir a [Wolfram Alpha](https://www.wolframalpha.com/). Guarda los datos como un texto delimitado por comas (`.csv`).
+- Consigue algunos datos interesantes en Internet. Deben ser datos para graficar, por tanto deben tener dos columnas, y varias filas. Puedes ir a [Wolfram Alpha](https://www.wolframalpha.com/). Guarda los datos como un texto delimitado por comas (`.csv`).
 
--  En **R** o **RStudio** corre el comando `?read.table`. Para correr un comando en **RStudio** apreta `Cntrl + R`.
+-  En **R** o **RStudio** corre el comando `?read.table`. Para correr un comando en **RStudio** presiona `Cntrl + R`.
 
 -  Crea un "*chunk*" de código. Esto se hace en **RStudio**, busca un botón en la barra especial de *rmarkdown* que diga `insert`, luego escoge `R`.
 
--  Lee la tabla y asignala a un objeto:
+-  Lee la tabla y asígnala a un objeto:
 
 ```{r , eval=FALSE}
 datos <- read.table(<ruta_de_archivo_en_comillas>,
@@ -73,7 +73,7 @@ El archivo `apa.csl` se puede encontrar en google. Es un archivo de estilo APA, 
 Resuelva el siguiente ejercicio de crecimiento exponencial
 ```
 
-En un laboratorio se cultiva una especie presa para un programa de reintroducción de una especie de pez. En el laboratorio, se inició un proyecto de mejora en la producción de la presa, y se ha diseñado un experimento para aumentar el valor nutricional de las presas.
+En un laboratorio se cultiva una especie presa para un programa de re-introducción de una especie de pez. En el laboratorio, se inició un proyecto de mejora en la producción de la presa, y se ha diseñado un experimento para aumentar el valor nutricional de las presas.
 
 Se cuenta con un presupuesto de \SI{2e6}{\text{CRC}} para la producción de animales presa en el proyecto. Además, el diseño experimental requiere de 40 recipientes acondicionados con diferentes tratamientos. Las presas crecen con una tasa de crecimiento intrínseco  de $r_m = \SI{0.098}{\per\day}$. Además, el inóculo inicial es de \num{1000} individuos por recipiente. Si se sabe que el costo de mantenimiento por organismo-día es de \SI{0.5}{\text{CRC}\per(\text{ind}.\day)}:
 
@@ -96,3 +96,104 @@ out <- optim(par = 0,fn = <nombre_de_funcion_para_minimizar>,
 ```
 
 - Antes se recomienda buscar la ayuda de la función en la consola de **R**, al escribir `?optim`.  Revise los ejemplos, y lea detalladamente la ayuda.
+
+
+## Tarea 03
+
+## Tarea 04
+
+## Tarea 05
+
+## Tarea 06
+
+
+\newpage
+
+## Trabajo grupal
+
+
+### Objetivo general
+
+Aplicar los conocimientos del curso en una simulación de un proyecto colaborativo, utilizando las herramientas de trabajo vistas en el curso (\textsf{R}, **R Markdown**, **Git** y **GitHub**), para que el estudiante se familiarice con las nuevas tendencias de *Open Science*.
+
+### Objetivos específicos
+
+1. Sintetizar el aprendizaje en un informe científico de la investigación, usando las herramientas de trabajo vistas en clase.
+
+1. Valorar la importancia la justificación del procedimiento de análisis para escoger el método de toma de datos.
+
+1. Aplicar los conocimientos teóricos del curso mediante una proyección sobre la probabilidad de extinción local de las poblaciones que vamos a muestrear.
+
+1. Entender la importancia de verificar si nuestros resultados cumplen las suposiciones de nuestro procedimiento de análisis en la discusión del informe.
+
+### Justificación
+
+La ciencia tiene principios fundamentales muy estrictos. Uno de ellos es la repetibilidad y/o reproducibilidad de los hechos con los cuales se fundamentan las hipótesis o las teorías. Los trabajos en ecología presentan problemas de repetibilidad y reproducibilidad *en el campo*, pero de hecho, sí podemos corroborar los resultados y el cumplimiento de supuestos de los análisis de otras personas. Incluso, podemos mejorar el trabajo de otros en colaboración, siempre y cuando, tengamos acceso a cierta información de estos estudios.
+
+Muchos investigadores e instituciones, como editoriales científicas, entienden que para la ciencia es necesario un mejor flujo de información [@dataManagmentBES; @reprodCodeBES]. El éxito de algunas iniciativas de colaboración y *Open Science*, radica en este principio. Por ejemplo, los investigadores que desarrollan análisis bioestadísticos se han beneficiado de divulgar sus procedimientos al público; ya que, investigadores similares colaboran con ellos y constantemente mejoran los análisis, corrigen errores, o sugieren nuevas alternativas o métodos. Y esto solo ha ocasionado el beneficio de los numerosos usuarios de sus paquetes, y de la calidad de los análisis y por ende, las decisiones basadas en resultados.
+
+Es importante que los estudiantes de esta licenciatura conozcan estas nuevas tendencias, y las herramientas que las han hecho posibles. Por ello, montaremos una simulación de un trabajo colaborativo en el campo de la Ecología de Poblaciones Silvestres.
+
+### Definiciones
+
+**mortalidad**: Se refiere a la cantidad de individuos que mueren de una clase de edad o talla a la siguiente.
+
+**supervivencia**: Es lo opuesto a la *mortalidad*. Es la cantidad de individuos que sobrevive de una talla a la siguiente.
+
+**fecundidad**: La cantidad de huevos que produce cada individuo de *Siphonaria* spp. o de *Strombus* spp.
+
+**Matrices de transición**: Es una matriz que contiene elementos de mortalidad o supervivencia y fecundidad, Se utiliza para hacer proyecciones del tamaño de una población.
+
+**fecha de cumplimiento**: Es la fecha en la que una meta *ya debe haberse concretado*.
+
+**HEAD**. Es un término de **Git** que se refiere a la versión más reciente de un documento que usa control de versión.
+
+
+### Metas
+
+**Meta 1, (7%). Fecha de cumplimiento 19 de abril**: Generar una revisión bibliográfica sobre temas relacionados con la ecología poblacional de *Siphonaria gigas* (o similares), y de *Strombus galeatus* (o *S. gigas*). Los estudios incluidos deben contener información sobre:
+
+- Crecimiento: talla de los animales en relación al tiempo.
+
+- Mortalidad: estimaciones numéricas o datos de mortalidad
+
+- Supervivencia: estimaciones numéricas o datos de supervivencia
+
+- Matrices de transición: todo lo relacionado con este tema.
+
+- Análisis de viabilidad de poblaciones: todo lo relacionado con este tema.
+
+Durante la revisión bibliográfica es importante utilizar estos puntos como criterios de aceptación para un artículo. Si no contiene información sobre estos criterios, entonces no vale la pena incluirlo en la revisión.
+
+Si el estudiante no está familiarizado con las herramientas de búsqueda bibliográfica y bases de datos suscritas por la Universidad Nacional, es su responsabilidad informarse con la bibliotecaria de la Unidad Académica.
+
+**Meta 2,  (7%). Fecha de cumplimiento 3 de mayo**: Definir el procedimiento de análisis. Se basarán en la teoría, en las investigaciones individuales, y en una búsqueda general en línea, para escoger un procedimiento de análisis que permita **calcular la probabilidad de extinción de las poblaciones de interés a cinco años**.
+
+**Meta 3,  (5%).  Fecha de cumplimiento 10 de mayo**: Diseño de muestreo. Solo hay tiempo para un sitio por población. Por tanto, el diseño de muestreo se refiere al establecimiento de las variables que se deben medir en el campo, a los formularios de campo, al procedimiento para tomar los datos y al diseño de la base de datos (se *recomienda* una base de **LibreOffice Base**).
+
+**Meta 4,  (3%). Fecha de cumplimiento 24 de mayo**: Almacenamiento y control de calidad de datos. Esto se hará durante la gira, y la semana que sigue. Se debe comparar los formularios con los datos digitales en búsqueda de errores.
+
+
+**Meta 5,  (3%). Fecha de cumplimiento 31 de mayo**: Análisis de datos. Utilizar el procedimiento de análisis y aplicarlo a los datos de campo. Idealmente, el análisis ya debería estar montado y probado en el documento principal. Por tanto, solo habría que reemplazar los datos de prueba con los reales.
+
+**Meta 6. Fecha de cumplimiento 14 de junio**: Entrega del informe final. La discusión implica comparar los datos de entrada con los requisitos y supuestos del modelo, para analizar si la salida del procedimiento de análisis es válida o no. Esa fecha el informe *debe* ser entregado, para que el profesor lo revise. No se aceptan prórrogas. **El informe debe ser entregado, para hacer efectivo el porcentaje obtenido en cada una de las metas anteriores en la nota final**. Es decir, si el informe final no se entrega en esa fecha, se pierde todo el 25% del valor.
+
+### Flujo semanal de trabajo
+
+```{r echo=FALSE, fig.height=7, fig.width=7.5}
+knitr::include_graphics("figuras/Flujo_Trabajo_grupal.png")
+```
+
+
+Para mantener el orden en el progreso del trabajo, se sugiere la siguiente metodología:
+
+Primero, cada estudiante debe empezar por recopilar información sobre los géneros y especies mencionadas. Deben aplicar la lista de criterios para ver si la información es útil o no. El estudiante debería crear un archivo **R Markdown** con anotaciones sobre la información relevante del documento, e incorporar la información bibliográfica de cada documento revisado a un archivo `.bib`.
+
+Luego, para iniciar la elaboración del informe grupal, el profesor debe haberles enseñado el uso de **Git**, y **GitHub**. En clase se explicará como crear y sincronizar una carpeta de trabajo en colaboración. El profesor será el "*editor*" del trabajo, es decir, él manejará la carpeta maestra, y cada estudiante es un colaborador.
+
+Cada semana, los estudiantes asignarán a una persona encargada de manejar el *HEAD* (es decir, la versión más reciente del documento). Después de la sesión teórica, se discutirán las incorporaciones y cambios del *HEAD* con respecto a la versión del *editor*. Si se aprueban los cambios en esa sesión, el estudiante enviará una propuesta de cambios al editor ( en lenguaje de **Git**, esta propuesta se conoce como un *Pull Request*). El editor acepta la propuesta, y la sube al documento maestro. Posteriormente, todos los estudiantes se sincronizan con el documento maestro.
+
+Si el editor no acepta los cambios, siempre aceptará el *HEAD* en el documento maestro, pero añadirá una serie de tareas y correcciones que los estudiantes deberán incorporar durante la semana.
+
+Estos pasos se repiten semanalmente, hasta finalizar el documento.
+
