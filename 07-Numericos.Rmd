@@ -52,16 +52,25 @@ Donde $\mathbf{c}$ son constantes.
 
 ```{r , cache=TRUE}
 
-euler <- function(fooName, valInic, tiempoParar, deltaT,guardarCada,...){
+
+euler <- function(
+          fooName,
+          valInic,
+          tiempoParar,
+          NoIter,
+          guardarCada,
+                  ...) {
   arg <- list(...)
   fn <- get(fooName)
-  
+
   #Encuentra los argumentos provistos
-  argName <- match.arg(names(arg),#arg provistos
-                       formalArgs(fn),#arg existentes
-                       several.ok = TRUE)
+  argName <- match.arg(names(arg), #arg provistos
+  formalArgs(fn), #arg existentes
+  several.ok = TRUE)
   #Nombra la lista con los nombres de los argumentos provistos
   names(arg) <- argName
+  
+  deltaT <- tiempoParar/NoIter
   
   val <- numeric()
   val[1] <- valInic
@@ -70,39 +79,44 @@ euler <- function(fooName, valInic, tiempoParar, deltaT,guardarCada,...){
   valTmp <- val[1]
   
   #Completa la lista de argumentos con N[t-1]
-  arg[[ (length(arg)+1) ]] <- valInic
+  arg[[(length(arg) + 1)]] <- valInic
   totalArg <- length(arg)
   #Escribe todos los nomres de los argumentos, para do.call
-  names(arg) <- formalArgs(fn)#Encuetra los nombres de los argumentos
+  names(arg) <-
+  formalArgs(fn)#Encuetra los nombres de los argumentos
   
   tiempo <- numeric()
   
+  counter <- 0
   tNow <- 0
   tiempo[1] <- 0
-  
-  while( tNow < tiempoParar ){
-    valTmp <- valTmp + do.call(fn,args = arg)*deltaT
-    tNow <- tNow + deltaT 
-      
-    if( tNow%%guardarCada <=deltaT ){
-      val <- append(x = val,values = valTmp)
-      tiempo <- append(x = tiempo, values = tNow)
-      arg[[totalArg]] <- valTmp
-    }
+
+while (tNow < tiempoParar) {
+  valTmp <- valTmp + do.call(fn, args = arg) * deltaT
+  tNow <- tNow + deltaT
+  arg[[totalArg]] <- valTmp
+  counter <- counter + 1
+
+  if (counter == guardarCada) {
+    val <- append(x = val, values = valTmp)
+    tiempo <- append(x = tiempo, values = tNow)
+    counter <- 0
   }
-  
-  return( list(
-    poblacion = val,
-    tiempo = tiempo,
-    tNow = tNow,
-    arg = arg
-  ) )
-  
+}
+
+return(list(
+  poblacion = val,
+  tiempo = tiempo,
+  tNow = tNow,
+  arg = arg,
+  Dt = deltaT
+))
+
 }
 ```
 
 
-Por ejemplo
+Por ejemplo:
 
 
 ```{r , results='hold',tidy=TRUE,cache=TRUE}
@@ -110,13 +124,13 @@ Por ejemplo
 diffG1 <- function(rm,N)N*rm
 N0 <- 10
 
-Resultados1 <- euler(fooName = "diffG1",valInic = N0,tiempoParar = 10,deltaT = 1/100,guardarCada = 1,rm=.22)
+Resultados1 <- euler(fooName = "diffG1",valInic = N0,tiempoParar = 10,NoIter = 100,guardarCada = 10,rm=.22)
 
 diffG2 <- function(rm,Kmax,N)rm*(1-N/Kmax)
 
 N0 <- 10
 
-Resultados2 <- euler(fooName = "diffG2",valInic = N0,tiempoParar = 50,deltaT = 1/100,guardarCada = 1,rm=1.92,Kmax=60)
+Resultados2 <- euler(fooName = "diffG2",valInic = N0,tiempoParar = 50,NoIter = 500,guardarCada = 50,rm=1.92,Kmax=60)
 
 plot(Resultados1$tiempo,Resultados1$poblacion,
          type = "p", xlab = "Tiempo", ylab = "Tamaño de población",
@@ -129,3 +143,96 @@ plot(Resultados1$tiempo,Resultados1$poblacion,
     lines(Resultados2$tiempo,Resultados2$poblacion)
 ```
 
+
+## Error en las simulaciones
+
+Hemos mencionado que la integración de Euler es una *aproximación* a la función verdader. Que tan bien o mal sea esta aproximación depende de la elección de $\Delta t$.
+
+```{r numComp, echo=FALSE, fig.width=7, fig.cap='Comparación del efecto del tamaño del  $\\Delta t$', cache=TRUE}
+diffG1 <- function(rm,N)N*rm
+do <- function(){
+  
+  N0 <- 10
+  rm <- 0.22
+
+  
+  curve(N0*exp(rm*x), from = 0,to = 5,
+        lwd=3, ylab="Tamaño de población" )
+  
+  D1a2 <- euler(fooName = "diffG1",
+                       valInic = N0,
+                       tiempoParar = 5,
+                       NoIter = 10,
+                       guardarCada = 1,rm=.22)
+  
+    D1a100 <- euler(fooName = "diffG1",
+                       valInic = N0,
+                       tiempoParar = 5,
+                       NoIter = 100,
+                       guardarCada = 10,rm=.22)
+    
+    lines(D1a2$tiempo,D1a2$poblacion, lwd = 1, col="gray")
+    points(D1a2$tiempo,D1a2$poblacion,pch=21,bg=1)
+    
+    lines(D1a100$tiempo,D1a100$poblacion, lwd = 2, lty = 2,
+          col = "gray")
+    points(D1a100$tiempo,D1a100$poblacion,pch=21,bg=1)
+}
+
+do()
+```
+
+
+Por ejemplo en la figura \@ref(fig:numComp) la línea negra representa la ecuación verdadera, la línea gris contínua representa una aproximación con $\Delta t = 1/2$, y la línea gris discontinua representa una aproximación con $\Delta t = 1/100$. Observamos que la distancia de la línea con $\Delta t = 1/100$ con la curva real es menor que la distancia de la línea con $\Delta t = 1/2$ a la curva real. Es decir, si disminuimos el valor de $\Delta t$ disminuye el error de la aproximación \@ref(fig:errorComp).
+
+
+```{r errorComp, echo=FALSE, fig.width=7, fig.cap='Porcentaje de error para $N$ en  $t=5$ según el $\\Delta t$', cache=TRUE}
+
+Nvect <- numeric()
+lastTime <- numeric()
+sizes <- character()
+N0 <- 10
+rm <- 0.22
+
+for( i in 1:10){
+  step <- (2^i)
+  
+  res <- euler(fooName = "diffG1",
+                       valInic = N0,
+                       tiempoParar = 5,
+                       NoIter = step,
+                       guardarCada = 1,rm=.22)
+  
+  Nvect <- append(Nvect,res$poblacion[length(res$poblacion)])
+  
+   lastTime <- append(lastTime, res$tiempo[length(res$tiempo)])
+   
+   sizes <- append(sizes,paste0("1/", step))
+  
+  
+  
+}
+
+rm(N0,rm,res)
+
+stopifnot(all(lastTime==5))
+
+
+do <- function(){
+
+plot((diff(Nvect)/Nvect[-1])*100,axes=F, 
+     xlab="Delta T",
+     ylab = "Porcentaje de error contra el anterior",
+     pch = 21,bg = 1)
+
+axis(side=1, at = 1:length(diff(Nvect)),labels=sizes[-1])
+
+axis(side = 2, at = 1:length(diff(Nvect)),
+     labels=paste0(1:length(diff(Nvect)),"%"),las=1)
+
+}
+
+do()
+```
+
+En este caso, solo se calculó el error para el valor de $N_{t=5}$.

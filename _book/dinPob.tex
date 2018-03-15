@@ -131,7 +131,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-03-14}
+  \date{2018-03-15}
 
 \usepackage[spanish,es-nodecimaldot]{babel}
 \usepackage{booktabs}
@@ -1084,16 +1084,24 @@ Donde \(\mathbf{c}\) son constantes.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{euler <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(fooName, valInic, tiempoParar, deltaT,guardarCada,...)\{}
+\NormalTok{euler <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}
+\NormalTok{          fooName,}
+\NormalTok{          valInic,}
+\NormalTok{          tiempoParar,}
+\NormalTok{          NoIter,}
+\NormalTok{          guardarCada,}
+\NormalTok{                  ...) \{}
 \NormalTok{  arg <-}\StringTok{ }\KeywordTok{list}\NormalTok{(...)}
 \NormalTok{  fn <-}\StringTok{ }\KeywordTok{get}\NormalTok{(fooName)}
-  
+
   \CommentTok{#Encuentra los argumentos provistos}
-\NormalTok{  argName <-}\StringTok{ }\KeywordTok{match.arg}\NormalTok{(}\KeywordTok{names}\NormalTok{(arg),}\CommentTok{#arg provistos}
-                       \KeywordTok{formalArgs}\NormalTok{(fn),}\CommentTok{#arg existentes}
-                       \DataTypeTok{several.ok =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{  argName <-}\StringTok{ }\KeywordTok{match.arg}\NormalTok{(}\KeywordTok{names}\NormalTok{(arg), }\CommentTok{#arg provistos}
+  \KeywordTok{formalArgs}\NormalTok{(fn), }\CommentTok{#arg existentes}
+  \DataTypeTok{several.ok =} \OtherTok{TRUE}\NormalTok{)}
   \CommentTok{#Nombra la lista con los nombres de los argumentos provistos}
   \KeywordTok{names}\NormalTok{(arg) <-}\StringTok{ }\NormalTok{argName}
+  
+\NormalTok{  deltaT <-}\StringTok{ }\NormalTok{tiempoParar}\OperatorTok{/}\NormalTok{NoIter}
   
 \NormalTok{  val <-}\StringTok{ }\KeywordTok{numeric}\NormalTok{()}
 \NormalTok{  val[}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\NormalTok{valInic}
@@ -1102,54 +1110,59 @@ Donde \(\mathbf{c}\) son constantes.
 \NormalTok{  valTmp <-}\StringTok{ }\NormalTok{val[}\DecValTok{1}\NormalTok{]}
   
   \CommentTok{#Completa la lista de argumentos con N[t-1]}
-\NormalTok{  arg[[ (}\KeywordTok{length}\NormalTok{(arg)}\OperatorTok{+}\DecValTok{1}\NormalTok{) ]] <-}\StringTok{ }\NormalTok{valInic}
+\NormalTok{  arg[[(}\KeywordTok{length}\NormalTok{(arg) }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{)]] <-}\StringTok{ }\NormalTok{valInic}
 \NormalTok{  totalArg <-}\StringTok{ }\KeywordTok{length}\NormalTok{(arg)}
   \CommentTok{#Escribe todos los nomres de los argumentos, para do.call}
-  \KeywordTok{names}\NormalTok{(arg) <-}\StringTok{ }\KeywordTok{formalArgs}\NormalTok{(fn)}\CommentTok{#Encuetra los nombres de los argumentos}
+  \KeywordTok{names}\NormalTok{(arg) <-}
+\StringTok{  }\KeywordTok{formalArgs}\NormalTok{(fn)}\CommentTok{#Encuetra los nombres de los argumentos}
   
 \NormalTok{  tiempo <-}\StringTok{ }\KeywordTok{numeric}\NormalTok{()}
   
+\NormalTok{  counter <-}\StringTok{ }\DecValTok{0}
 \NormalTok{  tNow <-}\StringTok{ }\DecValTok{0}
 \NormalTok{  tiempo[}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
-  
-  \ControlFlowTok{while}\NormalTok{( tNow }\OperatorTok{<}\StringTok{ }\NormalTok{tiempoParar )\{}
-\NormalTok{    valTmp <-}\StringTok{ }\NormalTok{valTmp }\OperatorTok{+}\StringTok{ }\KeywordTok{do.call}\NormalTok{(fn,}\DataTypeTok{args =}\NormalTok{ arg)}\OperatorTok{*}\NormalTok{deltaT}
-\NormalTok{    tNow <-}\StringTok{ }\NormalTok{tNow }\OperatorTok{+}\StringTok{ }\NormalTok{deltaT }
-      
-    \ControlFlowTok{if}\NormalTok{( tNow}\OperatorTok{%%}\NormalTok{guardarCada }\OperatorTok{<=}\NormalTok{deltaT )\{}
-\NormalTok{      val <-}\StringTok{ }\KeywordTok{append}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ val,}\DataTypeTok{values =}\NormalTok{ valTmp)}
-\NormalTok{      tiempo <-}\StringTok{ }\KeywordTok{append}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tiempo, }\DataTypeTok{values =}\NormalTok{ tNow)}
-\NormalTok{      arg[[totalArg]] <-}\StringTok{ }\NormalTok{valTmp}
-\NormalTok{    \}}
+
+\ControlFlowTok{while}\NormalTok{ (tNow }\OperatorTok{<}\StringTok{ }\NormalTok{tiempoParar) \{}
+\NormalTok{  valTmp <-}\StringTok{ }\NormalTok{valTmp }\OperatorTok{+}\StringTok{ }\KeywordTok{do.call}\NormalTok{(fn, }\DataTypeTok{args =}\NormalTok{ arg) }\OperatorTok{*}\StringTok{ }\NormalTok{deltaT}
+\NormalTok{  tNow <-}\StringTok{ }\NormalTok{tNow }\OperatorTok{+}\StringTok{ }\NormalTok{deltaT}
+\NormalTok{  arg[[totalArg]] <-}\StringTok{ }\NormalTok{valTmp}
+\NormalTok{  counter <-}\StringTok{ }\NormalTok{counter }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+
+  \ControlFlowTok{if}\NormalTok{ (counter }\OperatorTok{==}\StringTok{ }\NormalTok{guardarCada) \{}
+\NormalTok{    val <-}\StringTok{ }\KeywordTok{append}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ val, }\DataTypeTok{values =}\NormalTok{ valTmp)}
+\NormalTok{    tiempo <-}\StringTok{ }\KeywordTok{append}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tiempo, }\DataTypeTok{values =}\NormalTok{ tNow)}
+\NormalTok{    counter <-}\StringTok{ }\DecValTok{0}
 \NormalTok{  \}}
-  
-  \KeywordTok{return}\NormalTok{( }\KeywordTok{list}\NormalTok{(}
-    \DataTypeTok{poblacion =}\NormalTok{ val,}
-    \DataTypeTok{tiempo =}\NormalTok{ tiempo,}
-    \DataTypeTok{tNow =}\NormalTok{ tNow,}
-    \DataTypeTok{arg =}\NormalTok{ arg}
-\NormalTok{  ) )}
-  
+\NormalTok{\}}
+
+\KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}
+  \DataTypeTok{poblacion =}\NormalTok{ val,}
+  \DataTypeTok{tiempo =}\NormalTok{ tiempo,}
+  \DataTypeTok{tNow =}\NormalTok{ tNow,}
+  \DataTypeTok{arg =}\NormalTok{ arg,}
+  \DataTypeTok{Dt =}\NormalTok{ deltaT}
+\NormalTok{))}
+
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-Por ejemplo
+Por ejemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{diffG1 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(rm, N) N }\OperatorTok{*}\StringTok{ }\NormalTok{rm}
 \NormalTok{N0 <-}\StringTok{ }\DecValTok{10}
 
-\NormalTok{Resultados1 <-}\StringTok{ }\KeywordTok{euler}\NormalTok{(}\DataTypeTok{fooName =} \StringTok{"diffG1"}\NormalTok{, }\DataTypeTok{valInic =}\NormalTok{ N0, }\DataTypeTok{tiempoParar =} \DecValTok{10}\NormalTok{, }\DataTypeTok{deltaT =} \DecValTok{1}\OperatorTok{/}\DecValTok{100}\NormalTok{, }
-    \DataTypeTok{guardarCada =} \DecValTok{1}\NormalTok{, }\DataTypeTok{rm =} \FloatTok{0.22}\NormalTok{)}
+\NormalTok{Resultados1 <-}\StringTok{ }\KeywordTok{euler}\NormalTok{(}\DataTypeTok{fooName =} \StringTok{"diffG1"}\NormalTok{, }\DataTypeTok{valInic =}\NormalTok{ N0, }\DataTypeTok{tiempoParar =} \DecValTok{10}\NormalTok{, }\DataTypeTok{NoIter =} \DecValTok{100}\NormalTok{, }
+    \DataTypeTok{guardarCada =} \DecValTok{10}\NormalTok{, }\DataTypeTok{rm =} \FloatTok{0.22}\NormalTok{)}
 
 \NormalTok{diffG2 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(rm, Kmax, N) rm }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{N}\OperatorTok{/}\NormalTok{Kmax)}
 
 \NormalTok{N0 <-}\StringTok{ }\DecValTok{10}
 
-\NormalTok{Resultados2 <-}\StringTok{ }\KeywordTok{euler}\NormalTok{(}\DataTypeTok{fooName =} \StringTok{"diffG2"}\NormalTok{, }\DataTypeTok{valInic =}\NormalTok{ N0, }\DataTypeTok{tiempoParar =} \DecValTok{50}\NormalTok{, }\DataTypeTok{deltaT =} \DecValTok{1}\OperatorTok{/}\DecValTok{100}\NormalTok{, }
-    \DataTypeTok{guardarCada =} \DecValTok{1}\NormalTok{, }\DataTypeTok{rm =} \FloatTok{1.92}\NormalTok{, }\DataTypeTok{Kmax =} \DecValTok{60}\NormalTok{)}
+\NormalTok{Resultados2 <-}\StringTok{ }\KeywordTok{euler}\NormalTok{(}\DataTypeTok{fooName =} \StringTok{"diffG2"}\NormalTok{, }\DataTypeTok{valInic =}\NormalTok{ N0, }\DataTypeTok{tiempoParar =} \DecValTok{50}\NormalTok{, }\DataTypeTok{NoIter =} \DecValTok{500}\NormalTok{, }
+    \DataTypeTok{guardarCada =} \DecValTok{50}\NormalTok{, }\DataTypeTok{rm =} \FloatTok{1.92}\NormalTok{, }\DataTypeTok{Kmax =} \DecValTok{60}\NormalTok{)}
 
 \KeywordTok{plot}\NormalTok{(Resultados1}\OperatorTok{$}\NormalTok{tiempo, Resultados1}\OperatorTok{$}\NormalTok{poblacion, }\DataTypeTok{type =} \StringTok{"p"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Tiempo"}\NormalTok{, }
     \DataTypeTok{ylab =} \StringTok{"Tamaño de población", las = 1, pch = 21, bg = 1)}
@@ -1168,6 +1181,37 @@ Por ejemplo
 \end{Shaded}
 
 \includegraphics{dinPob_files/figure-latex/unnamed-chunk-7-2.pdf}
+
+\section{Error en las simulaciones}\label{error-en-las-simulaciones}
+
+Hemos mencionado que la integración de Euler es una \emph{aproximación}
+a la función verdader. Que tan bien o mal sea esta aproximación depende
+de la elección de \(\Delta t\).
+
+\begin{figure}
+\centering
+\includegraphics{dinPob_files/figure-latex/numComp-1.pdf}
+\caption{\label{fig:numComp}Comparación del efecto del tamaño del
+\(\Delta t\)}
+\end{figure}
+
+Por ejemplo en la figura \ref{fig:numComp} la línea negra representa la
+ecuación verdadera, la línea gris contínua representa una aproximación
+con \(\Delta t = 1/2\), y la línea gris discontinua representa una
+aproximación con \(\Delta t = 1/100\). Observamos que la distancia de la
+línea con \(\Delta t = 1/100\) con la curva real es menor que la
+distancia de la línea con \(\Delta t = 1/2\) a la curva real. Es decir,
+si disminuimos el valor de \(\Delta t\) disminuye el error de la
+aproximación \ref{fig:errorComp}.
+
+\begin{figure}
+\centering
+\includegraphics{dinPob_files/figure-latex/errorComp-1.pdf}
+\caption{\label{fig:errorComp}Porcentaje de error para \(N\) en \(t=5\)
+según el \(\Delta t\)}
+\end{figure}
+
+En este caso, solo se calculó el error para el valor de \(N_{t=5}\).
 
 \chapter{Tutorial de R con RStudio}\label{tutorial-de-r-con-rstudio}
 
@@ -1386,12 +1430,12 @@ experimental, por ejemplo:
 
 \begin{verbatim}
 ##   Var1 Var2           z
-## 1   T1    a -0.34992004
-## 2   T2    a -0.55285114
-## 3   T1    b  0.87031564
-## 4   T2    b  0.30127473
-## 5   T1    c  0.01315266
-## 6   T2    c  1.30454273
+## 1   T1    a -1.44855662
+## 2   T2    a  0.49700996
+## 3   T1    b  0.32056794
+## 4   T2    b -0.09085851
+## 5   T1    c  1.59597243
+## 6   T2    c -0.10210901
 \end{verbatim}
 
 \textbf{Arreglos} o \emph{arrays}
@@ -1503,7 +1547,7 @@ salida, un valor único con el promedio.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.1162771
+## [1] 0.004014559
 \end{verbatim}
 
 \chapter{Asignaciones}\label{asignaciones}
@@ -1544,20 +1588,20 @@ Primero revisa los enlaces provistos en el
 \item
   Crea una sección principal que se llame \emph{Integración con R}
 \item
-  Consigue algunos datos interesantes en internet. Deben ser datos para
+  Consigue algunos datos interesantes en Internet. Deben ser datos para
   graficar, por tanto deben tener dos columnas, y varias filas. Puedes
   ir a \href{https://www.wolframalpha.com/}{Wolfram Alpha}. Guarda los
   datos como un texto delimitado por comas (\texttt{.csv}).
 \item
   En \textbf{R} o \textbf{RStudio} corre el comando
   \texttt{?read.table}. Para correr un comando en \textbf{RStudio}
-  apreta \texttt{Cntrl\ +\ R}.
+  presiona \texttt{Cntrl\ +\ R}.
 \item
   Crea un ``\emph{chunk}'' de código. Esto se hace en \textbf{RStudio},
   busca un botón en la barra especial de \emph{rmarkdown} que diga
   \texttt{insert}, luego escoge \texttt{R}.
 \item
-  Lee la tabla y asignala a un objeto:
+  Lee la tabla y asígnala a un objeto:
 \end{itemize}
 
 \begin{Shaded}
@@ -1632,7 +1676,7 @@ ejercicio de crecimiento exponencial
 \EndKnitrBlock{exercise}
 
 En un laboratorio se cultiva una especie presa para un programa de
-reintroducción de una especie de pez. En el laboratorio, se inició un
+re-introducción de una especie de pez. En el laboratorio, se inició un
 proyecto de mejora en la producción de la presa, y se ha diseñado un
 experimento para aumentar el valor nutricional de las presas.
 
@@ -1681,6 +1725,199 @@ para alcanzar esa cantidad?}
   \textbf{R}, al escribir \texttt{?optim}. Revise los ejemplos, y lea
   detalladamente la ayuda.
 \end{itemize}
+
+\section{Tarea 03}\label{tarea-03}
+
+\section{Tarea 04}\label{tarea-04}
+
+\section{Tarea 05}\label{tarea-05}
+
+\section{Tarea 06}\label{tarea-06}
+
+\newpage
+
+\section{Trabajo grupal}\label{trabajo-grupal}
+
+\subsection{Objetivo general}\label{objetivo-general}
+
+Aplicar los conocimientos del curso en una simulación de un proyecto
+colaborativo, utilizando las herramientas de trabajo vistas en el curso
+(\textsf{R}, \textbf{R Markdown}, \textbf{Git} y \textbf{GitHub}), para
+que el estudiante se familiarice con las nuevas tendencias de \emph{Open
+Science}.
+
+\subsection{Objetivos específicos}\label{objetivos-especificos}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Sintetizar el aprendizaje en un informe científico de la
+  investigación, usando las herramientas de trabajo vistas en clase.
+\item
+  Valorar la importancia la justificación del procedimiento de análisis
+  para escoger el método de toma de datos.
+\item
+  Aplicar los conocimientos teóricos del curso mediante una proyección
+  sobre la probabilidad de extinción local de las poblaciones que vamos
+  a muestrear.
+\item
+  Entender la importancia de verificar si nuestros resultados cumplen
+  las suposiciones de nuestro procedimiento de análisis en la discusión
+  del informe.
+\end{enumerate}
+
+\subsection{Justificación}\label{justificacion}
+
+La ciencia tiene principios fundamentales muy estrictos. Uno de ellos es
+la repetibilidad y/o reproducibilidad de los hechos con los cuales se
+fundamentan las hipótesis o las teorías. Los trabajos en ecología
+presentan problemas de repetibilidad y reproducibilidad \emph{en el
+campo}, pero de hecho, sí podemos corroborar los resultados y el
+cumplimiento de supuestos de los análisis de otras personas. Incluso,
+podemos mejorar el trabajo de otros en colaboración, siempre y cuando,
+tengamos acceso a cierta información de estos estudios.
+
+Muchos investigadores e instituciones, como editoriales científicas,
+entienden que para la ciencia es necesario un mejor flujo de información
+\citep{dataManagmentBES, reprodCodeBES}. El éxito de algunas iniciativas
+de colaboración y \emph{Open Science}, radica en este principio. Por
+ejemplo, los investigadores que desarrollan análisis bioestadísticos se
+han beneficiado de divulgar sus procedimientos al público; ya que,
+investigadores similares colaboran con ellos y constantemente mejoran
+los análisis, corrigen errores, o sugieren nuevas alternativas o
+métodos. Y esto solo ha ocasionado el beneficio de los numerosos
+usuarios de sus paquetes, y de la calidad de los análisis y por ende,
+las decisiones basadas en resultados.
+
+Es importante que los estudiantes de esta licenciatura conozcan estas
+nuevas tendencias, y las herramientas que las han hecho posibles. Por
+ello, montaremos una simulación de un trabajo colaborativo en el campo
+de la Ecología de Poblaciones Silvestres.
+
+\subsection{Definiciones}\label{definiciones}
+
+\textbf{mortalidad}: Se refiere a la cantidad de individuos que mueren
+de una clase de edad o talla a la siguiente.
+
+\textbf{supervivencia}: Es lo opuesto a la \emph{mortalidad}. Es la
+cantidad de individuos que sobrevive de una talla a la siguiente.
+
+\textbf{fecundidad}: La cantidad de huevos que produce cada individuo de
+\emph{Siphonaria} spp. o de \emph{Strombus} spp.
+
+\textbf{Matrices de transición}: Es una matriz que contiene elementos de
+mortalidad o supervivencia y fecundidad, Se utiliza para hacer
+proyecciones del tamaño de una población.
+
+\textbf{fecha de cumplimiento}: Es la fecha en la que una meta \emph{ya
+debe haberse concretado}.
+
+\textbf{HEAD}. Es un término de \textbf{Git} que se refiere a la versión
+más reciente de un documento que usa control de versión.
+
+\subsection{Metas}\label{metas}
+
+\textbf{Meta 1, (7\%). Fecha de cumplimiento 19 de abril}: Generar una
+revisión bibliográfica sobre temas relacionados con la ecología
+poblacional de \emph{Siphonaria gigas} (o similares), y de
+\emph{Strombus galeatus} (o \emph{S. gigas}). Los estudios incluidos
+deben contener información sobre:
+
+\begin{itemize}
+\item
+  Crecimiento: talla de los animales en relación al tiempo.
+\item
+  Mortalidad: estimaciones numéricas o datos de mortalidad
+\item
+  Supervivencia: estimaciones numéricas o datos de supervivencia
+\item
+  Matrices de transición: todo lo relacionado con este tema.
+\item
+  Análisis de viabilidad de poblaciones: todo lo relacionado con este
+  tema.
+\end{itemize}
+
+Durante la revisión bibliográfica es importante utilizar estos puntos
+como criterios de aceptación para un artículo. Si no contiene
+información sobre estos criterios, entonces no vale la pena incluirlo en
+la revisión.
+
+Si el estudiante no está familiarizado con las herramientas de búsqueda
+bibliográfica y bases de datos suscritas por la Universidad Nacional, es
+su responsabilidad informarse con la bibliotecaria de la Unidad
+Académica.
+
+\textbf{Meta 2, (7\%). Fecha de cumplimiento 3 de mayo}: Definir el
+procedimiento de análisis. Se basarán en la teoría, en las
+investigaciones individuales, y en una búsqueda general en línea, para
+escoger un procedimiento de análisis que permita \textbf{calcular la
+probabilidad de extinción de las poblaciones de interés a cinco años}.
+
+\textbf{Meta 3, (5\%). Fecha de cumplimiento 10 de mayo}: Diseño de
+muestreo. Solo hay tiempo para un sitio por población. Por tanto, el
+diseño de muestreo se refiere al establecimiento de las variables que se
+deben medir en el campo, a los formularios de campo, al procedimiento
+para tomar los datos y al diseño de la base de datos (se
+\emph{recomienda} una base de \textbf{LibreOffice Base}).
+
+\textbf{Meta 4, (3\%). Fecha de cumplimiento 24 de mayo}: Almacenamiento
+y control de calidad de datos. Esto se hará durante la gira, y la semana
+que sigue. Se debe comparar los formularios con los datos digitales en
+búsqueda de errores.
+
+\textbf{Meta 5, (3\%). Fecha de cumplimiento 31 de mayo}: Análisis de
+datos. Utilizar el procedimiento de análisis y aplicarlo a los datos de
+campo. Idealmente, el análisis ya debería estar montado y probado en el
+documento principal. Por tanto, solo habría que reemplazar los datos de
+prueba con los reales.
+
+\textbf{Meta 6. Fecha de cumplimiento 14 de junio}: Entrega del informe
+final. La discusión implica comparar los datos de entrada con los
+requisitos y supuestos del modelo, para analizar si la salida del
+procedimiento de análisis es válida o no. Esa fecha el informe
+\emph{debe} ser entregado, para que el profesor lo revise. No se aceptan
+prórrogas. \textbf{El informe debe ser entregado, para hacer efectivo el
+porcentaje obtenido en cada una de las metas anteriores en la nota
+final}. Es decir, si el informe final no se entrega en esa fecha, se
+pierde todo el 25\% del valor.
+
+\subsection{Flujo semanal de trabajo}\label{flujo-semanal-de-trabajo}
+
+\includegraphics{figuras/Flujo_Trabajo_grupal.png}
+
+Para mantener el orden en el progreso del trabajo, se sugiere la
+siguiente metodología:
+
+Primero, cada estudiante debe empezar por recopilar información sobre
+los géneros y especies mencionadas. Deben aplicar la lista de criterios
+para ver si la información es útil o no. El estudiante debería crear un
+archivo \textbf{R Markdown} con anotaciones sobre la información
+relevante del documento, e incorporar la información bibliográfica de
+cada documento revisado a un archivo \texttt{.bib}.
+
+Luego, para iniciar la elaboración del informe grupal, el profesor debe
+haberles enseñado el uso de \textbf{Git}, y \textbf{GitHub}. En clase se
+explicará como crear y sincronizar una carpeta de trabajo en
+colaboración. El profesor será el ``\emph{editor}'' del trabajo, es
+decir, él manejará la carpeta maestra, y cada estudiante es un
+colaborador.
+
+Cada semana, los estudiantes asignarán a una persona encargada de
+manejar el \emph{HEAD} (es decir, la versión más reciente del
+documento). Después de la sesión teórica, se discutirán las
+incorporaciones y cambios del \emph{HEAD} con respecto a la versión del
+\emph{editor}. Si se aprueban los cambios en esa sesión, el estudiante
+enviará una propuesta de cambios al editor ( en lenguaje de
+\textbf{Git}, esta propuesta se conoce como un \emph{Pull Request}). El
+editor acepta la propuesta, y la sube al documento maestro.
+Posteriormente, todos los estudiantes se sincronizan con el documento
+maestro.
+
+Si el editor no acepta los cambios, siempre aceptará el \emph{HEAD} en
+el documento maestro, pero añadirá una serie de tareas y correcciones
+que los estudiantes deberán incorporar durante la semana.
+
+Estos pasos se repiten semanalmente, hasta finalizar el documento.
 
 \bibliography{book.bib,packages.bib}
 
