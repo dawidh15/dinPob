@@ -1,4 +1,5 @@
 _book/dinPob_files/
+_book/dinPob.tex
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -179,3 +180,4 @@ TSWLatexianTemp*
 _bookdown_files
 dinPob.Rmd
 docs
+solucionario/

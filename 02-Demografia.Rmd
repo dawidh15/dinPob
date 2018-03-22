@@ -1,0 +1,237 @@
+# Demografía
+
+En el primer capítulo del material del curso, tratamos algunos modelos de crecimiento, donde factores importantes, como el sexo, la edad y el estado reproductivo de los organismos fueron ignorados. Anteriormente, consideramos a las poblaciones como una masa sin estructura que crece en relación al tiempo, y su propio tamaño. Esto tiene consecuencias importantes a la hora de constrastar las predicciones de los modelos, con datos reales sobre poblaciones.
+
+
+Por ejemplo, en muchas poblaciones aprovechadas, los métodos de captura tienen alta selectividad para ciertas tallas o edades.  Por tanto, existe un componente que provoca un efecto asimétrico en la mortalidad de una clase de edad a la siguiente.
+
+Utilizar estructuras de edades en los modelos de dinámica de poblaciones, permite predicir algunos efectos de acciones de manejo. Por ejemplo, ¿qué pasa si distribuimos la mortalidad de manera equitativa en todas las clases de edad, o qué pasa si cargamos la mortalidad en cierta clase de edad pero no en las otras? Este tema se refleja en los reglamentos de tallas mínimas para la pesca en Costa Rica, por ejemplo.
+
+La estructura por edades, puede entenderse como el aporte de cada clase de edad a la fecundidad, y a la supervivencia de una clase a la siguiente. Por ejemplo, podemos pensar en un modelo sencillo donde tenemos tres estados en una población: neonatos, juveniles y adultos. Los neonatos aportan individuos desde su clase, hacia los juveniles. Los juveniles pueden reproducirse tempranamente, y aportar individuos a los neonatos mediante la reproducción; además, aquellos que sobrevivan pasarán a la calse adulta. Por último, la clase adulta aportará muchos individuos a los neonatos mediante la reproducción, y algunos de ellos sobrevivirán y permanecerán en la misma clase en la siguiente generación (Figura \@ref(fig:demoTMintro)).
+
+
+```{r demoTMintro, echo=FALSE, fig.width=5, message=FALSE, warning=FALSE, fig.align='center', fig.cap = 'Ejemplo de las transiciones entre clases de edad'}
+library(Gmisc)
+tM <- matrix(c(
+  0  , 0.2 , 0.8,
+  0.7, 0   , 0,
+  0  , 0.2 , 0.1
+), ncol=3, byrow = TRUE)
+
+colnames(tM) <- rownames(tM) <- c("neo","juv","adu")
+
+
+
+#from https://cran.r-project.org/web/packages/Gmisc/vignettes/transitionPlot.html
+output_perc <- 
+  function(txt, n) sprintf("%s\n[%.0f%%]", txt, n)
+box_txt <- 
+  cbind(mapply(output_perc, 
+               txt = c("neo","juv","adu"), 
+               n = prop.table(rowSums(tM))*100),
+        mapply(output_perc, 
+               txt = c("neo","juv","adu"), 
+               n = prop.table(colSums(tM))*100))
+transitionPlot(t(tM), 
+               main = "Modelo de clase de edad",
+               box_label = c("Antes", "Después"),
+               box_txt = box_txt,
+               cex = 1.2,
+               type_of_arrow = "simple")
+rm(tM, output_perc,box_txt)
+detach("package:Gmisc", unload=TRUE)
+```
+
+
+
+En las secciones posteriores, aprenderemos los fundamentos del uso de modelos estructurados por edad, y sus aplicaciones al manejo de recursos naturales. Para ayudar a la comprensión de la teoría, y su aplicación a datos reales, utilizaremos el paquete `popbio` de \textsf{R}.
+
+Debemos instalarlo en la computadora, utilizando las siguientes líneas:
+
+```{r , eval=FALSE}
+install.packages("popbio")
+```
+
+
+## Tablas de vida
+
+
+
+Las tablas de vida resumen un estudio longitudinal, que investiga el destino de los individuos de una *cohorte* \index{cohorte} durante su vida (o una muestra de la cohorte). Usualmente, la primer columna de una tabla de vida consiste del número de individuos en una clase de edad. Y las clases de edad, dependen del ciclo de vida de los organismos.
+
+Este ordenamiento de los datos permite investigar cuántos individuos sobreviven de una clase de edad a la siguiente. Y apartir de aquí, se construyen otros valores poblacionales importantes.
+
+Para construir una tabla de vida, debemos seguir los siguientes pasos\footnote{en poblaciones silvestres de animales, generalmente se trabaja solo con las hembras}:
+
+1. $x$: Definir un intervalo de edad, que sea apropiado para el ciclo de vida de la especie. Puede indicarse únicamente el valor inicial del intervalo en la columna, pero lo ideal es trabajar con el punto medio del intervalo de clase. Por ejemplo, para el intervalo $[a, b)$, calculamos el punto medio del intervalo como $x = (a+b)/2$.
+
+1. $S_x$: Indicar el número de supervivientes en esa clase de edad.
+
+1. $D_x$: Anotar el número de muertes en esa clase de edad. Se calcula como $D_x = S_x - S_{x+1}$.
+
+1. $l_x$: Calcular la proporción de sobrevivientes con respecto al número de individuos en la primer clase de edad $S_0$. Para cada fila de la tabla de vida, calcular $l_x = S_x/S_0$.
+
+1. $d_x$: Se calcula como $D_x$, pero la columna con los datos de entrada es $l_x$. Es decir:  $d_x=l_x-l_{x+1}$.
+
+1.  $q_x$: La tasa de mortalidad, que se calcula como $q_x = D_x/S_x$ ó $q_x = d_x/l_x$.
+
+1. $e_x$: La esperanza de vida promedio. Esta se calcula al sumar todos los sobrevivientes desde la clase de edad $x$ hasta la última, dividido entre el número de supervivientes en la clase $x$. Esta manera de calcular $e_x$ supone que todos los individuos sobreviven desde e inicio de la clase de edad hasta el final y luego mueren. Para corregir restamos a este valor la mitad de la amplitud del intervalo en la clase de edad $x$. Es decir, si la amplitud del intervalo es un año, entonces restamos $0.5\left\Vert x \right\Vert =0.5(1)$. La fórmula Si tenemos $n$ clases de edad, entonces calculamos $e_x = (\sum_{i=x}^n{S_i})/S_x - 0.5\left\Vert x \right\Vert$. 
+
+Los calculos anteriores son interesantes, pero aún hay datos que se pueden añadir para sacar todo el provecho de las tablas de vida: los datos de reproducción. En el caso de animales, las tablas suelen trabajarse con el número de hembras; además, pueden añadirse datos sobre la descendencia que produce cada hembra (contanto también solo los individuos de este sexo). Por lo tanto, a las columnas anteriores añadimos las siguientes:
+
+1. $m_x$: El número de descendientes hembras por cada hembra de la clase $x$
+
+1. $m_x l_x$: La producción de nuevas hembras por clase de edad.
+
+1. $x\,m_x l_x$: paso intermedio para calcular parámetros reproductivos.
+
+Y con los resultados de una tabla como esta, podemos calcular parámetros importantes como la tasa de crecimiento neta \index{T!tasa de crecimiento neta} ($R_0$), que es la cantidad promedio de descendientes hembras que produce una hembra a lo largo de su vida. También podemos calcular el tiempo medio de generación ($T_c$), que es tiempo que en promedio dura una hembra en producir una cantidad de descendientes hembra igual a la tasa de crecimiento neta, $R_0$. Estos parámetros los calculamos como:
+
+
+$$
+\begin{split}
+R_0 &= \sum l_x m_x\\
+T_c &= \sum x\, m_x l_x\\
+\end{split}
+$$
+
+El $R_0$ es un reflejo de la tasa de multiplicación ($\lambda$, ver sección \@ref(crecimientogeometrico)). Es decir, la población crece si $R_0 > 1$, se mantiene estable si $R_0 =1$, y decrece si $R_0 < 1$.
+
+También podemos relacionarlo con la tasa intrínseca de crecimiento per cápita $\mathrm{r_m}$ (ver sección \@ref(crecimientoexponencial)). Para ello usamos la siguiente relación:
+
+$$
+\mathrm{r_m} \approx \frac{\ln(R_0)}{T_c}
+$$
+
+### Tablas de vida sobre cohortes (horizontales)
+
+Este tipo de tablas se construyen al seguir un grupo de organismos de una misma cohorte o generación. Es más utilizado en plantas o animales sésiles; sin embargo, con el financiamiento y el equipo correcto, puede ser utilizado en animales móviles. 
+
+El paquete **popbio** de \textsf{R}, ofrece varios conjuntos de datos. Uno de ellos sobre una planta llamada *Aquilegia*. El conjunto de datos contiene información sobre cada planta, y su destino después de muestreos anuales.
+
+
+```{r message=FALSE, warning=FALSE, results='markup'}
+library(popbio)# cargar paquete
+data("aq.trans")#cargar datos
+aq.trans -> dat; rm(aq.trans)#crear objeto de trabajo
+
+#arreglar niveles del factor
+dat$status <- factor(dat$stage, levels(factor(dat$stage))[1:4])
+attach(dat)
+head(dat,5)# muestra las primeras 5 filas de datos
+
+#Construimos una matriz con los datos de sobrevivencia
+(pop <- table(year,status))
+
+#Escogemos una diagonal de la matriz (cohorte)
+Sx <- numeric(4)
+for(i in 1:4){
+  Sx[i] <- pop[(i+2),i]
+}
+rm(dat, pop, i)
+```
+
+
+Si aplicamos las fórmulas que hemos visto en clase, obtenemos la siguiente tabla de vida:
+
+\begingroup
+\sffamily
+\small
+\singlespacing
+
+```{r results='markup', echo=FALSE}
+knitr::kable(
+  tablaVida(x.sup = 1:4, Sx = Sx),
+  format = "markdown",
+  row.names = FALSE,
+  caption = ,
+  escape = TRUE,
+  align = rep("c", times = 7)
+  )
+```
+
+Table: (\#tab:Aquilegia) Tabla de vida para una cohorte de *Aquilegia*.
+
+\endgroup
+
+### Tablas de vida estáticas
+
+Para algunos animales grandes y longevos, es impráctico construir tablas de vida horizontales. Así que se toman datos en un momento determinado de tiempo, y la tabla se construye a partir de esta información.
+
+**Tablas de vida verticales o tiempo-específicas**--- Estas tablas se construyen cuando se conoce la edad de los organismos. Entonces, se cuentan cuántos individuos hay en cada clase de edad; posteriormente, se cuentan las muertes en cada clase de edad, y se combina la información para construir una tabla de vida.
+
+**Tablas estacionarias basadas en la edad a la muerte**--- Estas tablas se construyen con información de cadáveres, o partes de éstos. La edad en los cadáveres debe poder ser establecida claramente para que el método funcione. En @NealPopBio, se explica el método con un ejemplo basado en el carnero de Dali *Ovis dalli*. Donde el investigador recolectó cráneos y determinó la edad de cada uno.
+
+Por ejemplo, si recolecto 1000 mandíbulas de algún mamífero, y puedo datar estos huesos, el primer paso es asumir que estos 1000 individuos constituyen la primer clase de edad. Luego, si  el número de mandíbulas en la segunda clase de edad $S_2$ es 600, resto el $S_x$ anterior a esta cantidad, y así calculo $D_1$. Es decir, $D_1=1000-600$. Y así sucesivamente.
+
+**Tablas estacionarias basadas en la estructura de edad de la población**--- Si la población no cambia en tamaño (la tasa de natalidad iguala la tasa de mortalidad), y si la estructura de edad es un reflejo de la Supervivencia ($S_x$): podemos asumir que la edad de los individuos puede ser datada de manera precisa, y que hemos obtenido una muestra representativa de la población [@NealPopBio]. Esto quiere decir, que podemos utilizar la frecuencia en cada clase de edad, y asumir que corresponde a la supervivencia. Y que el cambio de frecuencia de una clase de edad a la siguiente se debe a la mortalidad ($D_x$).
+
+### Ejercicios
+
+```{exercise, label='R0'}
+¿Cual es el significado ecológico de $R_0$?
+```
+
+
+```{exercise, label='lambdaFromR0'}
+Si a usted le piden hacerse cargo de determinar el éxito de un programa de re-introducción, basado en el éxito reproductivo de la especie: Enumere los pasos a seguir para determinar si la especie se reproduce exitósamente, utilizando las herramientas vistas en las tablas de vida? Asuma que ud puede muestrear una cohorte de principio a fin.
+```
+
+
+```{exercise, label='calcRe'}
+Calcule si la siguiente población está creciendo, se mantiene estable o está decreciendo:
+```
+
+
+```{r echo=FALSE}
+M <- matrix(c(
+  5,10,15,20,
+  20,45,10,5,
+  0,0,1.2, 1.1
+), ncol = 3,
+byrow = FALSE)
+
+colnames(M) <- c("x","Sx","mx")
+
+print(M)
+
+rm(M)
+
+```
+
+
+
+
+```{exercise, label='ovisDalli'}
+En @NealPopBio se presentan los datos sobre el estudio de *Ovis dalli*. Calcule la tabla de vida:
+```
+
+
+```{r echo=FALSE}
+M <- matrix(c(
+  1:15,
+  608,487,480,472,465,447,419,390,348,268,154,59,4,2,0
+), ncol = 2,
+byrow = FALSE)
+
+colnames(M) <- c("x","Sx")
+
+print(M)
+
+rm(M)
+
+```
+
+\FloatBarrier
+
+## Matrices
+
+
+
+```{r , echo=FALSE, fig.cap="Un diagrama que representa gráficamente una matriz de transición"}
+
+plotWhale()
+rm(plotWhale)
+
+```
+

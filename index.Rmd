@@ -23,6 +23,11 @@ linkcolor: blue
 site: bookdown::bookdown_site
 biblio-style: DAVID
 ---
+
+```{r include=FALSE}
+source("source.R")
+```
+
 # Introducción {#intro}
 
 

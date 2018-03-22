@@ -67,11 +67,10 @@ El archivo `apa.csl` se puede encontrar en google. Es un archivo de estilo APA, 
 
  Se recomienda hacer primero todo en papel, y luego pasarlo en limpio usando *Rmarkdown*. Uno de los aspectos más sobresalientes de LaTeX es el aspecto de las ecuaciones. Los cálculos realizados en este ejercicio son una buena excusa para investigar un poco sobre el tema. Se recomienda este [link](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
 
-\setcounter{exercise}{0}
+### Instrucciones
 
-```{exercise, label='T02E01'}
 Resuelva el siguiente ejercicio de crecimiento exponencial
-```
+
 
 En un laboratorio se cultiva una especie presa para un programa de re-introducción de una especie de pez. En el laboratorio, se inició un proyecto de mejora en la producción de la presa, y se ha diseñado un experimento para aumentar el valor nutricional de las presas.
 
@@ -100,7 +99,57 @@ out <- optim(par = 0,fn = <nombre_de_funcion_para_minimizar>,
 
 ## Tarea 03
 
-## Tarea 04
+## Tarea 04: Ejercicios con tablas de vida
+
+### Objetivo general
+
+Valorar la importancia de las tablas de vida, para el manejo de recursos naturales.
+
+### Instrucciones
+
+*Lea el problema y aplique las tablas de vida para resolver la pregunta*
+
+Asuma que usted es parte de un grupo consultor que ha desarrollado un plan de manejo para un área que protege el ciclo reproductivo de una población de cabra de monte, como base alimenticia de grandes depredadores.
+
+Después de un muestreo intensivo, se obtiene una distribución de frecuencias por edad para las hembras. Tras corregir las frecuencias en cada talla, se utiliza el método de tablas estacionarias basadas en la estructura de edad de la población, para construir las clases de edad y supervivientes. También se obtuvo un promedio de las crías hembra sobrevivientes en cada clase de edad por hembra.
+
+Los datos obtenidos son los siguientes:
+
+```{r , echo=FALSE}
+M <- matrix(c(
+  1:13,
+  205, 96, 94, 89, 79, 68, 55, 43, 32, 22, 15, 10 ,6,
+  0,0,rep(1.01,times=10),0
+), ncol = 3,
+byrow = FALSE)
+
+colnames(M) <- c("x","Sx","mx")
+
+print(M)
+
+```
+
+
+Los administradores del área protegida están de acuerdo, en que se considera que el plan de manejo es efectivo, si la población de cabras aumenta o se mantiene constante. Ellos le han solicitado que usted haga esta evaluación, y les brinde los resultados.
+
+¿Es el plan de manejo efectivo?
+
+### Presentación
+
+- Presente la tarea en un archivo **R Markdown**, usando la plantilla de abajo.
+
+- Complete las secciones del código que se solicitan.
+
+- Corra el código y verifique que funcione, y que los resultados tienen sentido.
+
+- De su respuesta a los administradores del área protegida.
+
+Envíe solo el archivo `.Rmd` al profesor.
+
+
+**Descargue la plantilla para la tarea** [aquí](https://github.com/dawidh15/dinpob/plantillas_estudiantes)
+
+\newpage
 
 ## Tarea 05
 

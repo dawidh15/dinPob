@@ -1,0 +1,138 @@
+---
+title: "Tarea 04. Tablas de Vida"
+author: "SU NOMBRE"
+date: "FECHA"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Ejercicio
+
+PEGUE AQUI LAS INSTRUCCIONES DEL EJERCICIO
+
+# DATOS
+
+No modifique esta sección. Este código crea los datos del ejercicio y los guarda en una matriz llamada `M`.
+
+```{r , echo=FALSE}
+M <- matrix(c(
+  1:13,#x
+  205, 96, 94, 89, 79, 68, 55, 43, 32, 22, 15, 10 ,6,#Sx
+  0,0,rep(1.01,times=10),0#mx
+), ncol = 3,
+byrow = FALSE)
+
+colnames(M) <- c("x","Sx","mx")
+
+print(M)
+
+```
+
+# Función para la tabla de vida
+
+Complete el siguiente código en R, usando el material del curso para las tablas de vida:
+
+
+```{r}
+tablaVida <- function(x.sup,Sx, mx){
+  
+  # NO TOCAR===
+  # Configuracionesy calculos más avanzados
+  oldOp <- options()
+  digs <- nchar(max(Sx))
+  options(digits = digs)
+  amplitud <- x.sup - c(0,x.sup[-length(x.sup)])
+  ex <- numeric(length(Sx)  )
+    for( i in 1:length(Sx) ){
+    ex[i] <- sum(Sx[i:length(Sx)])/Sx[i]-0.5*amplitud[i]
+  }
+  
+  Dx <- Sx[-length(Sx)] - Sx[2:length(Sx)]
+  Dx[length(Sx)] <- NA
+  #=================
+  
+  
+  #MODIFICAR ESTO ++++++
+  # Calcule lx, según las fórmulas del material de clase
+  lx <- # <COPIE SU CODIGO ANTES DEL #>
+  #++++++++++++++++++++++++++++++++++++++++++
+    
+  # NO TOCAR======
+  dx <- lx[-length(lx)] - lx[2:length(lx)]
+  dx[length(lx)] <- NA
+  #================
+  
+  #MODIFICAR ESTO+++++++++++++
+  # Calcule qx, según las fórmulas del material de clase
+  qx <- # <COPIE SU CODIGO ANTES DEL #>
+ 
+  mxlx <- # <COPIE SU CODIGO ANTES DEL #>
+  
+  xmxlx <- (x.sup-amplitud/2)*mx*lx
+ 
+  R0 <- # <COPIE SU CODIGO ANTES DEL #>
+  
+  Tc <- # <COPIE SU CODIGO ANTES DEL #>
+  #+++++++++++++++++++++++++=
+
+  #NO TOCAR=======
+ #Regresar valores calculados
+  val = data.frame(x = x.sup,
+                   S_x = Sx,
+                   D_x = Dx,
+                   l_x = lx,
+                   d_x = dx,
+                   q_x = qx,
+                   e_x = ex)
+  
+  colnames(val) <- c("$x$", "$S_x$", "$D_x$", "$l_x$", "$d_x$", "$q_x$", "$e_x$")
+  
+    return(list(
+      val,
+      R0 = R0,
+      Tc = Tc
+      
+    ))
+
+  options(oldOp)
+  #===============
+}
+```
+
+
+# Corra la función con los datos proporcionados
+
+- Cree un vector para x
+
+- Cree un vector para Sx
+
+- Cree un vector para mx
+
+Tip, use la matriz con los datos. Asigne cada columna al vector que corresponde, y luego utilícelos en la función. Por ejemplo:  `x <- M[,"x"]` .
+
+```{r}
+tv <- tablaVida(
+    x.sup =   ,#<COPIE EL VECTOR x>
+    Sx =   ,# <COPIE EL VECTOR Sx>
+    mx =   #<COPIE EL VECTOR mx>
+)
+```
+
+
+# Calcule los valores clave
+
+```{r}
+R0 <- tv$R0
+
+Tc <- tv$TC
+
+# Calcule el aproximado a la tasa de crecimiento intrínseca per cápita, con los parámetros anteriores y analice si la población crece o no. Recuerde el tutorial de R para hacer calculos
+```
+
+# Criterio
+
+Basado en los resultados escriba su criterio aquí

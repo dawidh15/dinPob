@@ -18,7 +18,7 @@ Las otra gran categoría de modelos de crecimiento tienen que ver con la depende
 \index{C!crecimiento denso-independiente}
 
 
-### Crecimiento geométrico
+### Crecimiento geométrico {#crecimientogeometrico}
 
 \index{C!crecimiento geométrico}
 
@@ -140,7 +140,7 @@ Un cultivo de células dobla su tamaño poblacional en 15 minutos ($\lambda = 2$
 
 
 
-### Crecimiento exponencial
+### Crecimiento exponencial {#crecimientoexponencial}
 
 En la sección anterior, se trabajó con intervalos de tiempo discretos. Pero si queremos conocer el tamaño poblacional en cualquier momento del tiempo, debemos trabajar con intervalos infinitamente pequeños. Esto quiere decir que la ecuación \@ref(eq:geom2) se escribe en su forma continua:
 

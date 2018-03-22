@@ -104,6 +104,70 @@ $$
 $$
 
 
+**Ejercicio \@ref(exr:calcRe)**
+
+
+```{r}
+M <- matrix(c(
+  5,10,15,20,
+  20,45,10,5,
+  0,0,1.2, 1.1
+), ncol = 3,
+byrow = FALSE)
+
+colnames(M) <- c("x","Sx","mx")
+
+lf <- tablaVida(x.sup=M[,"x"],Sx=M[,"Sx"], mx=M[,"mx"])
+
+re <- log(lf$R0)/lf$Tc
+
+if (re > 1){
+  print("Está creciendo")
+} else if (re == 1 ){
+  print("Se mantiene constante")
+} else if ( re < 0 ){
+  print("Está decreciendo")
+}
+rm(lf,M)
+```
+
+
+**Ejercicio \@ref(exr:ovisDalli)**
+
+```{r , echo=FALSE}
+M <- matrix(c(
+  1:15,
+  608,487,480,472,465,447,419,390,348,268,154,59,4,2,0
+), ncol = 2,
+byrow = FALSE)
+
+colnames(M) <- c("x","Sx")
+
+lf <- tablaVida(x.sup=M[,"x"],Sx=M[,"Sx"])
+```
+
+\begingroup
+\sffamily
+\small
+\singlespacing
+
+```{r results='markup', echo=FALSE}
+knitr::kable(
+  lf,
+  format = "markdown",
+  row.names = FALSE,
+  escape = TRUE,
+  align = rep("c", times = 7)
+  )
+
+rm(lf,M)
+```
+
+Table: (\#tab:ovis) Tabla de vida para *Ovis dalli*.
+
+\endgroup
+
+
 \begingroup
 \small
 \printindex
