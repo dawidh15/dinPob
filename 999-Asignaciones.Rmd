@@ -147,7 +147,7 @@ Los administradores del área protegida están de acuerdo, en que se considera q
 Envíe solo el archivo `.Rmd` al profesor.
 
 
-**Descargue la plantilla para la tarea** [aquí](https://github.com/dawidh15/dinpob/plantillas_estudiantes)
+**Descargue la plantilla para la tarea** [aquí](https://github.com/dawidh15/dinPob/tree/master/plantillas_estudiantes)
 
 \newpage
 
