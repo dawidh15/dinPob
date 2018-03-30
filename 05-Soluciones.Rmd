@@ -1,10 +1,8 @@
 # Soluciones a los ejercicios
 
-
 **Ejercicio \@ref(exr:plotGeomGrowth)**
 
-
-```{r , cache=TRUE,out.height='6cm',fig.align='center'}
+```{r exrplotGeomGrowth, cache=TRUE,out.height='6cm',fig.align='center'}
 plot(0,0,xlim = c(0,50),
      ylim = c(0,100) ,
      type = 'n',xlab = 'Tamaño poblacional',
@@ -28,7 +26,6 @@ En 3 horas existen 12 periodos de 15 minutos ($t=12$). Entonces aplicamos la ecu
 $$
 100\times 2^{12} = \num{409600}\text{ células}
 $$
-
 
 **Ejercicio \@ref(exr:expGrowth1)**
 
@@ -59,7 +56,6 @@ $$
 Porque cuando $x \to \infty \Rightarrow x \gg N_0$. Es decir, cuando $x$ se vuelve infinito, es mucho más grande que $N_0$, por tanto, el cociente tiende a cero, cuando $x$ tiende a infinito.
 
 Poblacionalmente, esto significa, que si una población mantiene una tasa intrínseca negativa, por un periodo de tiempo suficientemente largo, sufrirá un evento de extinción.
-
 
 **Ejercicio \@ref(exr:logGrowth3)**
 
@@ -160,13 +156,42 @@ knitr::kable(
   align = rep("c", times = 7)
   )
 
-rm(lf,M)
+rm(M)
 ```
 
 Table: (\#tab:ovis) Tabla de vida para *Ovis dalli*.
 
 \endgroup
 
+**Ejercicio \@ref(exr:ovisDalliSupCurve)**
+
+
+```{r fig.height=3.5, message=FALSE, warning=FALSE, fig.pos='h!'}
+op <- par()
+par( mar = c(5, 5, 4, 5) + 0.1)
+
+plot(lf[,1],lf[,4]*1000,
+     xlab = "Edad", ylab = "", axes = FALSE, type = "n")
+
+axis(side = 1, at = lf[,1])
+
+axis(side = 2, at = c(0,500,1000))
+lines(lf[,1],lf[,4]*1000, lwd = 2)
+mtext(side = 2, "Supervivencia x 1000",  line = 3)
+
+axis(side = 4, at = c(0,500,1000))
+lines(lf[,1],lf[,6]*1000, lwd = 2, lty = 2, col = "darkgray")
+mtext(side = 4, "Mortalidad x 1000", line = 3)
+
+legend("top", legend = c("Supervivencia", "mortalidad"),
+       lty = c(1,2), lwd = c(2,2), col = c(1, "darkgray"))
+par(op)# restaurar valores por defecto para plot
+rm(lf)# limpiar un poco
+```
+
+Según el gráfico anterior, existe un primer pico de mortalidad en las crías de un año o menos. Posteriormente la mortalidad es muy baja hasta los ocho años, cuando empieza a incrementar. Probablemente, a partir de los ocho años, las cabras de monte empiezan a envejecer y a perder sus cualidades para sobrevivir.
+
+\FloatBarrier
 
 \begingroup
 \small
