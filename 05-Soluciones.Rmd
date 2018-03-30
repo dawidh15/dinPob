@@ -124,7 +124,7 @@ if (re > 1){
 } else if ( re < 0 ){
   print("Está decreciendo")
 }
-rm(lf,M)
+rm(M)
 ```
 
 
@@ -186,7 +186,7 @@ mtext(side = 4, "Mortalidad x 1000", line = 3)
 legend("top", legend = c("Supervivencia", "mortalidad"),
        lty = c(1,2), lwd = c(2,2), col = c(1, "darkgray"))
 par(op)# restaurar valores por defecto para plot
-rm(lf)# limpiar un poco
+rm(lf)#limpiar un poco
 ```
 
 Según el gráfico anterior, existe un primer pico de mortalidad en las crías de un año o menos. Posteriormente la mortalidad es muy baja hasta los ocho años, cuando empieza a incrementar. Probablemente, a partir de los ocho años, las cabras de monte empiezan a envejecer y a perder sus cualidades para sobrevivir.
