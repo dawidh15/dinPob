@@ -173,3 +173,32 @@ Table: (\#tab:ovis) Tabla de vida para *Ovis dalli*.
 \printindex
 \vfill
 \endgroup
+
+
+**Ejercicio \@ref(exr:ovisDalliSupCurve)**
+
+
+```{r message=FALSE, warning=FALSE}
+op <- par()
+par( mar = c(5, 5, 4, 5) + 0.1)
+
+plot(lf[,1],lf[,4]*1000,
+     xlab = "Edad", ylab = "", axes = FALSE, type = "n")
+
+axis(side = 1, at = lf[,1])
+
+axis(side = 2, at = c(0,500,1000))
+lines(lf[,1],lf[,4]*1000, lwd = 2)
+mtext(side = 2, "Supervivencia x 1000",  line = 3)
+
+axis(side = 4, at = c(0,500,1000))
+lines(lf[,1],lf[,6]*1000, lwd = 2, lty = 2, col = "darkgray")
+mtext(side = 4, "Mortalidad x 1000", line = 3)
+
+legend("top", legend = c("Supervivencia", "mortalidad"),
+       lty = c(1,2), lwd = c(2,2), col = c(1, "darkgray"))
+par(op)
+rm(lf)
+```
+
+Según el gráfico anterior, existe un primer pico de mortalidad en las crías de un año o menos. Posteriormente la mortalidad es muy baja hasta los ocho años, cuando empieza a incrementar. Probablemente, a partir de los ocho años, las cabras de monte empiezan a envejecer y a perder sus cualidades para sobrevivir.

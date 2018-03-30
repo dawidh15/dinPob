@@ -103,7 +103,7 @@ $$
 \mathrm{r_m} \approx \frac{\ln(R_0)}{T_c}
 $$
 
-### Tablas de vida sobre cohortes (horizontales)
+### Tablas de vida sobre cohortes (tablas horizontales)
 
 Este tipo de tablas se construyen al seguir un grupo de organismos de una misma cohorte o generación. Es más utilizado en plantas o animales sésiles; sin embargo, con el financiamiento y el equipo correcto, puede ser utilizado en animales móviles. 
 
@@ -128,6 +128,12 @@ Sx <- numeric(4)
 for(i in 1:4){
   Sx[i] <- pop[(i+2),i]
 }
+```
+
+
+```{r include=FALSE}
+aqData <- tablaVida(x.sup = 1:4, Sx = Sx)
+
 rm(dat, pop, i)
 ```
 
@@ -140,8 +146,7 @@ Si aplicamos las fórmulas que hemos visto en clase, obtenemos la siguiente tabl
 \singlespacing
 
 ```{r results='markup', echo=FALSE}
-knitr::kable(
-  tablaVida(x.sup = 1:4, Sx = Sx),
+knitr::kable(aqData,
   format = "markdown",
   row.names = FALSE,
   caption = ,
@@ -165,6 +170,38 @@ Para algunos animales grandes y longevos, es impráctico construir tablas de vid
 Por ejemplo, si recolecto 1000 mandíbulas de algún mamífero, y puedo datar estos huesos, el primer paso es asumir que estos 1000 individuos constituyen la primer clase de edad. Luego, si  el número de mandíbulas en la segunda clase de edad $S_2$ es 600, resto el $S_x$ anterior a esta cantidad, y así calculo $D_1$. Es decir, $D_1=1000-600$. Y así sucesivamente.
 
 **Tablas estacionarias basadas en la estructura de edad de la población**--- Si la población no cambia en tamaño (la tasa de natalidad iguala la tasa de mortalidad), y si la estructura de edad es un reflejo de la Supervivencia ($S_x$): podemos asumir que la edad de los individuos puede ser datada de manera precisa, y que hemos obtenido una muestra representativa de la población [@NealPopBio]. Esto quiere decir, que podemos utilizar la frecuencia en cada clase de edad, y asumir que corresponde a la supervivencia. Y que el cambio de frecuencia de una clase de edad a la siguiente se debe a la mortalidad ($D_x$).
+
+## Curvas de supervivencia
+
+Las tablas de vida pueden mostrar algunos detalles de las estrategias de supervivencia de los organismos. Por ejemplo, ¿tienen cuidado parental, o confían en un gran número de juveniles (o huevos, larvas, semillas) de los cuales un pequeño porcentaje de ellos llegarán a ser adultos?
+
+Para ello, podemos utilizar directamente la columna $S_x$ y graficarla contra la columna $x$. Sin embargo, si queremos comparar entre distintas especies, o contra diferentes experimentos o estudios, lo ideal es utilizar una columna normalizada como $l_x$. En algunos casos, para mejorar la visualización de los datos, se multiplica la columna $l_x$ por un factor, generalmente un factor de mil, para mostrar la supervivencia por cada mil individuos.
+
+También se puede explorar la mortalidad en cada clase de edad, siguiendo un procedimiento similar; pero, reemplazando $l_x$ por $q_x$. Para ilustrar el procedimiento podemos utilizar los datos del Cuadro \@ref(tab:Aquilegia):
+
+```{r aqDataPlot, message=FALSE, warning=FALSE, fig.cap = 'Supervivencia y mortalidad de *Aquilegia*'}
+
+op <- par()
+par( mar = c(5, 5, 4, 5) + 0.1)
+
+plot(aqData[,1],aqData[,4]*1000,
+     xlab = "Edad", ylab = "", axes = FALSE, type = "n")
+
+axis(side = 2, at = c(0,500,1000))
+lines(aqData[,1],aqData[,4]*1000, lwd = 2)
+mtext(side = 2, "Supervivencia x 1000",  line = 3)
+
+axis(side = 1, at = 1:4)
+
+axis(side = 4, at = c(0,500,1000))
+lines(aqData[,1],aqData[,6]*1000, lwd = 2, lty = 2, col = "darkgray")
+mtext(side = 4, "Mortalidad x 1000", line = 3)
+
+legend("topright", legend = c("Supervivencia", "mortalidad"),
+       lty = c(1,2), lwd = c(2,2), col = c(1, "darkgray"))
+par(op)
+rm(aqData)
+```
 
 ### Ejercicios
 
@@ -223,6 +260,12 @@ rm(M)
 ```
 
 \FloatBarrier
+
+
+```{exercise, label='ovisDalliSupCurve'}
+Grafique la curva de supervivencia y mortalidad del ejercicio anterior.
+```
+
 
 ## Matrices
 

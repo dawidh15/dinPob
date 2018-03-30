@@ -3,6 +3,7 @@
 
 #----Capítulo 2, Demografía-----
 
+
 tablaVida <- function(x.sup,Sx, mx=NULL){
   oldOp <- options()
   digs <- nchar(max(Sx))
@@ -37,7 +38,7 @@ tablaVida <- function(x.sup,Sx, mx=NULL){
     
     
     return(list(
-      val,
+      val=val,
       R0 = R0,
       Tc = Tc
       
