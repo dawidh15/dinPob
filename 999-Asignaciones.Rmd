@@ -97,7 +97,35 @@ out <- optim(par = 0,fn = <nombre_de_funcion_para_minimizar>,
 - Antes se recomienda buscar la ayuda de la función en la consola de **R**, al escribir `?optim`.  Revise los ejemplos, y lea detalladamente la ayuda.
 
 
-## Tarea 03
+## Tarea 03: Colabora en el trabajo grupal
+
+### Objetivo general
+
+Aprender la mecánica de las herramientas modernas de colaboración científica.
+
+### Instrucciones
+
+Los pasos detallados para completar esta tarea se encuentran en el [Tutorial de Git y GitHub](https://github.com/dawidh15/dinPob/wiki/03-Tutorial-de-Git-y-GitHub), y en la [Guía para hacer un Pull Request](https://github.com/dawidh15/dinPob/wiki/04-Guía-para-hacer-un-Pull-Request).
+
+1. Haz un *Fork* del repositorio [grupal2018](https://github.com/dinPobClase/grupal2018).
+
+1. Crea un nuevo proyecto en **RStudio**, usando control de versión.
+
+1. Crea una nueva rama en **Git**, que se llame `ra1`.
+
+1. Añade tu nombre en la sección correspondiente del archivo `informe.Rmd`.
+
+1. Haz un commit que diga *nombre añadido <su nombre aquí>*.
+
+1. Haz un *Push* del archivo a tu repositorio.
+
+1. Ve a **GitHub** y crea un nuevo *Pull Request*.
+
+### **Problemas**
+
+Es posible que **Git** no te deje subir tus cambios, o hacer un *Pull Request*. Si ves un mensaje de error que diga que estás atrás con los cambios de la rama principal, y que primero debes hacer un *Pull*, significa que otro estudiante mandó sus cambios primero, y que éstos fueron incorporados por el profesor.
+
+Entonces debes actualizarte con la última versión del `informe.Rmd`, siguiendo [estos pasos](https://github.com/dawidh15/dinPob/wiki/04-Guía-para-hacer-un-Pull-Request#haz-un-pull-request).
 
 ## Tarea 04: Ejercicios con tablas de vida
 
@@ -155,11 +183,50 @@ Envíe solo el archivo `.Rmd` al profesor.
 
 ## Tarea 06
 
+\newpage
+
+## Trabajo individual
+
+### Objetivo general
+
+Valorar la importancia de la estructura de trabajo del curso; al exponer al estudiante a las múltiples aplicaciones que se desarrollan en la plataforma de trabajo que se ha adoptado durante el semestre.
+
+### Instrucciones
+
+El estudiante buscará un paquete en \textsf{R} relacionado con el tema de ecología de poblaciones o similar. No se permite el paquete **popbio**; porque ya se está utilizando en el curso.
+
+Una vez seleccionado el paquete, el estudiante elaborará un documento **R Markdown**, con las siguientes secciones:
+
+1. Introducción: ¿Qué hace el paquete? *Máximo 3 párrafos*.
+
+1. Desarrolladores: ¿Quién o quienes desarrollaron el paquete, y qué experiencia tienen? *Máximo 3 párrafos*
+
+1. Hacer un ejemplo con las funciones y datos del paquete. *Máximo 2 hojas por ambos lados*.
+
+La mayoría de paquetes vienen con datos de prueba y tutoriales. El estudiante puede escoger una de las características principales del paquete y desarrollarla en el documento.
+
+La idea es utilizar "*chunks*" para demostrar el uso del paquete a los compañeros.
+
+### Exposición
+
+El estudiante hará una breve exposición sobre sus resultados, a partir del 28 de mayo. La exposición tendrá una duración máxima de diez minutos. El estudiante puede hacer una presentación tradicional, o una sesión en vivo del uso del paquete.
+
+
+### Sugerencias
+
+- rMark
+
+- Rcapture
+
+- rDistance
+
+- vegan
+
+Existen muchos paquetes relacionados con el Ambiente y la Ecología en la página de [CRAN Taks View](https://cran.r-project.org/web/views/Environmetrics.html)
 
 \newpage
 
 ## Trabajo grupal
-
 
 ### Objetivo general
 
