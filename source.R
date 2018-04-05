@@ -1,7 +1,11 @@
-#-----CapÃ­tulo 1, Crecimiento-----
+####----ENCODING LATIN1
 
 
-#----CapÃ­tulo 2, DemografÃ­a-----
+
+#-----Capítulo 1, Crecimiento-----
+
+
+#----Capítulo 2, Demografía-----
 
 
 tablaVida <- function(x.sup,Sx, mx=NULL){
@@ -49,7 +53,43 @@ tablaVida <- function(x.sup,Sx, mx=NULL){
   options(oldOp)
 }
 
-##---DemografÃ­a, plotWhale----
+##---Demografía, plotSiphonariaCC---
+
+plotSiphonariaCC <- function() {
+  #get dinPob WD
+  #wd <- dirname(rstudioapi::getSourceEditorContext()$path)
+ # datosDir <- paste0(wd, "/datos/chp-02-siphonaria.csv")
+  datosDir <- "datos/chp-02-siphonaria.csv"
+  dat <- read.csv(datosDir)
+  hdat <- hist(dat$diam_mayor, plot = FALSE)
+  a <- hdat$mids[which.max(hdat$counts)]
+  b <- hdat$mids[length(hdat$mids)]
+  
+  hist(dat$diam_mayor,
+       breaks = "sturges",
+       col = "gray",
+       main = "Histograma de tallas de\n Siphonaria gigas",
+       xlab = "Diámetro mayor (cm)",
+       ylab = "Frecuencia",
+       las = 1)
+  
+  lines(x = c(a,b),rep(max(hdat$counts), 2), col = "red", lwd = 2)
+  text(mean(c(a,b)), max(hdat$counts)*0.9, "curva descendente")
+}
+
+
+##---Demografía, plotAquilegiaCC----
+
+plotAquilegiaCC <- function(){
+  plot(1:4, log(Sx),
+       main = "Verificación de ajuste",
+       xlab = "Clase de edad",
+       ylab = expression(log(Sx)),
+       pch = 21, bg = 1, las = 1)
+  abline(a = coef(salida)[1], b = coef(salida)[2], lwd = 2)
+}
+
+##---Demografía, plotWhale----
 
 plotWhale <- function(){
     library(popbio)
@@ -96,3 +136,4 @@ plotWhale <- function(){
     
     detach("package:diagram", unload = TRUE)
 }
+

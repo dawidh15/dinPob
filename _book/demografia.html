@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Ecología de poblaciones silvestres</title>
+  <meta name="description" content="Este es el manual del curso ‘Ecología de Poblaciones Silvestres’, de las Escuela de Ciencias Biológicas de la Universidad Nacional">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Ecología de poblaciones silvestres" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este es el manual del curso ‘Ecología de Poblaciones Silvestres’, de las Escuela de Ciencias Biológicas de la Universidad Nacional" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Ecología de poblaciones silvestres" />
+  
+  <meta name="twitter:description" content="Este es el manual del curso ‘Ecología de Poblaciones Silvestres’, de las Escuela de Ciencias Biológicas de la Universidad Nacional" />
+  
+
+<meta name="author" content="David Martínez Cascante">
+
+
+<meta name="date" content="2018-04-04">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="modelos-de-crecimiento.html">
+<link rel="next" href="soluciones-a-los-ejercicios.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html"><i class="fa fa-check"></i><b>2</b> Modelos de crecimiento</a><ul>
+<li class="chapter" data-level="2.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-denso-independiente"><i class="fa fa-check"></i><b>2.1</b> Crecimiento denso-independiente</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimientogeometrico"><i class="fa fa-check"></i><b>2.1.1</b> Crecimiento geométrico</a></li>
+<li class="chapter" data-level="2.1.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimientoexponencial"><i class="fa fa-check"></i><b>2.1.2</b> Crecimiento exponencial</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-denso-dependiente"><i class="fa fa-check"></i><b>2.2</b> Crecimiento denso-dependiente</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-logistico"><i class="fa fa-check"></i><b>2.2.1</b> Crecimiento logístico</a></li>
+<li class="chapter" data-level="2.2.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#usos-del-modelo-logistico"><i class="fa fa-check"></i><b>2.2.2</b> Usos del modelo logístico</a></li>
+<li class="chapter" data-level="2.2.3" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#matrices"><i class="fa fa-check"></i><b>2.2.3</b> Matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#otras-fuentes-bibliograficas"><i class="fa fa-check"></i><b>2.3</b> Otras fuentes bibliográficas</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="demografia.html"><a href="demografia.html"><i class="fa fa-check"></i><b>3</b> Demografía</a><ul>
+<li class="chapter" data-level="3.1" data-path="demografia.html"><a href="demografia.html#tablas-de-vida"><i class="fa fa-check"></i><b>3.1</b> Tablas de vida</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="demografia.html"><a href="demografia.html#tablas-de-vida-sobre-cohortes-tablas-horizontales"><i class="fa fa-check"></i><b>3.1.1</b> Tablas de vida sobre cohortes (tablas horizontales)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="demografia.html"><a href="demografia.html#tablas-de-vida-estaticas"><i class="fa fa-check"></i><b>3.1.2</b> Tablas de vida estáticas</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="demografia.html"><a href="demografia.html#curvas-de-supervivencia"><i class="fa fa-check"></i><b>3.2</b> Curvas de supervivencia</a></li>
+<li class="chapter" data-level="3.3" data-path="demografia.html"><a href="demografia.html#analisis-de-curvas-de-captura"><i class="fa fa-check"></i><b>3.3</b> Análisis de Curvas de Captura</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="demografia.html"><a href="demografia.html#metodo-de-chapman-y-robson-1960.-estimacion-de-supervivencia-usando-todas-las-clases-de-edad"><i class="fa fa-check"></i><b>3.3.1</b> Método de Chapman y Robson 1960. Estimación de supervivencia usando todas las clases de edad</a></li>
+<li class="chapter" data-level="3.3.2" data-path="demografia.html"><a href="demografia.html#metodo-de-regresion"><i class="fa fa-check"></i><b>3.3.2</b> Método de regresión</a></li>
+<li class="chapter" data-level="3.3.3" data-path="demografia.html"><a href="demografia.html#ejercicios-2"><i class="fa fa-check"></i><b>3.3.3</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="demografia.html"><a href="demografia.html#matrices-1"><i class="fa fa-check"></i><b>3.4</b> Matrices</a></li>
+<li class="chapter" data-level="3.5" data-path="demografia.html"><a href="demografia.html#otras-fuentes-bibliograficas-1"><i class="fa fa-check"></i><b>3.5</b> Otras fuentes bibliográficas</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="soluciones-a-los-ejercicios.html"><a href="soluciones-a-los-ejercicios.html"><i class="fa fa-check"></i><b>4</b> Soluciones a los ejercicios</a></li>
+<li class="appendix"><span><b>Apéndices</b></span></li>
+<li class="chapter" data-level="A" data-path="metodos-numericos-para-ecologia-de-poblaciones.html"><a href="metodos-numericos-para-ecologia-de-poblaciones.html"><i class="fa fa-check"></i><b>A</b> Métodos numéricos para ecología de poblaciones</a><ul>
+<li class="chapter" data-level="A.1" data-path="metodos-numericos-para-ecologia-de-poblaciones.html"><a href="metodos-numericos-para-ecologia-de-poblaciones.html#simulacion-de-ecuaciones-diferenciales"><i class="fa fa-check"></i><b>A.1</b> Simulación de ecuaciones diferenciales</a></li>
+<li class="chapter" data-level="A.2" data-path="metodos-numericos-para-ecologia-de-poblaciones.html"><a href="metodos-numericos-para-ecologia-de-poblaciones.html#error-en-las-simulaciones"><i class="fa fa-check"></i><b>A.2</b> Error en las simulaciones</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html"><i class="fa fa-check"></i><b>B</b> Tutorial de R con RStudio</a><ul>
+<li class="chapter" data-level="B.1" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#RStudioProject"><i class="fa fa-check"></i><b>B.1</b> Crear un proyecto en <em>RStudio</em></a></li>
+<li class="chapter" data-level="B.2" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#funciones-basicas-en-r"><i class="fa fa-check"></i><b>B.2</b> Funciones básicas en R</a></li>
+<li class="chapter" data-level="B.3" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#estructuras-de-datos"><i class="fa fa-check"></i><b>B.3</b> Estructuras de datos</a></li>
+<li class="chapter" data-level="B.4" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#funciones"><i class="fa fa-check"></i><b>B.4</b> Funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="asignaciones.html"><a href="asignaciones.html"><i class="fa fa-check"></i><b>C</b> Asignaciones</a><ul>
+<li class="chapter" data-level="C.1" data-path="asignaciones.html"><a href="asignaciones.html#tarea-01-hola-mundo-con-rmarkdown"><i class="fa fa-check"></i><b>C.1</b> Tarea 01: ¡Hola mundo con <em>Rmarkdown</em>!</a></li>
+<li class="chapter" data-level="C.2" data-path="asignaciones.html"><a href="asignaciones.html#tarea-02-ejercicios-de-crecimiento"><i class="fa fa-check"></i><b>C.2</b> Tarea 02: Ejercicios de crecimiento</a><ul>
+<li class="chapter" data-level="C.2.1" data-path="asignaciones.html"><a href="asignaciones.html#instrucciones"><i class="fa fa-check"></i><b>C.2.1</b> Instrucciones</a></li>
+</ul></li>
+<li class="chapter" data-level="C.3" data-path="asignaciones.html"><a href="asignaciones.html#tarea-03"><i class="fa fa-check"></i><b>C.3</b> Tarea 03</a></li>
+<li class="chapter" data-level="C.4" data-path="asignaciones.html"><a href="asignaciones.html#tarea-04-ejercicios-con-tablas-de-vida"><i class="fa fa-check"></i><b>C.4</b> Tarea 04: Ejercicios con tablas de vida</a><ul>
+<li class="chapter" data-level="C.4.1" data-path="asignaciones.html"><a href="asignaciones.html#objetivo-general"><i class="fa fa-check"></i><b>C.4.1</b> Objetivo general</a></li>
+<li class="chapter" data-level="C.4.2" data-path="asignaciones.html"><a href="asignaciones.html#instrucciones-1"><i class="fa fa-check"></i><b>C.4.2</b> Instrucciones</a></li>
+<li class="chapter" data-level="C.4.3" data-path="asignaciones.html"><a href="asignaciones.html#presentacion"><i class="fa fa-check"></i><b>C.4.3</b> Presentación</a></li>
+</ul></li>
+<li class="chapter" data-level="C.5" data-path="asignaciones.html"><a href="asignaciones.html#tarea-05"><i class="fa fa-check"></i><b>C.5</b> Tarea 05</a></li>
+<li class="chapter" data-level="C.6" data-path="asignaciones.html"><a href="asignaciones.html#tarea-06"><i class="fa fa-check"></i><b>C.6</b> Tarea 06</a></li>
+<li class="chapter" data-level="C.7" data-path="asignaciones.html"><a href="asignaciones.html#trabajo-grupal"><i class="fa fa-check"></i><b>C.7</b> Trabajo grupal</a><ul>
+<li class="chapter" data-level="C.7.1" data-path="asignaciones.html"><a href="asignaciones.html#objetivo-general-1"><i class="fa fa-check"></i><b>C.7.1</b> Objetivo general</a></li>
+<li class="chapter" data-level="C.7.2" data-path="asignaciones.html"><a href="asignaciones.html#objetivos-especificos"><i class="fa fa-check"></i><b>C.7.2</b> Objetivos específicos</a></li>
+<li class="chapter" data-level="C.7.3" data-path="asignaciones.html"><a href="asignaciones.html#justificacion"><i class="fa fa-check"></i><b>C.7.3</b> Justificación</a></li>
+<li class="chapter" data-level="C.7.4" data-path="asignaciones.html"><a href="asignaciones.html#definiciones"><i class="fa fa-check"></i><b>C.7.4</b> Definiciones</a></li>
+<li class="chapter" data-level="C.7.5" data-path="asignaciones.html"><a href="asignaciones.html#metas"><i class="fa fa-check"></i><b>C.7.5</b> Metas</a></li>
+<li class="chapter" data-level="C.7.6" data-path="asignaciones.html"><a href="asignaciones.html#flujo-semanal-de-trabajo"><i class="fa fa-check"></i><b>C.7.6</b> Flujo semanal de trabajo</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ecología de poblaciones silvestres</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="demografia" class="section level1">
+<h1><span class="header-section-number">Capítulo 3</span> Demografía</h1>
+<p>En el primer capítulo del material del curso, tratamos algunos modelos de crecimiento, donde factores importantes, como el sexo, la edad y el estado reproductivo de los organismos fueron ignorados. Anteriormente, consideramos a las poblaciones como una masa sin estructura que crece en relación al tiempo, y su propio tamaño. Esto tiene consecuencias importantes a la hora de constrastar las predicciones de los modelos, con datos reales sobre poblaciones.</p>
+<p>Por ejemplo, en muchas poblaciones aprovechadas, los métodos de captura tienen alta selectividad para ciertas tallas o edades. Por tanto, existe un componente que provoca un efecto asimétrico en la mortalidad de una clase de edad a la siguiente.</p>
+<p>Utilizar estructuras de edades en los modelos de dinámica de poblaciones, permite predicir algunos efectos de acciones de manejo. Por ejemplo, ¿qué pasa si distribuimos la mortalidad de manera equitativa en todas las clases de edad, o qué pasa si cargamos la mortalidad en cierta clase de edad pero no en las otras? Este tema se refleja en los reglamentos de tallas mínimas para la pesca en Costa Rica, por ejemplo.</p>
+<p>La estructura por edades, puede entenderse como el aporte de cada clase de edad a la fecundidad, y a la supervivencia de una clase a la siguiente. Por ejemplo, podemos pensar en un modelo sencillo donde tenemos tres estados en una población: neonatos, juveniles y adultos. Los neonatos aportan individuos desde su clase, hacia los juveniles. Los juveniles pueden reproducirse tempranamente, y aportar individuos a los neonatos mediante la reproducción; además, aquellos que sobrevivan pasarán a la calse adulta. Por último, la clase adulta aportará muchos individuos a los neonatos mediante la reproducción, y algunos de ellos sobrevivirán y permanecerán en la misma clase en la siguiente generación (Figura <a href="demografia.html#fig:demoTMintro">3.1</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:demoTMintro"></span>
+<img src="dinPob_files/figure-html/demoTMintro-1.png" alt="Ejemplo de las transiciones entre clases de edad" width="480" />
+<p class="caption">
+Figure 3.1: Ejemplo de las transiciones entre clases de edad
+</p>
+</div>
+<p>En las secciones posteriores, aprenderemos los fundamentos del uso de modelos estructurados por edad, y sus aplicaciones al manejo de recursos naturales. Para ayudar a la comprensión de la teoría, y su aplicación a datos reales, utilizaremos el paquete <code>popbio</code> de .</p>
+<p>Debemos instalarlo en la computadora, utilizando las siguientes líneas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;popbio&quot;</span>)</code></pre></div>
+<div id="tablas-de-vida" class="section level2">
+<h2><span class="header-section-number">3.1</span> Tablas de vida</h2>
+<p>Las tablas de vida resumen un estudio longitudinal, que investiga el destino de los individuos de una <em>cohorte</em>  durante su vida (o una muestra de la cohorte). Usualmente, la primer columna de una tabla de vida consiste del número de individuos en una clase de edad. Y las clases de edad, dependen del ciclo de vida de los organismos.</p>
+<p>Este ordenamiento de los datos permite investigar cuántos individuos sobreviven de una clase de edad a la siguiente. Y apartir de aquí, se construyen otros valores poblacionales importantes.</p>
+<p>Para construir una tabla de vida, debemos seguir los siguientes pasos:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(x\)</span>: Definir un intervalo de edad, que sea apropiado para el ciclo de vida de la especie. Puede indicarse únicamente el valor inicial del intervalo en la columna, pero lo ideal es trabajar con el punto medio del intervalo de clase. Por ejemplo, para el intervalo <span class="math inline">\([a, b)\)</span>, calculamos el punto medio del intervalo como <span class="math inline">\(x = (a+b)/2\)</span>.</p></li>
+<li><p><span class="math inline">\(S_x\)</span>: Indicar el número de supervivientes en esa clase de edad.</p></li>
+<li><p><span class="math inline">\(D_x\)</span>: Anotar el número de muertes en esa clase de edad. Se calcula como <span class="math inline">\(D_x = S_x - S_{x+1}\)</span>.</p></li>
+<li><p><span class="math inline">\(l_x\)</span>: Calcular la proporción de sobrevivientes con respecto al número de individuos en la primer clase de edad <span class="math inline">\(S_0\)</span>. Para cada fila de la tabla de vida, calcular <span class="math inline">\(l_x = S_x/S_0\)</span>.</p></li>
+<li><p><span class="math inline">\(d_x\)</span>: Se calcula como <span class="math inline">\(D_x\)</span>, pero la columna con los datos de entrada es <span class="math inline">\(l_x\)</span>. Es decir: <span class="math inline">\(d_x=l_x-l_{x+1}\)</span>.</p></li>
+<li><p><span class="math inline">\(q_x\)</span>: La tasa de mortalidad, que se calcula como <span class="math inline">\(q_x = D_x/S_x\)</span> ó <span class="math inline">\(q_x = d_x/l_x\)</span>.</p></li>
+<li><p><span class="math inline">\(e_x\)</span>: La esperanza de vida promedio. Esta se calcula al sumar todos los sobrevivientes desde la clase de edad <span class="math inline">\(x\)</span> hasta la última, dividido entre el número de supervivientes en la clase <span class="math inline">\(x\)</span>. Esta manera de calcular <span class="math inline">\(e_x\)</span> supone que todos los individuos sobreviven desde e inicio de la clase de edad hasta el final y luego mueren. Para corregir restamos a este valor la mitad de la amplitud del intervalo en la clase de edad <span class="math inline">\(x\)</span>. Es decir, si la amplitud del intervalo es un año, entonces restamos <span class="math inline">\(0.5\left\Vert x \right\Vert =0.5(1)\)</span>. La fórmula Si tenemos <span class="math inline">\(n\)</span> clases de edad, entonces calculamos <span class="math inline">\(e_x = (\sum_{i=x}^n{S_i})/S_x - 0.5\left\Vert x \right\Vert\)</span>.</p></li>
+</ol>
+<p>Los calculos anteriores son interesantes, pero aún hay datos que se pueden añadir para sacar todo el provecho de las tablas de vida: los datos de reproducción. En el caso de animales, las tablas suelen trabajarse con el número de hembras; además, pueden añadirse datos sobre la descendencia que produce cada hembra (contanto también solo los individuos de este sexo). Por lo tanto, a las columnas anteriores añadimos las siguientes:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(m_x\)</span>: El número de descendientes hembras por cada hembra de la clase <span class="math inline">\(x\)</span></p></li>
+<li><p><span class="math inline">\(m_x l_x\)</span>: La producción de nuevas hembras por clase de edad.</p></li>
+<li><p><span class="math inline">\(x\,m_x l_x\)</span>: paso intermedio para calcular parámetros reproductivos.</p></li>
+</ol>
+<p>Y con los resultados de una tabla como esta, podemos calcular parámetros importantes como la tasa de crecimiento neta  (<span class="math inline">\(R_0\)</span>), que es la cantidad promedio de descendientes hembras que produce una hembra a lo largo de su vida. También podemos calcular el tiempo medio de generación (<span class="math inline">\(T_c\)</span>), que es tiempo que en promedio dura una hembra en producir una cantidad de descendientes hembra igual a la tasa de crecimiento neta, <span class="math inline">\(R_0\)</span>. Estos parámetros los calculamos como:</p>
+<p><span class="math display">\[
+\begin{split}
+R_0 &amp;= \sum l_x m_x\\
+T_c &amp;= \sum x\, m_x l_x\\
+\end{split}
+\]</span></p>
+<p>El <span class="math inline">\(R_0\)</span> es un reflejo de la tasa de multiplicación (<span class="math inline">\(\lambda\)</span>, ver sección <a href="modelos-de-crecimiento.html#crecimientogeometrico">2.1.1</a>). Es decir, la población crece si <span class="math inline">\(R_0 &gt; 1\)</span>, se mantiene estable si <span class="math inline">\(R_0 =1\)</span>, y decrece si <span class="math inline">\(R_0 &lt; 1\)</span>.</p>
+<p>También podemos relacionarlo con la tasa intrínseca de crecimiento per cápita <span class="math inline">\(\mathrm{r_m}\)</span> (ver sección <a href="modelos-de-crecimiento.html#crecimientoexponencial">2.1.2</a>). Para ello usamos la siguiente relación:</p>
+<p><span class="math display">\[
+\mathrm{r_m} \approx \frac{\ln(R_0)}{T_c}
+\]</span></p>
+<div id="tablas-de-vida-sobre-cohortes-tablas-horizontales" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Tablas de vida sobre cohortes (tablas horizontales)</h3>
+<p>Este tipo de tablas se construyen al seguir un grupo de organismos de una misma cohorte o generación. Es más utilizado en plantas o animales sésiles; sin embargo, con el financiamiento y el equipo correcto, puede ser utilizado en animales móviles.</p>
+<p>El paquete <strong>popbio</strong> de , ofrece varios conjuntos de datos. Uno de ellos sobre una planta llamada <em>Aquilegia</em>. El conjunto de datos contiene información sobre cada planta, y su destino después de muestreos anuales.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(popbio)<span class="co"># cargar paquete</span>
+<span class="kw">data</span>(<span class="st">&quot;aq.trans&quot;</span>)<span class="co">#cargar datos</span>
+aq.trans -&gt;<span class="st"> </span>dat; <span class="kw">rm</span>(aq.trans)<span class="co">#crear objeto de trabajo</span>
+
+<span class="co">#arreglar niveles del factor</span>
+dat<span class="op">$</span>status &lt;-<span class="st"> </span><span class="kw">factor</span>(dat<span class="op">$</span>stage, <span class="kw">levels</span>(<span class="kw">factor</span>(dat<span class="op">$</span>stage))[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])
+<span class="kw">attach</span>(dat)
+<span class="kw">head</span>(dat,<span class="dv">5</span>)<span class="co"># muestra las primeras 5 filas de datos</span></code></pre></div>
+<pre><code>##   plot year plant  stage leaf rose fruits  fate rose2 status
+## 1  903 1996     1  small    0    0      0 small    NA  small
+## 2  903 1996     2 flower   NA   NA      1 large    NA flower
+## 3  903 1996     3  small    0    0      0 large    NA  small
+## 4  903 1996     4  small    1   NA      0 small     0  small
+## 5  903 1996     7  small    2   NA      0 large    NA  small</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Construimos una matriz con los datos de sobrevivencia</span>
+(pop &lt;-<span class="st"> </span><span class="kw">table</span>(year,status))</code></pre></div>
+<pre><code>##       status
+## year   recruit small large flower
+##   1996      12   134    17     62
+##   1997     287    75    68      6
+##   1998     186    60    41     80
+##   1999      76    84    57     74
+##   2000       5    58    59     52
+##   2001       5    31    58      8
+##   2002       0    13    16      0
+##   2003       3     6     4      0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Escogemos una diagonal de la matriz (cohorte)</span>
+Sx &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">4</span>)
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>){
+  Sx[i] &lt;-<span class="st"> </span>pop[(i<span class="op">+</span><span class="dv">2</span>),i]
+}
+
+aqData &lt;-<span class="st"> </span><span class="kw">tablaVida</span>(<span class="dt">x.sup =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">Sx =</span> Sx)
+<span class="kw">rm</span>(dat, pop, i)<span class="co"># Limpiar un poco</span></code></pre></div>
+<p>Si aplicamos las fórmulas que hemos visto en clase, obtenemos la siguiente tabla de vida:</p>
+<p></p>
+<table>
+<caption><span id="tab:Aquilegia">Table 3.1: </span> Tabla de vida para una cohorte de <em>Aquilegia</em>.</caption>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(x\)</span></th>
+<th align="center"><span class="math inline">\(S_x\)</span></th>
+<th align="center"><span class="math inline">\(D_x\)</span></th>
+<th align="center"><span class="math inline">\(l_x\)</span></th>
+<th align="center"><span class="math inline">\(d_x\)</span></th>
+<th align="center"><span class="math inline">\(q_x\)</span></th>
+<th align="center"><span class="math inline">\(e_x\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">186</td>
+<td align="center">102</td>
+<td align="center">1.000</td>
+<td align="center">0.548</td>
+<td align="center">0.548</td>
+<td align="center">1.312</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">84</td>
+<td align="center">25</td>
+<td align="center">0.452</td>
+<td align="center">0.134</td>
+<td align="center">0.298</td>
+<td align="center">1.298</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">59</td>
+<td align="center">51</td>
+<td align="center">0.317</td>
+<td align="center">0.274</td>
+<td align="center">0.864</td>
+<td align="center">0.636</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">8</td>
+<td align="center">NA</td>
+<td align="center">0.043</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">0.500</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<div id="tablas-de-vida-estaticas" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Tablas de vida estáticas</h3>
+<p>Para algunos animales grandes y longevos, es impráctico construir tablas de vida horizontales. Así que se toman datos en un momento determinado de tiempo, y la tabla se construye a partir de esta información.</p>
+<p><strong>Tablas de vida verticales o tiempo-específicas</strong>— Estas tablas se construyen cuando se conoce la edad de los organismos. Entonces, se cuentan cuántos individuos hay en cada clase de edad; posteriormente, se cuentan las muertes en cada clase de edad, y se combina la información para construir una tabla de vida.</p>
+<p><strong>Tablas estacionarias basadas en la edad a la muerte</strong>— Estas tablas se construyen con información de cadáveres, o partes de éstos. La edad en los cadáveres debe poder ser establecida claramente para que el método funcione. En <span class="citation">Neal (<a href="#ref-NealPopBio">2004</a>)</span>, se explica el método con un ejemplo basado en el carnero de Dali <em>Ovis dalli</em>. Donde el investigador recolectó cráneos y determinó la edad de cada uno.</p>
+<p>Por ejemplo, si recolecto 1000 mandíbulas de algún mamífero, y puedo datar estos huesos, el primer paso es asumir que estos 1000 individuos constituyen la primer clase de edad. Luego, si el número de mandíbulas en la segunda clase de edad <span class="math inline">\(S_2\)</span> es 600, resto el <span class="math inline">\(S_x\)</span> anterior a esta cantidad, y así calculo <span class="math inline">\(D_1\)</span>. Es decir, <span class="math inline">\(D_1=1000-600\)</span>. Y así sucesivamente.</p>
+<p><strong>Tablas estacionarias basadas en la estructura de edad de la población</strong>— Si la población no cambia en tamaño (la tasa de natalidad iguala la tasa de mortalidad), y si la estructura de edad es un reflejo de la Supervivencia (<span class="math inline">\(S_x\)</span>): podemos asumir que la edad de los individuos puede ser datada de manera precisa, y que hemos obtenido una muestra representativa de la población <span class="citation">(Neal <a href="#ref-NealPopBio">2004</a>)</span>. Esto quiere decir, que podemos utilizar la frecuencia en cada clase de edad, y asumir que corresponde a la supervivencia. Y que el cambio de frecuencia de una clase de edad a la siguiente se debe a la mortalidad (<span class="math inline">\(D_x\)</span>).</p>
+</div>
+</div>
+<div id="curvas-de-supervivencia" class="section level2">
+<h2><span class="header-section-number">3.2</span> Curvas de supervivencia</h2>
+<p>Las tablas de vida pueden mostrar algunos detalles de las estrategias de supervivencia de los organismos. Por ejemplo, ¿tienen cuidado parental, o confían en un gran número de juveniles (o huevos, larvas, semillas) de los cuales un pequeño porcentaje de ellos llegarán a ser adultos?</p>
+<p>Para ello, podemos utilizar directamente la columna <span class="math inline">\(S_x\)</span> y graficarla contra la columna <span class="math inline">\(x\)</span>. Sin embargo, si queremos comparar entre distintas especies, o contra diferentes experimentos o estudios, lo ideal es utilizar una columna normalizada como <span class="math inline">\(l_x\)</span>. En algunos casos, para mejorar la visualización de los datos, se multiplica la columna <span class="math inline">\(l_x\)</span> por un factor, generalmente un factor de mil, para mostrar la supervivencia por cada mil individuos.</p>
+<p>También se puede explorar la mortalidad en cada clase de edad, siguiendo un procedimiento similar; pero, reemplazando <span class="math inline">\(l_x\)</span> por <span class="math inline">\(q_x\)</span>. Para ilustrar el procedimiento podemos utilizar los datos del Cuadro <a href="demografia.html#tab:Aquilegia">3.1</a>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">op &lt;-<span class="st"> </span><span class="kw">par</span>()
+<span class="kw">par</span>( <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span>)
+
+<span class="kw">plot</span>(aqData[,<span class="dv">1</span>],aqData[,<span class="dv">4</span>]<span class="op">*</span><span class="dv">1000</span>,
+     <span class="dt">xlab =</span> <span class="st">&quot;Edad&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>)
+
+<span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1000</span>))
+<span class="kw">lines</span>(aqData[,<span class="dv">1</span>],aqData[,<span class="dv">4</span>]<span class="op">*</span><span class="dv">1000</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
+<span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="st">&quot;Supervivencia x 1000&quot;</span>,  <span class="dt">line =</span> <span class="dv">3</span>)
+
+<span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="dt">at =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)
+
+<span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">4</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1000</span>))
+<span class="kw">lines</span>(aqData[,<span class="dv">1</span>],aqData[,<span class="dv">6</span>]<span class="op">*</span><span class="dv">1000</span>, <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;darkgray&quot;</span>)
+<span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">4</span>, <span class="st">&quot;Mortalidad x 1000&quot;</span>, <span class="dt">line =</span> <span class="dv">3</span>)
+
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Supervivencia&quot;</span>, <span class="st">&quot;mortalidad&quot;</span>),
+       <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">col =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="st">&quot;darkgray&quot;</span>))</code></pre></div>
+<div class="figure"><span id="fig:aqDataPlot"></span>
+<img src="dinPob_files/figure-html/aqDataPlot-1.png" alt="Supervivencia y mortalidad de *Aquilegia*" width="672" />
+<p class="caption">
+Figure 3.2: Supervivencia y mortalidad de <em>Aquilegia</em>
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(op)
+<span class="kw">rm</span>(aqData)</code></pre></div>
+</div>
+<div id="analisis-de-curvas-de-captura" class="section level2">
+<h2><span class="header-section-number">3.3</span> Análisis de Curvas de Captura</h2>
+<p>Las curvas de captura fueron desarrolladas para analizar datos en pesquerías. Su objetivo es determinar la tasa de supervivencia, o mortalidad, para una población. Este método asume que todas las clases de edad tienen una misma tasa de supervivencia.</p>
+<p>Es una herramienta general que puede ser utilizada con tablas de vida estacionarias. En general, el análisis de curvas de captura puede ser utilizado en casos donde se tengan frecuencias de individuos por clase de edad.</p>
+<p>El análisis de curvas de captura, también puede utilizarse con datos de tallas; siempre y cuando, exista una función que relaciones las tallas con la edad. En este último caso, hay que considerar la incertidumbre que existe al convertir tallas a edades .</p>
+<div class="figure" style="text-align: center"><span id="fig:plotSiphonariaCC"></span>
+<img src="dinPob_files/figure-html/plotSiphonariaCC-1.png" alt="Histograma de tallas de *Siphonaria gigas* en el RNVS Playa Hermosa-Punta Mala. Datos de 2017-2018." width="336" />
+<p class="caption">
+Figure 3.3: Histograma de tallas de <em>Siphonaria gigas</em> en el RNVS Playa Hermosa-Punta Mala. Datos de 2017-2018.
+</p>
+</div>
+<p>En la mayoría de los casos, tanto con datos de edades como tallas, existirán clases pobremente representadas (Figura <a href="demografia.html#fig:plotSiphonariaCC">3.3</a>). Esto se debe a que la probabilidad de captura con ese método específico varía en función de la edad o talla. También puede significar que existe una separación espacial en las diferentes edades de la especie; y por tanto, que no fueron representadas en el muestreo.</p>
+<p>Cuando esto sucede, se utiliza la sección descendente de la curva, y se asume que todas las clases contenidas en esa sección están bien representadas. Una vez que se ha seleccionado el sub-conjunto de datos con el cual se hará la estimación, se pueden utilizar varios métodos para estimar la tasa de supervivencia (o mortalidad).</p>
+<div id="metodo-de-chapman-y-robson-1960.-estimacion-de-supervivencia-usando-todas-las-clases-de-edad" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Método de Chapman y Robson 1960. Estimación de supervivencia usando todas las clases de edad</h3>
+<p>Este método se deriva de asumir que los conteos de individuos supervivientes provienen de una distribución de probabilidad multinomial. En cada una de las clases de edad, la probabilidad de obtener un individuo de edad <span class="math inline">\(x\)</span> tiene una distribución geométrica: <span class="math inline">\(f_X(x)=(1-s)s^x\)</span>. Donde <span class="math inline">\(s\)</span> es la probabilidad de sobrevivencia que se desea estimar.</p>
+<p>El desarrollo del estimador de <span class="math inline">\(s\)</span>, se detalla en <span class="citation">Skalski, Ryding, and Millspaugh (<a href="#ref-wildlifeDemography2005">2005</a>)</span>. Y se basa en el concetpo de <em>máxima verosimilitud</em>. Su fórmula es sencilla:</p>
+<p><span class="math display">\[
+\hat{s} = \frac{T}{n+T-1}
+\]</span></p>
+<p>Donde <span class="math inline">\(n\)</span> es el tamaño de la muestra. <span class="math inline">\(T = \sum_{i=1}^n x_i\)</span>, es decir la suma de las edades de todos los individuos en la muestra. La varianza de <span class="math inline">\(\hat{s}\)</span>, se calcula como:</p>
+<p><span class="math display">\[
+\mathrm{Var}(\hat{s}) = \hat{s}\left( \hat{s} - \frac{T-1}{n+T - 2} \right)
+\]</span></p>
+<p>Suponer que todas las clases de edad mantienen una tasa de supervivencia común es arriesgado. Las suposiciones que se deben cumplir para aplicar este modelo con seguridad son:</p>
+<ol style="list-style-type: decimal">
+<li><p>Existe una estructura de edad estable.</p></li>
+<li><p>La población es estacionaria.</p></li>
+<li><p>Todos los animales tienen una misma probabilidad de selección(captura).</p></li>
+<li><p>La muestra es representativa de la población.</p></li>
+<li><p>El destino de todos los animales es independiente.</p></li>
+<li><p>Todas las edades se estiman sin error.</p></li>
+<li><p>La probabilidad de supervivencia anual es constante a través de todas las clases de edad.</p></li>
+</ol>
+</div>
+<div id="metodo-de-regresion" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Método de regresión</h3>
+<p>De manera alternativa, se puede utilizar una simple regresión lineal para estimar una tasa de supervivencia común a todas las clases de edad. Para ello, asumimos que el número esperado de individuos contados en una clase de edad <span class="math inline">\(x\)</span> (<span class="math inline">\(S_x\)</span>), es igual un número de reclutas <span class="math inline">\(N_0\)</span>, que se mantiene constante a través del tiempo; multiplicado por la probabilidad de que un individuo sea capturado en la muestra <span class="math inline">\(p\)</span>; multiplicado por probabilidad de haber sobrevivido hasta la clase <span class="math inline">\(x\)</span> (<span class="math inline">\(s^x\)</span>). Es decir:</p>
+<p><span class="math display">\[
+E\left( S_x \right)  = N_0 p s^x
+\]</span></p>
+<p>Si tomamos logaritmo a ambos lados de la expresión anterior, obtenemos:</p>
+<p><span class="math display">\[
+\ln(\bar{S_x}) = \ln(N_0 p) + x\ln(s)
+\]</span></p>
+<p>Que presenta la forma familiar de una línea recta: <span class="math inline">\(y=a+bx\)</span>. Lo importante aquí, es reconocer que <span class="math inline">\(s = e^b\)</span>. Así que al estimar los parámetros de la recta, podemos derivar la tasa de supervivencia <span class="math inline">\(s\)</span>.</p>
+
+<div class="example">
+<span id="exm:regresionSupervivencia" class="example"><strong>Example 3.1  </strong></span>Calcular la tasa de sobrevivencia, usando los datos de Aquilegia (Cuadro <a href="demografia.html#tab:Aquilegia">3.1</a>)
+</div>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Definir los datos para la regresión</span>
+y &lt;-<span class="st"> </span><span class="kw">log</span>(Sx) <span class="co">#Sx, es el conteo de supervivientes de Aquilegia</span>
+x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span> <span class="co"># Las clases de edad</span>
+
+salida &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="dt">formula =</span> y<span class="op">~</span>x, <span class="dt">family =</span> <span class="kw">gaussian</span>(<span class="dt">link =</span> <span class="st">&quot;identity&quot;</span>))
+s &lt;-<span class="st"> </span><span class="kw">signif</span>(
+  <span class="kw">exp</span>(<span class="kw">coef</span>(salida)[<span class="dv">2</span>]),
+  <span class="dt">digits =</span> <span class="dv">3</span>)
+
+sLim &lt;-<span class="st"> </span><span class="kw">signif</span>(
+                <span class="kw">exp</span>(<span class="kw">confint</span>(salida)[<span class="dv">2</span>,]),
+                <span class="dt">digits =</span> <span class="dv">3</span>)</code></pre></div>
+<pre><code>## Waiting for profiling to be done...</code></pre>
+<p>Con el código de arriba, obtenemos que $s = $  , con un intervalo de confianza al SI{95}{} de .</p>
+</div>
+<div id="ejercicios-2" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Ejercicios</h3>
+
+<div class="exercise">
+<span id="exr:R0" class="exercise"><strong>Exercise 3.1  </strong></span>¿Cual es el significado ecológico de <span class="math inline">\(R_0\)</span>?
+</div>
+
+
+<div class="exercise">
+<span id="exr:lambdaFromR0" class="exercise"><strong>Exercise 3.2  </strong></span>Si a usted le piden hacerse cargo de determinar el éxito de un programa de re-introducción, basado en el éxito reproductivo de la especie: Enumere los pasos a seguir para determinar si la especie se reproduce exitósamente, utilizando las herramientas vistas en las tablas de vida? Asuma que ud puede muestrear una cohorte de principio a fin.
+</div>
+
+
+<div class="exercise">
+<span id="exr:calcRe" class="exercise"><strong>Exercise 3.3  </strong></span>Calcule si la siguiente población está creciendo, se mantiene estable o está decreciendo:
+</div>
+
+<pre><code>##       x Sx  mx
+## [1,]  5 20 0.0
+## [2,] 10 45 0.0
+## [3,] 15 10 1.2
+## [4,] 20  5 1.1</code></pre>
+
+<div class="exercise">
+<span id="exr:ovisDalli" class="exercise"><strong>Exercise 3.4  </strong></span>En <span class="citation">Neal (<a href="#ref-NealPopBio">2004</a>)</span> se presentan los datos sobre el estudio de <em>Ovis dalli</em>. Calcule la tabla de vida:
+</div>
+
+<pre><code>##        x  Sx
+##  [1,]  1 608
+##  [2,]  2 487
+##  [3,]  3 480
+##  [4,]  4 472
+##  [5,]  5 465
+##  [6,]  6 447
+##  [7,]  7 419
+##  [8,]  8 390
+##  [9,]  9 348
+## [10,] 10 268
+## [11,] 11 154
+## [12,] 12  59
+## [13,] 13   4
+## [14,] 14   2
+## [15,] 15   0</code></pre>
+
+<div class="exercise">
+<span id="exr:ovisDalliSupCurve" class="exercise"><strong>Exercise 3.5  </strong></span>Grafique la curva de supervivencia y mortalidad del ejercicio anterior.
+</div>
+
+
+</div>
+</div>
+<div id="matrices-1" class="section level2">
+<h2><span class="header-section-number">3.4</span> Matrices</h2>
+<pre><code>## Warning: package &#39;diagram&#39; was built under R version 3.4.3</code></pre>
+<pre><code>## Loading required package: shape</code></pre>
+<pre><code>## Warning: package &#39;shape&#39; was built under R version 3.4.3</code></pre>
+<div class="figure"><span id="fig:plotWhale"></span>
+<img src="dinPob_files/figure-html/plotWhale-1.png" alt="Un diagrama que representa gráficamente una matriz de transición" width="672" />
+<p class="caption">
+Figure 3.4: Un diagrama que representa gráficamente una matriz de transición
+</p>
+</div>
+
+</div>
+<div id="otras-fuentes-bibliograficas-1" class="section level2">
+<h2><span class="header-section-number">3.5</span> Otras fuentes bibliográficas</h2>
+<p>En <span class="citation">Neal (<a href="#ref-NealPopBio">2004</a>)</span> se da una introducción gentil a la demografía, pero los métodos de análisis son limitados a unos pocos; básicamente, se limitan a enseñar las técnicas necesarias para comprender los fundamentos detrás de cada análisis. Por otro lado, <span class="citation">Skalski, Ryding, and Millspaugh (<a href="#ref-wildlifeDemography2005">2005</a>)</span> describe detalladamente las variantes de cada técnica, con un enfoque práctico; además, presenta discusiones sobre la utilidad de cada método de análisis y sus supuestos. Como nota precautoria, en <span class="citation">Skalski, Ryding, and Millspaugh (<a href="#ref-wildlifeDemography2005">2005</a>)</span>, las convenciones sobre los nombres de las columnas de las tablas de vida difieren a las expuestas en este material.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-NealPopBio">
+<p>Neal, Dick. 2004. <em>Introduction to population biology</em>. Cambridge, UK: Cambridge.</p>
+</div>
+<div id="ref-wildlifeDemography2005">
+<p>Skalski, John R, Kristin E Ryding, and Joshua Millspaugh. 2005. <em>Wildlife demography: analysis of sex, age, and count data</em>. Elsevier. doi:<a href="https://doi.org/10.1007/s13398-014-0173-7.2">10.1007/s13398-014-0173-7.2</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="modelos-de-crecimiento.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="soluciones-a-los-ejercicios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["dinPob.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -55,8 +55,6 @@ install.packages("popbio")
 
 ## Tablas de vida
 
-
-
 Las tablas de vida resumen un estudio longitudinal, que investiga el destino de los individuos de una *cohorte* \index{cohorte} durante su vida (o una muestra de la cohorte). Usualmente, la primer columna de una tabla de vida consiste del número de individuos en una clase de edad. Y las clases de edad, dependen del ciclo de vida de los organismos.
 
 Este ordenamiento de los datos permite investigar cuántos individuos sobreviven de una clase de edad a la siguiente. Y apartir de aquí, se construyen otros valores poblacionales importantes.
@@ -110,7 +108,7 @@ Este tipo de tablas se construyen al seguir un grupo de organismos de una misma 
 El paquete **popbio** de \textsf{R}, ofrece varios conjuntos de datos. Uno de ellos sobre una planta llamada *Aquilegia*. El conjunto de datos contiene información sobre cada planta, y su destino después de muestreos anuales.
 
 
-```{r message=FALSE, warning=FALSE, results='markup'}
+```{r dataAquilegia, message=FALSE, warning=FALSE, results='markup'}
 library(popbio)# cargar paquete
 data("aq.trans")#cargar datos
 aq.trans -> dat; rm(aq.trans)#crear objeto de trabajo
@@ -198,6 +196,102 @@ par(op)
 rm(aqData)
 ```
 
+## Análisis de Curvas de Captura
+
+Las curvas de captura fueron desarrolladas para analizar datos en pesquerías. Su objetivo es determinar la tasa de supervivencia, o mortalidad, para una población. Este método asume que todas las clases de edad tienen una misma tasa de supervivencia.
+
+Es una herramienta general que puede ser utilizada con tablas de vida estacionarias. En general, el análisis de curvas de captura puede ser utilizado en casos donde se tengan frecuencias de individuos por clase de edad.
+
+El análisis de curvas de captura, también puede utilizarse con datos de tallas; siempre y cuando, exista una función que relaciones las tallas con la edad. En este último caso, hay que considerar la incertidumbre que existe al convertir tallas a edades \footnote{Una manera de hacerlo es utilizar simulaciones de Monte Carlo.}.
+
+```{r plotSiphonariaCC, echo=FALSE, fig.align='center',fig.cap="Histograma de tallas de \\textit{Siphonaria gigas} en el RNVS Playa Hermosa-Punta Mala. Datos de 2017-2018.",fig.width=3.5,fig.height=4, fig.pos='ht!',dev.args=list(encoding = 'ISOLatin1.enc')}
+plotSiphonariaCC()
+rm(plotSiphonariaCC)
+```
+
+
+En la mayoría de los casos, tanto con datos de edades como tallas, existirán clases pobremente representadas (Figura \@ref(fig:plotSiphonariaCC)). Esto se debe a que la probabilidad de captura con ese método específico varía en función de la edad o talla. También puede significar que existe una separación espacial en las diferentes edades de la especie; y por tanto, que no fueron representadas en el muestreo.
+
+Cuando esto sucede, se utiliza la sección descendente de la curva, y se asume que todas las clases contenidas en esa sección están bien representadas. Una vez que se ha seleccionado el sub-conjunto de datos con el cual se hará la estimación, se pueden utilizar varios métodos para estimar la tasa de supervivencia (o mortalidad).
+
+### Método de Chapman y Robson 1960. Estimación de supervivencia usando  todas las clases de edad
+
+Este método se deriva de asumir que los conteos de individuos supervivientes provienen de una distribución de probabilidad multinomial\footnote{La distribución multinomial es una versión de la versión binomial para más de dos estados posibles de la variable.}. En cada una de las clases de edad, la probabilidad de obtener un individuo de edad $x$ tiene una distribución geométrica: $f_X(x)=(1-s)s^x$. Donde $s$ es la probabilidad de sobrevivencia que se desea estimar.
+
+El desarrollo del estimador de $s$, se detalla en @wildlifeDemography2005. Y se basa en el concepto de *máxima verosimilitud*. Su fórmula es sencilla:
+
+$$
+\hat{s} = \frac{T}{n+T-1}
+$$
+
+Donde $n$ es el tamaño de la muestra. $T = \sum_{i=1}^n x_i$, es decir la suma de las edades de todos los individuos en la muestra. La varianza de $\hat{s}$, se calcula como:
+
+$$
+\mathrm{Var}(\hat{s}) = \hat{s}\left( \hat{s} - \frac{T-1}{n+T - 2} \right)
+$$
+
+Suponer que todas las clases de edad mantienen una tasa de supervivencia común es arriesgado. Las suposiciones que se deben cumplir para aplicar este modelo con seguridad son:
+
+
+1. Existe una estructura de edad estable.
+
+1. La población es estacionaria.
+
+1. Todos los animales tienen una misma probabilidad de selección(captura).
+
+1. La muestra es representativa de la población.
+
+1. El destino de todos los animales es independiente.
+
+1. Todas las edades se estiman sin error.
+
+1. La probabilidad de supervivencia anual es constante a través de todas las clases de edad.
+
+### Método de regresión
+
+De manera alternativa, se puede utilizar una simple regresión lineal para estimar una tasa de supervivencia común a todas las clases de edad. Para ello, asumimos que el número esperado de individuos contados en una clase de edad $x$ ($S_x$), es igual un número de reclutas $N_0$, que se mantiene constante a través del tiempo; multiplicado por la probabilidad de que un individuo sea capturado en la muestra $p$; multiplicado por probabilidad de haber sobrevivido hasta la clase $x$ ($s^x$). Es decir:
+
+$$
+E\left( S_x \right)  = N_0 p s^x
+$$
+
+Si tomamos logaritmo a ambos lados de la expresión anterior, obtenemos:
+
+$$
+\ln(\bar{S_x}) = \ln(N_0 p) + x\ln(s)
+$$
+
+Que presenta la forma familiar de una línea recta: $y=a+bx$. Lo importante aquí, es reconocer que $s = e^b$. Así que al estimar los parámetros de la recta, podemos derivar la tasa de supervivencia $s$.
+
+```{example, label = 'regresionSupervivencia'}
+Calcular la tasa de sobrevivencia, usando los datos de Aquilegia (Cuadro \@ref(tab:Aquilegia))
+```
+
+
+```{r exmRegresionAquilegia, message=FALSE, warning=FALSE, cache=TRUE}
+#Definir los datos para la regresión
+y <- log(Sx) #Sx, es el conteo de supervivientes de Aquilegia
+x <- 1:4 # Las clases de edad
+
+salida <- glm(formula = y~x, family = gaussian(link = "identity"))
+s <- signif(
+  exp(coef(salida)[2]),
+  digits = 3)
+
+sLim <- signif(
+                exp(confint(salida)[2,]),
+                digits = 3)
+```
+
+Con el código de arriba, obtenemos que $s =$ \num{ `r s`} , con un intervalo de confianza al \SI{95}{\percent} de `r paste0("\\numrange[range-phrase = --]{",sLim[1],"}{",sLim[2],"}")`.
+
+
+```{r plotAquilegiaCC, echo=FALSE, fig.align='center',fig.cap="Verificación de ajuste del modelo a los datos de \textit{Aquilegia}. Los puntos debería aparecer alineados con la recta de mejor ajuste",fig.width=3.5,fig.height=4, fig.pos='ht!',dev.args=list(encoding = 'ISOLatin1.enc')}
+plotAquilegiaCC()
+rm(x,y, Sx, s, sLim, salida)
+```
+
+
 ### Ejercicios
 
 ```{exercise, label='R0'}
@@ -259,6 +353,10 @@ rm(M)
 Grafique la curva de supervivencia y mortalidad del ejercicio anterior.
 ```
 
+```{exercise, label='ovisDalliRegCurve'}
+Estime una tasa de supervivencia común a todas las clases de edad de *Ovis dalli*, usando los datos del ejemplo \@ref(exr:ovisDalli). Use el método de análisis de curvas de captura por regresión.
+```
+
 \FloatBarrier
 
 ## Matrices
@@ -271,3 +369,7 @@ rm(plotWhale)
 ```
 
 \FloatBarrier
+
+## Otras fuentes bibliográficas
+
+En @NealPopBio se da una introducción gentil a la demografía, pero los métodos de análisis son limitados a unos pocos; básicamente, se limitan a enseñar las técnicas necesarias para comprender los fundamentos detrás de cada análisis. Por otro lado, @wildlifeDemography2005 describe detalladamente las variantes de cada técnica, con un enfoque práctico; además, presenta discusiones sobre la utilidad de cada método de análisis y sus supuestos. Como nota precautoria, en @wildlifeDemography2005, las convenciones sobre los nombres de las columnas de las tablas de vida difieren a las expuestas en este material.

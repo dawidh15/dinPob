@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Ecología de poblaciones silvestres</title>
   <meta name="description" content="Este es el manual del curso ‘Ecología de Poblaciones Silvestres’, de las Escuela de Ciencias Biológicas de la Universidad Nacional">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="Ecología de poblaciones silvestres" />
   <meta property="og:type" content="book" />
@@ -25,14 +25,14 @@
 <meta name="author" content="David Martínez Cascante">
 
 
-<meta name="date" content="2018-03-07">
+<meta name="date" content="2018-04-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="modelos-de-crecimiento.html">
+<link rel="prev" href="demografia.html">
 <link rel="next" href="metodos-numericos-para-ecologia-de-poblaciones.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -102,8 +102,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
 <li class="chapter" data-level="2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html"><i class="fa fa-check"></i><b>2</b> Modelos de crecimiento</a><ul>
 <li class="chapter" data-level="2.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-denso-independiente"><i class="fa fa-check"></i><b>2.1</b> Crecimiento denso-independiente</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-geometrico"><i class="fa fa-check"></i><b>2.1.1</b> Crecimiento geométrico</a></li>
-<li class="chapter" data-level="2.1.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-exponencial"><i class="fa fa-check"></i><b>2.1.2</b> Crecimiento exponencial</a></li>
+<li class="chapter" data-level="2.1.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimientogeometrico"><i class="fa fa-check"></i><b>2.1.1</b> Crecimiento geométrico</a></li>
+<li class="chapter" data-level="2.1.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimientoexponencial"><i class="fa fa-check"></i><b>2.1.2</b> Crecimiento exponencial</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-denso-dependiente"><i class="fa fa-check"></i><b>2.2</b> Crecimiento denso-dependiente</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#crecimiento-logistico"><i class="fa fa-check"></i><b>2.2.1</b> Crecimiento logístico</a></li>
@@ -112,10 +112,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="modelos-de-crecimiento.html"><a href="modelos-de-crecimiento.html#otras-fuentes-bibliograficas"><i class="fa fa-check"></i><b>2.3</b> Otras fuentes bibliográficas</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="soluciones-a-los-ejercicios.html"><a href="soluciones-a-los-ejercicios.html"><i class="fa fa-check"></i><b>3</b> Soluciones a los ejercicios</a></li>
+<li class="chapter" data-level="3" data-path="demografia.html"><a href="demografia.html"><i class="fa fa-check"></i><b>3</b> Demografía</a><ul>
+<li class="chapter" data-level="3.1" data-path="demografia.html"><a href="demografia.html#tablas-de-vida"><i class="fa fa-check"></i><b>3.1</b> Tablas de vida</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="demografia.html"><a href="demografia.html#tablas-de-vida-sobre-cohortes-tablas-horizontales"><i class="fa fa-check"></i><b>3.1.1</b> Tablas de vida sobre cohortes (tablas horizontales)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="demografia.html"><a href="demografia.html#tablas-de-vida-estaticas"><i class="fa fa-check"></i><b>3.1.2</b> Tablas de vida estáticas</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="demografia.html"><a href="demografia.html#curvas-de-supervivencia"><i class="fa fa-check"></i><b>3.2</b> Curvas de supervivencia</a></li>
+<li class="chapter" data-level="3.3" data-path="demografia.html"><a href="demografia.html#analisis-de-curvas-de-captura"><i class="fa fa-check"></i><b>3.3</b> Análisis de Curvas de Captura</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="demografia.html"><a href="demografia.html#metodo-de-chapman-y-robson-1960.-estimacion-de-supervivencia-usando-todas-las-clases-de-edad"><i class="fa fa-check"></i><b>3.3.1</b> Método de Chapman y Robson 1960. Estimación de supervivencia usando todas las clases de edad</a></li>
+<li class="chapter" data-level="3.3.2" data-path="demografia.html"><a href="demografia.html#metodo-de-regresion"><i class="fa fa-check"></i><b>3.3.2</b> Método de regresión</a></li>
+<li class="chapter" data-level="3.3.3" data-path="demografia.html"><a href="demografia.html#ejercicios-2"><i class="fa fa-check"></i><b>3.3.3</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="demografia.html"><a href="demografia.html#matrices-1"><i class="fa fa-check"></i><b>3.4</b> Matrices</a></li>
+<li class="chapter" data-level="3.5" data-path="demografia.html"><a href="demografia.html#otras-fuentes-bibliograficas-1"><i class="fa fa-check"></i><b>3.5</b> Otras fuentes bibliográficas</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="soluciones-a-los-ejercicios.html"><a href="soluciones-a-los-ejercicios.html"><i class="fa fa-check"></i><b>4</b> Soluciones a los ejercicios</a></li>
 <li class="appendix"><span><b>Apéndices</b></span></li>
 <li class="chapter" data-level="A" data-path="metodos-numericos-para-ecologia-de-poblaciones.html"><a href="metodos-numericos-para-ecologia-de-poblaciones.html"><i class="fa fa-check"></i><b>A</b> Métodos numéricos para ecología de poblaciones</a><ul>
 <li class="chapter" data-level="A.1" data-path="metodos-numericos-para-ecologia-de-poblaciones.html"><a href="metodos-numericos-para-ecologia-de-poblaciones.html#simulacion-de-ecuaciones-diferenciales"><i class="fa fa-check"></i><b>A.1</b> Simulación de ecuaciones diferenciales</a></li>
+<li class="chapter" data-level="A.2" data-path="metodos-numericos-para-ecologia-de-poblaciones.html"><a href="metodos-numericos-para-ecologia-de-poblaciones.html#error-en-las-simulaciones"><i class="fa fa-check"></i><b>A.2</b> Error en las simulaciones</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html"><i class="fa fa-check"></i><b>B</b> Tutorial de R con RStudio</a><ul>
 <li class="chapter" data-level="B.1" data-path="tutorial-de-r-con-rstudio.html"><a href="tutorial-de-r-con-rstudio.html#RStudioProject"><i class="fa fa-check"></i><b>B.1</b> Crear un proyecto en <em>RStudio</em></a></li>
@@ -125,7 +140,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="C" data-path="asignaciones.html"><a href="asignaciones.html"><i class="fa fa-check"></i><b>C</b> Asignaciones</a><ul>
 <li class="chapter" data-level="C.1" data-path="asignaciones.html"><a href="asignaciones.html#tarea-01-hola-mundo-con-rmarkdown"><i class="fa fa-check"></i><b>C.1</b> Tarea 01: ¡Hola mundo con <em>Rmarkdown</em>!</a></li>
-<li class="chapter" data-level="C.2" data-path="asignaciones.html"><a href="asignaciones.html#tarea-02-ejercicios-de-crecimiento"><i class="fa fa-check"></i><b>C.2</b> Tarea 02: Ejercicios de crecimiento</a></li>
+<li class="chapter" data-level="C.2" data-path="asignaciones.html"><a href="asignaciones.html#tarea-02-ejercicios-de-crecimiento"><i class="fa fa-check"></i><b>C.2</b> Tarea 02: Ejercicios de crecimiento</a><ul>
+<li class="chapter" data-level="C.2.1" data-path="asignaciones.html"><a href="asignaciones.html#instrucciones"><i class="fa fa-check"></i><b>C.2.1</b> Instrucciones</a></li>
+</ul></li>
+<li class="chapter" data-level="C.3" data-path="asignaciones.html"><a href="asignaciones.html#tarea-03"><i class="fa fa-check"></i><b>C.3</b> Tarea 03</a></li>
+<li class="chapter" data-level="C.4" data-path="asignaciones.html"><a href="asignaciones.html#tarea-04-ejercicios-con-tablas-de-vida"><i class="fa fa-check"></i><b>C.4</b> Tarea 04: Ejercicios con tablas de vida</a><ul>
+<li class="chapter" data-level="C.4.1" data-path="asignaciones.html"><a href="asignaciones.html#objetivo-general"><i class="fa fa-check"></i><b>C.4.1</b> Objetivo general</a></li>
+<li class="chapter" data-level="C.4.2" data-path="asignaciones.html"><a href="asignaciones.html#instrucciones-1"><i class="fa fa-check"></i><b>C.4.2</b> Instrucciones</a></li>
+<li class="chapter" data-level="C.4.3" data-path="asignaciones.html"><a href="asignaciones.html#presentacion"><i class="fa fa-check"></i><b>C.4.3</b> Presentación</a></li>
+</ul></li>
+<li class="chapter" data-level="C.5" data-path="asignaciones.html"><a href="asignaciones.html#tarea-05"><i class="fa fa-check"></i><b>C.5</b> Tarea 05</a></li>
+<li class="chapter" data-level="C.6" data-path="asignaciones.html"><a href="asignaciones.html#tarea-06"><i class="fa fa-check"></i><b>C.6</b> Tarea 06</a></li>
+<li class="chapter" data-level="C.7" data-path="asignaciones.html"><a href="asignaciones.html#trabajo-grupal"><i class="fa fa-check"></i><b>C.7</b> Trabajo grupal</a><ul>
+<li class="chapter" data-level="C.7.1" data-path="asignaciones.html"><a href="asignaciones.html#objetivo-general-1"><i class="fa fa-check"></i><b>C.7.1</b> Objetivo general</a></li>
+<li class="chapter" data-level="C.7.2" data-path="asignaciones.html"><a href="asignaciones.html#objetivos-especificos"><i class="fa fa-check"></i><b>C.7.2</b> Objetivos específicos</a></li>
+<li class="chapter" data-level="C.7.3" data-path="asignaciones.html"><a href="asignaciones.html#justificacion"><i class="fa fa-check"></i><b>C.7.3</b> Justificación</a></li>
+<li class="chapter" data-level="C.7.4" data-path="asignaciones.html"><a href="asignaciones.html#definiciones"><i class="fa fa-check"></i><b>C.7.4</b> Definiciones</a></li>
+<li class="chapter" data-level="C.7.5" data-path="asignaciones.html"><a href="asignaciones.html#metas"><i class="fa fa-check"></i><b>C.7.5</b> Metas</a></li>
+<li class="chapter" data-level="C.7.6" data-path="asignaciones.html"><a href="asignaciones.html#flujo-semanal-de-trabajo"><i class="fa fa-check"></i><b>C.7.6</b> Flujo semanal de trabajo</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -145,7 +178,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="soluciones-a-los-ejercicios" class="section level1">
-<h1><span class="header-section-number">Capítulo 3</span> Soluciones a los ejercicios</h1>
+<h1><span class="header-section-number">Capítulo 4</span> Soluciones a los ejercicios</h1>
 <p><strong>Ejercicio <a href="modelos-de-crecimiento.html#exr:plotGeomGrowth">2.1</a></strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">50</span>),
      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>) ,
@@ -159,7 +192,7 @@ val=<span class="kw">numeric</span>()
   val=<span class="kw">append</span>(val,Rm)
 }
 <span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="dt">lty=</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dt">legend =</span> <span class="kw">paste</span>(<span class="st">&#39;Rm = &#39;</span>,val))</code></pre></div>
-<p><img src="dinPob_files/figure-html/unnamed-chunk-4-1.png" width="672" height="6cm" style="display: block; margin: auto;" /></p>
+<p><img src="dinPob_files/figure-html/exrplotGeomGrowth-1.png" width="672" height="6cm" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(R_m\)</span> representa la pendiente de la recta.</p>
 <p><strong>Ejercicio <a href="modelos-de-crecimiento.html#exr:GeomGrowthBacteria2">2.5</a></strong></p>
 <p>En 3 horas existen 12 periodos de 15 minutos (<span class="math inline">\(t=12\)</span>). Entonces aplicamos la ecuación <a href="modelos-de-crecimiento.html#eq:geom2">(2.2)</a>:</p>
@@ -184,6 +217,228 @@ val=<span class="kw">numeric</span>()
 \]</span></p>
 <p>Porque cuando <span class="math inline">\(x \to \infty \Rightarrow x \gg N_0\)</span>. Es decir, cuando <span class="math inline">\(x\)</span> se vuelve infinito, es mucho más grande que <span class="math inline">\(N_0\)</span>, por tanto, el cociente tiende a cero, cuando <span class="math inline">\(x\)</span> tiende a infinito.</p>
 <p>Poblacionalmente, esto significa, que si una población mantiene una tasa intrínseca negativa, por un periodo de tiempo suficientemente largo, sufrirá un evento de extinción.</p>
+<p><strong>Ejercicio <a href="modelos-de-crecimiento.html#exr:logGrowth3">2.11</a></strong></p>
+<p><em>El tamaño de población que maximiza el crecimiento</em></p>
+<p>Reconocemos que la capacidad de carga son <span class="math inline">\(K=\SI{100}{\kilogram}\)</span>. Por tanto, la cantidad de biomasa que maximiza el crecimiento, según el <em>máximo rendimiento sostenible</em> es <span class="math inline">\(K/2=\SI{50}{\kilogram}\)</span>.</p>
+<p><em>¿Cuánta biomasa se debe extraer en un día para mantener la tasa de crecimiento al máximo?</em></p>
+<p>Debemos utilizar unidades congruentes durante los cálculos. Así que el primer paso convertir <span class="math inline">\(r_m\)</span> de  a .</p>
+<p><span class="math display">\[
+\frac{\num{5e-6} }
+{\cancel{ \si{\second} } }
+\frac{\num{86400}\cancel{\si{\second}} }{\si{\day}}= 
+\frac{\num{0.432}}
+{\si{\day}}
+\]</span></p>
+<p>Ahora podemos calcular el <em>Máximo Rendimiento Sostenible</em>, reemplazando los valores apropiados en:</p>
+<p><span class="math display">\[
+MRS=\frac{r_m K}{4} = \SI{10.8}{\kilogram}
+\]</span></p>
+<p><em>¿A qué biomasa total se debe cosechar el tanque?</em></p>
+<p>Esta es la suma del tamaño de población al <em>máximo rendimiento sostenible</em>, más el <em>máximo rendimiento sostenible</em>:</p>
+<p><span class="math display">\[
+\frac{K}{2} + \frac{r_m K}{4} = \SI{60.8}{\kilogram}
+\]</span></p>
+<p><strong>Ejercicio <a href="demografia.html#exr:calcRe">3.3</a></strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">M &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(
+  <span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">20</span>,
+  <span class="dv">20</span>,<span class="dv">45</span>,<span class="dv">10</span>,<span class="dv">5</span>,
+  <span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">1.2</span>, <span class="fl">1.1</span>
+), <span class="dt">ncol =</span> <span class="dv">3</span>,
+<span class="dt">byrow =</span> <span class="ot">FALSE</span>)
+
+<span class="kw">colnames</span>(M) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;Sx&quot;</span>,<span class="st">&quot;mx&quot;</span>)
+
+lf &lt;-<span class="st"> </span><span class="kw">tablaVida</span>(<span class="dt">x.sup=</span>M[,<span class="st">&quot;x&quot;</span>],<span class="dt">Sx=</span>M[,<span class="st">&quot;Sx&quot;</span>], <span class="dt">mx=</span>M[,<span class="st">&quot;mx&quot;</span>])
+
+re &lt;-<span class="st"> </span><span class="kw">log</span>(lf<span class="op">$</span>R0)<span class="op">/</span>lf<span class="op">$</span>Tc
+
+<span class="cf">if</span> (re <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>){
+  <span class="kw">print</span>(<span class="st">&quot;Está creciendo&quot;</span>)
+} <span class="cf">else</span> <span class="cf">if</span> (re <span class="op">==</span><span class="st"> </span><span class="dv">1</span> ){
+  <span class="kw">print</span>(<span class="st">&quot;Se mantiene constante&quot;</span>)
+} <span class="cf">else</span> <span class="cf">if</span> ( re <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> ){
+  <span class="kw">print</span>(<span class="st">&quot;Está decreciendo&quot;</span>)
+}</code></pre></div>
+<pre><code>## [1] &quot;Está decreciendo&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(M)</code></pre></div>
+<p><strong>Ejercicio <a href="demografia.html#exr:ovisDalli">3.4</a></strong></p>
+<p></p>
+<table>
+<caption><span id="tab:ovis">Table 4.1: </span> Tabla de vida para <em>Ovis dalli</em>.</caption>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(x\)</span></th>
+<th align="center"><span class="math inline">\(S_x\)</span></th>
+<th align="center"><span class="math inline">\(D_x\)</span></th>
+<th align="center"><span class="math inline">\(l_x\)</span></th>
+<th align="center"><span class="math inline">\(d_x\)</span></th>
+<th align="center"><span class="math inline">\(q_x\)</span></th>
+<th align="center"><span class="math inline">\(e_x\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">608</td>
+<td align="center">121</td>
+<td align="center">1.000</td>
+<td align="center">0.199</td>
+<td align="center">0.199</td>
+<td align="center">7.071</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">487</td>
+<td align="center">7</td>
+<td align="center">0.801</td>
+<td align="center">0.012</td>
+<td align="center">0.014</td>
+<td align="center">7.703</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">480</td>
+<td align="center">8</td>
+<td align="center">0.789</td>
+<td align="center">0.013</td>
+<td align="center">0.017</td>
+<td align="center">6.808</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">472</td>
+<td align="center">7</td>
+<td align="center">0.776</td>
+<td align="center">0.012</td>
+<td align="center">0.015</td>
+<td align="center">5.915</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">465</td>
+<td align="center">18</td>
+<td align="center">0.765</td>
+<td align="center">0.030</td>
+<td align="center">0.039</td>
+<td align="center">4.997</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">447</td>
+<td align="center">28</td>
+<td align="center">0.735</td>
+<td align="center">0.046</td>
+<td align="center">0.063</td>
+<td align="center">4.178</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">419</td>
+<td align="center">29</td>
+<td align="center">0.689</td>
+<td align="center">0.048</td>
+<td align="center">0.069</td>
+<td align="center">3.424</td>
+</tr>
+<tr class="even">
+<td align="center">8</td>
+<td align="center">390</td>
+<td align="center">42</td>
+<td align="center">0.641</td>
+<td align="center">0.069</td>
+<td align="center">0.108</td>
+<td align="center">2.641</td>
+</tr>
+<tr class="odd">
+<td align="center">9</td>
+<td align="center">348</td>
+<td align="center">80</td>
+<td align="center">0.572</td>
+<td align="center">0.132</td>
+<td align="center">0.230</td>
+<td align="center">1.899</td>
+</tr>
+<tr class="even">
+<td align="center">10</td>
+<td align="center">268</td>
+<td align="center">114</td>
+<td align="center">0.441</td>
+<td align="center">0.188</td>
+<td align="center">0.425</td>
+<td align="center">1.317</td>
+</tr>
+<tr class="odd">
+<td align="center">11</td>
+<td align="center">154</td>
+<td align="center">95</td>
+<td align="center">0.253</td>
+<td align="center">0.156</td>
+<td align="center">0.617</td>
+<td align="center">0.922</td>
+</tr>
+<tr class="even">
+<td align="center">12</td>
+<td align="center">59</td>
+<td align="center">55</td>
+<td align="center">0.097</td>
+<td align="center">0.090</td>
+<td align="center">0.932</td>
+<td align="center">0.602</td>
+</tr>
+<tr class="odd">
+<td align="center">13</td>
+<td align="center">4</td>
+<td align="center">2</td>
+<td align="center">0.007</td>
+<td align="center">0.003</td>
+<td align="center">0.500</td>
+<td align="center">1.000</td>
+</tr>
+<tr class="even">
+<td align="center">14</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">0.003</td>
+<td align="center">0.003</td>
+<td align="center">1.000</td>
+<td align="center">0.500</td>
+</tr>
+<tr class="odd">
+<td align="center">15</td>
+<td align="center">0</td>
+<td align="center">NA</td>
+<td align="center">0.000</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Ejercicio <a href="demografia.html#exr:ovisDalliSupCurve">3.5</a></strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">op &lt;-<span class="st"> </span><span class="kw">par</span>()
+<span class="kw">par</span>( <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span>)
+
+<span class="kw">plot</span>(lf[,<span class="dv">1</span>],lf[,<span class="dv">4</span>]<span class="op">*</span><span class="dv">1000</span>,
+     <span class="dt">xlab =</span> <span class="st">&quot;Edad&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>)
+
+<span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="dt">at =</span> lf[,<span class="dv">1</span>])
+
+<span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1000</span>))
+<span class="kw">lines</span>(lf[,<span class="dv">1</span>],lf[,<span class="dv">4</span>]<span class="op">*</span><span class="dv">1000</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
+<span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="st">&quot;Supervivencia x 1000&quot;</span>,  <span class="dt">line =</span> <span class="dv">3</span>)
+
+<span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">4</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">1000</span>))
+<span class="kw">lines</span>(lf[,<span class="dv">1</span>],lf[,<span class="dv">6</span>]<span class="op">*</span><span class="dv">1000</span>, <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;darkgray&quot;</span>)
+<span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">4</span>, <span class="st">&quot;Mortalidad x 1000&quot;</span>, <span class="dt">line =</span> <span class="dv">3</span>)
+
+<span class="kw">legend</span>(<span class="st">&quot;top&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Supervivencia&quot;</span>, <span class="st">&quot;mortalidad&quot;</span>),
+       <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">col =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="st">&quot;darkgray&quot;</span>))</code></pre></div>
+<p><img src="dinPob_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(op)<span class="co"># restaurar valores por defecto para plot</span>
+<span class="kw">rm</span>(lf)<span class="co">#limpiar un poco</span></code></pre></div>
+<p>Según el gráfico anterior, existe un primer pico de mortalidad en las crías de un año o menos. Posteriormente la mortalidad es muy baja hasta los ocho años, cuando empieza a incrementar. Probablemente, a partir de los ocho años, las cabras de monte empiezan a envejecer y a perder sus cualidades para sobrevivir.</p>
+
 <p></p>
 
 </div>
@@ -196,7 +451,7 @@ val=<span class="kw">numeric</span>()
           </div>
         </div>
       </div>
-<a href="modelos-de-crecimiento.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="demografia.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="metodos-numericos-para-ecologia-de-poblaciones.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -215,10 +470,11 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -242,9 +498,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
