@@ -2,10 +2,10 @@
 
 
 
-#-----Capítulo 1, Crecimiento-----
+#-----Cap?tulo 1, Crecimiento-----
 
 
-#----Capítulo 2, Demografía-----
+#----Cap?tulo 2, Demograf?a-----
 
 
 tablaVida <- function(x.sup,Sx, mx=NULL){
@@ -53,14 +53,19 @@ tablaVida <- function(x.sup,Sx, mx=NULL){
   options(oldOp)
 }
 
-##---Demografía, plotSiphonariaCC---
+##---Demograf?a, plotSiphonariaCC---
 
-plotSiphonariaCC <- function() {
+plotSiphonariaCC <- function(path2csv) {
+  
+  if (missing(path2csv)){
   #get dinPob WD
   #wd <- dirname(rstudioapi::getSourceEditorContext()$path)
  # datosDir <- paste0(wd, "/datos/chp-02-siphonaria.csv")
   datosDir <- "datos/chp-02-siphonaria.csv"
   dat <- read.csv(datosDir)
+  } else {
+    dat <- read.csv(path2csv)
+  }
   hdat <- hist(dat$diam_mayor, plot = FALSE)
   a <- hdat$mids[which.max(hdat$counts)]
   b <- hdat$mids[length(hdat$mids)]
@@ -69,7 +74,7 @@ plotSiphonariaCC <- function() {
        breaks = "sturges",
        col = "gray",
        main = "Histograma de tallas de\n Siphonaria gigas",
-       xlab = "Diámetro mayor (cm)",
+       xlab = "Di?metro mayor (cm)",
        ylab = "Frecuencia",
        las = 1)
   
@@ -78,18 +83,18 @@ plotSiphonariaCC <- function() {
 }
 
 
-##---Demografía, plotAquilegiaCC----
+##---Demograf?a, plotAquilegiaCC----
 
 plotAquilegiaCC <- function(){
   plot(1:4, log(Sx),
-       main = "Verificación de ajuste",
+       main = "Verificaci?n de ajuste",
        xlab = "Clase de edad",
        ylab = expression(log(Sx)),
        pch = 21, bg = 1, las = 1)
   abline(a = coef(salida)[1], b = coef(salida)[2], lwd = 2)
 }
 
-##---Demografía, plotWhale----
+##---Demograf?a, plotWhale----
 
 plotWhale <- function(){
     library(popbio)
@@ -129,7 +134,7 @@ plotWhale <- function(){
       self.shiftx = c(0, -0.02, -0.02, -0.02),#self point arrow x shift
       self.shifty = -0.1,
       dtext = 0.85, #controls the position of arrow text relative to arrowhead.
-      main = "Whale population model",
+      main = "Modelo poblacional de la ballena asesina",
       arr.lwd = 2.5
     )
     

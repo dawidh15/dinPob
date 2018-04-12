@@ -1,13 +1,13 @@
 # Demografía
 
-En el primer capítulo del material del curso, tratamos algunos modelos de crecimiento, donde factores importantes, como el sexo, la edad y el estado reproductivo de los organismos fueron ignorados. Anteriormente, consideramos a las poblaciones como una masa sin estructura que crece en relación al tiempo, y su propio tamaño. Esto tiene consecuencias importantes a la hora de constrastar las predicciones de los modelos, con datos reales sobre poblaciones.
+En el primer capítulo del material del curso, tratamos algunos modelos de crecimiento, donde factores importantes, como el sexo, la edad y el estado reproductivo de los organismos fueron ignorados. Anteriormente, consideramos a las poblaciones como una masa sin estructura que crece en relación al tiempo, y su propio tamaño. Esto tiene consecuencias importantes a la hora de contrastar las predicciones de los modelos, con datos reales sobre poblaciones.
 
 
 Por ejemplo, en muchas poblaciones aprovechadas, los métodos de captura tienen alta selectividad para ciertas tallas o edades.  Por tanto, existe un componente que provoca un efecto asimétrico en la mortalidad de una clase de edad a la siguiente.
 
-Utilizar estructuras de edades en los modelos de dinámica de poblaciones, permite predicir algunos efectos de acciones de manejo. Por ejemplo, ¿qué pasa si distribuimos la mortalidad de manera equitativa en todas las clases de edad, o qué pasa si cargamos la mortalidad en cierta clase de edad pero no en las otras? Este tema se refleja en los reglamentos de tallas mínimas para la pesca en Costa Rica, por ejemplo.
+Utilizar estructuras de edades en los modelos de dinámica de poblaciones, permite predecir algunos efectos de acciones de manejo. Por ejemplo, ¿qué pasa si distribuimos la mortalidad de manera equitativa en todas las clases de edad, o qué pasa si cargamos la mortalidad en cierta clase de edad pero no en las otras? Este tema se refleja en los reglamentos de tallas mínimas para la pesca en Costa Rica, por ejemplo.
 
-La estructura por edades, puede entenderse como el aporte de cada clase de edad a la fecundidad, y a la supervivencia de una clase a la siguiente. Por ejemplo, podemos pensar en un modelo sencillo donde tenemos tres estados en una población: neonatos, juveniles y adultos. Los neonatos aportan individuos desde su clase, hacia los juveniles. Los juveniles pueden reproducirse tempranamente, y aportar individuos a los neonatos mediante la reproducción; además, aquellos que sobrevivan pasarán a la calse adulta. Por último, la clase adulta aportará muchos individuos a los neonatos mediante la reproducción, y algunos de ellos sobrevivirán y permanecerán en la misma clase en la siguiente generación (Figura \@ref(fig:demoTMintro)).
+La estructura por edades, puede entenderse como el aporte de cada clase de edad a la fecundidad, y a la supervivencia de una clase a la siguiente. Por ejemplo, podemos pensar en un modelo sencillo donde tenemos tres estados en una población: neonatos, juveniles y adultos. Los nonatos aportan individuos desde su clase, hacia los juveniles. Los juveniles pueden reproducirse tempranamente, y aportar individuos a los neonatos mediante la reproducción; además, aquellos que sobrevivan pasarán a la clase adulta. Por último, la clase adulta aportará muchos individuos a los neonatos mediante la reproducción, y algunos de ellos sobrevivirán y permanecerán en la misma clase en la siguiente generación (Figura \@ref(fig:demoTMintro)).
 
 
 ```{r demoTMintro, echo=FALSE, fig.width=5, message=FALSE, warning=FALSE, fig.align='center', fig.cap = 'Ejemplo de las transiciones entre clases de edad'}
@@ -57,7 +57,7 @@ install.packages("popbio")
 
 Las tablas de vida resumen un estudio longitudinal, que investiga el destino de los individuos de una *cohorte* \index{cohorte} durante su vida (o una muestra de la cohorte). Usualmente, la primer columna de una tabla de vida consiste del número de individuos en una clase de edad. Y las clases de edad, dependen del ciclo de vida de los organismos.
 
-Este ordenamiento de los datos permite investigar cuántos individuos sobreviven de una clase de edad a la siguiente. Y apartir de aquí, se construyen otros valores poblacionales importantes.
+Este ordenamiento de los datos permite investigar cuántos individuos sobreviven de una clase de edad a la siguiente. Y a partir de aquí, se construyen otros valores poblacionales importantes.
 
 Para construir una tabla de vida, debemos seguir los siguientes pasos\footnote{en poblaciones silvestres de animales, generalmente se trabaja solo con las hembras}:
 
@@ -75,7 +75,7 @@ Para construir una tabla de vida, debemos seguir los siguientes pasos\footnote{e
 
 1. $e_x$: La esperanza de vida promedio. Esta se calcula al sumar todos los sobrevivientes desde la clase de edad $x$ hasta la última, dividido entre el número de supervivientes en la clase $x$. Esta manera de calcular $e_x$ supone que todos los individuos sobreviven desde e inicio de la clase de edad hasta el final y luego mueren. Para corregir restamos a este valor la mitad de la amplitud del intervalo en la clase de edad $x$. Es decir, si la amplitud del intervalo es un año, entonces restamos $0.5\left\Vert x \right\Vert =0.5(1)$. La fórmula Si tenemos $n$ clases de edad, entonces calculamos $e_x = (\sum_{i=x}^n{S_i})/S_x - 0.5\left\Vert x \right\Vert$. 
 
-Los calculos anteriores son interesantes, pero aún hay datos que se pueden añadir para sacar todo el provecho de las tablas de vida: los datos de reproducción. En el caso de animales, las tablas suelen trabajarse con el número de hembras; además, pueden añadirse datos sobre la descendencia que produce cada hembra (contanto también solo los individuos de este sexo). Por lo tanto, a las columnas anteriores añadimos las siguientes:
+Los cálculos anteriores son interesantes, pero aún hay datos que se pueden añadir para sacar todo el provecho de las tablas de vida: los datos de reproducción. En el caso de animales, las tablas suelen trabajarse con el número de hembras; además, pueden añadirse datos sobre la descendencia que produce cada hembra (contando también solo los individuos de este sexo). Por lo tanto, a las columnas anteriores añadimos las siguientes:
 
 1. $m_x$: El número de descendientes hembras por cada hembra de la clase $x$
 
@@ -154,7 +154,7 @@ Table: (\#tab:Aquilegia) Tabla de vida para una cohorte de *Aquilegia*.
 
 ### Tablas de vida estáticas
 
-Para algunos animales grandes y longevos, es impráctico construir tablas de vida horizontales. Así que se toman datos en un momento determinado de tiempo, y la tabla se construye a partir de esta información.
+Para algunos animales grandes y longevos, no es práctico construir tablas de vida horizontales. Así que se toman datos en un momento determinado de tiempo, y la tabla se construye a partir de esta información.
 
 **Tablas de vida verticales o tiempo-específicas**--- Estas tablas se construyen cuando se conoce la edad de los organismos. Entonces, se cuentan cuántos individuos hay en cada clase de edad; posteriormente, se cuentan las muertes en cada clase de edad, y se combina la información para construir una tabla de vida.
 
@@ -204,7 +204,7 @@ Es una herramienta general que puede ser utilizada con tablas de vida estacionar
 
 El análisis de curvas de captura, también puede utilizarse con datos de tallas; siempre y cuando, exista una función que relaciones las tallas con la edad. En este último caso, hay que considerar la incertidumbre que existe al convertir tallas a edades \footnote{Una manera de hacerlo es utilizar simulaciones de Monte Carlo.}.
 
-```{r plotSiphonariaCC, echo=FALSE, fig.align='center',fig.cap="Histograma de tallas de \\textit{Siphonaria gigas} en el RNVS Playa Hermosa-Punta Mala. Datos de 2017-2018.",fig.width=3.5,fig.height=4, fig.pos='ht!',dev.args=list(encoding = 'ISOLatin1.enc')}
+```{r plotSiphonariaCC, echo=FALSE, fig.align='center',fig.cap="Histograma de tallas de \\textit{Siphonaria gigas} en el RNVS Playa Hermosa-Punta Mala. Datos de 2017-2018.",fig.width=3.5,fig.height=4, fig.pos='ht!'}
 plotSiphonariaCC()
 rm(plotSiphonariaCC)
 ```
@@ -286,7 +286,7 @@ sLim <- signif(
 Con el código de arriba, obtenemos que $s =$ \num{ `r s`} , con un intervalo de confianza al \SI{95}{\percent} de `r paste0("\\numrange[range-phrase = --]{",sLim[1],"}{",sLim[2],"}")`.
 
 
-```{r plotAquilegiaCC, echo=FALSE, fig.align='center',fig.cap="Verificación de ajuste del modelo a los datos de \textit{Aquilegia}. Los puntos debería aparecer alineados con la recta de mejor ajuste",fig.width=3.5,fig.height=4, fig.pos='ht!',dev.args=list(encoding = 'ISOLatin1.enc')}
+```{r plotAquilegiaCC, echo=FALSE, fig.align='center',fig.cap="Verificación de ajuste del modelo a los datos de \textit{Aquilegia}. Los puntos debería aparecer alineados con la recta de mejor ajuste",fig.width=3.5,fig.height=4, fig.pos='ht!'}
 plotAquilegiaCC()
 rm(x,y, Sx, s, sLim, salida)
 ```
@@ -361,7 +361,13 @@ Estime una tasa de supervivencia común a todas las clases de edad de *Ovis dall
 
 ## Matrices
 
-```{r plotWhale, echo=FALSE, fig.cap="Un diagrama que representa gráficamente una matriz de transición"}
+En la sección anterior, nos enfocamos en el cálculo de algunos parámetros de crecimiento poblacional utilizando tablas de vida. Las tablas de vida son útiles cuando tenemos clases de edad bien definidas, sin embargo, en algunos casos es más conveniente estructurar una población por *etapas*, y no por clases de edad. Para este caso, el uso de matrices es más apropiado.
+
+Por ejemplo, algunos insectos pueden ser fácilmente descritos por etapas: huevo, larva, pupa y adulto. Igual que algunas plantas: semilla, plántula, flor, fruto. Incluso, los modelos matriciales son útiles en animales cuyas etapas de vida están mejor diferenciadas por el comportamiento, más que por la edad; es decir, la supervivencia en cada etapa está más relacionada con el comportamiento, que con la edad del individuo.
+
+El paquete **popbio** de \textsf{R}, contiene un conjunto de datos sobre la ballena asesina. En este conjunto de datos, la estructura de la población está mejor representada por sus etapas (Figura \@ref(fig:plotWhale)). Entendemos del diagrama, que las flechas nacen de la etapa inicial y apuntan hacia la etapa a la cual se hará la transición. Vemos que en algunos casos, las flechas salen desde una etapa, y apuntan a sí mismas; en este caso, se habla de permanencia ($P$). Si la etapa apunta a otra de mayor edad, se habla de crecimiento ($G$). Finalmente, si la etapa apunta a una de menor edad se habla de fecundidad ($F$).
+
+```{r plotWhale, echo=FALSE, fig.cap="Un diagrama que representa gráficamente una matriz de transición", fig.pos='ht!', message=FALSE, warning=FALSE}
 
 plotWhale()
 rm(plotWhale)
@@ -370,6 +376,172 @@ rm(plotWhale)
 
 \FloatBarrier
 
+
+Las **matrices de transición**\index{M!matrices de transición} contienen la información sobre la probabilidad de pasar de un estado a otro (como en la figura \@ref(fig:demoTMintro) también). Por ejemplo, para el diagrama de la ballena asesina, la matriz asociada es:
+
+\vfill
+
+
+\begingroup
+\sffamily
+\small
+
+\singlespacing
+
+||         |         |         |         |         | 
+|:-----|:--------|:--------:|:--------:|:--------:|:--------:|
+||         |         | Desde etapa|   |            |
+||           |yearling|   juvenile| mature| postreprod|
+||yearling|     0.0000|   0.0043  | 0.1132|     0.0000|
+|Hasta etapa|juvenile|     0.9775|   0.9111  | 0.0000|     0.0000|
+||mature  |     0.0000|   0.0736  | 0.9534|     0.0000|
+||postreprod|   0.0000|   0.0000  | 0.0452|     0.9804|
+
+Table: (\#tab:whaleTM) Matriz de transición para la ballena asesina.
+
+\endgroup
+
+Por convención, la matriz se lee desde las columnas hacia las filas. Es decir, si queremos encontrar la probabilidad de pasar de la etapa adulta, a la post-reproductiva, primero se ubica la columna de los adultos (*mature*), y luego se busca la fila de los post-reproductivos (*postrep*), y se lee la celda que interseca esa columna con esa fila. Para este caso es $0.0452$.
+
+### Proyección de una matriz a $N_{t+1}$
+
+Uno de los usos de las matrices de transición (también llamadas matrices poblacionales), es la proyección del tamaño de población en el tiempo. Esto es lo que el modelo de *Crecimiento Geométrico* hacía, pero con un tamaño de población global, sin estructura por etapas o edades.
+
+Para proyectar una matriz, necesitamos entender la **multiplicación matricial**\index{M!matrices de transición!multiplicación matricial}. Esta es una operación básica que se enseña en los cursos de 
+álgebra lineal, y consiste en multiplicar los elementos de una matriz con los elementos de otra matriz o vector. Pero para ello, hay un orden específico.
+
+Retomando la matriz de transición de la ballena asesina, pero sustituyendo los valores numéricos por símbolos, tenemos:
+
+\begingroup
+\sffamily
+\small
+
+\singlespacing
+
+|           |yearling|   juvenile| mature| postreprod|
+|:--------|:--------:|:--------:|:--------:|:--------:|
+|yearling|           |$F_{jy}$  |  $F_{my}$|          |
+|juvenile|  $G_{yj}$ |$P_{j}$   |          |          |
+|mature  |           | $G_{jm}$ | $P_m$    |          |
+|postreprod|         |          | $G_{mP}$ | $P_P$    |
+
+Table: (\#tab:whaleTMsym) Matriz de transición para la ballena asesina, expresada de manera simbólica.
+
+\endgroup
+
+Vamos a llamar a esta matriz $\mathbf{A}$. Luego, para la proyección es necesario contar con un vector que contenga el número de individuos en el año (o unidad correspondiente) previo al que se desea proyectar. Es decir, si queremos proyectar a $t+1$, debemos conocer el tamaño de población en el año $t$.
+
+$$
+\mathbf{n}_t = 
+\begin{pmatrix}
+n_y  \\ 
+n_j   \\
+n_m  \\
+n_P
+\end{pmatrix}
+$$
+ 
+Luego, representamos la operación como:
+
+$$
+\mathbf{n}_{t+1} = \mathbf{A}\mathbf{n}_t
+$$
+
+La expresión anterior es una forma corta de representar la multiplicación de matrices. Tanto los vectores como las matrices pueden ser representados en negrita; las matrices en mayúscula; los vectores en minúscula. Esta expresión simplifica la siguiente operación:
+
+$$
+\mathbf{n}_{t+1} = 
+\begin{pmatrix}
+      0   & F_{jy}  &  F_{my} &  0      \\
+ G_{yj} &   P_{j}  &  0        &   0      \\
+      0   & G_{jm} & P_m    &   0      \\
+      0   &   0       & G_{mP}& P_P
+ \end{pmatrix}
+\times
+\begin{pmatrix}
+n_y  \\ 
+n_j   \\
+n_m  \\
+n_P
+ \end{pmatrix}
+$$
+
+El resultado de esta multiplicación es un arreglo con el número de filas iguales al primer multiplicando (la matriz), y el número de columnas iguales al segundo multiplicando (el vector). Por tanto, el resultado es un nuevo vector.
+
+El *i*-ésimo elemento del vector $\mathbf{n}_{t+1}$, se calcula como: $\sum_{j=1}^k \mathbf{A}_{i,j}\cdot \mathbf{n}_j$. Todo el proceso se resume a continuación:
+
+\begin{equation}
+\mathbf{n}_{t+1} = 
+\begin{pmatrix}
+      0\cdot n_y   + F_{jy}\cdot n_j  +  F_{my}\cdot n_m +  0\cdot n_P      \\
+       G_{yj}\cdot n_y +  P_{j}\cdot n_j  +  0\cdot n_m  +  0\cdot n_P      \\
+      0\cdot n_y + G_{jm}\cdot n_j + P_m\cdot n_m   +   0\cdot n_P      \\
+      0\cdot n_y  +   0\cdot n_j    + G_{mP}\cdot n_m + P_P\cdot n_P
+ \end{pmatrix}
+  (\#eq:TM)
+\end{equation}
+
+```{example, label = 'TMwhale'}
+Hacer una proyección a $t+1$ con la matriz de transición de la ballena asesina
+```
+
+Vamos a asumir que se realizó un censo poblacional, y que los datos de abundancia se clasificaron según las etapas de la matriz de transición (Cuadro \@ref(tab:whaleTM)). Los resultados del censo fueron:
+
+$$
+\mathbf{n}_t = 
+\begin{pmatrix}
+123  \\ 
+87   \\
+60  \\
+64
+\end{pmatrix}
+$$
+
+Si sustituimos los valores de la matriz de transición, y los datos del censo en la ecuación \@ref(eq:TM), tenemos:
+
+$$
+\mathbf{n}_{t+1} = 
+\begin{pmatrix}
+      0\cdot 123   + 0.0043  \cdot 87  +  0.1132\cdot 60 +  0\cdot 64      \\
+       0.9775\cdot 123 +  0.9111\cdot 87+  0\cdot 60+  0\cdot 64      \\
+      0\cdot 123 + 0.0736  \cdot 87 + 0.9534\cdot 60 +   0\cdot 64      \\
+      0\cdot 123 +0\cdot 87    + 0.0452\cdot 60 + 0.9804\cdot 64
+ \end{pmatrix}
+$$
+
+El resultado es:
+
+$$
+\mathbf{n}_{t+1} = 
+\begin{pmatrix}
+7.17  \\ 
+199.5   \\
+63.6  \\
+65.5
+\end{pmatrix}
+$$
+
+En \textsf{R}:
+
+```{r}
+library(popbio)
+data(whale)
+
+nt <- c(123, 87, 60, 64)
+
+ntp1 <- whale%*%nt # el '%*%'representa el operador para multiplicar
+                    # matrices en R
+
+ntp1
+
+#limpiar
+detach("package:popbio", unload = TRUE)
+rm(whale, ntp1, nt)
+```
+
+
 ## Otras fuentes bibliográficas
 
 En @NealPopBio se da una introducción gentil a la demografía, pero los métodos de análisis son limitados a unos pocos; básicamente, se limitan a enseñar las técnicas necesarias para comprender los fundamentos detrás de cada análisis. Por otro lado, @wildlifeDemography2005 describe detalladamente las variantes de cada técnica, con un enfoque práctico; además, presenta discusiones sobre la utilidad de cada método de análisis y sus supuestos. Como nota precautoria, en @wildlifeDemography2005, las convenciones sobre los nombres de las columnas de las tablas de vida difieren a las expuestas en este material.
+
+Una pequeña reseña histórica, acompañada de una introducción gentil a los modelos de matrices se da en @NealPopBio. Mientras que los detalles matemáticos de los cálculos relacionados con los modelos de matrices se da en @wildlifeDemography2005. También se recomienda el uso de libros de Álgebra Lineal como referencia, al estudiar modelos matriciales.
