@@ -10,7 +10,7 @@ Utilizar estructuras de edades en los modelos de dinámica de poblaciones, permi
 La estructura por edades, puede entenderse como el aporte de cada clase de edad a la fecundidad, y a la supervivencia de una clase a la siguiente. Por ejemplo, podemos pensar en un modelo sencillo donde tenemos tres estados en una población: neonatos, juveniles y adultos. Los nonatos aportan individuos desde su clase, hacia los juveniles. Los juveniles pueden reproducirse tempranamente, y aportar individuos a los neonatos mediante la reproducción; además, aquellos que sobrevivan pasarán a la clase adulta. Por último, la clase adulta aportará muchos individuos a los neonatos mediante la reproducción, y algunos de ellos sobrevivirán y permanecerán en la misma clase en la siguiente generación (Figura \@ref(fig:demoTMintro)).
 
 
-```{r demoTMintro, echo=FALSE, fig.width=5, message=FALSE, warning=FALSE, fig.align='center', fig.cap = 'Ejemplo de las transiciones entre clases de edad'}
+```{r demoTMintro, echo=FALSE, fig.width=5, message=FALSE, warning=FALSE, fig.align='center', fig.cap = 'Ejemplo de las transiciones entre clases de edad',cache=TRUE}
 library(Gmisc)
 tM <- matrix(c(
   0  , 0.2 , 0.8,
@@ -359,7 +359,7 @@ Estime una tasa de supervivencia común a todas las clases de edad de *Ovis dall
 
 \FloatBarrier
 
-## Matrices
+## Matrices de transición
 
 En la sección anterior, nos enfocamos en el cálculo de algunos parámetros de crecimiento poblacional utilizando tablas de vida. Las tablas de vida son útiles cuando tenemos clases de edad bien definidas, sin embargo, en algunos casos es más conveniente estructurar una población por *etapas*, y no por clases de edad. Para este caso, el uso de matrices es más apropiado.
 
@@ -367,7 +367,7 @@ Por ejemplo, algunos insectos pueden ser fácilmente descritos por etapas: huevo
 
 El paquete **popbio** de \textsf{R}, contiene un conjunto de datos sobre la ballena asesina. En este conjunto de datos, la estructura de la población está mejor representada por sus etapas (Figura \@ref(fig:plotWhale)). Entendemos del diagrama, que las flechas nacen de la etapa inicial y apuntan hacia la etapa a la cual se hará la transición. Vemos que en algunos casos, las flechas salen desde una etapa, y apuntan a sí mismas; en este caso, se habla de permanencia ($P$). Si la etapa apunta a otra de mayor edad, se habla de crecimiento ($G$). Finalmente, si la etapa apunta a una de menor edad se habla de fecundidad ($F$).
 
-```{r plotWhale, echo=FALSE, fig.cap="Un diagrama que representa gráficamente una matriz de transición", fig.pos='ht!', message=FALSE, warning=FALSE}
+```{r plotWhale, echo=FALSE, fig.cap="Un diagrama que representa gráficamente una matriz de transición", fig.pos='ht!', message=FALSE, warning=FALSE,cache=TRUE}
 
 plotWhale()
 rm(plotWhale)
@@ -537,6 +537,164 @@ ntp1
 #limpiar
 detach("package:popbio", unload = TRUE)
 rm(whale, ntp1, nt)
+```
+
+### El paquete **popbio**
+
+En la sección anterior se explicó cómo usar una matriz de transición para proyectar una población de $t$ a $t+1$. Este proceso puede hacerse de manera iterativa a través de un ámbito de tiempo determinado. El resultado de esta operación es una Distribución Estable de Edad (*SAD* por sus siglas en inglés) [@wildlifeDemography2005]. Si la población mantiene una fecundidad específica por edad y tasas de supervivencia estables, ésta alcanzará una SAD que no depende de la población inicial. Esta condición es útil para calcular parámetros poblacionales la tasa de multiplicación $\lambda$, la tasa reproductiva neta $R_0$, el tiempo de generación $T_c$, etc., aunque los detalles del cálculo quedan fuera del alcance del curso. En lugar de ello, se escoge una aproximación más práctica para calcular $\lambda$ usando el paquete **popbio** [@Stubben2007]. A continuación se presenta un resumen de las principales funciones del paquete **popbio**.
+
+- `pop.projection(TM,n0,t)`: Proyecta una población. `TM`: matriz de transición; `n0`: vector de tamaño de población inicial; `t`: cantidad de tiempo que se desea proyectar. Devuelve valores como `$lambda`: $\lambda$, `$stable.stage`: la proporción estable de clases de edad, o etapas, en una población; `$stage.vectors`: la cantidad de individuos en cada clase de edad o etapa, desde el tiempo cero hasta el tiempo `t`; `$pop.sizes`: vector con el tamaño de la población total, desde el tiempo cero hasta el tiempo `t`; `$pop.changes`: el $\lambda$ desde el tiempo cero hasta el tiempo `t`.
+
+- `stage.vector.plot(stage.vectors, col)`: grafica la matriz de transición con respecto al tiempo. `stage.vectors`: recibe la salida de la función `pop.projection`, específicamente el vector: `$stage.vectors`. El argumento `col` es una secuencia de enteros, con las columnas que se desean graficar.
+
+- `fundamental.matrix(TM)`: Recibe una matriz de transición y devuelve una matriz fundamental, con los errores de estimación. La matriz fundamental tiene la misma estructura que una matriz de transición, pero sus elementos contienen el número de unidades de tiempo que pasa cada individuo en una *etapa* de crecimiento. Es apropiada para poblaciones con crecimiento estructurado por etapas.
+
+- `net.reproductive.rate(TM)`: Devuelve el $R_0$ de una matriz de transición.
+
+- `generation.time(TM)`: Devuelve el $T_c$ de una matriz de transición.
+
+-  `stoch.projection(matrices,n0,tmax,nreps,...)`: Genera una proyección estocástica de una población. `matrices`: Lista de matrices de transición (creadas a partir de la estimación de una matriz con valores de tendencia central y de dispersión. `n0`: vector con tamaño inicial de población; `tmax`: entero con el número de pasos de tiempo que quieren predecirse a futuro; `nreps`: número de pasos a iterar. Los detalles del método se encuentran en  @stochPVA.
+
+- `stoch.growth.rate(matrices)`: Versión estocástica para calcular *el logaritmo* de la tasa de crecimiento.
+
+- `stoch.quasi.ext(matrices, n0, Nx, tmax, maxruns, nreps)`. Hace una proyección de la probabilidad de extinción de una población. Cuyos argumentos son:
+    
+    - `matrices`: Una lista con dos o más matrices de transición
+    
+    - `n0`: Vector con tamaño de población inicial.
+    
+    - `Nx`: Umbral de quasi-extinción.
+    
+    - `tmax`:	número de pasos a proyectar en el futuro.
+    
+    - `maxruns`: Número de veces que se simula la distribución acumulativa	sobre la probabilidad de extinción.
+    
+    - `nreps`: Número de iteraciones.
+
+#### Estimación de parámetros básicos con
+
+Para simplificar las cosas, las funciones del paquete **popbio** se han reunido en dos *clases de referencia*. Las clases de referencia son objetos en \textsf{R} que contienen los datos y los métodos para analizarlos en un solo objeto. Las funciones para crear estas clases de referencia se encuentran en el archivo `Source.R` dentro del repositorio de este material.
+
+La clase `transMat` toma como argumentos a: `matriz`: una matriz de transición; `n0`: un vector con el tamaño de población inicial; `t`: el número de pasos de tiempo a proyectar la población. Por ejemplo, para calcular los parámetros de crecimiento de la ballena asesina, asumiendo una población inicial de $n_0 = \left\{100,80,40,20\right\}$ utilizamos el siguiente comando:
+
+```{r}
+library(popbio)
+data(whale)
+
+whaleTM <- transMat$new(matriz=whale,n0 = c(100,80,60,40),t = 15)
+```
+
+Al crear este objeto, se ha utilizado un *constructor* con el nombre de la clase `transMat` seguido de la instrucción `$new(...)`, que indica a \textsf{R} que se quiere crear una nueva instancia de esta clase. Seguidamente le pasamos los datos a los argumentos `matriz=whale,n0 = c(100,80,60,40),t = 15`. Y guardamos todo en un nuevo objeto llamado `whaleTM`. Este objeto contiene los datos, pero también las funciones para calcular los parámetros poblacionales\footnote{Estas funciones son una llamada a las funciones del paquete \textbf{popbio}. Su objetivo es simplificar la lectura del código y la resolución de los ejercicios.}
+
+Para graficar los resultados de la proyección utilizamos el comando `whaleTM$plotTM()` (Figura \@ref(fig:whaleplotTM)).
+
+```{r whaleplotTM, echo=FALSE, fig.align='center', fig.cap='Resultados de la proyección de la matriz de transición', fig.pos='ht!', fig.width=8.5}
+whaleTM$plotTM()
+```
+
+Para graficar los resultados la proporción de la población en cada etapa existe el comando `whaleTM$plotStage()` (Figura \@ref(fig:whaleplotStage)).
+
+```{r whaleplotStage, echo=FALSE, fig.align='center', fig.cap='Proporción de la población en cada etapa de edad', fig.pos='ht!', fig.width=8.5}
+whaleTM$plotStage()
+```
+
+Las demás funciones para calcular parámetros poblacionales se presentan abajo:
+
+```{r}
+# La tasa de multiplicación
+whaleTM$darLambda()
+
+#La tasa de crecimiento neto
+whaleTM$darR0()
+
+#El tiempo de generación
+whaleTM$darTc()
+
+```
+
+```{r, include=FALSE}
+rm("whaleTM")
+```
+
+
+### Viabilidad de poblaciones
+
+Los gestores de vida silvestre utilizan las proyecciones de población para evaluar escenarios de manejo. Por ejemplo, ¿cuál es la probabilidad de extinción de una población en diez años, si se extraen 10 toneladas anuales de juveniles? Para responder este tipo de preguntas existen una serie de métodos de *Análisis de Viabilidad de Poblaciones* (*PVA*, por sus siglas en inglés). Veremos a en los siguientes párrafos un PVA basado en proyecciones de población, que son determinadas de matrices de transición con estocasticidad.
+
+La estocasticidad es la variación causada por factores aleatorios. En el caso de las matrices de transición, existen diversos factores aportan incertidumbre a la estimación de la cantidad de individuos supervivientes en cada clase. Esto quiere decir, que la supervivencia en cada celda de la matriz no es un valor fijo, sino, una variable aleatoria que tiene una distribución de probabilidad asociada.
+
+Por ejemplo, suponga que en un muestreo se tiene que la etapa $S_1$ de una población se contaron un total de mil individuos, de los cuales cien pasan a la siguiente generación, seiscientos permanecen en dicha clase, y trescientos mueren. Entonces, las probabilidades de supervivencia son variables aleatorias asociadas a una distribución de probabilidad Beta\footnote{De hecho es más apropiada una distribución Multinomial; pero no entraremos en detalles.}, y se puede representar como:
+
+$$
+\begin{split}
+S_{1,1} &\sim \text{Beta}(600,400)\\
+S_{1,2} &\sim \text{Beta}(100,900)\\
+\end{split}
+$$
+
+Este planteamiento permite obtener una infinidad de muestras de $S_{1,1}$ o $S_{1,2}$. Y asumiendo que el resto de etapas de la población hayan sido determinadas de la misma forma, entonces podemos obtener una infinidad de matrices de transición del conjunto de distribuciones de probabilidad. Cuando sea posible obtener muestras de la matriz de transición para una población, el paquete **popbio** ofrece métodos para estimar parámetros de población de manera estocástica.
+
+Una vez cargado el paquete, la información sobre estas funciones se puede acceder usando: `?stoch.projection`, para realizar una proyección poblacional estocástica y obtener una aproximación de una distribución de probabilidad alrededor del tamaño poblacional; `?stoch.quasi.ext`, para analizar la probabilidad de extinción de una población a cierto número de años (o pasos de tiempo), bajo cierto umbral de individuos. Es decir, el investigador objetivamente indica un tamaño poblacional del cual se asume que la población no puede recuperarse, y el algoritmo calcula la probabilidad de que el tamaño de población se encuentre bajo este umbral.
+
+El archivo `Source.R` provee una clase de referencia para los métodos estocásticos del paquete **popbio**. Esta clase lleva el nombre de `transStochMat`. Los argumentos para crear dicha clase son:
+
+- `matriz`: una *lista* de matrices de transición. Se pueden generar a partir de las distribuciones de probabilidad asociadas a la estimación de los elementos de una matriz de transición.
+
+- `n0`: El vector con el tamaño de población inicial.
+
+- `t`: El valor máximo de los pasos de tiempo hacia los cuales se desea proyectar la población.
+
+- `umbral`: El número mínimo de individuos bajo el cual la población se considera cuasi-extinta.
+
+- `incluirEtapa`: Un vector de elementos binarios (unos y ceros), que indica cuales etapas o clases de edad deben incluirse en el análisis (unos), y cuales deben excluirse (ceros).
+
+Para demostrar el uso de la clase de referencia, se utilizan los datos del paquete **popbio**. El conjunto de datos se llama *hudsonia* y ya provee una lista de matrices de transición.
+
+```{r hudsoniaDatos, cache=TRUE, results='hide'}
+
+# hudsonia es una lista de matrices de transición
+data("hudsonia")
+n <- c(4264, 3, 30, 16, 25, 5)
+names(n) <-
+  c("seed", "seedlings", "tiny", "small", "medium", "large")
+
+
+hudsoniaStoch <- transStochMat$new(
+  matriz = hudsonia,
+  n0 = n,
+  t = 50,
+  umbral = 10,# Número de plantas con potencial reproductivo.
+  incluirEtapa = c(0,1,1,1,1,1)
+)
+```
+
+Una vez creado el objeto. Existen varias funciones asociadas para observar los resultados. Por ejemplo, para observar la distribución de probabilidad alrededor de la población (solo etapas seleccionadas en `incluirEtapa`) se utiliza el comando `hudsoniaStoch$plotN()` (Figura \@ref(fig:hudsoniaplotN)). La línea gris representa el tamaño de población inicial y la roja, el tamaño de población de cuasi-extinción.
+
+```{r hudsoniaplotN, echo=FALSE, fig.align='center', fig.cap='Población total de \\textit{hudsonia} a 50 años', fig.pos='ht!', fig.width=5.5,cache=TRUE}
+hudsoniaStoch$plotN()
+```
+
+Para observar la probabilidad de cuasi-extinción de la población (solo etapas seleccionadas en `incluirEtapa`), se digita `hudsoniaStoch$plotExtProb()` (Figura \@ref(fig:hudsoniaplotExtProb)).
+
+```{r hudsoniaplotExtProb, echo=FALSE, fig.align='center', fig.cap='Probabilidad de extinción de \\textit{hudsonia} a 50 años. Umbral de quasi-extición 10 individuos sobre tierra.', fig.pos='ht!', fig.width=5.5,cache=TRUE}
+hudsoniaStoch$plotExtProb()
+```
+
+El parámetro de crecimiento con su incertidumbre asociada se obtiene así:
+
+```{r}
+# GR estocástico
+hudsoniaStoch$darGR()
+```
+
+Por último, la probabilidad de que la población se encuentre por debajo del umbral establecido, al finaliza el número de pasos de tiempo es:
+
+```{r}
+hudsoniaStoch$extProb()
+```
+
+```{r, include=FALSE}
+rm("hudsoniaStoch")
 ```
 
 

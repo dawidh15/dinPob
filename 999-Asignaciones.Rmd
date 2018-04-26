@@ -179,7 +179,81 @@ Envíe solo el archivo `.Rmd` al profesor.
 
 \newpage
 
-## Tarea 05
+## Tarea 05: Matrices de transición
+
+### Objetivo
+
+Utilizar las matrices de transición para hacer una *Análisis de Viabilidad Poblacional* bajo diferentes escenarios de manejo.
+
+
+```{r, include=FALSE}
+rejectOdd <- 1.14
+```
+
+## Instrucciones
+
+Resuelva el siguiente problema de gestión de recursos naturales, utilizando la teoría y práctica de matrices de transición.
+
+## Contexto
+
+En las islas de Lofoten, en Escandinavia, aún existe una importante tradición ballenera. Tras años de estudio y acercamientos con los balleneros, se ha decidido permitir la casa de ballenas. Existen 15 empresas y familias balleneras y cada una clama por un permiso de caza para dos ballenas al año.
+
+La autoridad que gestiona los recursos naturales le ha encomendado analizar el efecto de extraer las 30 ballenas al año sobre los siguientes parámetros poblacionales:
+
+- La probabilidad de alcanzar un umbral de cuasi-extinción de 80 animales **sub-adultos y adultos** a 15 años. Para investigar el efecto de la cosecha a largo plazo.
+
+- Evidencia gráfica de las estimaciones.
+
+Además le piden incluir estimados de incertidumbre (excepto para la probabilidad de extinción).
+
+El criterio de rechazo de los escenarios de manejo es el siguiente:
+
+> *La chance de la probabilidad de cuasi-extinción de obtener 80 animales sub-adultos o adultos en 15 años después de la cosecha debe ser menor a `r rejectOdd`*
+
+Para calcular la chance se toma la razón de la probabilidad de extinción del escenario evaluado ($p_e$) más uno, por la probabilidad de extinción actual ($p_0$) más uno:
+
+$$
+o = \frac{1+p_e}{1+p_0}
+$$
+
+Los anteriores ecólogos determinaron la matriz de transición de esta población de ballenas. Para cada parámetro de la matriz han determinado una distribución de probabilidad, y han puesto a su disposición una función para generar matrices de transición estocásticas `hacerStockMatriz`. (Esta función se encuentra en el archivo `sourceT05.R`)
+
+El último censo de población determinó la siguiente estructura poblacional.
+
+$$
+\mathbf{n}
+=
+\begin{pmatrix}
+ n_0\\ 
+ n_1\\ 
+ n_2\\
+ \end{pmatrix}
+=
+\begin{pmatrix}
+ 153\\ 
+ 81\\ 
+ 43\\
+ \end{pmatrix}
+$$
+
+Donde $n_0$ son juveniles, $n_1$ subadultos y $n_2$ adultos.
+
+
+## Instrucciones
+
+Calcule los parámetros poblacionales solicitados distribuyendo la mortalidad de la siguiente forma:
+
+1. Reste los treinta individuos a la clase $n_0$.
+
+1. Reste los treinta individuos a la clase $n_1$.
+
+1. Reste los treinta individuos a la clase $n_2$.
+
+1. Reste los treinta individuos equitativamente a la clase $n_2$ y $n_1$.
+
+1. Reste homogéneamente los treinta individuos en todas las clases.
+
+Utilice la clase de referencia `transStochMat` (Esta función se encuentra en el archivo `sourceT05.R`). **Ver material del curso para obtener instrucciones de su uso, Matrices de Transición**.
 
 ## Tarea 06
 

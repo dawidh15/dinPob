@@ -2,10 +2,10 @@
 
 
 
-#-----Cap?tulo 1, Crecimiento-----
+#-----Capítulo 1, Crecimiento-----
 
 
-#----Cap?tulo 2, Demograf?a-----
+#----Capítulo 2, Demografía-----
 
 
 tablaVida <- function(x.sup,Sx, mx=NULL){
@@ -53,7 +53,7 @@ tablaVida <- function(x.sup,Sx, mx=NULL){
   options(oldOp)
 }
 
-##---Demograf?a, plotSiphonariaCC---
+##---Demografía, plotSiphonariaCC---
 
 plotSiphonariaCC <- function(path2csv) {
   
@@ -74,7 +74,7 @@ plotSiphonariaCC <- function(path2csv) {
        breaks = "sturges",
        col = "gray",
        main = "Histograma de tallas de\n Siphonaria gigas",
-       xlab = "Di?metro mayor (cm)",
+       xlab = "Diámetro mayor (cm)",
        ylab = "Frecuencia",
        las = 1)
   
@@ -83,18 +83,18 @@ plotSiphonariaCC <- function(path2csv) {
 }
 
 
-##---Demograf?a, plotAquilegiaCC----
+##---Demografía, plotAquilegiaCC----
 
 plotAquilegiaCC <- function(){
   plot(1:4, log(Sx),
-       main = "Verificaci?n de ajuste",
+       main = "Verificación de ajuste",
        xlab = "Clase de edad",
        ylab = expression(log(Sx)),
        pch = 21, bg = 1, las = 1)
   abline(a = coef(salida)[1], b = coef(salida)[2], lwd = 2)
 }
 
-##---Demograf?a, plotWhale----
+##---Demografía, plotWhale----
 
 plotWhale <- function(){
     library(popbio)
@@ -142,3 +142,168 @@ plotWhale <- function(){
     detach("package:diagram", unload = TRUE)
 }
 
+
+#-----Demografía, proyectar matriz----
+
+transMat <- setRefClass("transMat",
+  fields = list(matriz="matrix",n0="numeric", t = "numeric",p="list"),
+  methods = list(
+    initialize = function(matriz,n0,t,p){
+      .self$matriz <- matriz
+      .self$n0 <- n0
+      .self$t <- t
+      if (missing(p)){
+        require(popbio)
+        .self$p <- pop.projection(.self$matriz,n0,t)
+      }
+    },
+    plotTM = function(){
+      assign("op", par())
+      layout(matrix(1:2,ncol=2))
+      
+      plot(
+        x=1:length(p$pop.sizes),
+        y=p$pop.sizes,
+        main = "Tamaño de población",
+        xlab = "Tiempo",
+        ylab = "Número de individuos",
+        type = "l", lwd = 2, las = 1
+      )
+      plot(
+        x=1:length(p$pop.changes),
+        y=p$pop.changes,
+        main = expression(lambda),
+        xlab = "Tiempo",
+        ylab = "Tasa de multiplicación",
+        type = "l", lwd = 2, las = 1,
+        ylim = c(ifelse(min(p$pop.changes)>1,0.9,min(p$pop.changes)),max(p$pop.changes)*1.1)
+      )
+      abline(h=1,col="gray")
+      suppressWarnings(suppressMessages(par(op)))
+    },
+    darLambda = function(){
+      return(p$lambda)
+    },
+    darR0 =  function(){
+      require(popbio)
+      net.reproductive.rate(matriz)
+    },
+    darTc = function(){
+      require(popbio)
+      generation.time(matriz)
+    },
+    plotStage = function(){
+      require(popbio)
+      stage.vector.plot(p$stage.vectors,
+          xlab = "Tiempo", ylab = "Proporción en cada etapa")
+    }
+)#methods
+)#class
+
+
+#-----Demografía, proyectar matriz estocástica----
+
+transStochMat <- setRefClass("transStochMat",
+                             fields = list(
+                               matriz = "list",
+                               n0 = "numeric",
+                               t = "numeric",
+                               p = "matrix",
+                               umbral = "numeric",
+                               probExt = "matrix",
+                               incluirEtapa = "numeric"
+                             ),
+    methods = list(
+      initialize = function(matriz,
+                            n0,
+                            t,
+                            p,
+                            umbral,
+                            incluirEtapa,
+                            probExt
+                            ) {
+        .self$matriz <- matriz
+        .self$n0 <- n0
+        .self$t <- t
+        setanddone <- FALSE
+        if (missing(incluirEtapa)){
+          .self$incluirEtapa <- rep(1, length(n0))
+          setanddone <- TRUE
+        } else {
+          .self$incluirEtapa <- incluirEtapa
+          setanddone <- TRUE
+          }
+        if (missing(umbral)){
+          .self$umbral <- 0.05*(sum(n0))
+          } else {
+        .self$umbral <- umbral
+        }
+        if (missing(p)){
+          require(popbio)
+          .self$p <- stoch.projection(matrices = .self$matriz,
+                                      n0 = n0,
+                                      tmax = t)
+        }
+        if (setanddone & missing(probExt)){
+          require(popbio)
+          .self$probExt <-
+            stoch.quasi.ext(
+              matrices = matriz,
+              n0 = n0,
+              Nx = .self$umbral,
+              nreps = 500,
+              maxruns = 10,
+              sumweight = .self$incluirEtapa,
+              verbose = FALSE,
+              tmax = t
+            )
+          
+        }
+      },
+      
+      plotN = function(){
+        assign("op", par())
+        original <- sum(n0*incluirEtapa)
+        iters <- rowSums(p%*%incluirEtapa)
+        xLabThis <- paste0("Número de individuos en t = ",t)
+        
+        hist(
+          iters,
+          main = "Tamaño de población",
+          xlab = xLabThis,
+          ylab = "Frecuencia",
+          lwd = 2, las = 1,
+          xlim = c(min(c(original,iters)), max(c(original,iters)))
+        )
+        abline(v=original,col="gray")
+        abline(v=umbral,col="red",lwd=2)
+        suppressWarnings(suppressMessages(par(op)))
+      },
+      
+      darGR = function(){
+        require(popbio)
+        valGR <- stoch.growth.rate(matriz)
+        return(list(
+          approx = exp(valGR$approx),
+          sim = exp(valGR$sim),
+          simCI = exp(valGR$sim.CI)
+        ))
+      },
+      
+      plotExtProb = function(){
+        matplot(
+          probExt,
+          xlab = "Tiempo",
+          ylab = "Probabilidad de quasi-extinción",
+          type = "l",
+          lty = 1,
+          col = rainbow(10)
+        )
+      },
+      extProb = function(){
+        pop <- p%*%incluirEtapa
+        prob <- mean(ifelse(rowSums(pop) < umbral, 1, 0))
+        return(prob)
+      }
+    )#methods
+)#class
