@@ -190,11 +190,11 @@ Utilizar las matrices de transición para hacer una *Análisis de Viabilidad Pob
 rejectOdd <- 1.14
 ```
 
-## Instrucciones
+### Instrucciones
 
 Resuelva el siguiente problema de gestión de recursos naturales, utilizando la teoría y práctica de matrices de transición.
 
-## Contexto
+### Contexto
 
 En las islas de Lofoten, en Escandinavia, aún existe una importante tradición ballenera. Tras años de estudio y acercamientos con los balleneros, se ha decidido permitir la casa de ballenas. Existen 15 empresas y familias balleneras y cada una clama por un permiso de caza para dos ballenas al año.
 
@@ -239,7 +239,7 @@ $$
 Donde $n_0$ son juveniles, $n_1$ subadultos y $n_2$ adultos.
 
 
-## Instrucciones
+### Instrucciones
 
 Calcule los parámetros poblacionales solicitados distribuyendo la mortalidad de la siguiente forma:
 
