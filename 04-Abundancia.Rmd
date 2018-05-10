@@ -1,3 +1,254 @@
-# Estimación de abudancia
+# Estimación de abundancia
 
-Un resumen de las principales técnicas de estimación de abundancia.
+El concepto de abundancia ha sido recurrente en los capítulos anteriores. También se le ha llamado *tamaño poblacional*, y usualmente se ha representado con la letra $N$. El tamaño de población, o abundancia, hace referencia a la cantidad de individuos que están delimitados de alguna forma. Esta delimitación puede ser geográfica, genética, o artificial. Una delimitación geográfica puede referirse a una extensión natural o ecosistema, o a un límite humano, como un parque nacional. Las delimitaciones genéticas, tienen que ver con el concepto de poblaciones con cierto grado de aislamiento reproductivo. Y la delimitación artificial puede referirse a una abundancia, por ejemplo, de *Daphnia* en un beaker, para pruebas de toxicología.\index{A!abundancia} \index{T!tamaño de población}
+
+El problema, especialmente con la delimitación geográfica y genética, es que existe migración de individuos dentro y fuera de la población. Modelar la migración puede resultar muy complejo. A estos modelos de población se les conoce como *modelos de población abierta*. Por otro lado, si escogemos una escala temporal apropiada, podemos pensar en una población como *cerrada*, si asumimos que no existe ni emigración, ni inmigración dentro de la población.
+
+En las siguientes páginas, cuando hablemos de abundancia, nos referiremos a poblaciones *cerradas*.
+
+## Abundancia no es un conteo
+
+En algunos casos, los investigadores comenten el error de llamar abundancia, a la cantidad de individuos observados durante un muestreo. Este error tiene al menos dos componentes: Primero, los muestreos en general no abarcan toda el área de distribución de una población. Segundo, es poco probable que durante un muestreo se hayan observado todos los individuos *sujetos a ser observados* por esa técnica de muestreo, es decir, la **probabilidad de detección**\index{P!probabilidad de detección} (o captura) es diferente de uno.
+
+La probabilidad de detección es un parámetro central en las técnicas modernas de estimación de la abundancia. Usualmente, este parámetro se basa en modelos probabilistas, que tienen una distribución de probabilidad diferente de la Normal. Por tanto, las técnicas de análisis están basadas en los métodos de *máxima verosimilitud*, o *estadística bayesiana* [@Royle2008].
+
+El principio es muy sencillo. Cada individuo durante un muestreo tiene dos estados: *detectado*, o *no detectado*. Por tanto, la cantidad de individuos que fueron observados, son una porción del total de individuos. Si tamaño poblacional es igual a $N$, entonces, podemos decir que:
+
+$$
+N = \frac{y}{p}
+$$
+ Donde $y$ es el número de individuos *observados*, y $p$ es la probabilidad de detección. Otra manera más formal de expresar lo anterior, es que el conteo, $y$, es una variable aleatoria que tiene una distribución binomial, con parámetros $N$ y $p$.
+ 
+ $$
+ y \sim \text{Binomial}\left( N,p\right)
+ $$
+
+El problema de este modelo, es que debemos estimar dos parámetros ($N$, y $p$) de un solo conjunto de datos ($y$). Esto implica que la identificación de los parámetros puede ser confusa; ya que, el mismo valor del conteo puede provenir de diferentes combinaciones de $N$, y $p$. Por esta razón, existen varios protocolos de muestreo que buscan aportar más información al modelo estadístico, para que logre identificar correctamente ambos parámetros.
+
+---**Muestreo a distancia**: Consiste en hacer un conteo de animales y reportar junto a cada animal observado, la distancia perpendicular al transepto de muestreo. Usualmente utilizado para el conteo de animales grandes, este muestreo corrige la probabilidad de detección, modelando el decaimiento de este parámetro con la distancia (es más difícil detectar un animal a distancias más largas). En \textsf{R} existe el paquete [`rdistance`](https://CRAN.R-project.org/package=Rdistance).
+
+---**Historial de capturas/recapturas**: Se utiliza en animales marcados. Cada animal genera un historial de captura/recaptura, de acuerdo al número de ocasiones de muestreo. Estos modelos se basan en una extensión de la distribución de probabilidad Binomial, llamada distribución multinomial. Uno de los paquetes más usados es el [`Rmark`](https://CRAN.R-project.org/package=RMark). Existen otras maneras de analizar historiales de captura para estimar la abundancia, @Royle2008, enseña como hacerlo utilizando métodos bayesianos, con el software \textsf{R} y `winBugs`.
+
+---**Muestreo por remoción**: El muestreo por remoción estima la probabilidad de captura (porque implica la captura de los individuos), basado en la proporción de individuos que son capturados de una ocasión de remoción a la siguiente. Por ejemplo, si en la primer remoción capturo 100 individuos, en la segunda capturo 50 individuos, y en la tercera capturo 25 individuos, la probabilidad de captura es $p=0.5$; porque en cada ocasión de muestreo, capturo la mitad de los individuos de la ocasión anterior. Para llevar a la práctica los muestreos por remoción, los animales capturados en cada ocasión se separan del resto, ya sea al mantenerlos cautivos mientas dura el muestreo, o haciendo una marca para identificar que ya han sido capturados. En el último caso, los individuos re-capturados, no son tomados en cuenta en las próximas remociones. El paquete [`unmarked`](https://CRAN.R-project.org/package=unmarked) contiene métodos para muestreo por remoción.
+
+---**Doble observador**: Este es una versión que mezcla los modelos de remoción, con los de captura y recaptura. El muestreo consiste en dos observadores, el principal anota todas sus observaciones, y las dice al observador secundario. Luego, el secundario anota, cualquier otro individuo que no fue visualizado por el observador primario. Con estos datos, se calcula la probabilidad de detección, y se estima la abundancia. El paquete [`unmarked`](https://CRAN.R-project.org/package=unmarked) contiene métodos para muestreo por doble observador.
+
+```{example, label=abunExmML, name="Estimación del tamaño poblacional"}
+Se va a demostrar el principio de máxmima verosimilitud para estimar el tamaño de población de un punto de muestreo. Los datos conocidos son el número de animales observados, y la probabilidad de captura.
+```
+
+Primero, vamos a simular los datos. La simulación de datos es importante para validar métodos de análisis; ya que, permite conocer el valor de los parámetros reales, que luego serán estimados bajo el método a evaluar. Es decir, el primer paso en una simulación es establecer el modelo generador de datos, el cual debe contener los parámetros que deseamos estimar (o deben derivarse a partir de este modelo). El segundo paso, es utiliza los datos generados como entrada para el análisis, y estimar los parámetros deseados.
+
+**Generación de datos**--- El modelo es una simple generación de números aleatorios. Vamos a asumir, que se hicieron 5 repeticiones en el punto de muestreo. Fijamos el valor de los parámetros generadores en $N=100$, y $p=0.3$. Es decir en el sitio de muestreo existen 100 animales, pero solo logramos detectar aproximadamente el \SI{30}{\percent} cada vez.
+
+```{r c4genDatAbunExmML, echo=TRUE}
+set.seed(1937)
+y <- rbinom(n = 5, size = 100, prob = 0.3)
+
+# n es el número de repeticiones, size = sería el tamaño poblacional
+# y prob la probabilidad de captura
+
+y
+```
+
+**Estimación de datos**--- La estimación de datos por máxima verosimilitud, implica encontrar una función que al ser optimizada (maximizada o minimizada), devuelva el valor del parámetro que maximiza la probabilidad de haber observado ese conjunto de datos. En este caso, nuestro modelo generador, es el mismo que usaremos en la estimación de datos. Esto no siempre es el caso en las simulaciones.
+
+Asumimos que los conteos provienen de una distribución Binomial. También vamos a suponer que conocemos la probabilidad de detección ($p=0.3$). Por tanto, lo que resta por hacer es buscar una función que devuelva la probabilidad\footnote{o un valor proporcional a la probabilidad} de haber observado esos datos, en función de $N$.
+
+Suponiendo que los datos son independientes, la probabilidad de haber observado todo el conjunto es igual al producto del valor de probabilidad de observar los datos bajo una distribución binomial con $p$ conocido, y $N$ desconocido:
+
+$$
+L(N) = \prod_{i =1}^n\text{Binomial}( y_{i} |N,p)
+$$
+
+Al trabajar con el producto de probabilidades, es mejor convertir los valores a logaritmos, para evitar transgredir la barrera de precisión del computador. Entonces, cambiamos la función anterior por una *log*-verosimilitud ($lL(N)$). Además, dado que \textsf{R} por defecto minimiza las funciones, en vez de maximizarlas, vamos a *negar* la log-verosimilitud, para convertir nuestra optimización en un problema de minimización: $nlL(N)=(-1)\times lL(N)$.
+
+$$
+nlL(N) = (-1)\times\sum_{i =1}^n \log\left( \text{Binomial}(N|y_i,p)\right)
+$$
+
+Ahora, nos toca traducir la expresión anterior, a una función en \textsf{R}. La ventaja es que tenemos una función ya construida para la probabilidad binomial, que toma como argumento si queremos los resultados en logaritmo: `dbinom(...,log=TRUE)`. Así que:
+
+```{r c4logLikN, echo=TRUE, results='hide'}
+# Función de 'menos log-verosimilitud'
+nlL <- function(p){#p, se refiere a parámetros. 
+  N <- floor(p[1]) #floor toma el entero
+  valor <- -1*sum( dbinom(y, size = N, prob = 0.3,log = TRUE) )
+  
+  # A veces trabajar con logaritmos genera valores irreales.
+  # Solo queremos valores válidos. El paso de abajo hace esto.
+  valor <- valor[which(!is.na(valor) | !is.nan(valor) | valor != -Inf)]
+  return(valor)
+}
+```
+
+Una vez que hemos escrito la función, es hora de incluirla en el proceso de minimización, para encontrar el valor de $N$ que hace más probable el haber observado esos datos:
+
+```{r c4SalidaLik}
+salida <-
+  optim(
+  par = c(mean(y) / 0.3),
+  fn = nlL,
+  method = "Brent",
+  lower = 0,
+  upper = 1e6
+  )
+
+salida
+```
+
+Primero, hay que entender la función `optim`. Su objetivo es tomar una función que devuelve *un solo valor*, y busca el mínimo de este valor. Para ello, `optim` explora el espacio de los parámetros que componen esa función y por diferentes métodos, devuelve la combinación de parámetros que minimiza la función. En este caso, solo tenemos un parámetro, por lo que es un problema de una sola dimensión. El argumento `par`, es un vector con los valores iniciales de los parámetros que queremos encontrar. En este caso, un buen valor inicial es el promedio del conteo, dividido por la probabilidad de detección que ya conocemos. `fn` es el objeto que contiene la función a minimizar. `method` es un argumento que requiere el nombre del método de optimización a utilizar. Para el método `"Brent"`, se requiere de un valor mínimo (`lower`) y un máximo (`upper`), que delimitan el espacio del parámetro.
+
+Vemos que el valor estimado del tamaño poblacional, $\bar{N}=$ `r salida$par`, se aproxima mucho al valor real que generó los datos $N=100$. Existen formas de calcular la incertidumbre alrededor de estas estimaciones, pero están fuera del alcance del material. Sin embargo, vale la pena mencionar que la función de verosimilitud es proporcional a la distribución de probabilidad el parámetro que nos interesa (Figura \@ref(fig:c4PlotLik). Esto nos permite utilizar métodos de remuestreo para obtener un conjunto de valores de $\hat{N}$, a los cuales se les pueden calcular los percentiles apropiados (intervalos de confianza).
+
+```{r c4PlotLik, echo=FALSE, fig.align='center', fig.cap='La verosimilitud es proporcional a una distribución de probabilidad', fig.pos='htb!', fig.width=5, message=FALSE, warning=FALSE}
+plot(80:140, sapply(
+  X = 80:140,
+  FUN = function(X) {
+  return(exp(-1 * nlL(X)))
+  }
+  ),
+  ylab = "Verosimilitud",
+  xlab = "Espacio del parámetro N",
+  axes = FALSE,
+  type = "h", lwd = 2)
+abline(v = salida$par, lwd = 3, col = "red")
+axis(side=1)
+```
+
+\FloatBarrier
+
+\vspace{2cm}
+
+```{example, label=abunExmRemov, name="Principios del método de remoción"}
+Utilizando el método de máxima verosimilitud, se extenderá el modelo anterior para incluir un protocolo de muestreo por remoción, y estimar el tamaño poblacional y la probabilidad de captura.
+```
+
+**Generación de datos**--- La remoción consiste en muestrear un área de manera repetida, y remover los animales muestreados. De manera, que en cada repetición, solo se cuentan los animales nuevos. Esto quiere decir, que en cada remoción el tamaño de población cambia. Se inicia con una población $N$ en el primer muestreo, pero para el segundo la población es igual a $N-y_1$. Para la tercer remoción, la población es igual a $N-y_1 - y_2$. Y así sucesivamente.
+
+El modelo para generar datos entonces es:
+
+$$
+y_i \sim
+\begin{cases}
+\text{Bin}(N,p),\ k=1\\
+\text{Bin}(N-\sum_{i=1}^k y_i,p),\ k>1
+\end{cases}
+$$
+
+Donde $k$ es el k-ésimo evento de remoción.
+
+```{r c4simRemov, cache=TRUE}
+set.seed(1934)
+N <- 100
+p <- 0.30
+n <- 5# número de remociones
+y <- numeric()
+
+for ( k in 1:n){
+  if (k==1){
+    y. <- rbinom(n = 1, size = 100, prob = p)
+    y <- append(y,y.)
+  } else {
+    y. <- rbinom(n = 1,size = 100 - sum(y), prob = p)
+    print(sum(y))
+    y <- append(y,y.)
+  }
+  
+}
+# n es el número de repeticiones, size = sería el tamaño poblacional
+# y prob la probabilidad de captura
+
+cat("el vector de conteos es ",y,"\n")
+```
+
+**Estimación de datos**--- Nuestro modelo de verosimilitud debe adaptar ahora, la nueva información generada por las remociones. El punto clave, es que en cada remoción el tamaño de la población disminuye de acuerdo a la cantidad de individuos que fueron removidos. Para ello, podemos calcular un vector auxiliar, que contiene el número acumulado de individuos removidos en cada muestreo:
+
+$$
+c_i =
+\begin{cases}
+0,\ k=1\\
+\sum_{i=1}^k y_i,\ k>1
+\end{cases}
+$$
+
+En \textsf{R}:
+
+```{r c4C}
+c <- 0
+
+c <- append(c,cumsum(y), after = 1)
+
+c <- c[-length(c)]# último elemento no se usa
+
+c
+```
+
+Ahora nuestra función de verosimilitud es:
+
+$$
+nlL(N,p) = \sum_{i =1}^n \log\left( \text{Binomial}(y_i|N-\mathrm{c_i},p)\right)
+$$
+
+Nótese la inclusión de $c$ en la función. Ahora, podemos tomar la función que escribimos en el ejemplo \@ref(exm:abunExmML), y modificarla de acuerdo a este nuevo parámetro:
+
+```{r p4logLikRemov, echo=TRUE, results='hide', cache=TRUE}
+# Función de 'menos log-verosimilitud'
+nlL <- function(p,c){#p, se refiere a parámetros. 
+  N <- floor(p[1])
+  N <- ifelse(N <= max(c), max(c), N)# Si es menor al número acumulado de
+                              #individuos, lo fija al límite inferior.
+  x <- p[2]
+  probCap <- exp(x)/(1+exp(x))# calcula un valor entre 0 y 1
+  
+  valor <- -1*sum( dbinom(y, size = N-c, prob = probCap,log = TRUE) )
+  
+  # A veces trabajar con logaritmos genera valores irreales.
+  # Solo queremos valores válidos. El paso de abajo hace esto.
+  valor <- valor[which(!is.na(valor) | !is.nan(valor) | valor != -Inf)]
+  return(valor)
+}
+
+##Funcion generadora
+gen <- function(p,c){#p, se refiere a parámetros. 
+  N <- floor(p[1])
+  N <- ifelse(N <= max(c), max(c)+1, N)
+  N <- N + sample(c(-1,1),size=1,prob = c(0.5,0.5))
+  
+  x <- p[2]
+  x <- x + rnorm(1,0,0.2)
+  return(p=c(N,x))
+}
+```
+
+En este caso, vamos a utilizar una función generadora. Esta función genera los valores de manera aleatoria, pero con ciertas restricciones. Estas restricciones sirven para mantener el algoritmo de optimización dentro de un espacio del parámetro, que consideramos apropiado. De lo contrario, el algoritmo puede volverse *loco* y arrojar valores absurdos. La selección de la función generadora, requiere de conocimiento del modelo, y es un arte más que una ciencia.
+
+Posteriormente, introducimos nuestra función de menos log-verosimilitud y la función generadora, en la rutina de optimización. Ahora escogemos un método más apropiado para estimar dos o más parámetros. Éste es el método "SANN", que toma valores al azar del espacio de los parámetros, de acuerdo a las reglas de la función generadora. Para cada combinación de parámetros, calcula el valor de $nlL(N,p)$, y guarda la combinación que tenga el menor valor. Recuerde que es un problema de minimización.
+
+
+```{r c4salidaRemov, cache=TRUE}
+salida <-
+  optim(
+  par = c(max(c)*1.1,0),# valores iniciales
+  fn = nlL,
+  gr = gen,
+  c=c,
+  method = "SANN",
+  control = list(maxit=50000)
+  )
+
+salida
+```
+
+En este caso particular, tenemos que convertir a una escala apropiada para probabilidades, el segundo valor de `salida$par`. Para ello, utilizamos una función llamada *expit* que mapea los valores $expit: \left\{-\infty,\infty\right\} \mapsto \left\{0,1\right\}$. La función *expit* es igual a $exp(x)/(1+exp(x))$.
+
+```{r c4pEst, echo=TRUE, cache=TRUE}
+p_est <- exp(salida$par[2])/(1+exp(salida$par[2]))
+p_est
+```
+
+Vemos que el valor real de $N$ es `r N`, y el valor estimado es `r salida$par[1]`. Mientras que el valor real de $p$ es 0.30, y el valor estimado fue de `r p_est`.
+
+```{r, include=FALSE}
+rm(n,N,c,y,p,y.,k)
+```
