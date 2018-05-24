@@ -1,4 +1,4 @@
-book_filename: "dinPob_gen"
+book_filename: "dinPob"
 rmd_files: ["index.Rmd","01-Crecimiento.Rmd","02-Demografia.Rmd","04-Abundancia.Rmd","Interacciones.Rmd","Soluciones.Rmd","Appendix.Rmd","Numericos.Rmd","Tutorial-R.Rmd","999-Asignaciones.Rmd"]
 language:
   ui:
