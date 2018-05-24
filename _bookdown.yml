@@ -1,5 +1,6 @@
-book_filename: "dinPob"
-rmd_files: ["index.Rmd","01-Crecimiento.Rmd","02-Demografia.Rmd","04-Abundancia.Rmd","05-Soluciones.Rmd","06-Appendix.Rmd","07-Numericos.Rmd","08-Tutorial-R.Rmd","999-Asignaciones.Rmd"]
+book_filename: "dinPob_gen"
+rmd_files: ["index.Rmd","01-Crecimiento.Rmd","02-Demografia.Rmd","04-Abundancia.Rmd","Interacciones.Rmd","Soluciones.Rmd","Appendix.Rmd","Numericos.Rmd","Tutorial-R.Rmd","999-Asignaciones.Rmd"]
 language:
   ui:
     chapter_name: "Capítulo "
+delete_merge_file: true

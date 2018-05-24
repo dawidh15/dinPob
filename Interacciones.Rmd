@@ -1,0 +1,105 @@
+# Interacciones entre poblaciones
+
+Desde el punto de vista de la dinámica de poblaciones, nos interesa una definición funcional sobre las interacciones entre especies\index{I!interacciones entre especies}. Modificando la definición en @NealPopBio, las interaccines entre especies ocurren *cuando dos o más individuos o especies experimentan cambios en su fitness*. Esta definición deja abierta la posibilidad de que las interacciones sean positivas (como la simbiosis), o negativas (la depredación).
+
+La mejor forma de entender esto es con un ejemplo. Considere una población de ratones silvestres, y una población de coyotes que depredan a estos ratones. En ausencia de los coyotes, los ratones crecerían de manera logística (ecuación \@ref(eq:logi1)); sin embargo, en presencia de este depredador hay que agregar un nuevo término a esta relación para visualizar el efecto de los coyotes.
+
+Este término es una constante que indica la cantidad de ratones que come *un solo* coyote por unidad de tiempo. Llamaremos a esta constante como $\beta$. Por tanto, al multiplicar $\beta$ por el tamaño poblacional del coyote, obtenemos la cantidad de ratones que son depredados en total por unidad de tiempo. Es decir, el tamaño de población de ratones al finalizar el año es igual a $N_r - \beta N_c$. Donde $N_r$ es el tamaño poblacional de los ratones y $N_c$ el tamaño poblacional de los coyotes. Aplicando este nuevo principio, podemos redefinir la ecuación (\@ref(eq:logi1)) como:
+
+$$
+\frac{dN_r}{dt}=\mathrm{r_r} N_r \left(\frac{K_r - N_r - \beta N_c}{K_r}\right)
+$$
+
+Donde $r_r$ es la tasa de crecimiento intrínseco de los ratones, y $K_r$ es la capacidad de carga de la población de ratones.
+
+El modelo no está completo aún, ya que las dos poblaciones ejercen efectos entre sí, y hasta ahora solo hemos descrito el efecto de la población de coyotes, sobre la población de ratones. El efecto de las presas sobre los depredadores es positivo, es decir, entre mayor cantidad de presas, mayor cantidad de depredadores. Quiere decir, que la constante para el caso de los depredadores tendrá el signo opuesto de $\beta$.
+
+Procediendo de manera similar, la población de coyotes es igual a $N_c + \alpha N_r$, donde el término $\alpha N_r$ es la cantidad de coyotes *adicionales* a la población, que se sostienen gracias a la población de ratones. Podemos modificar la ecuación de la tasa de crecimiento en coyotes de manera similar a la de ratones, cambiando los términos correspondientes. Y cuando juntamos las dos funciones, terminamos con un *sistema de ecuaciones diferenciales*, donde una ecuación depende de la otra.
+
+\begin{equation}
+\begin{split}
+\frac{dN_r}{dt} &= \mathrm{r_r} N_r \left(\frac{K_r - N_r + \beta N_c}{K_r}\right)\\
+\frac{dN_c}{dt} &= \mathrm{r_c} N_c \left(\frac{K_c - N_c + \alpha N_r}{K_c}\right)\\
+\end{split}
+(\#eq:lotkaVolterra)
+\end{equation}
+
+\vspace{1cm}
+
+```{example, label='LV'}
+Grafíque el comportamiento de una población de ratones, y de coyotes. Proyecte la población a sesenta años. Apóyese en el material del curso sobre métodos numéricos y la integración de Euler.
+```
+
+Asuma que la población de ratones tiene los siguientes parámetros: $N_r(0) = 100$, $K_r = 1200$, $r_r = 0.49$, $\alpha = 1/65$. Para los coyotes, los parámetros son:  $N_c(0) = 100$, $K_c = 15$, $r_c = 0.14$, $\beta = -60$.
+
+En \textsf{R}, se puede modelar la ecuación \@ref(eq:lotkaVolterra) de la siguiente forma:
+
+```{r exmLotkaVolterra, eval=FALSE}
+plotLV <- function(N1 = 100,
+       N2 = 50,
+       alpha = 1/65,
+       beta = -60,
+       r1 = .49,
+       r2 = .14,
+       K1 = 1200,
+       K2 = 15,
+       t = 60,
+       dt = 1 /12) {
+  pop1 <- numeric()
+  pop2 <- numeric()
+  timeLine <- numeric()
+  
+  pop1[1] <- N1
+  pop2[1] <- N2
+  
+  i <- 0
+  timeLine <- i
+  while (i < t) {
+    N1. <- pop1[length(pop1)]
+    N2. <- pop2[length(pop2)]
+    
+    N1. <- N1. + r1 * N1. * ((K1 + beta * N2. - N1.) / K1) * dt
+    N2. <- N2. + r2 * N2. * ((K2 + alpha*N1. - N2.) / K2) * dt
+    
+    pop1 <- append(pop1, N1.)
+    pop2 <- append(pop2, N2.)
+    
+    i <- i + dt
+    timeLine <- append(timeLine,i)
+  }
+  
+  par(oma = c(2,2,1,2))
+  plot(c(0, t),
+    range(c(pop1, pop2)),
+    axes = F,
+    type = "n",
+    xlab = "tiempo",
+    ylab = "Tamaño de población")
+  
+  lines(timeLine,pop1, lty = 1)
+  axis(side = 1)
+  axis(side = 2)
+  par(new = TRUE)
+  
+  plot(timeLine,
+    pop2,
+    lty = 2,
+    axes = FALSE,
+    xlab = "",
+    ylab = "",
+    type = "l")
+  
+  axis(side = 4)
+  mtext("Coyote", side = 4, line = 2)
+  legend("right",lty = c(1,2), legend = c("presa","predador"))
+  abline(h = 0, lwd=3)
+  box(which = "plot")
+}
+```
+
+Y para graficar la interacción entre especies, solo llamamos la función.
+
+```{r plotLV, echo=TRUE, dev='png',out.width='8in',dpi=300, fig.cap='Interacción depredador-presa, entre una población hipotética de ratones, y una población hipotética de coyotes.'}
+plotLV()
+```
+
