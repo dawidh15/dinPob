@@ -10,7 +10,7 @@ Primero revisa los enlaces provistos en el  [wiki](https://github.com/dawidh15/d
 
 -  Haz un nuevo proyecto en **RStudio**, que se llame *Tarea01*. Ver pasos en sección \@ref(RStudioProject).
 
-- En la consola de **R**, escribe `install.packages(rmarkdown)`, con todas las dependencias. O instala el paquete desde **RStudio** como se mostró en el [wiki](https://github.com/dawidh15/dinPob/wiki/02-Instalaci%C3%B3n-del-software-necesario).
+- En la consola de **R**, escribe `install.packages(rmarkdown)`, con todas las dependencias. O instala el paquete desde **RStudio** como se mostró en el [wiki](https://github.com/dawidh15/dinPob/wiki/02-Instalación-del-software-necesario).
 
 -  En **RStudio** `File--> New File --> R Markdown`.
 
@@ -96,6 +96,7 @@ out <- optim(par = 0,fn = <nombre_de_funcion_para_minimizar>,
 
 - Antes se recomienda buscar la ayuda de la función en la consola de **R**, al escribir `?optim`.  Revise los ejemplos, y lea detalladamente la ayuda.
 
+\newpage
 
 ## Tarea 03: Colabora en el trabajo grupal
 
@@ -126,6 +127,8 @@ Los pasos detallados para completar esta tarea se encuentran en el [Tutorial de 
 Es posible que **Git** no te deje subir tus cambios, o hacer un *Pull Request*. Si ves un mensaje de error que diga que estás atrás con los cambios de la rama principal, y que primero debes hacer un *Pull*, significa que otro estudiante mandó sus cambios primero, y que éstos fueron incorporados por el profesor.
 
 Entonces debes actualizarte con la última versión del `informe.Rmd`, siguiendo [estos pasos](https://github.com/dawidh15/dinPob/wiki/04-Guía-para-hacer-un-Pull-Request#haz-un-pull-request).
+
+\newpage
 
 ## Tarea 04: Ejercicios con tablas de vida
 
@@ -255,7 +258,71 @@ Calcule los parámetros poblacionales solicitados distribuyendo la mortalidad de
 
 Utilice la clase de referencia `transStochMat` (Esta función se encuentra en el archivo `sourceT05.R`). **Ver material del curso para obtener instrucciones de su uso, Matrices de Transición**.
 
+\newpage
+
 ## Tarea 06
+
+### Contexto
+
+A lo largo del curso se han desarrollado conceptos que dependen del entendimiento de la abundancia de una población. El propio concepto de abundancia es complejo, y aunado a esta complejidad, la abundancia observada y real depende de factores importantes como: la probabilidad de detección, la probabilidad de ocurrencia, la capturabilidad.
+
+### Objetivo
+
+Estimular la comprensión de estos conceptos claves para la estimación de la abundancia, a través de la investigación de los mismos.
+
+### Instrucciones
+
+- Utilice formato APA para la bibliografía.
+
+- Utilice al menos 6 fuentes bibliográficas.
+
+- Presente el documento como **PDF editable**, a más tardar el 16 de junio de 2018. No se reciben ni califican trabajos entregados posteriormente a esta fecha.
+
+### Desgloce de calificación
+
+- El concepto descrito es el apropiado. De lo contrario, la pregunta se invalida.
+
+- La explicación del concepto y su elaboración a través de ejemplos, no contiene ambigüedades, y se expresa de manera lógica y correcta (puede ser falsificable, es decir, sujeto de predicciones y pruebas). De lo contrario la pregunta se invalida.
+
+- Ortografía. Por cada falta de ortografía se resta medio punto (0.5 pts).
+
+- El ejemplo es pertinente, es decir, pertenece al concepto que se explica, y aporta elementos importantes para la comprensión del concepto. Se resta medio punto por cada ejemplo inapropiado.
+
+- Bibliografía. Se incluyen al menos 6 referencias bibliográficas. Se restan 2 puntos de lo contrario.
+
+- Originalidad. Si se detecta y demuestra plagio, de cualquier tipo, se invalida la tarea y se pasa nota a la dirección de la ECB.
+
+- La tarea vale cinco puntos (5 pts).
+
+### Recomendaciones:
+
+Tenga a mano un libro de teoría de conjuntos y probabilidad para enteder mejor, y explicar mejor los conceptos.
+
+### Responda las siguientes preguntas:
+
+1. ¿Qué es la probabilidad de detección? Desarrolle dos ejemplos.
+
+1. ¿Qué es la probabilidad de ocurrencia? Desarrolle dos ejemplos.
+
+1. ¿Qué es la capturabilidad? Desarrolle dos ejemplos.
+
+1. ¿Cómo afecta la estimación de la abundancia cada uno de estos conceptos? 
+
+1. Exprese en una relación matemática los siguientes casos. Utilice solo los conceptos de probabilidad de detección y ocurrencia:
+
+    1. ¿cuál es la probabilidad de obtener un conteo de cero indivduos en un sitio de muestreo, dado que sí existían individuos en dicha área?
+    
+    1. ¿Cuál es la probabilidad de obtener un conteo con cero individuos, si no estamos seguros de que existan individuos en el sitio?
+    
+        1. ¿Cuál es la probabilidad de obtener un conteo con más de un individuo?
+    
+Para resolver la pregunta anterior, utilice los siguientes símbolos:
+
+$\mathrm{Pr}(y)$ Probabilidad de observar $y$ individuos.
+
+$\Psi$: Probabilidad de ocurrencia.
+
+Tip. Busque en internet los fundamentos de las distribuciones de probabilidad infladas por cero. Por ejemplo, *Zero inflated Poisson*, *Zero inflated negative-binomial*. Etc.
 
 \newpage
 
