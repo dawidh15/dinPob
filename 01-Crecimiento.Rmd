@@ -221,6 +221,124 @@ $$
 
 Se hacen las sustituciones correspondientes: $\mathrm{r_m} = 0.99$, $N_0 = \SI{1e-6}{\gram}$, $N = \SI{172.414}{\gram}$, y se obtiene que el tiempo necesario para obtener una biomasa equivalente a una energía de 5000 kilojoule es $t =$ `r paste("\\SI{",signif( (log(173.414)-log(1e-6))*(1/0.99) ,digits=3),'}{\\day}')`.
 
+```{example, label='exp3'}
+Usando el crecimiento exponencial para encontrar el tiempo de producción en un tanque que contiene animales presa.
+```
+
+En un laboratorio se cultiva una especie de presa para un programa de re-introducción de una especie de pez. En el laboratorio, se inició un proyecto de mejora en la producción de la presa, y se ha diseñado un experimento para aumentar su valor nutricional.
+
+Se cuenta con un presupuesto de \SI{2e6}{\text{CRC}} para la producción de éstos animales. Además, el diseño experimental requiere de 40 recipientes acondicionados con diferentes tratamientos. Las presas tienen una tasa de crecimiento intrínseco  de $r_m = \SI{0.098}{\per\day}$. Además, el inóculo inicial es de \num{1000} individuos por recipiente. Si se sabe que el costo de mantenimiento por organismo-día es de \SI{0.5}{\text{CRC}\per(\text{ind}.\day)}:
+
+*¿Cuántos organismos por recipiente se pueden cultivar sin sobrepasar el dinero disponible?  ¿Cuánto tiempo, en días, se necesitan para alcanzar esa cantidad?*
+
+Este es un problema de mínimos. Por tanto, debemos buscar una función qué minimizar. Tenemos un presupuesto total asignado al experimento, y el costo del experimento debe ser igual a éste. Por tanto
+
+*Presupuesto del experimento menos el costo es igual a cero*
+
+El costo está dado por:
+
+-  $a$: el costo de mantenimiento diario del organismo (\si{\text{CRC}\per(\text{ind}.\day)}).
+
+-  La cantidad de organismos posibles del experimento, $N$. Cuyo número está limitado por el presupuesto.
+
+-  La tasa intrínseca de crecimiento $r_m = \SI{0.098}{\per\day}$.
+
+-  El inóculo inicial $N_0 = 1000$.
+
+-  La cantidad de tanques experimentales (40 en total).
+
+-  $t$: el tiempo de generación.
+
+Sabemos el valor del presupuesto, entonces tenemos que:
+
+*\SI{2000000}{\text{CRC}} - costo = 0*
+
+Y el costo dependerá de la cantidad de organismos, el tiempo que llevan vivos, y su crecimiento.  Cada instante, se generan nuevos organismos que incrementan el costo total, a partir su nacimiento. Para encontrar el costo, debemos multiplicar la cantidad de individuos que se generan en pequeños intervalos de tiempo, por el costo por individuo-día, y sumarlos hasta el tiempo $t=b$, que es cuando pondremos fin al experimento, porque hemos gastado todo el presupuesto.
+
+```{r , fig.align='center', fig.pos='ht!', fig.cap='Represencación del costo por tanque, en pequeños intervalos de tiempo',echo=FALSE}
+
+ r <- 0.098; a <- 0.5; N0 <- 1000 #valores conocidos
+  Dt <- 0.5; n <- 26/Dt
+ Nt <- function(i){
+   val <- a*N0*exp(r*i)
+ }
+
+ plot(c(0,26),c(0,10000), type = "n",
+      axes = FALSE, xlab="Días desde el inicio",
+      ylab = paste0("costo por tanque ",expression(x*10^3))
+ )
+ axis(side = 1)
+ axis(side = 2, at = c(0,10000),
+      labels = c(0,10), las=2)
+ for( i in 0:n){
+   rect(xleft = i*Dt,ybottom = 0,xright = i*Dt+Dt,ytop = Nt(i*Dt), col = "gray")
+ }
+```
+
+
+Esto equivale a:
+
+$$
+C = \lim_{\Delta t \to 0} \sum_{i=1}^{b}  \mathrm{a}N(t_i)\Delta t = \int_0^b\mathrm{a}N(t)dt
+$$
+
+Que equivale a resolver:
+
+$$
+\begin{split}
+C &= \mathrm{a}\int_0^b N_o e^{rt}\\
+C &= \mathrm{a}N_0(\frac{e^{b r}}{r}-\frac{1}{r})\\
+\end{split}
+$$
+
+Así que nuestra función a minimizar es:
+
+$$
+\underset{t \in \mathbb{R}^+}{\text{minimizar}} \, \left| \num{2e6}-40  \times\mathrm{a}N_0(\frac{e^{br}}{r}-\frac{1}{r}) \right|
+$$
+
+Usamos una solución numérica en este caso. Aprovechando la función `optim` en \textsf{R}\footnote{Ver \texttt{?optim}}:
+
+```{r , eval=TRUE}
+
+costo <- function(p){
+  b <- p[1]# p, puede ser un vector con varios parámetros
+           # en este caso, solo tenems que resolver uno
+ 
+   r <- 0.098; a <- 0.5; N0 <- 1000 #valores conocidos
+   
+  val <- a*N0*((exp(b*r)/r)-(1/r))#Costo acumulado
+  val <- val*40 #en cuarenta tanques
+  minValue <- abs(2e6 - val) # función para minimizar
+  return(minValue)
+}
+
+#minimizar función respecto a t, con tolerancia relativa de 1 %
+out <- optim(
+        par = 0,#valor inicial para empezar algoritmo
+        fn = costo, #nombre de la función a minimizar
+        control = list(reltol=0.01), #tolerancia
+        method = "Brent", #este es el metodo apropiado para 
+                        # una sola variable
+        lower = 0, 
+        upper = 1e3)
+
+
+
+# función para imprimir los resultados
+printT02E01 <- function(){
+paste0("Los organismos que se pueden producir por tanque son: ",
+    signif(1000*exp(0.098*out$par), digits = 4),
+    ". Y el tiempo de generación por tanque es de ",
+    signif(out$par, digits = 4), " días"
+    )
+}
+
+```
+
+
+`r printT02E01()`.
+
 #### Ejercicios
 
 

@@ -1,133 +1,13 @@
 # Asignaciones
 
-## Tarea 01: ¡Hola mundo con *Rmarkdown*!
+## Tarea 01: 
+\newpage
 
-**Objetivo**: Verificar que el estudiante ha instalado, y maneja el ambiente de trabajo que se utilizará durante el curso.
-
-Primero revisa los enlaces provistos en el  [wiki](https://github.com/dawidh15/dinPob/wiki/02-Instalaci%C3%B3n-del-software-necesario#prueba-con-rmarkdown).
-
-**Actividades**
-
--  Haz un nuevo proyecto en **RStudio**, que se llame *Tarea01*. Ver pasos en sección \@ref(RStudioProject).
-
-- En la consola de **R**, escribe `install.packages(rmarkdown)`, con todas las dependencias. O instala el paquete desde **RStudio** como se mostró en el [wiki](https://github.com/dawidh15/dinPob/wiki/02-Instalación-del-software-necesario).
-
--  En **RStudio** `File--> New File --> R Markdown`.
-
--  Crea una sección principal que se llame *Información profesional*.
-
--  Luego, crea una sección secundaria que se llame *Intereses*. Usa bullets para nombrar algunos intereses profesionales.
-
--  Luego, crea una sección secundaria llamada *Experiencia Laboral*, si aplica. Nombra algunos trabajos relacionados con el curso de Ecología de Poblaciones.
-
--  Crea una sección principal que se llame *Integración con R*
-
-- Consigue algunos datos interesantes en Internet. Deben ser datos para graficar, por tanto deben tener dos columnas, y varias filas. Puedes ir a [Wolfram Alpha](https://www.wolframalpha.com/). Guarda los datos como un texto delimitado por comas (`.csv`).
-
--  En **R** o **RStudio** corre el comando `?read.table`. Para correr un comando en **RStudio** presiona `Cntrl + R`.
-
--  Crea un "*chunk*" de código. Esto se hace en **RStudio**, busca un botón en la barra especial de *rmarkdown* que diga `insert`, luego escoge `R`.
-
--  Lee la tabla y asígnala a un objeto:
-
-```{r , eval=FALSE}
-datos <- read.table(<ruta_de_archivo_en_comillas>,
-                    header = TRUE,
-                    sep = ",")
-```
-
-
--  Grafica los datos en un nuevo "*chunk*". Usa el método que prefieras. Hay mucho material de cómo hacer gráficos en R. Por ahora, un gráfico básico es suficiente.
-
-- Ahora, haz otra sección llamada *Bibliografía*. En un párrafo escribe una mini-revisión de algún tema que domines y del que dispongas referencias bibliográficas. Usa los mecanismos de citas de *rmarkdown*
-
-    - Cita en texto con `@citationKey`
-    
-    - Cita en paréntesis con `[@citationKey]`
-    
-***
-
-**Importante**: Para que las citas funcionen, debes agregar unas opciones en la *cabecera* del documento (*YAML header*):
-
-```
-bibliography: <tu_archivo_bib>.bib
-csl: apa.csl
-```
-
-El archivo `apa.csl` se puede encontrar en google. Es un archivo de estilo APA, para dar formato a la bibliografía. Revisa [el repositorio de CSL de Zotero](https://www.zotero.org/styles), en busca de las revistas disponibles.
-
-***
-
--  Por último, corre el documento con el botón `knit`. Envía el documento `.Rmd` y el `.pdf` al profesor (`dawidh15@gmail.com`).
-
+## Tarea 02: 
 
 \newpage
 
-## Tarea 02: Ejercicios de crecimiento
-
- Se recomienda hacer primero todo en papel, y luego pasarlo en limpio usando *Rmarkdown*. Uno de los aspectos más sobresalientes de LaTeX es el aspecto de las ecuaciones. Los cálculos realizados en este ejercicio son una buena excusa para investigar un poco sobre el tema. Se recomienda este [link](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
-
-### Instrucciones
-
-Resuelva el siguiente ejercicio de crecimiento exponencial
-
-
-En un laboratorio se cultiva una especie presa para un programa de re-introducción de una especie de pez. En el laboratorio, se inició un proyecto de mejora en la producción de la presa, y se ha diseñado un experimento para aumentar el valor nutricional de las presas.
-
-Se cuenta con un presupuesto de \SI{2e6}{\text{CRC}} para la producción de animales presa en el proyecto. Además, el diseño experimental requiere de 40 recipientes acondicionados con diferentes tratamientos. Las presas crecen con una tasa de crecimiento intrínseco  de $r_m = \SI{0.098}{\per\day}$. Además, el inóculo inicial es de \num{1000} individuos por recipiente. Si se sabe que el costo de mantenimiento por organismo-día es de \SI{0.5}{\text{CRC}\per(\text{ind}.\day)}:
-
-*¿Cuántos organismos por recipiente se pueden cultivar sin sobrepasar el dinero disponible?  ¿Cuánto tiempo, en días, se necesitan para alcanzar esa cantidad?*
-
-*Tips*:
-
-- Este es un problema de mínimos. Primero hay que buscar la función a minimizar. Luego, uno encuentra el valor apropiado del parámetro de interés cuando la función se minimiza.
-
-- Para minimizar una diferencia, use el valor absoluto de la diferencia:  $\left| x - y\right|$.
-
-- Use la función `optim` o `optimize`. Una vez que tenga la función que desea minimizar escrita en *R* use este código:
-
-```{r, eval=FALSE}
-out <- optim(par = 0,fn = <nombre_de_funcion_para_minimizar>,
-      control = list(reltol=0.01),
-      method = "Brent", 
-      lower = <numero>, 
-      upper = <numero>)
-```
-
-- Antes se recomienda buscar la ayuda de la función en la consola de **R**, al escribir `?optim`.  Revise los ejemplos, y lea detalladamente la ayuda.
-
-\newpage
-
-## Tarea 03: Colabora en el trabajo grupal
-
-### Objetivo general
-
-Aprender la mecánica de las herramientas modernas de colaboración científica.
-
-### Instrucciones
-
-Los pasos detallados para completar esta tarea se encuentran en el [Tutorial de Git y GitHub](https://github.com/dawidh15/dinPob/wiki/03-Tutorial-de-Git-y-GitHub), y en la [Guía para hacer un Pull Request](https://github.com/dawidh15/dinPob/wiki/04-Guía-para-hacer-un-Pull-Request).
-
-1. Haz un *Fork* del repositorio [grupal2018](https://github.com/dinPobClase/grupal2018).
-
-1. Crea un nuevo proyecto en **RStudio**, usando control de versión.
-
-1. Crea una nueva rama en **Git**, que se llame `ra1`.
-
-1. Añade tu nombre en la sección correspondiente del archivo `informe.Rmd`.
-
-1. Haz un commit que diga *nombre añadido <su nombre aquí>*.
-
-1. Haz un *Push* del archivo a tu repositorio.
-
-1. Ve a **GitHub** y crea un nuevo *Pull Request*.
-
-### **Problemas**
-
-Es posible que **Git** no te deje subir tus cambios, o hacer un *Pull Request*. Si ves un mensaje de error que diga que estás atrás con los cambios de la rama principal, y que primero debes hacer un *Pull*, significa que otro estudiante mandó sus cambios primero, y que éstos fueron incorporados por el profesor.
-
-Entonces debes actualizarte con la última versión del `informe.Rmd`, siguiendo [estos pasos](https://github.com/dawidh15/dinPob/wiki/04-Guía-para-hacer-un-Pull-Request#haz-un-pull-request).
-
+## Tarea 03: 
 \newpage
 
 ## Tarea 04: Ejercicios con tablas de vida

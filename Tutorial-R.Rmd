@@ -252,3 +252,92 @@ valores <- rnorm(100)
 rm(list = ls())
 ```
 
+## ¡Hola mundo con *Rmarkdown*!
+
+**Objetivo**: Verificar que el estudiante ha instalado, y maneja el ambiente de trabajo que se utilizará durante el curso.
+
+Primero revisa los enlaces provistos en el  [wiki](https://github.com/dawidh15/dinPob/wiki/02-Instalaci%C3%B3n-del-software-necesario#prueba-con-rmarkdown).
+
+**Actividades**
+
+-  Haz un nuevo proyecto en **RStudio**, que se llame *PracticaRmd*. Ver pasos en sección \@ref(RStudioProject).
+
+- En la consola de **R**, escribe `install.packages(rmarkdown)`, con todas las dependencias. O instala el paquete desde **RStudio** como se mostró en el [wiki](https://github.com/dawidh15/dinPob/wiki/02-Instalación-del-software-necesario).
+
+-  En **RStudio** `File--> New File --> R Markdown`.
+
+-  Crea una sección principal que se llame *Información profesional*.
+
+-  Luego, crea una sección secundaria que se llame *Intereses*. Usa bullets para nombrar algunos intereses profesionales.
+
+-  Luego, crea una sección secundaria llamada *Experiencia Laboral*, si aplica. Nombra algunos trabajos relacionados con el curso de Ecología de Poblaciones.
+
+-  Crea una sección principal que se llame *Integración con R*
+
+- Consigue algunos datos interesantes en Internet. Deben ser datos para graficar, por tanto deben tener dos columnas, y varias filas. Puedes ir a [Wolfram Alpha](https://www.wolframalpha.com/). Guarda los datos como un texto delimitado por comas (`.csv`).
+
+-  En **R** o **RStudio** corre el comando `?read.table`. Para correr un comando en **RStudio** presiona `Cntrl + R`.
+
+-  Crea un "*chunk*" de código. Esto se hace en **RStudio**, busca un botón en la barra especial de *rmarkdown* que diga `insert`, luego escoge `R`.
+
+-  Lee la tabla y asígnala a un objeto:
+
+```{r , eval=FALSE}
+datos <- read.table(<ruta_de_archivo_en_comillas>,
+                    header = TRUE,
+                    sep = ",")
+```
+
+
+-  Grafica los datos en un nuevo "*chunk*". Usa el método que prefieras. Hay mucho material de cómo hacer gráficos en R. Por ahora, un gráfico básico es suficiente.
+
+- Ahora, haz otra sección llamada *Bibliografía*. En un párrafo escribe una mini-revisión de algún tema que domines y del que dispongas referencias bibliográficas. Usa los mecanismos de citas de *rmarkdown*
+
+    - Cita en texto con `@citationKey`
+    
+    - Cita en paréntesis con `[@citationKey]`
+    
+***
+
+**Importante**: Para que las citas funcionen, debes agregar unas opciones en la *cabecera* del documento (*YAML header*):
+
+```
+bibliography: <tu_archivo_bib>.bib
+csl: apa.csl
+```
+
+El archivo `apa.csl` se puede encontrar en google. Es un archivo de estilo APA, para dar formato a la bibliografía. Revisa [el repositorio de CSL de Zotero](https://www.zotero.org/styles), en busca de las revistas disponibles.
+
+***
+
+-  Por último, corre el documento con el botón `knit`. Envía el documento `.Rmd` y el `.pdf` al profesor (`dawidh15@gmail.com`).
+
+## Hacer un Pull-Request en GitHub
+
+### Objetivo general
+
+Aprender la mecánica de las herramientas modernas de colaboración científica.
+
+### Instrucciones
+
+Los pasos detallados para completar esta tarea se encuentran en el [Tutorial de Git y GitHub](https://github.com/dawidh15/dinPob/wiki/03-Tutorial-de-Git-y-GitHub), y en la [Guía para hacer un Pull Request](https://github.com/dawidh15/dinPob/wiki/04-Guía-para-hacer-un-Pull-Request).
+
+1. Haz un *Fork* del repositorio [grupal2018](https://github.com/dinPobClase/grupal2018).
+
+1. Crea un nuevo proyecto en **RStudio**, usando control de versión.
+
+1. Crea una nueva rama en **Git**, que se llame `ra1`.
+
+1. Añade tu nombre en la sección correspondiente del archivo `informe.Rmd`.
+
+1. Haz un commit que diga *nombre añadido <su nombre aquí>*.
+
+1. Haz un *Push* del archivo a tu repositorio.
+
+1. Ve a **GitHub** y crea un nuevo *Pull Request*.
+
+### **Problemas**
+
+Es posible que **Git** no te deje subir tus cambios, o hacer un *Pull Request*. Si ves un mensaje de error que diga que estás atrás con los cambios de la rama principal, y que primero debes hacer un *Pull*, significa que otro estudiante mandó sus cambios primero, y que éstos fueron incorporados por el profesor.
+
+Entonces debes actualizarte con la última versión del `informe.Rmd`, siguiendo [estos pasos](https://github.com/dawidh15/dinPob/wiki/04-Guía-para-hacer-un-Pull-Request#haz-un-pull-request).
