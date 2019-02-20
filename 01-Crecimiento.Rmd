@@ -1,16 +1,14 @@
 # Modelos de crecimiento
 
-HACER: conceptos de producción en exceso, de Darwin, y lucha por la existencia.
+La evolución por selección natural implica que en una población que enfrente presiones para subsistir, existirán individuos mejor adaptados que otros. Algunos vivirán lo suficiente para reproducirse y otros no; además, dentro de aquellos que se reproduzcan, los más exitosos lo harán más frecuentemente o con mayor descendencia. Este concepto implica que en una población debe haber suficiente variabilidad genética que se refleje en un desempeño diferente en la reproducción, y que no todos los organismos vivirán lo suficiente para dejar descendencia o reemplazarse a sí mismos. Esto quiere decir, que las poblaciones deben de reproducirse y dejar un *exceso de descendencia*, para poder amortiguar el efecto sobre la reproducción de aquellos organismos que no logren reproducirse con éxito.
 
-La evolución por selección natural implica que en una población que enfrente presiones para subsistir, existirán individuos mejor adaptados que otros. Algunos vivirán lo suficiente para reproducirse y otros no; además, dentro de aquellos que se reproduzcan, los más exitosos lo harán más frecuentemente, o con mayor descendencia. Este concepto implica que en una población debe haber suficiente variabilidad genética, que se refleje en un desempeño diferente en la reproducción, y que no todos los organismos vivirán lo suficiente para dejar descendencia o reemplazarse a sí mismos. Esto quiere decir, que las poblaciones deben de reproducirse y dejar un *exceso de decendencia*, para poder amortiguar el efecto sobre la reproducción de aquellos organismos que no logren reproducirse con éxito.
+De esta manera, la sobre-producción de organismos es un requisito para que una población subsista en un intervalo prolongado de tiempo. Y la sobre-producción implica que las poblaciones tienen el potencial de *crecer*. La disciplina de la ecología de poblaciones, entonces, ha enfocado esfuerzos en modelar el crecimiento poblacional usando funciones matemáticas\footnote{O algoritmos como  los modelos basados en individuos, que simulan cada individuo en una población y exploran los patrones de estas interacciones.}. Veremos las más básicas de ellas, con el objetivo de entender el origen y desarrollo de estos modelos.
 
-De esta manera, la sobre-producción de organismos es un requisito para que una población subsista en un intervalo prolongado de tiempo. Y la sobre-producción implica que las poblaciones tienen el potencial de *crecer*. La disciplina de la ecología de poblaciones, entonces, ha enfocado esfuerzos en modelar el crecimiento poblacional usando funciones matemáticas. Veremos las más básicas de ellas, con el objetivo de entender el origen y desarrollo de estos modelos.
+El crecimiento\index{C!crecimiento} en dinámica de poblaciones está enfocado en la población, no en el individuo. Algunos aspectos fisiológicos e individuales pueden ser importantes a la hora de modelar el crecimiento poblacional. Éstos pueden ser incluidos como parámetros del modelo; pero, en general, el interés se centra en la estimación de la cantidad de individuos (o la biomasa) que conforma una población, y cómo cambia esta cantidad con respecto al tiempo.
 
-El crecimiento\index{C!crecimiento} en dinámica de poblaciones, está enfocado en la población, y no en el individuo. Algunos aspectos fisiológicos, e individuales, pueden ser importantes a la hora de modelar el crecimiento poblacional, y estos pueden ser incluidos como parámetros del modelo; pero, en general, el interés se centra en la estimación de la cantidad de individuos (o la biomasa) que conforma una población, y cómo cambia esta cantidad con respecto al tiempo.
+El objetivo de los modelos de crecimiento, es obtener una función del tamaño de la población con respecto al tiempo. Existen dos aproximaciones principales para obtener esta función: la exponencial y la geométrica. El crecimiento exponencial se mide en cualquier momento en el tiempo, mientras que el crecimiento geométrico se mide a intervalos discretos.
 
-El objetivo de los modelos de crecimiento, es obtener una función del tamaño de la población con respecto al tiempo. Existen dos aproximaciones principales para obtener esta función: la exponencial y la geométrica. El crecimiento exponencial se mide en cualquier momento en el tiempo, mientras que el crecimiento geométrico se mide a intervalos discretos. Es decir, ambos miden el crecimiento poblacional, pero una aproximación lo hace en intervalos continuos y la otra en intervalos discretos.
-
-Las otra gran categoría de modelos de crecimiento tienen que ver con la dependencia de la densidad de población. Por ejemplo, una población con suficiente espacio y recursos, puede considerarse *denso-independiente*, mientras que una población que está en permanente competencia intraespecífica por la adquisición de espacio y recursos, tiene un crecimiento denso-dependiente.
+Las otra gran categoría de modelos de crecimiento tiene que ver con la dependencia en la densidad de población. Por ejemplo, una población con suficiente espacio y recursos, puede considerarse *denso-independiente*, mientras que una población que está en permanente competencia intraespecífica por la adquisición de espacio y recursos, tiene un crecimiento denso-dependiente.
 
 
 ## Crecimiento denso-independiente
@@ -36,7 +34,7 @@ $$
 \frac{\frac{\Delta N}{\Delta t}}{N} = \frac{D-B}{N}
 $$
 
-Si la tasa de crecimiento per cápita es mayor a cero, entonces la población crece. Si es igual a cero, la población se mantiene estable. Si es menor a cero, la población decrece. Si asumimos que la diferencia entra las entradas de la población y sus salidas son *constantes*, podemos arreglar la expresión anterior como $\frac{E-S}{N}=\mathrm{R_m}$; con lo que obtenemos la forma familiar de la tasa de crecimiento:
+Si la tasa de crecimiento per cápita es mayor a cero, entonces la población crece. Si es igual a cero, la población se mantiene estable. Si es menor a cero, la población decrece. Si asumimos que la diferencia entre las entradas de la población y sus salidas son *constantes*, podemos arreglar la expresión anterior como $\frac{E-S}{N}=\mathrm{R_m}$; con lo que obtenemos la forma familiar de la tasa de crecimiento:
 
 \begin{equation}
 \frac{\Delta N}{\Delta t}=\mathrm{R_m} N
@@ -59,7 +57,7 @@ N_1 &= N_0 + \mathrm{R_m} N_0\\
 \end{split}
 \end{equation}
 
-Por tanto, el tamaño de población en el año uno, es igual al tamaño de población en el año cero, más el producto de la tasa de crecimiento per cápita por el tamaño de población en el año cero. Los arreglos posteriores, muestran que $N_1$ depende de $N_0$ y una constante $\lambda = 1+\mathrm{R_m}$, la cual representa la *tasa de multiplicación*\index{T!tasa de multiplicación}. Entonces, la población crece cuando $\lambda > 1$, se mantiene estable si $\lambda = 1$, y decrece si $\lambda < 1$.
+Por tanto, el tamaño de población en el año uno ($N_1$), es igual al tamaño de población en el año cero($N_0$), más el producto de la tasa de crecimiento per cápita por el tamaño de población en el año cero. Los arreglos posteriores, muestran que $N_1$ depende de $N_0$ y una constante $\lambda = 1+\mathrm{R_m}$, la cual representa la *tasa de multiplicación*\index{T!tasa de multiplicación}. Entonces, la población crece cuando $\lambda > 1$, se mantiene estable si $\lambda = 1$, y decrece si $\lambda < 1$.
 
 Ahora, podemos obtener $N_2$ al saber que $N_2 = N_1 \lambda$. Observamos que $N_1 = N_0 \lambda$; por tanto, sustituimos el valor de $N_1$ para acabar con $N_2 =  N_0 \lambda \lambda =  N_0 \lambda^2$. Si proseguimos de esta manera, concluimos que:
 
@@ -76,7 +74,7 @@ Con lo que finalmente se logra el objetivo de tener una función del tamaño pob
 Graficar la ecuación \@ref(eq:geom2)
 ```
 
-Ahora que tenemos una relación del tamaño poblacional con el tiempo, podemos crear una función sencilla para observar su comportamiento.
+Ahora que tenemos una relación del tamaño poblacional con el tiempo, podemos crear una función para observar su comportamiento.
 
 ```{r exmPlotGeom, cache=TRUE,out.height='6cm',fig.align='center'}
 plotGeomGrowth <- function(N0, lambda, t){
@@ -118,12 +116,12 @@ plotGeomGrowth(N0 = 33, lambda = (25/33)^(1/10), t = 10)
 #### Ejercicios
 
 ```{exercise, label='plotGeomGrowth'}
-Grafique la ecuación \@ref(eq:geom1). En el eje **y** la tasa de crecimiento y en el eje **x** el tamaño poblacional. Utilice tres valores de $\mathrm{R_m}$, uno positivo, uno igual a cero y otro negativo. El tamaño inicial de la población es de 50 individuos. $\mathrm{R_m} \in \left[ -1, 1 \right]$, y $N \in \left[ 0, 50 \right]$. Cuál es la representación gráfica de $\mathrm{R_m}$ en el gráfico.
+Grafique la tasa de crecimento, ecuación \@ref(eq:geom1). Para ello, ubique en el eje **y** la tasa de crecimiento y en el eje **x** el tamaño poblacional. Utilice tres valores de $\mathrm{R_m}$, uno positivo, uno igual a cero y otro negativo. El tamaño inicial de la población es de 50 individuos. $\mathrm{R_m} \in \left[ -1, 1 \right]$, y $N \in \left[ 0, 50 \right]$. Cuál es la representación gráfica de $\mathrm{R_m}$ en el gráfico.
 ```
 
 
 ```{exercise, label='plotgeomGrowth2'}
-Grafique la ecuación \@ref(eq:geom2). Utilice tres valores de $\lambda$, uno mayor a uno, otro igual a uno, y el último menor a 1, pero mayor a cero. El tamaño inicial de la población es de 50 individuos.
+Grafique la ecuación \@ref(eq:geom2). Utilice tres valores de $\lambda$: $\lambda_1 >1$, $\lambda_2 = 1$, y $0 < \lambda_3 < 1$. El tamaño inicial de la población es de 50 individuos.
 ```
 
 ```{exercise, label='GeomGrowthMathInduction'}
@@ -286,7 +284,7 @@ Que equivale a resolver:
 
 $$
 \begin{split}
-C &= \mathrm{a}\int_0^b N_o e^{rt}\\
+C &= \mathrm{a}N_o\int_0^b e^{rt}\ dt\\
 C &= \mathrm{a}N_0(\frac{e^{b r}}{r}-\frac{1}{r})\\
 \end{split}
 $$
@@ -366,6 +364,24 @@ Dé una interpretación de los resultados, en términos de la población.
 
 ```
 
+
+**Ayuda**: Si ha instalado [Maxima](http://maxima.sourceforge.net/download.html) en su computador, es muy fácil calcular límites. Por ejemplo, para calcular el límite de:
+
+$$
+  \lim_{b \to \infty } a*b
+$$
+
+Calculamos el límite asumiendo que $a>0$, y luego asumimos que $a<0$. _En la consola de **Máxima**_ escriba estas líneas, e introduzca cada comando con CTRL + ENTER:
+
+```
+assume(a < 0)
+limit( a*b, b, inf)
+
+kill(all)
+
+assume(a > 0)
+limit( a*b, b, inf)
+```
 
 ```{exercise, label='expGrowth3'}
 Demuestre, utilizando un razonamiento deductivo, que si $\mathrm{R_m} < 0$, la población decrece. Puede usar los resultados del ejercicio \@ref(exr:expGrowth2).
@@ -507,7 +523,7 @@ Esto tiene grandes implicaciones en el manejo de recursos naturales. Es la base 
 
 En la sección anterior calculamos el *Máximo Rendimiento Sostenible* (MRS). Ahora lo definiremos como:
 
-> El crecimiento máxmimo que una población puede producir, bajo una capacidad de carga determinada. Ésta es la cantidad máxima de individuos, o biomasa, que se puede extraer de una población, sin provocar un crecimiento negativo.
+> *El crecimiento máximo que una población puede producir, bajo una capacidad de carga determinada. Ésta es la cantidad máxima de individuos, o biomasa, que se puede extraer de una población, sin provocar un crecimiento negativo.*
 
 
 Recordando que:
@@ -534,12 +550,6 @@ De acuerdo con la definición del MRS, se asume que el crecimiento es igual a la
 ```{exercise, label='logGrowth5'}
 Grafique la tasa de crecimiento poblacional usando $N_t$ como variable independiente. Asuma $K=100$, $N_0=1$, $r_m=1$. 
 ```
-
-
-### Matrices
-
-[COMADRE](http://onlinelibrary.wiley.com/doi/10.1111/1365-2656.12482/full)
-[COMADRE DATA](http://www.compadre-db.org/Data/Comadre) Ojo a la guia de usuario
 
 ## Otras fuentes bibliográficas
 
