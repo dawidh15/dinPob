@@ -31,10 +31,10 @@ $$
 Para conocer la tasa de crecimiento *per cápita*, dividimos la ecuación anterior por $N$:
 
 $$
-\frac{\frac{\Delta N}{\Delta t}}{N} = \frac{D-B}{N}
+\frac{\frac{\Delta N}{\Delta t}}{N} = \frac{B - D}{N}
 $$
 
-Si la tasa de crecimiento per cápita es mayor a cero, entonces la población crece. Si es igual a cero, la población se mantiene estable. Si es menor a cero, la población decrece. Si asumimos que la diferencia entre las entradas de la población y sus salidas son *constantes*, podemos arreglar la expresión anterior como $\frac{E-S}{N}=\mathrm{R_m}$; con lo que obtenemos la forma familiar de la tasa de crecimiento:
+Si la tasa de crecimiento per cápita es mayor a cero, entonces la población crece. Si es igual a cero, la población se mantiene estable. Si es menor a cero, la población decrece. Si asumimos que la diferencia entre las entradas de la población y sus salidas son *constantes*, podemos arreglar la expresión anterior como $\frac{B - D}{N}=\mathrm{R_m}$; con lo que obtenemos la forma familiar de la tasa de crecimiento:
 
 \begin{equation}
 \frac{\Delta N}{\Delta t}=\mathrm{R_m} N

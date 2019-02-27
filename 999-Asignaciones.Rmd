@@ -1,6 +1,31 @@
 # Asignaciones
 
-## Tarea 01: 
+Las tareas cuentan con un valor de \SI{5}{\percent} cada una. Se califica:
+
+- Presentación \SI{1}{\percent}.
+
+- Planteamiento \SI{1}{\percent}.
+
+- Explicación de la lógica del procedimiento para resolver el problema \SI{2}{\percent}.
+
+- Respuesta acertada \SI{1}{\percent}.
+
+## Tarea 01: Crecimiento geométrico
+
+### Ejercicio 1 {-}
+
+Asuma que en una población de 311 individuos, en promedio *cada año* entran 10 individuos (nacimientos e inmigración), y salen 15 individuos (muertes y emigración). Algunos estudios han determinado que si la población se reduce a menos de 50 individuos no se podrá recuperar, y se declara como una extinción local.
+
+a.  Calcule $R_m$ de la población.
+
+a. Calcule la tasa de multiplicación $\lambda$.
+
+a. Asumiendo que $\lambda$ se mantiene constante, estime el tiempo que tomará a la población extinguirse localmente ($t$ corresponde a un año).
+
+### Ejercicio 2 {-}
+
+Se ha estimado que $\lambda = 0.7$ en una población cosechada\footnote{en este caso, la cosecha implica la muerte del individuo} de tamaño $N = \num{10e6}$ individuos. Se sabe que el potencial reproductivo anual es de un millón de nuevos individuos, y que la mortalidad natural es de seiscientos mil individuos. ¿Cuántos individuos mueren debido a la cosecha? ¿Cuántos individuos deberían ser extraídos para evitar que la población decrezca?
+
 \newpage
 
 ## Tarea 02: 
