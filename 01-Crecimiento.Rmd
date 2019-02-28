@@ -140,14 +140,14 @@ Un cultivo de células dobla su tamaño poblacional en 15 minutos ($\lambda = 2$
 
 ### Crecimiento exponencial {#crecimientoexponencial}
 
-En la sección anterior, se trabajó con intervalos de tiempo discretos. Pero si queremos conocer el tamaño poblacional en cualquier momento del tiempo, debemos trabajar con intervalos infinitamente pequeños. Esto quiere decir que la ecuación \@ref(eq:geom2) se escribe en su forma continua:
+En la sección anterior se trabajó con intervalos de tiempo discretos. Pero si queremos conocer el tamaño poblacional en cualquier momento del tiempo debemos trabajar con intervalos infinitamente pequeños. Esto quiere decir que la ecuación \@ref(eq:geom2) se escribe en su forma continua:
 
 \begin{equation}
 \frac{dN}{dt}=\mathrm{r_m} N
  (\#eq:diffG)
  \end{equation}
 
-La ecuación \@ref(eq:diffG) es una *ecuación diferencial de primer orden*\footnote{una ecuación diferencial existe cuando en la ecuación, la incógnita depende de su derivada. En este caso, si queremos despejar $N$, observamos que su derivada se encuentra en la expresión resultante}. Este tipo particular de ecuaciones diferenciales tienen una solución analítica. Para este caso, se puede utilizar el método de separación de variables, para obtener la siguiente expresión del tamaño poblacional con respecto al tiempo (ver ejemplo \@ref(exm:exp1)):
+La ecuación \@ref(eq:diffG) es una *ecuación diferencial de primer orden*\footnote{una ecuación diferencial existe cuando en la ecuación, la incógnita depende de su derivada. En este caso, si queremos despejar $N$, observamos que su derivada se encuentra en la expresión resultante}. Este tipo particular de ecuaciones diferenciales tienen una solución analítica. Para este caso, se puede utilizar el método de separación de variables para obtener la siguiente expresión del tamaño poblacional con respecto al tiempo (ver ejemplo \@ref(exm:exp1)):
 
 \begin{equation}
 N_t=N_0 e^{\mathrm{r_m}t}
@@ -223,13 +223,13 @@ Se hacen las sustituciones correspondientes: $\mathrm{r_m} = 0.99$, $N_0 = \SI{1
 Usando el crecimiento exponencial para encontrar el tiempo de producción en un tanque que contiene animales presa.
 ```
 
-En un laboratorio se cultiva una especie de presa para un programa de re-introducción de una especie de pez. En el laboratorio, se inició un proyecto de mejora en la producción de la presa, y se ha diseñado un experimento para aumentar su valor nutricional.
+En un laboratorio se cultiva una especie de presa para un programa de re-introducción de una especie de pez. En el laboratorio, se inició un proyecto de mejora en la producción de la presa y se ha diseñado un experimento para aumentar su valor nutricional.
 
-Se cuenta con un presupuesto de \SI{2e6}{\text{CRC}} para la producción de éstos animales. Además, el diseño experimental requiere de 40 recipientes acondicionados con diferentes tratamientos. Las presas tienen una tasa de crecimiento intrínseco  de $r_m = \SI{0.098}{\per\day}$. Además, el inóculo inicial es de \num{1000} individuos por recipiente. Si se sabe que el costo de mantenimiento por organismo-día es de \SI{0.5}{\text{CRC}\per(\text{ind}.\day)}:
+Se cuenta con un presupuesto de \SI{2e6}{\text{CRC}} para la producción de éstos animales. Además, el diseño experimental requiere de 40 recipientes acondicionados con diferentes tratamientos. Las presas tienen una tasa de crecimiento intrínseco  de $r_m = \SI{0.098}{\per\day}$. También, el inóculo inicial es de \num{1000} individuos por recipiente. Si se sabe que el costo de mantenimiento por organismo-día es de \SI{0.5}{\text{CRC}\per(\text{ind}.\day)}:
 
 *¿Cuántos organismos por recipiente se pueden cultivar sin sobrepasar el dinero disponible?  ¿Cuánto tiempo, en días, se necesitan para alcanzar esa cantidad?*
 
-Este es un problema de mínimos. Por tanto, debemos buscar una función qué minimizar. Tenemos un presupuesto total asignado al experimento, y el costo del experimento debe ser igual a éste. Por tanto
+Este es un problema de mínimos. Por tanto, debemos buscar una función qué minimizar. Tenemos un presupuesto total asignado al experimento y el costo del experimento debe ser igual a éste. Entonces:
 
 *Presupuesto del experimento menos el costo es igual a cero*
 
@@ -251,7 +251,7 @@ Sabemos el valor del presupuesto, entonces tenemos que:
 
 *\SI{2000000}{\text{CRC}} - costo = 0*
 
-Y el costo dependerá de la cantidad de organismos, el tiempo que llevan vivos, y su crecimiento.  Cada instante, se generan nuevos organismos que incrementan el costo total, a partir su nacimiento. Para encontrar el costo, debemos multiplicar la cantidad de individuos que se generan en pequeños intervalos de tiempo, por el costo por individuo-día, y sumarlos hasta el tiempo $t=b$, que es cuando pondremos fin al experimento, porque hemos gastado todo el presupuesto.
+El costo dependerá de la cantidad de organismos, el tiempo que llevan vivos, y su crecimiento.  Cada instante se generan nuevos organismos que incrementan el costo total. Para encontrar el costo debemos multiplicar la cantidad de individuos que se generan en pequeños intervalos de tiempo, por el costo por individuo-día, y sumarlos hasta el tiempo $t=b$, que es cuando pondremos fin al experimento porque hemos gastado todo el presupuesto.
 
 ```{r , fig.align='center', fig.pos='ht!', fig.cap='Represencación del costo por tanque, en pequeños intervalos de tiempo',echo=FALSE}
 
@@ -399,9 +399,9 @@ Analice biológicamente el significado del resultado del ejercicio \@ref(exr:exp
 
 ### Crecimiento logístico
 
-Nuestros dos modelos básicos funcionan en condiciones controladas, cuando el espacio y los recursos no son limitantes para el crecimiento. Sin embargo, esto no es lo que se observa en poblaciones silvestres, donde tras el periodo de crecimiento exponencial, sigue una disminución en la velocidad del crecimiento, hasta que llega a ser cero, o incluso negativo (decrecimiento).
+Nuestros dos modelos básicos funcionan en condiciones controladas, cuando el espacio y los recursos no son limitantes para el crecimiento. Sin embargo, esto no es lo que se observa en poblaciones silvestres, donde tras el periodo de crecimiento exponencial sigue una disminución en la velocidad del crecimiento, hasta que llega a ser cero o incluso negativo (decrecimiento).
 
-Pueden existir varios mecanismos de regulación del crecimiento. Entre ellos existe la *competencia intraespecífica*, la *competencia interespecífica*, la *depredación*, entre otros. Algunas razones para la desaceleración del crecimiento pueden estar relacionadas a la tasa de consumo de alimento, frente a la tasa de producción. En este caso, cuando la tasa de consumo iguala a la tasa de producción, la población pierde el potencial de crecer. Los individuos empiezan a competir, puede haber emigración, mortalidad, etc.
+Pueden existir varios mecanismos de regulación del crecimiento. Entre ellos existe la *competencia intraespecífica*, la *competencia interespecífica*, la *depredación*, entre otros. Algunas razones para la desaceleración del crecimiento pueden estar relacionadas a la tasa de consumo de alimento frente a la tasa de producción de alimento. En este caso, cuando la tasa de consumo iguala a la tasa de producción, la población pierde el potencial de crecer. Los individuos empiezan a competir, puede haber emigración, mortalidad, etc.
 
 
 
@@ -448,7 +448,7 @@ plot(N,
   )
 ```
 
-Si ahora sustituimos la versión denso-dependiente de $r_m$ en la ecuación \@ref(eq:expG), obtenemos 
+Si ahora sustituimos la versión denso-dependiente de $r_m$ en la ecuación \@ref(eq:expG), obtenemos:
 
 
 \begin{equation}
@@ -484,7 +484,7 @@ curve(
 
 Observamos que la población ya no crece de manera indefinida. Ahora tiene un tope superior igual a la capacidad de carga, $K$. Técnicamente, decimos que existe un límite asintótico al crecimiento; ya que, el tamaño de población *tiende* a $K$, pero nunca llega a alcanzarlo (pero ver ejercicio \@ref(exr:logGrowth2)).
 
-Por otro lado, observamos que la población crece rápidamente al inicio; pero, al final de la curva el crecimiento se detiene. Esto implica que en algún punto, el crecimiento alcanza un máximo. Este punto se conoce como el *punto de inflexión*.
+Por otro lado, observamos que la población crece rápidamente al inicio; pero, al final de la curva el crecimiento se detiene. Esto implica que en algún punto el crecimiento alcanza un máximo. Este punto se conoce como el *punto de inflexión*.
 
 De cálculo diferencial, sabemos que los puntos de inflexión se obtienen al igualar la segunda derivada de la función a cero:
 
@@ -511,7 +511,7 @@ $$
 N = \frac{K}{2}
 $$
 
-Quiere decir, que el mayor crecimiento se obtiene cuando el tamaño de población es igual a la mitad de la capacidad de carga. Si sustituimos $N = K/2$ en la ecuación \@ref(eq:logi1), tenemos que el crecimiento máximo de una población es\footnote{La línea vertical a mano izquierda en la ecuación indica que la derivada debe evaluarse en $N_t=K/2$.}:
+Quiere decir que el mayor crecimiento se obtiene cuando el tamaño de población es igual a la mitad de la capacidad de carga. Si sustituimos $N = K/2$ en la ecuación \@ref(eq:logi1), tenemos que el crecimiento máximo de una población es\footnote{La línea vertical a mano izquierda en la ecuación indica que la derivada debe evaluarse en $N_t=K/2$.}:
 
 $$
 \left. \frac{dN}{dt}\right|_{N = K/2} = \frac{\mathrm{r_m}K}{4}
