@@ -28,7 +28,43 @@ Se ha estimado que $\lambda = 0.7$ en una población cosechada\footnote{en este 
 
 \newpage
 
-## Tarea 02: 
+## Tarea 02: Crecimiento exponencial
+
+En un experimento para aumentar la producción de alcohol usando levaduras, se prueban dos cepas en el mismo medio de cultivo. El objetivo es determinar cuál cepa crece más rápidamente. Utilice la técnica de la regresión lineal para estimar los parámetros de la función de crecimiento exponencial. 
+
+Los datos del experimento están en un archivo separado por comas `CSV` que les entregará el profesor.
+
+Construya intervalos de confianza aproximados según esta fórmula: $\hat{\text{r}}_m \pm 2\,\text{se}$; donde $\hat{\text{r}}_m$ es la tasa de crecimiento intrínseca obtenida por la regresión y $\text{se}$ es el error de estimación del parámetro (error estándar). Puede utilizar otro método para calcular los intervalos de confianza, siempre y cuando mecione cuál es el método y cuales pasos siguió para obtener el valor.
+
+Para el proceso, se tiene una tolerancia establecida para el $r_m$ de:  $r_m \in [ 0.23,\ 0.3 ]$
+
+Para cada cepa determine su aptitud para el cultivo, de la siguiete manera:
+
+1. **No apta**: El intervalo de confianza se encuentra totalmente por debajo del límite inferior de tolerancia.
+
+1. **Deficiente**: La cota inferior del IC se encuentra por debajo del límite inferior de tolerancia, pero la cota superior del IC sobrepasa el límite inferior de tolerancia.
+
+1. **Nominal**: El IC se encuentra totalmente dentro de la tolerancia.
+
+1. **Bueno**: La cota inferior del IC se encuentra dentro de tolerancia, pero la cota superior sobrepasa el límite superior de tolerancia.
+
+1. **Excelente**: El IC se encuentra totalmente por encima del límite superior de tolerancia.
+
+1. **Inconcluso**: La cota inferior del IC está por debajo de tolerancia, y la cota superior del IC está por encima del límite superior de tolerancia.
+
+```{r genDataTarea02, include=FALSE}
+N0 <- 100; rm_A <- 0.22; rm_B <- 0.3 ; t <- seq(0,5,length.out = 200)
+
+dataA <- N0 * exp(rm_A * t) + rnorm(length(t), mean = 0, sd = 7.5)
+dataB <- N0 * exp(rm_B * t) + rnorm(length(t), mean = 0, sd = 7.5)
+data <- data.frame(cepa_A = dataA, cepa_B = dataB, t = t)
+
+if (!file.exists("C:/localRepos/dinPob/datos/Tarea02.csv")) {
+  write.csv(data, file = "C:/localRepos/dinPob/datos/Tarea02.csv", row.names = FALSE)
+}
+```
+
+
 
 \newpage
 
