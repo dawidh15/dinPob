@@ -397,7 +397,7 @@ Analice biológicamente el significado del resultado del ejercicio \@ref(exr:exp
 ## Crecimiento denso-dependiente
 
 
-### Crecimiento logístico
+### Crecimiento logístico {#crecimientoLogistico}
 
 Nuestros dos modelos básicos funcionan en condiciones controladas, cuando el espacio y los recursos no son limitantes para el crecimiento. Sin embargo, esto no es lo que se observa en poblaciones silvestres, donde tras el periodo de crecimiento exponencial sigue una disminución en la velocidad del crecimiento, hasta que llega a ser cero o incluso negativo (decrecimiento).
 
@@ -520,7 +520,7 @@ Quiere decir que el mayor crecimiento se obtiene cuando el tamaño de población
 
 Esto tiene grandes implicaciones en el manejo de recursos naturales. Es la base de los modelos de producción excedentaria. En pesquerías, a este número se le conoce como *Máximo Rendimiento Sostenible*; sin embargo, ha sido fuertemente criticado [@Larkin1977], y en la actualidad se utilizan algunas variantes de esta cantidad, o otros modelos más apropiados, basados en estructura de edades o tallas.
 
-### Cosecha de poblaciones
+### Cosecha de poblaciones {#cosechaPoblaciones}
 
 \index{C!Cosecha de poblaciones}
 
@@ -560,7 +560,7 @@ H(E) = qEK - \frac{(qE)^2 K}{r}
 (\#eq:HE)
 \end{equation}
 
-### Modelo bionómico básico
+### Modelo bionómico básico {#bionomicModel}
 
 La mejor forma de explicar el modelo bionómico es mediante un ejemplo. Dado que estos modelos fueron desarrollados para manejar pesquerías, vamos a asumir una población de una especie de pez marino, cuyo crecimiento poblacional sigue una curva de crecimiento logística \@ref(eq:logi2). También asumimos que la cosecha es igual al crecimiento de la población, es decir, que el crecimiento y la cosecha están en equilibrio (ecuación \@ref(eq:H)).
 
