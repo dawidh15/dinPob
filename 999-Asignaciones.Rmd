@@ -64,11 +64,22 @@ if (!file.exists("C:/localRepos/dinPob/datos/Tarea02.csv")) {
 }
 ```
 
-
-
 \newpage
 
-## Tarea 03: 
+## Tarea 03: Aplicaciones del modelo logístico
+
+### Ejercicio 1 {-}
+
+Por los medios que disponga, haga un gráfico similar a la Figura \@ref(fig:BionomicModelFigure). Los dos gráficos que componen la figura deben estar uno debajo del otro, siguiendo el mismo orden que la figura de este documento. La escala del eje $x$, que refleja el esfuerzo, debe ser igual en ambos gráficos.
+
+1. Dibuje una línea horizontal $MC(E) = a$ en la figura inferior. Este corresponderá al *Costo Marginal* por aumentar el esfuerzo (definición \@ref(def:MarginalCost)). Tome esta línea, como el costo marginal básico, de una población cosechada. Encuentre las intersecciones de $a$ con $MR(E)$ y $AR(E)$, y trace líneas perpendiculares al eje $x$ para unir los dos gráficos, como se muestra en la Figura \@ref(fig:BionomicModelFigure).
+
+En algunos casos, cuando las poblaciones se cosechan en un esfuerzo máximo socioeconómico ($E_{MSoY}$), el Estado provee subsidios a las personas, para que continuen con la cosecha de las poblaciones. Esto se debe a que el Estado tiene más interés en mantener a estas personas empleadas en cualquier actividad (sea rentable o no), porque no existen otras opciones laborales en la zona; y el riesgo de aumentar el desempleo acarrearía problemas sociales aún más fuertes.
+
+2. Grafique una nueva línea horizontal que refleje el efecto de los subsidios en el costo marginal ($MC(E)$). Llame a esta nueva línea $a_s$. Encuentre la intersección de $a_s$ con la línea $MR(C)$ (definición \@ref(def:MarginalRevenue)); luego, desde este punto, trace una línea vertical y perpendicular al eje $x$ del gráfico inferior hasta que interseque el eje $x$ del gráfico superior (como se muestra en la figura \@ref(fig:BionomicModelFigure)). Repita el procedimiento anterior con la línea del ingreso promedio por unidad de esfuerzo $AR(E)$ (definición \@ref(def:AverageRevenue)).
+
+3. Analice el efecto de los subsidios sobre el *esfuerzo al máximo rendimiento económico sostenible* ($E_{MEY}$), sobre el *esfuerzo al máximo rendimiento social* ($E_{MSoY}$), sobre la rentabilidad de la pesquería ($TR(E)-TC(E)$) y finalmente, sobre la población cosechada.
+
 \newpage
 
 ## Tarea 04: Ejercicios con tablas de vida

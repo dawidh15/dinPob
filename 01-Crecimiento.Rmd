@@ -513,13 +513,16 @@ $$
 
 Quiere decir que el mayor crecimiento se obtiene cuando el tamaño de población es igual a la mitad de la capacidad de carga. Si sustituimos $N = K/2$ en la ecuación \@ref(eq:logi1), tenemos que el crecimiento máximo de una población es\footnote{La línea vertical a mano izquierda en la ecuación indica que la derivada debe evaluarse en $N_t=K/2$.}:
 
-$$
+\begin{equation}
 \left. \frac{dN}{dt}\right|_{N = K/2} = \frac{\mathrm{r_m}K}{4}
-$$
+(\#eq:MRS)
+\end{equation}
 
 Esto tiene grandes implicaciones en el manejo de recursos naturales. Es la base de los modelos de producción excedentaria. En pesquerías, a este número se le conoce como *Máximo Rendimiento Sostenible*; sin embargo, ha sido fuertemente criticado [@Larkin1977], y en la actualidad se utilizan algunas variantes de esta cantidad, o otros modelos más apropiados, basados en estructura de edades o tallas.
 
-### Usos del modelo logístico
+### Cosecha de poblaciones
+
+\index{C!Cosecha de poblaciones}
 
 En la sección anterior calculamos el *Máximo Rendimiento Sostenible* (MRS). Ahora lo definiremos como:
 
@@ -530,8 +533,278 @@ Recordando que:
 
 > Tamaño de población = Tamaño anterior + Crecimiento
 
-La idea de *cosechar* una población se fundamenta en que si se extrae una cantidad igual al crecimiento de la población, la biomasa restante logrará regenerarse y crecer. La idea del MRS, es que el tamaño de una población cosechada, debe llevarse a $N/2$, para poder aprovechar el crecimiento máximo que puede generar dicha población. 
+La idea de *cosechar* una población se fundamenta en que si se extrae una cantidad igual al crecimiento de la población, la biomasa restante logrará regenerarse y crecer. La idea del MRS, es que el tamaño de una población cosechada, debe llevarse a $N/2$, para poder aprovechar el crecimiento máximo que puede generar dicha población. Bajo esta condicion de **equilibrio** (*cuando la cosecha equivale al crecimiento*), pueden generalizarse estas relaciones:
 
+\begin{equation}
+H = qEN_t = \mathrm{r_m}N_t\left( 1 - \frac{N_t}{K} \right)
+(\#eq:H)
+\end{equation}
+
+\index{C!Cosecha de poblaciones}
+
+Donde $H$ es la cosecha (*Harvest*) que permite un máximo rendiento sostenible; $q$ es el parámetro de disponibilidad de la población; $E$ es el esfuerzo total en una unidad de tiempo. Esta relación tiene implícita un parámetro importante, la **captura por unidad de esfuerzo** (*cpue*), que indica la porción de la cosecha que se obtiene por unidad de esfuerzo\index{C!Captura por unidad de esfuerzo}. De la ecuación \@ref(eq:H) y la ecuación \@ref(eq:MRS) se desprende una relación con la cual podemos calcular cuánto esfuerzo debemos aplicar para tener una cosecha igual al MRS:
+
+\begin{equation}
+E_\mathrm{MRS} = \frac{r}{2q}
+(\#eq:Emrs)
+\end{equation}
+
+\index{E!Esfuerzo a MRS}
+
+Las unidades de $q$ son inversas a las unidades de $E$. Puesto que la captura por unidad de esfuerzo (*cpue*) en un año es $H/E = qN_t$. En este modelo, se asume que el *cpue* es proporcional a la biomasa silvestre de la población por el parámetro de disponibilidad *q*.
+
+Otra relación interesante del modelo es que se puede obtener la cosecha en función del esfuerzo \@ref(eq:HE). Esta relación es fundamental para la siguiente sección donde exploramos un modelo que junta los modelos de crecimiento poblacional, con la economía del aprovechamiento de poblaciones. La función en cuestión es:
+
+\begin{equation}
+H(E) = qEK - \frac{(qE)^2 K}{r}
+(\#eq:HE)
+\end{equation}
+
+### Modelo bionómico básico
+
+La mejor forma de explicar el modelo bionómico es mediante un ejemplo. Dado que estos modelos fueron desarrollados para manejar pesquerías, vamos a asumir una población de una especie de pez marino, cuyo crecimiento poblacional sigue una curva de crecimiento logística \@ref(eq:logi2). También asumimos que la cosecha es igual al crecimiento de la población, es decir, que el crecimiento y la cosecha están en equilibrio (ecuación \@ref(eq:H)).
+
+La tasa intínseca de crecimiento está escalada en años, y el tamaño de población en masa (toneladas). El esfuerzo $E$ se mide como la cantidad de barcos que operan en un año, y que aprovechan esa población específicamente. También asumimos que no hay otros aportes a la población por inmigración, y que tampoco hay emigración.
+
+Esta población también es aprovechada y comerciada por una cantidad significativa de empresas, y tiene una demanda importante; por lo que su precio de venta $p$ se mantiene estable durante el tiempo. Entonces, podemos hacer la primer definición importante del modelo:
+
+```{definition, label = 'TotalRevenue'}
+El **Ingreso Total** (TR: *Total Revenue*) es igual a la cosecha multiplicada por el precio de venta. Dado que la cosecha está en función del *Esfuerzo*, el Ingreso Total también lo está:
+  
+$$
+TR(E) = p\times H(E)
+$$
+```
+
+El **Ingreso Total** corresponde a una cantidad relativa a toda la pesquería (es decir, la actividad económica que involucra todos los aspectos de la captura de la población silvestre hasta su venta en el muelle). Otro concepto importante relacionado con la definición \@ref(def:TotalRevenue) es el **Ingreso Promedio por Unidad de Esfuerzo**:
+
+```{definition, label = 'AverageRevenue'}
+El **Ingreso Promedio Por Unidad de Esfuerzo** corresponde al ingreso que se obtiene por cada unidad de esfuerzo aplicada.
+
+$$
+AR(E) = \frac{TR(E)}{E} = \frac{p\times H(E)}{E}
+$$
+```
+
+Para este ejemplo, el $AR(E)$ corresponde al ingreso promedio anual por embarcación. Continuando con los conceptos relacionados a los ingresos, está el **Ingreso Marginal**:
+
+```{definition, label = 'MarginalRevenue'}
+El **Ingreso Marginal** corresponde a la tasa de cambio en el ingreso total ($TR(E)$) por cada unidad de esfuerzo añadida.
+
+$$
+MR(E) = \frac{dTR(E)}{dE}
+$$
+  
+Si $MR(E) > 0$ quiere decir que mientras continue el incremento en el esfuerzo, se incrementa el Ingreso Total ($TR$). Si $MR(E) < 0$, por el contrario, incrementar el esfuerzo se traduce en una reducción de $TR$.
+```
+
+Ahora, definiremos las cantidades relacionadas a los costos de la pesquería (o cualquier actividad de cosecha que siga este modelo).
+
+```{definition, label = 'MarginalCost'}
+El **Costo Marginal** corresponde a la tasa de cambio en el costo por cada unidad de esfuerzo añadida. Para este ejemplo asumimos una tasa constante; es decir, cada embarcación añadida a la pesquería incrementa el costo total de la operación por un valor constante $a$, que llamaremos el costo de operación de la embarcación.
+
+$$
+MC(E) = a
+$$
+  
+Si $dMC(E)/dE > 0$ quiere decir que cada unidad de esfuerzo adicional será más costosa. En nuestro ejemplo, $da/dE = 0$.
+```
+
+```{definition, label = 'TotalCost'}
+El **Costo Total** corresponde al costo de toda la actividad de cosecha. En este ejemplo, asumimos que el costo total de la operación es igual al Costo Marginal multiplicado por el total de embarcaciones que participan de la pesquería. Este costo por embarcación asume el costo de recursos humanos, materiales, informáticos, legales, etc.
+
+$$
+TC(E) = a \times E
+$$
+```
+
+```{r BionomicModelFigure, echo=FALSE, fig.align='center', fig.cap='Modelo bionómico básico', out.width='80%', fig.pos='h', cache=TRUE}
+op <- par()
+
+r <- 0.4
+K <- 100
+q <- 0.002
+p <-  1000
+a <- 20
+
+E_at_MSoY <- ((K * p * q - a) * r) / (K * p * q ^ 2)
+
+TR_E_at_MSoY <- (a * (K * p * q - a) * r) / (K * p * q ^ 2)
+
+E_at_MEY <- (r / (2 * q)) * ((K * p * q - a) / (K * p * q))
+
+TR_E_at_MEY <- ((K ^ 2 * p ^ 2 * q ^ 2 - a ^ 2) * r) / (4 * K * p * q ^
+2)
+
+TC_E_at_MEY <- ((K * a * p * q - a ^ 2) * r) / (2 * K * p * q ^ 2)
+
+
+layout(matrix(c(1, 2), ncol = 1))
+par(mar = par("mar") * c(0.75, 1, 0.11, 1))
+
+curve(
+p * (q * x * K - (K * (q * x) ^ 2) / r),
+from = 0,
+to = 200,
+las = 1,
+lwd = 2,
+xlab = "",
+ylab = "Valor Monetario",
+axes = FALSE
+)
+
+axis(
+side = 1,
+at = c(E_at_MSoY, E_at_MEY),
+labels = c("", "")
+)
+
+curve(
+a * x,
+add = TRUE,
+las = 1,
+lwd = 2,
+lty = 2,
+xlab = "Esfuerzo",
+ylab = "Valor Monetario"
+)
+
+points(E_at_MSoY,
+TR_E_at_MSoY,
+cex = 2,
+pch = 21,
+bg = 1)
+
+segments(
+c(E_at_MSoY),
+c(0),
+c(E_at_MSoY),
+c(TR_E_at_MSoY),
+lty = 3,
+col  = "gray",
+lwd = 2
+)
+
+xMEY.tmp <- grconvertX(E_at_MEY, to = 'ndc')
+xMSoY.tmp <- grconvertX(E_at_MSoY, to = 'ndc')
+y.tmp <- grconvertY(0, to = 'ndc')
+
+text(
+x = E_at_MSoY,
+0,
+labels = expression(E[MSoY]),
+pos = 3,
+offset = 0.35
+)
+
+
+points(E_at_MEY,
+TR_E_at_MEY,
+cex = 2,
+pch = 21,
+bg = 1)
+
+points(E_at_MEY,
+TC_E_at_MEY,
+cex = 2,
+pch = 21,
+bg = 1)
+
+segments(
+c(E_at_MEY),
+c(TC_E_at_MEY),
+c(E_at_MEY),
+c(TR_E_at_MEY),
+lty = 3,
+col  = "gray",
+lwd = 2
+)
+
+text(
+x = E_at_MEY,
+0,
+labels = expression(E[MEY]),
+pos = 3,
+offset = 0.15
+)
+
+legend(
+"topright",
+legend = c("TR(E)", "TC(E)"),
+lty = c(1, 2),
+lwd = 2
+)
+
+box()
+
+curve(
+p * (K * q - (2 * x * K * q ^ 2) / r),
+#MR(E)
+from = 0,
+to = 200,
+ylim = c(0, 200),
+las = 1,
+lwd = 2,
+xlab = "Esfuerzo",
+ylab = "Valor Monetario",
+axes = FALSE
+)
+axis(
+side = 1,
+at = c(E_at_MSoY, E_at_MEY),
+labels = c("", "")
+)
+box()
+
+curve((K * p * q * r - x * K * p * q ^ 2) / r,
+# AR(E)
+las = 1,
+lwd = 2,
+lty = 2,
+add = TRUE
+)
+
+abline(h = a, col = "gray", lwd = 2)
+
+par(xpd = NA)
+segments(
+c(E_at_MEY, E_at_MSoY),
+c(0, 0),
+c(
+grconvertX(xMEY.tmp,  from = 'ndc'),
+grconvertX(xMSoY.tmp,  from = 'ndc')
+) ,
+c(grconvertY(y.tmp, from = 'ndc'), grconvertY(y.tmp, from = 'ndc')),
+col = 'red'
+)
+
+legend(
+"bottomleft",
+legend = c("MR(E)", "AR(E)", "MC(E)"),
+lty = c(1, 2, 1),
+lwd = 2,
+col = c(1, 1, "gray"),
+bg = "white"
+)
+
+suppressWarnings(par(op))
+```
+
+En la Figura \@ref(fig:BionomicModelFigure) superior, observamos la curva que representa el *ingreso total* ($TR(E)$). Tal como es de esperar por su definición (\@ref(def:TotalRevenue)), esta curva es proporcional a la cosecha. La línea recta discontinua representa el *costo total* ($TC(E)$), que incrementa proporcionalmente al número de embarcaciones que se agreguen a la pesquería (\@ref(def:TotalCost)). El espacio que existe entre $TR(E)$ y $TC(E)$ es la **renta** de la operación o margen de ganancia. El margen de ganancia puede ser gravable, y su efecto es incremetar el costo marginal (\@ref(def:MarginalCost)) como medida para regular el esfuerzo.
+
+Esta misma figura presenta dos puntos importantes: el esfuerzo para alcanzar el  *máximo rendimiento económico*, y el esfuerzo para alcanzar el *máximo rendimiento social*. El cómo se llegan a estas cantidades se visualiza de mejor manera en la Figura \@ref(fig:BionomicModelFigure) inferior. El eje $y$ representa una cantidad monetaria, su intersección con el eje $x$ representa el cero; por lo que no se visualizan números negativos, pero el modelo los admite.
+
+La primer recta representa el *ingreso marginal* ($MR(E)$, definición \@ref(def:MarginalRevenue)). Vemos que esta recta indica el aumento en el *ingreso total* conforme se incrementa el esfuerzo. Pero como la operación tiene un costo de operación constante ($a$), vemos que el incremento en las ganancias se detiene cuando el ingreso marginal iguala al costo marginal. Por tanto, podemos establecer que para maximizar la rentabilidad de la operación debemos encontrar el punto donde:
+
+$$
+MR(E) - MC(E) = 0
+$$
+
+Ahora, maximizar la rentabilidad de la pesquería no es necesariamente la mejor solución social. Podemos observar que la pesquería puede producir suficientes ganancias para introducir más embarcaciones, y estas embarcaciones significan más personas empleadas directa e indirectamete. Para encontrar el esfuerzo que puede sostener la mayor cantidad de embarcaciones (empleo), debemos buscar el punto donde el *ingreso promedio por unidad de esfuerzo* (\@ref(def:AverageRevenue)) iguala los costos de operación.  Es decir, donde la ganancia de la pesquería es apenas suficiente para cubrir los costos de operación de las embarcaciones (este es el punto *E_MSoY*, Figura \@ref(fig:BionomicModelFigure)).
+
+\FloatBarrier
+
+#### Ejercicios
 
 ```{exercise, label='logGrowth2'}
 Demuestre que la población no crecerá más cuando llega a la capacidad de carga. Es decir, tome el límite de la ecuación \@ref(eq:logi1), cuando $t \to \infty$.
@@ -554,3 +827,5 @@ Grafique la tasa de crecimiento poblacional usando $N_t$ como variable independi
 ## Otras fuentes bibliográficas
 
 Esta sección está basada en los capítulos 4 y 5 de @NealPopBio. En la sección 2.3 de @PopSystem, se desarrollan los mismos modelos básicos vistos aquí; en este mismo libro se presenta una buena introducción sobre la ecología de poblaciones como *sistemas*, en el capítulo 1.
+
+Una lectura más profunda sobre los modelos bionómicos (bio-económicos) se puede encontrar en @Flaaten2010 y @Grafton2006.
