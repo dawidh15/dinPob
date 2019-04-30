@@ -128,7 +128,7 @@ tv <- tablaVida(
 ```{r}
 R0 <- tv$R0
 
-Tc <- tv$TC
+Tc <- tv$Tc
 
 # Calcule el aproximado a la tasa de crecimiento intrínseca per cápita, con los parámetros anteriores y analice si la población crece o no. Recuerde el tutorial de R para hacer calculos
 ```
