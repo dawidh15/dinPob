@@ -161,7 +161,7 @@ La autoridad que gestiona los recursos naturales le ha encomendado analizar el e
 
 Además le piden incluir estimados de incertidumbre (excepto para la probabilidad de extinción).
 
-El criterio de rechazo de los escenarios de manejo es el siguiente:
+El criterio de **aceptación** de los escenarios de manejo es el siguiente:
 
 > *La chance de la probabilidad de cuasi-extinción de obtener 80 animales sub-adultos o adultos en 15 años después de la cosecha debe ser menor a `r rejectOdd`*
 
@@ -228,7 +228,7 @@ Estimular la comprensión de estos conceptos claves para la estimación de la ab
 
 - Utilice al menos 6 fuentes bibliográficas.
 
-- Presente el documento como **PDF editable**, a más tardar el 16 de junio de 2018. No se reciben ni califican trabajos entregados posteriormente a esta fecha.
+- Presente el documento como **PDF editable**, según la fecha indicada por el profesor. No se reciben ni califican trabajos entregados posteriormente a esta fecha.
 
 ### Desgloce de calificación
 
@@ -244,7 +244,7 @@ Estimular la comprensión de estos conceptos claves para la estimación de la ab
 
 - Originalidad. Si se detecta y demuestra plagio, de cualquier tipo, se invalida la tarea y se pasa nota a la dirección de la ECB.
 
-- La tarea vale cinco puntos (5 pts).
+- La tarea vale cinco porciento (5 %).
 
 ### Recomendaciones:
 
