@@ -249,7 +249,7 @@ Suponer que todas las clases de edad mantienen una tasa de supervivencia común 
 
 ### Método de regresión
 
-De manera alternativa, se puede utilizar una simple regresión lineal para estimar una tasa de supervivencia común a todas las clases de edad. Para ello, asumimos que el número esperado de individuos contados en una clase de edad $x$ ($S_x$), es igual un número de reclutas $N_0$, que se mantiene constante a través del tiempo; multiplicado por la probabilidad de que un individuo sea capturado en la muestra $p$; multiplicado por probabilidad de haber sobrevivido hasta la clase $x$ ($s^x$). Es decir:
+De manera alternativa, se puede utilizar una simple regresión lineal para estimar una tasa de supervivencia común a todas las clases de edad. Para ello, asumimos que el número esperado de individuos contados en una clase de edad $x$ ($S_x$), es igual un número de reclutas $N_0$, que se mantiene constante a través del tiempo; multiplicado por la probabilidad de que un individuo sea capturado en la muestra ($p$); multiplicado por probabilidad de haber sobrevivido hasta la clase $x$ ($s^x$). Es decir:
 
 $$
 E\left( S_x \right)  = N_0 p s^x
